@@ -1,10 +1,10 @@
 # [Título do Projeto de Ciência de Dados]
 ## Identificação da Equipa
-* **Grupo nº:** [Número]
+* **Grupo nº:** 10
 * **Membros:**
-* [Nome do Aluno 1] - [Nº de Estudante]
-* [Nome do Aluno 2] - [Nº de Estudante]
-* [Nome do Aluno 3] - [Nº de Estudante]
+* Luís Figueira - 2022160309
+* Martim Ferreira - 2023132459
+* Mateus Afonso - 2023142275
 ## Organização do Repositório
 A estrutura deste projeto segue as boas práticas de Ciência de Dados e Engenharia de Software:
 * **`data/`**: Armazenamento de dados (dados brutos em `raw/` e processados em `processed/`).
