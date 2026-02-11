@@ -23,5 +23,6 @@ data/processed/*
 # --- Sistema & IDEs ---
 .DS_Store
 .vscode/
-.idea/ 
+.idea/
+*.log
 
