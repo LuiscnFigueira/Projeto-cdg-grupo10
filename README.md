@@ -16,7 +16,7 @@ A estrutura deste projeto segue as boas práticas de Ciência de Dados e Engenha
 ## 1. Iniciação (Milestone 1)
 ### Contexto e Problema de Negócio
 A empresa enfrenta custos elevados associados à rotatividade voluntária de colaboradores.
-Pretende-se desenvolver um modelo preditivo capaz de identificar colaboradores com maior probabilidade de abandono, permitindo priorizar intervenções de retenção e, consequentemente, reduzir custos de substituição (recrutamento, onboarding e perda de produtividade) e melhorar a retenção de talento.
+Pretende-se desenvolver um modelo preditivo capaz de identificar colaboradores com maior probabilidade de abandono, permitindo priorizar intervenções de retenção, e consequentemente reduzir custos de substituição (recrutamento, onboarding e perda de produtividade) e melhorar a retenção de talento.
 ### Objetivos do Projeto
 * **Objetivo 1:** [Ex: Prever a rotatividade de clientes]
 * **Objetivo 2:** [Ex: Identificar os principais fatores de influência]
