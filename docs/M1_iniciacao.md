@@ -29,9 +29,9 @@ de tratar isso na M2.]
 ## 5. Cronograma Interno 
 | Fase | Data Limite | Entregável Esperado | 
 | :--- | :--- | :--- | 
-| M1: Iniciação | [Data] | Repositório estruturado e Plano de Projeto. | 
-| M2: Exploração | [Data] | Notebook de EDA e Dados Processados. | 
-| M3: Modelação | [Data] | Comparação de algoritmos e métricas. | 
-| M4: Finalização| [Data] | Pitch e Relatório Final. | 
+| M1: Iniciação | [24/02/2026] | Repositório estruturado e Plano de Projeto. | 
+| M2: Exploração | [24/03/2026] | Notebook de EDA e Dados Processados. | 
+| M3: Modelação | [21/04/2026] | Comparação de algoritmos e métricas. | 
+| M4: Finalização| [21/05/2026] | Pitch e Relatório Final. | 
  --- 
-*Data de última atualização: [DD/MM/AAAA]*
+*Data de última atualização: [13/02/2026]*
