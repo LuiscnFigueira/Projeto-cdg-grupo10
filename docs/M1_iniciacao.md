@@ -17,8 +17,7 @@ clustering.]
   * **Membro A:** Responsável pela Engenharia de Dados. 
   * **Membro B:** Responsável pela Modelação Estatística. 
   * **Membro C:** Responsável pela Visualização e Documentação. 
-* **Ferramentas de Colaboração:** [Ex: GitHub Projects para Kanban, reuniões semanais via 
-Teams/Discord]. 
+* **Ferramentas de Colaboração:** Kaggle Notebooks (ambiente de desenvolvimento), GitHub (controlo de versões e partilha de código), GitHub Projects (gestão de tarefas) e reuniões semanais (Google Meet).
  
 ## 4. Análise de Viabilidade dos Dados 
 * **Disponibilidade:** [Os dados já foram descarregados? Estão em base de dados?] 
