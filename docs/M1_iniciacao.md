@@ -26,10 +26,9 @@ clustering.]
 * **Ferramentas de Colaboração:** Kaggle Notebooks (ambiente de desenvolvimento), GitHub (controlo de versões e partilha de código), GitHub Projects (gestão de tarefas) e reuniões semanais (Google Meet).
  
 ## 4. Análise de Viabilidade dos Dados 
-* **Disponibilidade:** [Os dados já foram descarregados? Estão em base de dados?] 
-* **Qualidade Inicial:** [Ex: Notámos que faltam dados de datas em algumas colunas, precisaremos 
-de tratar isso na M2.] 
-* **Ética:** [Os dados cumprem o RGPD? Estão anonimizados?] 
+* **Disponibilidade:** O dataset "IBM HR Analytics Employee Attrition & Performance" encontra-se disponível publicamente na plataforma Kaggle em formato CSV. Os dados já foram importados para o ambiente Kaggle Notebook, estando estruturados de forma tabular com 1470 observações e 35 variáveis. A estrutura é ideal para análise estatística e modelação supervisionada, sem necessidade de integração com bases de dados relacionais externas nesta fase. 
+* **Qualidade Inicial:** A análise exploratória preliminar (EDA) indica uma excelente qualidade inicial, com ausência de valores nulos. No entanto, identificámos a necessidade de limpeza de dados, uma vez que existem variáveis sem valor preditivo (variância zero ou identificadores únicos) que serão removidas na Milestone 2, nomeadamente: EmployeeNumber, EmployeeCount, Over18 e StandardHours. O dataset apresenta um mix de variáveis categóricas, numéricas e ordinais que exigirão técnicas específicas de codificação (encoding).
+* **Ética:** O dataset está totalmente anonimizado, não contendo identificadores pessoais diretos (nomes, contactos ou IDs reais). A utilização do projeto é estritamente académica, cumprindo os princípios do RGPD, designadamente a minimização de dados, finalidade específica e utilização legítima. Não existe risco de identificação individual, garantindo a integridade ética da investigação.
  
 ## 5. Cronograma Interno 
 | Fase | Data Limite | Entregável Esperado | 
