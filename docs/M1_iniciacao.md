@@ -26,6 +26,26 @@ clusters através do método do cotovelo e do Silhouette Score, garantindo um va
 Silhouette superior a 0,50, e descrevendo estatisticamente cada perfil identificado, até ao dia
 07/03/2026.
 
+### 2.1 Perguntas de Investigação
+
+As perguntas de investigação estruturam o enquadramento científico do estudo, orientando a análise empírica dos dados com o objetivo de identificar os principais determinantes do attrition, avaliar a sua relevância estatística e preditiva e verificar a viabilidade de desenvolver modelos capazes de prever este fenómeno de forma fiável.
+
+1. **Quais são as variáveis com maior poder explicativo e preditivo do attrition dos colaboradores?**
+
+2. **Existe uma associação estatisticamente significativa entre a realização de horas extraordinárias (OverTime) e a probabilidade de attrition?**
+
+3. **O nível de satisfação no trabalho (JobSatisfaction) e o equilíbrio entre vida pessoal e profissional (WorkLifeBalance) influenciam significativamente o risco de attrition?**
+
+4. **O rendimento mensal (MonthlyIncome) tem impacto significativo na probabilidade de attrition, mesmo após controlo multivariável?**
+
+5. **Qual dos algoritmos de classificação testados apresenta melhor desempenho e maior estabilidade na previsão do attrition?**
+
+6. **O desequilíbrio da variável alvo influencia o desempenho dos modelos preditivos e pode ser mitigado através da aplicação da técnica SMOTE?**
+
+7. **É possível construir um índice de risco de attrition interpretável e fiável que permita classificar os colaboradores de acordo com o seu nível de risco?**
+
+8. **Que fatores distinguem os colaboradores com maior risco de attrition dos restantes, e como podem ser utilizados para apoiar estratégias de retenção?**
+
  
 ## 3. Metodologia de Gestão (PBL) 
 * **Divisão de Tarefas:** 
