@@ -14,9 +14,20 @@ A rotatividade voluntária representa um dos principais desafios estratégicos n
 *Defina os objetivos do projeto seguindo a lógica SMART (Específico, Mensurável, Atingível, 
 Relevante e Temporal):* 
  
-1.  **Objetivo 1:** [Ex: Reduzir o erro de previsão de stock em 15% até ao final do semestre.] 
-2.  **Objetivo 2:** [Ex: Identificar os 5 principais perfis de consumo através de técnicas de 
-clustering.] 
+1.  **Objetivo 1:** Desenvolver um modelo de classificação supervisionado para prever o attrition, alcançando um
+F1-Score mínimo de 0,80 em validação cruzada estratificada (k=5), até ao dia 28/02/2026
+(Milestone 3).
+ 
+2.  **Objetivo 2:** Construir um índice de risco de attrition baseado nas probabilidades previstas pelo modelo,
+classificando os colaboradores em categorias de baixo risco (<30%), médio risco (30–60%) e alto
+risco (>60%), até ao dia 07/03/2026.
+
+3. **Objetivo 3:** Aplicar técnicas de clustering não supervisionado para identificar e caracterizar perfis distintos de
+colaboradores com base nas variáveis relevantes do dataset, determinando o número ótimo de
+clusters através do método do cotovelo e do Silhouette Score, garantindo um valor médio de
+Silhouette superior a 0,50, e descrevendo estatisticamente cada perfil identificado, até ao dia
+07/03/2026.
+
  
 ## 3. Metodologia de Gestão (PBL) 
 * **Divisão de Tarefas:** 
@@ -27,7 +38,7 @@ clustering.]
  
 ## 4. Análise de Viabilidade dos Dados 
 * **Disponibilidade:** O dataset "IBM HR Analytics Employee Attrition & Performance" encontra-se disponível publicamente na plataforma Kaggle em formato CSV. Os dados já foram importados para o ambiente Kaggle Notebook, estando estruturados de forma tabular com 1470 observações e 35 variáveis. A estrutura é ideal para análise estatística e modelação supervisionada, sem necessidade de integração com bases de dados relacionais externas nesta fase. 
-* **Qualidade Inicial:** A análise exploratória preliminar (EDA) indica uma excelente qualidade inicial, com ausência de valores nulos. No entanto, identificámos a necessidade de limpeza de dados, uma vez que existem variáveis sem valor preditivo (variância zero ou identificadores únicos) que serão removidas na Milestone 2, nomeadamente: EmployeeNumber, EmployeeCount, Over18 e StandardHours. O dataset apresenta um mix de variáveis categóricas, numéricas e ordinais que exigirão técnicas específicas de codificação (encoding).
+* **Qualidade Inicial:** A análise exploratória preliminar (EDA) indica uma excelente qualidade inicial, com ausência de valores nulos. No entanto, identificámos a necessidade de limpeza de dados, uma vez que existem variáveis sem valor preditivo (variância zero ou identificadores únicos) foram removidas e não estarão na Milestone 2, nomeadamente: EmployeeNumber, EmployeeCount, Over18 e StandardHours. O dataset apresenta um mix de variáveis categóricas, numéricas e ordinais que exigirão técnicas específicas de codificação (encoding).
 * **Ética:** O dataset está totalmente anonimizado, não contendo identificadores pessoais diretos (nomes, contactos ou IDs reais). A utilização do projeto é estritamente académica, cumprindo os princípios do RGPD, designadamente a minimização de dados, finalidade específica e utilização legítima. Não existe risco de identificação individual, garantindo a integridade ética da investigação.
  
 ## 5. Cronograma Interno 
