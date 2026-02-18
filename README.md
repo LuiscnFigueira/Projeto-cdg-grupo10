@@ -18,8 +18,9 @@ A estrutura deste projeto segue as boas práticas de Ciência de Dados e Engenha
 A empresa enfrenta custos elevados associados à rotatividade voluntária de colaboradores.
 Pretende-se desenvolver um modelo preditivo capaz de identificar colaboradores com maior probabilidade de abandono, permitindo priorizar intervenções de retenção, e consequentemente reduzir custos de substituição (recrutamento, onboarding e perda de produtividade) e melhorar a retenção de talento.
 ### Objetivos do Projeto
-* **Objetivo 1:** [Ex: Prever a rotatividade de clientes]
-* **Objetivo 2:** [Ex: Identificar os principais fatores de influência]
+* **Objetivo 1:** Desenvolver um modelo de classificação supervisionado para prever o attrition, alcançando um F1-Score mínimo de 0,80 em validação cruzada estratificada (k=5), até ao dia 28/02/2026 (Milestone 3).
+* **Objetivo 2:** Construir um índice de risco de attrition baseado nas probabilidades previstas pelo modelo, classificando os colaboradores em categorias de baixo risco (<30%), médio risco (30–60%) e alto risco (>60%), até ao dia 07/03/2026.
+* **Objetivo 3:** Aplicar técnicas de clustering não supervisionado para identificar e caracterizar perfis distintos de colaboradores com base nas variáveis relevantes do dataset, determinando o número ótimo de clusters através do método do cotovelo e do Silhouette Score, garantindo um valor médio de Silhouette superior a 0,50, e descrevendo estatisticamente cada perfil identificado, até ao dia 07/03/2026.
 ### Fonte de Dados
 * **Dataset:** [https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset]
 * **Dimensão:** [1470 linhas, 35 colunas]
