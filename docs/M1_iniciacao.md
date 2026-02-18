@@ -11,8 +11,6 @@ O capital humano ganhou uma relevância estratégica como nunca antes, transform
 A rotatividade voluntária representa um dos principais desafios estratégicos na gestão moderna, sendo a sua relevância justificada por fatores críticos que impactam diretamente a sustentabilidade das organizações. Em primeiro lugar, destaca-se o impacto financeiro direto e indireto, uma vez que a saída de um colaborador implica custos de recrutamento, seleção, anúncios e indemnizações, além de despesas com onboarding, formação e a perda inevitável de conhecimento organizacional e produtividade, valores que podem atingir o dobro do salário anual do cargo. Adicionalmente, este fenómeno é influenciado por fatores multidimensionais, onde o abandono é moldado por uma combinação de variáveis demográficas, comportamentais e organizacionais, tais como a satisfação no trabalho, o envolvimento e o equilíbrio entre a vida pessoal e profissional. Estas taxas elevadas de rotatividade geram ainda um impacto negativo no clima organizacional, afetando o moral das equipas restantes e criando um ciclo de instabilidade interna. Contudo, num mercado globalizado e altamente competitivo, a retenção de especialistas e talentos internos torna-se um fator decisivo de vantagem competitiva, essencial para manter a inovação e a eficiência operacional da empresa.
  
 ## 2. Objetivos SMART 
-*Defina os objetivos do projeto seguindo a lógica SMART (Específico, Mensurável, Atingível, 
-Relevante e Temporal):* 
  
 1.  **Objetivo 1:** Desenvolver um modelo de classificação supervisionado para prever o attrition, alcançando um
 F1-Score mínimo de 0,80 em validação cruzada estratificada (k=5), até ao dia 28/02/2026
