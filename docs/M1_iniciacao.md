@@ -2,7 +2,7 @@
  
 ## 1. Descrição Detalhada do Problema
 
-**Contexto do Setor: Gestão de Capital Humano (HR Analytics)** 
+**Contexto do Setor: Gestão de Recursos Humanos (HR Analytics)** 
 
 O capital humano ganhou uma relevância estratégica como nunca antes, transformando a forma como as organizações planeiam o seu futuro. No setor tecnológico e de serviços, como o representado pelo dataset IBM HR Analytics Employee Attrition & Performance, a saída voluntária de colaboradores (attrition) é um fenómeno complexo que vai além da simples rotatividade. A utilização de HR Analytics permite transformar dados brutos em decisões estratégicas, movendo os Recursos Humanos de uma função puramente administrativa para uma função preditiva e baseada em evidências.
 
@@ -49,4 +49,4 @@ Silhouette superior a 0,50, e descrevendo estatisticamente cada perfil identific
 | M3: Modelação | [21/04/2026] | Comparação de algoritmos e métricas. | 
 | M4: Finalização| [21/05/2026] | Pitch e Relatório Final. | 
  --- 
-*Data de última atualização: [13/02/2026]*
+*Data de última atualização: [18/02/2026]*
