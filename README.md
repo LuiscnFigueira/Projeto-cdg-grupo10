@@ -21,6 +21,26 @@ Pretende-se desenvolver um modelo preditivo capaz de identificar colaboradores c
 * **Objetivo 1:** Desenvolver um modelo de classificação supervisionado para prever o attrition, alcançando um F1-Score mínimo de 0,80 em validação cruzada estratificada (k=5), até ao dia 28/02/2026 (Milestone 3).
 * **Objetivo 2:** Construir um índice de risco de attrition baseado nas probabilidades previstas pelo modelo, classificando os colaboradores em categorias de baixo risco (<30%), médio risco (30–60%) e alto risco (>60%), até ao dia 07/03/2026.
 * **Objetivo 3:** Aplicar técnicas de clustering não supervisionado para identificar e caracterizar perfis distintos de colaboradores com base nas variáveis relevantes do dataset, determinando o número ótimo de clusters através do método do cotovelo e do Silhouette Score, garantindo um valor médio de Silhouette superior a 0,50, e descrevendo estatisticamente cada perfil identificado, até ao dia 07/03/2026.
+### Perguntas de Investigação
+
+As perguntas de investigação estruturam o enquadramento científico do estudo, orientando a análise empírica dos dados com o objetivo de identificar os principais determinantes do attrition, avaliar a sua relevância estatística e preditiva e verificar a viabilidade de desenvolver modelos capazes de prever este fenómeno de forma fiável.
+
+1. Quais são as variáveis com maior poder explicativo e preditivo do attrition dos colaboradores?
+
+2. Existe uma associação estatisticamente significativa entre a realização de horas extraordinárias (OverTime) e a probabilidade de attrition?
+
+3. O nível de satisfação no trabalho (JobSatisfaction) e o equilíbrio entre vida pessoal e profissional (WorkLifeBalance) influenciam significativamente o risco de attrition?
+
+4. O rendimento mensal (MonthlyIncome) tem impacto significativo na probabilidade de attrition, mesmo após controlo multivariável?
+
+5. Qual dos algoritmos de classificação testados apresenta melhor desempenho e maior estabilidade na previsão do attrition?
+
+6. O desequilíbrio da variável alvo influencia o desempenho dos modelos preditivos e pode ser mitigado através da aplicação da técnica SMOTE?
+
+7. É possível construir um índice de risco de attrition interpretável e fiável que permita classificar os colaboradores de acordo com o seu nível de risco?
+
+8. Que fatores distinguem os colaboradores com maior risco de attrition dos restantes, e como podem ser utilizados para apoiar estratégias de retenção?
+
 ### Fonte de Dados
 * **Dataset:** [https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset]
 * **Dimensão:** [1470 linhas, 35 colunas]
