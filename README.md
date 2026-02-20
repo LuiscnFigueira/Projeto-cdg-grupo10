@@ -42,8 +42,9 @@ As perguntas de investigação estruturam o enquadramento científico do estudo,
 8. Que fatores distinguem os colaboradores com maior risco de attrition dos restantes, e como podem ser utilizados para apoiar estratégias de retenção?
 
 ### Fonte de Dados
-* **Dataset:** [https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset]
-* **Dimensão:** [1470 linhas, 35 colunas]
+* **Dataset:** https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset
+* **Dimensão:** 1470 linhas, 35 colunas
+* **Fonte do Código:** https://www.kaggle.com/code/lusfigueira/m1-inicia-o
 ## 2. Exploração (Milestone 2)
 ### Limpeza e Preparação
 * [Breve resumo das ações de limpeza tomadas. Detalhes em `docs/M2_exploracao.md`]
