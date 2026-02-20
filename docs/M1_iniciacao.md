@@ -2,14 +2,40 @@
  
 ## 1. Descrição Detalhada do Problema
 
-**Contexto do Setor: Gestão de Recursos Humanos (HR Analytics)** 
+**Contexto do Setor: Gestão de Capital Humano e HR Analytics** 
 
-O capital humano ganhou uma relevância estratégica como nunca antes, transformando a forma como as organizações planeiam o seu futuro. No setor tecnológico e de serviços, como o representado pelo dataset IBM HR Analytics Employee Attrition & Performance, a saída voluntária de colaboradores (attrition) é um fenómeno complexo que vai além da simples rotatividade. A utilização de HR Analytics permite transformar dados brutos em decisões estratégicas, movendo os Recursos Humanos de uma função puramente administrativa para uma função preditiva e baseada em evidências.
+O capital humano constitui um dos ativos mais críticos para o desempenho, inovação e sustentabilidade das organizações modernas, particularmente em setores intensivos em conhecimento, como o setor tecnológico e de serviços. Neste contexto, a área de HR Analytics (People Analytics) tem emergido como uma disciplina estratégica que utiliza dados e técnicas de análise quantitativa para apoiar a tomada de decisão na gestão de recursos humanos.
 
-**Relevância no Momento Atual**
+Tradicionalmente, a gestão de recursos humanos baseava-se em abordagens maioritariamente reativas e qualitativas. No entanto, com o aumento da disponibilidade de dados organizacionais e o desenvolvimento de técnicas de Ciência de Dados e Machine Learning, tornou-se possível adotar uma abordagem orientada por dados, permitindo analisar padrões comportamentais, identificar fatores de risco e antecipar fenómenos relevantes. Esta evolução permite transformar os Recursos Humanos numa função estratégica e preditiva, contribuindo para uma gestão mais eficiente e fundamentada do capital humano.
 
-A rotatividade voluntária representa um dos principais desafios estratégicos na gestão moderna, sendo a sua relevância justificada por fatores críticos que impactam diretamente a sustentabilidade das organizações. Em primeiro lugar, destaca-se o impacto financeiro direto e indireto, uma vez que a saída de um colaborador implica custos de recrutamento, seleção, anúncios e indemnizações, além de despesas com onboarding, formação e a perda inevitável de conhecimento organizacional e produtividade, valores que podem atingir o dobro do salário anual do cargo. Adicionalmente, este fenómeno é influenciado por fatores multidimensionais, onde o abandono é moldado por uma combinação de variáveis demográficas, comportamentais e organizacionais, tais como a satisfação no trabalho, o envolvimento e o equilíbrio entre a vida pessoal e profissional. Estas taxas elevadas de rotatividade geram ainda um impacto negativo no clima organizacional, afetando o moral das equipas restantes e criando um ciclo de instabilidade interna. Contudo, num mercado globalizado e altamente competitivo, a retenção de especialistas e talentos internos torna-se um fator decisivo de vantagem competitiva, essencial para manter a inovação e a eficiência operacional da empresa.
- 
+Uma das aplicações mais relevantes neste domínio é a análise da rotatividade de colaboradores (Employee Attrition), que corresponde à saída de colaboradores de uma organização e constitui um indicador crítico da estabilidade e eficiência organizacional.
+
+**Relevância do Problema no Contexto Atual**
+
+A rotatividade de colaboradores representa um desafio estratégico significativo devido ao seu impacto direto e indireto nas organizações. Do ponto de vista financeiro, a saída de um colaborador implica custos associados ao recrutamento, seleção, integração e formação de novos colaboradores, bem como custos indiretos relacionados com a perda de produtividade e transferência de conhecimento. Em funções especializadas, estes custos podem atingir valores substanciais.
+
+Para além do impacto económico, a rotatividade afeta também o desempenho organizacional, podendo comprometer a continuidade operacional, reduzir a coesão das equipas e afetar negativamente o clima organizacional. Num contexto de elevada competitividade e escassez de talento qualificado, a capacidade de reter colaboradores constitui um fator determinante para a vantagem competitiva e sustentabilidade das organizações.
+
+A saída de colaboradores é influenciada por múltiplos fatores, incluindo características demográficas, condições de trabalho, remuneração, progressão na carreira e níveis de satisfação profissional. A identificação e análise destes fatores constitui um passo fundamental para permitir às organizações desenvolver estratégias eficazes de retenção e otimizar a gestão do seu capital humano.
+
+**Formulação do Problema no Contexto da Ciência de Dados**
+
+Para analisar este problema, será utilizado o dataset IBM HR Analytics Employee Attrition & Performance, disponibilizado na plataforma Kaggle, que contém dados estruturados relativos a 1470 colaboradores e 35 variáveis que descrevem características demográficas, profissionais, salariais e níveis de satisfação.
+
+A variável central deste estudo é Attrition, uma variável categórica binária que indica se um colaborador abandonou a organização ("Yes") ou permaneceu na empresa ("No"). Esta variável constitui a variável alvo do projeto.
+
+O problema pode ser formalizado como um problema de análise exploratória de dados e classificação supervisionada, em que o objetivo consiste em analisar a relação entre um conjunto de variáveis explicativas e a variável alvo Attrition. Esta análise permitirá identificar padrões e fatores associados à rotatividade de colaboradores, bem como compreender a influência relativa das diferentes variáveis disponíveis no dataset.
+
+Através da aplicação de técnicas de análise de dados, será possível transformar dados organizacionais em conhecimento relevante, permitindo compreender melhor os determinantes da rotatividade e apoiar futuras abordagens preditivas.
+
+**Objetivo Analítico do Projeto**
+
+O objetivo analítico principal deste projeto consiste em aplicar metodologias de Ciência de Dados ao dataset IBM HR Analytics Employee Attrition & Performance, com o propósito de identificar, analisar e compreender os fatores associados à rotatividade de colaboradores.
+
+Especificamente, pretende-se realizar uma análise exploratória detalhada do dataset, avaliar a relação entre as variáveis explicativas e a variável alvo Attrition, e estabelecer uma base analítica robusta que suporte o desenvolvimento e validação de modelos preditivos em fases posteriores do projeto.
+
+Este projeto demonstra a aplicação prática de técnicas de análise de dados ao domínio da gestão de recursos humanos, evidenciando o potencial da Ciência de Dados como ferramenta de suporte à tomada de decisão estratégica e à otimização da gestão do capital humano.
+
 ## 2. Objetivos SMART 
  
 1.  **Objetivo 1:** Desenvolver um modelo de classificação supervisionado para prever o attrition, alcançando um
@@ -67,4 +93,4 @@ As perguntas de investigação estruturam o enquadramento científico do estudo,
 | M3: Modelação | [21/04/2026] | Comparação de algoritmos e métricas. | 
 | M4: Finalização| [21/05/2026] | Pitch e Relatório Final. | 
  --- 
-*Data de última atualização: [18/02/2026]*
+*Data de última atualização: 19/02/2026*
