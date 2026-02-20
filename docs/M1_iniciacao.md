@@ -87,9 +87,75 @@ As perguntas de investigação estruturam o enquadramento científico do estudo,
 
 ### Dicionário das variáveis
 * **Age (Idade):** idade do funcionário, variável numérica com intervalo (18-60).
-* **Attrition (Atrito):** indica se o funcionário teve atrito (saída) da empresa (“Sim” ou “Não”),cesta variável é classificada como uma string.
-* **BusinessTravel (Viagem de Negócios):** O tipo de viagem de negócios frequentemente realizada pelo funcionário (“Travel_Rarely”, “Travel_Frequently” ou “Non-Travel”).
-* **DailyRate (Diária):** Diárias entre (102-1499).
+ 
+* **Attrition (Atrito):** Indica se o funcionário teve atrito (saída) da empresa (“Sim” ou “Não”), esta variável é classificada como uma string.
+  
+* **BusinessTravel (Viagem de Negócios):** O tipo de viagem de negócios frequentemente realizada pelo funcionário, é uma variável string (“Travel_Rarely”, “Travel_Frequently” ou “Non-Travel”).
+  
+* **DailyRate (Diária):** É uma variável numérica  entre (102-1499), os valores nesta coluna correspondem ao custo diário do colaborador para a empresa.
+  
+* **Department (Departamento):** departamento em que o funcionário trabalha (“Sales”, “Research & Development” ou “Human Resources”) sendo assim é uma variável string.
+  
+* **DistanceFromHome (Distância de Casa):** distância da residência do funcionário até o local de trabalho em milhas, portanto é uma variável numérica com intervalo (1-29).
+  
+* **Education (Educação):** O nível de educação do funcionário (1 = “Below College”, 2 = “College”, 3 = “Bachelor”, 4 = “Master”, 5 = “Doctor”) corresponde a uma variável númerica ordinal.
+  
+* **EducationField:** Campo da educação (“Life Sciences”, “Medical” , “Marketing” , “Technical Degree” , “Human Resources'”  ou “Other”) é uma variável string.
+  
+* **EmployeeCount:** Serve apenas como um contador para facilitar agregações e cálculos de totais em ferramentas de BI, é uma  variável númerica, tendo só um valor único (1).
+  
+*  **EmployeeNumber:** é um identificador único para cada funcionário, funcionando como uma Chave Primária (ID), é uma variável númerica (1-2068).
+  
+*  **EnvironmentSatisfaction (Satisfação com o Ambiente):** O nível de satisfação do funcionário com o ambiente de trabalho (1 = “Baixo”, 2 = “Médio”, 3 = “Alto”, 4 = “Muito Alto”),  funciona como uma variável númerica ordinal.
+  
+* **Gender (Género):** Identifica o género do funcionário, sendo uma variável string com duas categorias (“Male” ou “Female” ).
+
+* **HourlyRate (Valor Hora):**  Variável numérica que indica o valor pago por hora ao colaborador, com um intervalo que varia entre (30-100)
+  
+* **JobInvolvement (Envolvimento no Trabalho):** Mede o nível de compromisso do funcionário com as suas tarefas (1 = “Baixo”, 2 = “Médio”, 3 = “Alto”, 4 = “Muito Alto”), funcionando como uma variável numérica ordinal.
+  
+* **JobLevel (Nível Hierárquico):** Indica o nível do cargo ocupado na empresa (1 a 5), sendo uma variável numérica ordinal.
+
+* **JobRole (Função):** Descreve o cargo ou papel específico desempenhado pelo colaborador (“Sales Executive”,“Research Scientist”, “Manager”,“Laboratory Technician”,“Manufacturing Director”,“Healthcare Representative”,“Sales Representative”,“Research Director”,“Human Resources”), tratando-se de uma variável string.
+
+* **JobSatisfaction (Satisfação com o Cargo):** Avalia o contentamento do funcionário com a sua função atual (1 = “Baixo”, 2 = “Médio”, 3 = “Alto”, 4 = “Muito Alto”), classificada como uma variável numérica ordinal.
+
+* **MaritalStatus (Estado Civil):** Indica a situação civil do colaborador (“Single”, “Married” ou “Divorced”), sendo uma variável string.
+
+* **MonthlyIncome (Rendimento Mensal):** Corresponde ao salário bruto mensal do funcionário, sendo uma variável numérica contínua com intervalo entre (1009-19999).
+
+* **MonthlyRate (Taxa Mensal):**  Representa um valor financeiro mensal atribuído ao colaborador para fins de faturação ou custos internos, sendo uma variável numérica (2094-26999).
+
+* **NumCompaniesWorked (Nº de Empresas onde Trabalhou):** Quantidade de organizações onde o funcionário trabalhou antes da atual, funcionando como uma variável numérica (0-9).
+
+* **Over18 (Maior de 18):** Variável string que indica se o colaborador tem mais de 18 anos, apresentando um valor único (“Y”) para todos os registos.
+
+* **OverTime (Horas Extra):** Indica se o funcionário faz horas extras, sendo uma variável string binária ("Yes" ou "No").
+
+* **PercentSalaryHike (Percentagem de Aumento Salarial):** Valor percentual do último aumento salarial recebido, classificada como variável numérica (11-25).
+
+* **PerformanceRating (Avaliação de Desempenho):** Nível de performance atribuído ao colaborador no último ciclo de avaliação (3 = “Excelente”, 4 = “Excecional”), funcionando como variável numérica ordinal.
+
+* **RelationshipSatisfaction (Satisfação com Relacionamentos):** Nível de satisfação com as relações interpessoais no trabalho (1 = “Baixo”,  = “Médio”, 3 = “Alto”, 4 = “Muito Alto”), sendo uma variável numérica ordinal.
+
+* **StandardHours (Horas Padrão):** Indica a carga horária padrão semanal, sendo uma variável numérica com valor constante (80) para todo o dataset.
+
+* **StockOptionLevel (Nível de Opções de Ações):** Nível de acesso ao plano de compra de ações da empresa (0-3), classificada como variável numérica ordinal.
+
+* **TotalWorkingYears (Total de Anos de Trabalho):** Experiência profissional acumulada ao longo da carreira, sendo uma variável numérica (0-40).
+
+* **TrainingTimesLastYear (Formações no Ano Passado):** Número de ações de formação frequentadas no último ano, variável numérica (0-6).
+
+* **WorkLifeBalance (Equilíbrio Vida-Trabalho):** Avaliação do equilíbrio entre a vida pessoal e profissional (1 = “Mau”, 2 = “Razoável”, 3 = “Bom”, 4 = “Excelente”), sendo uma variável numérica ordinal.
+
+* **YearsAtCompany (Anos na Empresa):** Tempo de permanência na atual organização, funcionando como variável numérica (0-40).
+
+* **YearsInCurrentRole (Anos na Função Atual):** Tempo de permanência no cargo atual, variável numérica (0-18).
+
+* **YearsSinceLastPromotion (Anos desde a Última Promoção):** Tempo decorrido desde a última progressão na carreira,
+variável numérica (0-15).
+
+* **YearsWithCurrManager (Anos com o Gestor Atual):** Tempo de trabalho sob a supervisão do atual líder direto, variável numérica (0-17).
 
 ### Fonte de Dados
 * **Dataset:** https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset
