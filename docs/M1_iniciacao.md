@@ -84,6 +84,9 @@ As perguntas de investigação estruturam o enquadramento científico do estudo,
 * **Disponibilidade:** O dataset "IBM HR Analytics Employee Attrition & Performance" encontra-se disponível publicamente na plataforma Kaggle em formato CSV. Os dados já foram importados para o ambiente Kaggle Notebook, estando estruturados de forma tabular com 1470 observações e 35 variáveis. A estrutura é ideal para análise estatística e modelação supervisionada, sem necessidade de integração com bases de dados relacionais externas nesta fase. 
 * **Qualidade Inicial:** A análise exploratória preliminar (EDA) indica uma excelente qualidade inicial, com ausência de valores nulos. No entanto, identificámos a necessidade de limpeza de dados, uma vez que existem variáveis sem valor preditivo (variância zero ou identificadores únicos) foram removidas e não estarão na Milestone 2, nomeadamente: EmployeeNumber, EmployeeCount, Over18 e StandardHours. O dataset apresenta um mix de variáveis categóricas, numéricas e ordinais que exigirão técnicas específicas de codificação (encoding).
 * **Ética:** O dataset está totalmente anonimizado, não contendo identificadores pessoais diretos (nomes, contactos ou IDs reais). A utilização do projeto é estritamente académica, cumprindo os princípios do RGPD, designadamente a minimização de dados, finalidade específica e utilização legítima. Não existe risco de identificação individual, garantindo a integridade ética da investigação.
+
+* **Dataset:** https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset
+* **Fonte do Código:** https://www.kaggle.com/code/lusfigueira/m1-inicia-o
  
 ## 5. Cronograma Interno 
 | Fase | Data Limite | Entregável Esperado | 
@@ -93,4 +96,4 @@ As perguntas de investigação estruturam o enquadramento científico do estudo,
 | M3: Modelação | [21/04/2026] | Comparação de algoritmos e métricas. | 
 | M4: Finalização| [21/05/2026] | Pitch e Relatório Final. | 
  --- 
-*Data de última atualização: 19/02/2026*
+*Data de última atualização: 20/02/2026*
