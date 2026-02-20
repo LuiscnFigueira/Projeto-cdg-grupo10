@@ -85,7 +85,15 @@ As perguntas de investigação estruturam o enquadramento científico do estudo,
 * **Qualidade Inicial:** A análise exploratória preliminar (EDA) indica uma excelente qualidade inicial, com ausência de valores nulos. No entanto, identificámos a necessidade de limpeza de dados, uma vez que existem variáveis sem valor preditivo (variância zero ou identificadores únicos) foram removidas e não estarão na Milestone 2, nomeadamente: EmployeeNumber, EmployeeCount, Over18 e StandardHours. O dataset apresenta um mix de variáveis categóricas, numéricas e ordinais que exigirão técnicas específicas de codificação (encoding).
 * **Ética:** O dataset está totalmente anonimizado, não contendo identificadores pessoais diretos (nomes, contactos ou IDs reais). A utilização do projeto é estritamente académica, cumprindo os princípios do RGPD, designadamente a minimização de dados, finalidade específica e utilização legítima. Não existe risco de identificação individual, garantindo a integridade ética da investigação.
 
+### Dicionário das variáveis
+* **Age (Idade):** idade do funcionário, variável numérica com intervalo (18-60).
+* **Attrition (Atrito):** indica se o funcionário teve atrito (saída) da empresa (“Sim” ou “Não”),cesta variável é classificada como uma string.
+* **BusinessTravel (Viagem de Negócios):** O tipo de viagem de negócios frequentemente realizada pelo funcionário (“Travel_Rarely”, “Travel_Frequently” ou “Non-Travel”).
+* **DailyRate (Diária):** Diárias entre (102-1499).
+
+### Fonte de Dados
 * **Dataset:** https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset
+
 * **Fonte do Código:** https://www.kaggle.com/code/lusfigueira/m1-inicia-o
  
 ## 5. Cronograma Interno 
