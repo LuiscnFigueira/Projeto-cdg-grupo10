@@ -86,77 +86,43 @@ As perguntas de investigação estruturam o enquadramento científico do estudo,
 * **Ética:** O dataset está totalmente anonimizado, não contendo identificadores pessoais diretos (nomes, contactos ou IDs reais). A utilização do projeto é estritamente académica, cumprindo os princípios do RGPD, designadamente a minimização de dados, finalidade específica e utilização legítima. Não existe risco de identificação individual, garantindo a integridade ética da investigação.
 
 ### Dicionário das variáveis
-* **Age (Idade):** idade do funcionário, variável numérica com intervalo (18-60).
- 
-* **Attrition (Atrito):** Indica se o funcionário teve atrito (saída) da empresa (“Sim” ou “Não”), esta variável é classificada como uma string.
-  
-* **BusinessTravel (Viagem de Negócios):** O tipo de viagem de negócios frequentemente realizada pelo funcionário, é uma variável string (“Travel_Rarely”, “Travel_Frequently” ou “Non-Travel”).
-  
-* **DailyRate (Diária):** É uma variável numérica  entre (102-1499), os valores nesta coluna correspondem ao custo diário do colaborador para a empresa.
-  
-* **Department (Departamento):** departamento em que o funcionário trabalha (“Sales”, “Research & Development” ou “Human Resources”) sendo assim é uma variável string.
-  
-* **DistanceFromHome (Distância de Casa):** distância da residência do funcionário até o local de trabalho em milhas, portanto é uma variável numérica com intervalo (1-29).
-  
-* **Education (Educação):** O nível de educação do funcionário (1 = “Below College”, 2 = “College”, 3 = “Bachelor”, 4 = “Master”, 5 = “Doctor”) corresponde a uma variável númerica ordinal.
-  
-* **EducationField:** Campo da educação (“Life Sciences”, “Medical” , “Marketing” , “Technical Degree” , “Human Resources'”  ou “Other”) é uma variável string.
-  
-* **EmployeeCount:** Serve apenas como um contador para facilitar agregações e cálculos de totais em ferramentas de BI, é uma  variável númerica, tendo só um valor único (1).
-  
-*  **EmployeeNumber:** é um identificador único para cada funcionário, funcionando como uma Chave Primária (ID), é uma variável númerica (1-2068).
-  
-*  **EnvironmentSatisfaction (Satisfação com o Ambiente):** O nível de satisfação do funcionário com o ambiente de trabalho (1 = “Baixo”, 2 = “Médio”, 3 = “Alto”, 4 = “Muito Alto”),  funciona como uma variável númerica ordinal.
-  
-* **Gender (Género):** Identifica o género do funcionário, sendo uma variável string com duas categorias (“Male” ou “Female” ).
-
-* **HourlyRate (Valor Hora):**  Variável numérica que indica o valor pago por hora ao colaborador, com um intervalo que varia entre (30-100)
-  
-* **JobInvolvement (Envolvimento no Trabalho):** Mede o nível de compromisso do funcionário com as suas tarefas (1 = “Baixo”, 2 = “Médio”, 3 = “Alto”, 4 = “Muito Alto”), funcionando como uma variável numérica ordinal.
-  
-* **JobLevel (Nível Hierárquico):** Indica o nível do cargo ocupado na empresa (1 a 5), sendo uma variável numérica ordinal.
-
-* **JobRole (Função):** Descreve o cargo ou papel específico desempenhado pelo colaborador (“Sales Executive”,“Research Scientist”, “Manager”,“Laboratory Technician”,“Manufacturing Director”,“Healthcare Representative”,“Sales Representative”,“Research Director”,“Human Resources”), tratando-se de uma variável string.
-
-* **JobSatisfaction (Satisfação com o Cargo):** Avalia o contentamento do funcionário com a sua função atual (1 = “Baixo”, 2 = “Médio”, 3 = “Alto”, 4 = “Muito Alto”), classificada como uma variável numérica ordinal.
-
-* **MaritalStatus (Estado Civil):** Indica a situação civil do colaborador (“Single”, “Married” ou “Divorced”), sendo uma variável string.
-
-* **MonthlyIncome (Rendimento Mensal):** Corresponde ao salário bruto mensal do funcionário, sendo uma variável numérica contínua com intervalo entre (1009-19999).
-
-* **MonthlyRate (Taxa Mensal):**  Representa um valor financeiro mensal atribuído ao colaborador para fins de faturação ou custos internos, sendo uma variável numérica (2094-26999).
-
-* **NumCompaniesWorked (Nº de Empresas onde Trabalhou):** Quantidade de organizações onde o funcionário trabalhou antes da atual, funcionando como uma variável numérica (0-9).
-
-* **Over18 (Maior de 18):** Variável string que indica se o colaborador tem mais de 18 anos, apresentando um valor único (“Y”) para todos os registos.
-
-* **OverTime (Horas Extra):** Indica se o funcionário faz horas extras, sendo uma variável string binária ("Yes" ou "No").
-
-* **PercentSalaryHike (Percentagem de Aumento Salarial):** Valor percentual do último aumento salarial recebido, classificada como variável numérica (11-25).
-
-* **PerformanceRating (Avaliação de Desempenho):** Nível de performance atribuído ao colaborador no último ciclo de avaliação (3 = “Excelente”, 4 = “Excecional”), funcionando como variável numérica ordinal.
-
-* **RelationshipSatisfaction (Satisfação com Relacionamentos):** Nível de satisfação com as relações interpessoais no trabalho (1 = “Baixo”,  = “Médio”, 3 = “Alto”, 4 = “Muito Alto”), sendo uma variável numérica ordinal.
-
-* **StandardHours (Horas Padrão):** Indica a carga horária padrão semanal, sendo uma variável numérica com valor constante (80) para todo o dataset.
-
-* **StockOptionLevel (Nível de Opções de Ações):** Nível de acesso ao plano de compra de ações da empresa (0-3), classificada como variável numérica ordinal.
-
-* **TotalWorkingYears (Total de Anos de Trabalho):** Experiência profissional acumulada ao longo da carreira, sendo uma variável numérica (0-40).
-
-* **TrainingTimesLastYear (Formações no Ano Passado):** Número de ações de formação frequentadas no último ano, variável numérica (0-6).
-
-* **WorkLifeBalance (Equilíbrio Vida-Trabalho):** Avaliação do equilíbrio entre a vida pessoal e profissional (1 = “Mau”, 2 = “Razoável”, 3 = “Bom”, 4 = “Excelente”), sendo uma variável numérica ordinal.
-
-* **YearsAtCompany (Anos na Empresa):** Tempo de permanência na atual organização, funcionando como variável numérica (0-40).
-
-* **YearsInCurrentRole (Anos na Função Atual):** Tempo de permanência no cargo atual, variável numérica (0-18).
-
-* **YearsSinceLastPromotion (Anos desde a Última Promoção):** Tempo decorrido desde a última progressão na carreira,
-variável numérica (0-15).
-
-* **YearsWithCurrManager (Anos com o Gestor Atual):** Tempo de trabalho sob a supervisão do atual líder direto, variável numérica (0-17).
-
+| Variável                 | Tipo Estatístico      | Domínio                     | Classes / Escala Semântica                                                                                                                                                                       | Definição Operacional                                | Papel Analítico       |
+| ------------------------ | --------------------- | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------- | --------------------- |
+| Attrition                | Categórica binária    | {Yes, No}                   | Yes = abandonou<br>No = permaneceu                                                                                                                                                               | Estado de permanência do colaborador na organização. | Variável alvo         |
+| Age                      | Numérica discreta     | [18, 60]                    | —                                                                                                                                                                                                | Idade cronológica do colaborador (anos).             | Demográfica           |
+| BusinessTravel           | Categórica nominal    | 3 classes                   | Non-Travel<br>Travel_Rarely<br>Travel_Frequently                                                                                                                                                 | Frequência de deslocações profissionais.             | Organizacional        |
+| DailyRate                | Numérica discreta     | [102, 1499]                 | —                                                                                                                                                                                                | Taxa de remuneração diária.                          | Compensação           |
+| Department               | Categórica nominal    | 3 classes                   | • Sales<br> • Research & Development<br> • Human Resources                                                                                                                                               | Departamento organizacional.                         | Organizacional        |
+| DistanceFromHome         | Numérica discreta     | [1, 29]                     | —                                                                                                                                                                                                | Distância entre residência e local de trabalho.      | Geográfica            |
+| Education                | Categórica ordinal    | {1,2,3,4,5}                 | 1 Below College<br>2 College<br>3 Bachelor<br>4 Master<br>5 Doctor                                                                                                                               | Nível de qualificação académica.                     | Capital humano        |
+| EducationField           | Categórica nominal    | 6 classes                   | • Life Sciences<br> • Medical<br> • Marketing<br> • Technical Degree<br> • Human Resources<br> • Other                                                                                                            | Área disciplinar da formação académica.              | Capital humano        |
+| EmployeeCount            | Constante             | {1}                         | 1                                                                                                                                                                                                | Variável administrativa sem variabilidade.           | Não informativa       |
+| EmployeeNumber           | Identificador nominal | Valores únicos              | —                                                                                                                                                                                                | Identificador único do colaborador.                  | Não informativa       |
+| EnvironmentSatisfaction  | Categórica ordinal    | {1,2,3,4}                   | 1 Low<br>2 Medium<br>3 High<br>4 Very High                                                                                                                                                       | Grau de satisfação com o ambiente organizacional.    | Psicométrica          |
+| Gender                   | Categórica nominal    | {Male, Female}              | Male<br>Female                                                                                                                                                                                   | Género do colaborador.                               | Demográfica           |
+| HourlyRate               | Numérica discreta     | [30, 100]                   | —                                                                                                                                                                                                | Taxa de remuneração horária.                         | Compensação           |
+| JobInvolvement           | Categórica ordinal    | {1,2,3,4}                   | 1 Low<br>2 Medium<br>3 High<br>4 Very High                                                                                                                                                       | Grau de envolvimento no trabalho.                    | Psicométrica          |
+| JobLevel                 | Categórica ordinal    | {1,2,3,4,5}                 | 1–5 níveis hierárquicos                                                                                                                                                                          | Nível hierárquico organizacional.                    | Organizacional        |
+| JobRole                  | Categórica nominal    | 9 classes                   | • Sales Executive<br> • Research Scientist<br> • Laboratory Technician<br> • Manufacturing Director<br> • Healthcare Representative<br> • Manager<br> • Sales Representative<br> • Research Director<br> • Human Resources | Função ocupacional.                                  | Organizacional        |
+| JobSatisfaction          | Categórica ordinal    | {1,2,3,4}                   | 1 Low<br>2 Medium<br>3 High<br>4 Very High                                                                                                                                                       | Grau de satisfação com o trabalho.                   | Psicométrica          |
+| MaritalStatus            | Categórica nominal    | {Single, Married, Divorced} | Single<br>Married<br>Divorced                                                                                                                                                                    | Estado civil.                                        | Demográfica           |
+| MonthlyIncome            | Numérica discreta     | [1009, 19999]               | —                                                                                                                                                                                                | Rendimento mensal.                                   | Compensação           |
+| MonthlyRate              | Numérica discreta     | [2094, 26999]               | —                                                                                                                                                                                                | Taxa mensal administrativa.                          | Compensação           |
+| NumCompaniesWorked       | Numérica discreta     | [0, 9]                      | —                                                                                                                                                                                                | Número de empregadores anteriores.                   | Capital humano        |
+| Over18                   | Constante             | {Y}                         | Y                                                                                                                                                                                                | Indica idade superior a 18 anos.                     | Não informativa       |
+| OverTime                 | Categórica binária    | {Yes, No}                   | Yes<br>No                                                                                                                                                                                        | Indicador de trabalho extraordinário.                | Condições de trabalho |
+| PercentSalaryHike        | Numérica discreta     | [11, 25]                    | —                                                                                                                                                                                                | Percentagem de aumento salarial recente.             | Compensação           |
+| PerformanceRating        | Categórica ordinal    | {1,2,3,4}                  | 1 Low<br>2 Good<br>3 Excellent<br>4 Outstanding                                                                                                                                                  | Avaliação formal de desempenho.                      | Desempenho            |
+| RelationshipSatisfaction | Categórica ordinal    | {1,2,3,4}                   | 1 Low<br>2 Medium<br>3 High<br>4 Very High                                                                                                                                                       | Grau de satisfação com relações profissionais.       | Psicométrica          |
+| StandardHours            | Constante             | {80}                        | 80                                                                                                                                                                                               | Número padrão de horas de trabalho.                  | Não informativa       |
+| StockOptionLevel         | Categórica ordinal    | {0,1,2,3}                   | 0 None<br>1 Low<br>2 Medium<br>3 High                                                                                                                                                            | Nível de compensação em ações.                       | Compensação           |
+| TotalWorkingYears        | Numérica discreta     | [0, 40]                     | —                                                                                                                                                                                                | Experiência profissional total.                      | Capital humano        |
+| TrainingTimesLastYear    | Numérica discreta     | [0, 6]                      | —                                                                                                                                                                                                | Número de formações realizadas.                      | Desenvolvimento       |
+| WorkLifeBalance          | Categórica ordinal    | {1,2,3,4}                   | 1 Bad<br>2 Good<br>3 Better<br>4 Best                                                                                                                                                            | Equilíbrio trabalho–vida pessoal.                    | Psicométrica          |
+| YearsAtCompany           | Numérica discreta     | [0, 40]                     | —                                                                                                                                                                                                | Antiguidade organizacional.                          | Organizacional        |
+| YearsInCurrentRole       | Numérica discreta     | [0, 18]                     | —                                                                                                                                                                                                | Tempo na função atual.                               | Organizacional        |
+| YearsSinceLastPromotion  | Numérica discreta     | [0, 15]                     | —                                                                                                                                                                                                | Tempo desde última promoção.                         | Organizacional        |
+| YearsWithCurrManager     | Numérica discreta     | [0, 17]                     | —                                                                                                                                                                                                | Tempo com gestor atual.                              | Organizacional        |
 ### Fonte de Dados
 * **Dataset:** https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset
 
