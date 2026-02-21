@@ -102,3 +102,8 @@ do método ganho de informação]
 **Curso:** Licenciatura em Ciência de Dados para a Gestão
 **Unidade Curricular:** Projeto em Ciência de Dados
 **Professor Responsável:** Dora Melo (dmelo@iscac.pt)
+
+## Referências
+
+IBM Watson Analytics. (2016). *IBM HR Analytics Employee Attrition & Performance Dataset*.  
+Disponível em: https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset
