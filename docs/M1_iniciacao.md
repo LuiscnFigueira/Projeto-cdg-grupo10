@@ -74,6 +74,7 @@ As perguntas de investigação estruturam o enquadramento científico do estudo,
 
  
 ## 3. Metodologia de Gestão (PBL) 
+O projeto segue uma abordagem baseada no modelo CRISP-DM (Cross-Industry Standard Process for Data Mining), que estrutura o desenvolvimento em seis fases principais: compreensão do problema, compreensão dos dados, preparação dos dados, modelação, avaliação e implementação. Embora estas fases tenham uma ordem lógica, o processo é iterativo e permite regressar a fases anteriores sempre que necessário. Esta metodologia assegura uma abordagem estruturada, sistemática e rigorosa ao desenvolvimento de projetos de Ciência de Dados.
 * **Divisão de Tarefas:** 
   * **Membro A:** Responsável pela Engenharia de Dados. 
   * **Membro B:** Responsável pela Modelação Estatística. 
