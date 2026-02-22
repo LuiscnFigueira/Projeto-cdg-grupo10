@@ -134,9 +134,11 @@ Importa referir que o dataset é de natureza sintética, tendo sido gerado pela 
 | YearsWithCurrManager     | Numérica discreta     | [0, 17]                     | —                                                                                                                                                                                                | Tempo com gestor atual.                              | Organizacional        |
 ### Fonte de Dados
 * **Dataset:** https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset
-
 * **Fonte do Código:** https://www.kaggle.com/code/lusfigueira/m1-inicia-o
- 
+### Referência do Dataset
+IBM Watson Analytics. (2016). IBM HR Analytics Employee Attrition & Performance Dataset. IBM Corporation.  
+Disponível em: https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset
+
 ## 5. Cronograma Interno 
 | Fase | Data Limite | Entregável Esperado | 
 | :--- | :--- | :--- | 
@@ -145,4 +147,4 @@ Importa referir que o dataset é de natureza sintética, tendo sido gerado pela 
 | M3: Modelação | [21/04/2026] | Comparação de algoritmos e métricas. | 
 | M4: Finalização| [21/05/2026] | Pitch e Relatório Final. | 
  --- 
-*Data de última atualização: 20/02/2026*
+*Data de última atualização: 22/02/2026*
