@@ -85,6 +85,14 @@ As perguntas de investigação estruturam o enquadramento científico do estudo,
 * **Qualidade Inicial:** A análise exploratória preliminar (EDA) indica uma excelente qualidade inicial, com ausência de valores nulos. No entanto, identificámos a necessidade de limpeza de dados, uma vez que existem variáveis sem valor preditivo (variância zero ou identificadores únicos) foram removidas e não estarão na Milestone 2, nomeadamente: EmployeeNumber, EmployeeCount, Over18 e StandardHours. O dataset apresenta um mix de variáveis categóricas, numéricas e ordinais que exigirão técnicas específicas de codificação (encoding).
 * **Ética:** O dataset está totalmente anonimizado, não contendo identificadores pessoais diretos (nomes, contactos ou IDs reais). A utilização do projeto é estritamente académica, cumprindo os princípios do RGPD, designadamente a minimização de dados, finalidade específica e utilização legítima. Não existe risco de identificação individual, garantindo a integridade ética da investigação.
 
+### Unidade de Análise
+
+Cada observação do dataset corresponde a um registo individual identificado unicamente pela variável EmployeeNumber. Cada registo contém os valores observados para as variáveis que caracterizam a entidade observada, incluindo atributos demográficos, profissionais, salariais, organizacionais e níveis de satisfação, bem como o respetivo valor da variável Attrition.
+
+O dataset é composto por 1470 observações, correspondendo cada linha a um registo distinto. A variável Attrition está associada a cada observação e indica o estado de permanência ou saída da entidade observada no contexto organizacional.
+
+Importa referir que o dataset é de natureza sintética, tendo sido gerado pela IBM para fins de demonstração do IBM Watson Analytics, não correspondendo a dados reais de colaboradores.
+
 ### Dicionário das variáveis
 | Variável                 | Tipo Estatístico      | Domínio                     | Classes / Escala Semântica                                                                                                                                                                       | Definição Operacional                                | Papel Analítico       |
 | ------------------------ | --------------------- | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------- | --------------------- |
