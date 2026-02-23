@@ -132,6 +132,34 @@ Importa referir que o dataset é de natureza sintética, tendo sido gerado pela 
 | YearsInCurrentRole       | Numérica discreta     | [0, 18]                     | —                                                                                                                                                                                                | Tempo na função atual.                               | Organizacional        |
 | YearsSinceLastPromotion  | Numérica discreta     | [0, 15]                     | —                                                                                                                                                                                                | Tempo desde última promoção.                         | Organizacional        |
 | YearsWithCurrManager     | Numérica discreta     | [0, 17]                     | —                                                                                                                                                                                                | Tempo com gestor atual.                              | Organizacional        |
+## 4.1 Compreensão e Avaliação Inicial dos Dados
+
+### 4.1.1 Estrutura e Composição do Dataset
+
+No âmbito da fase de Data Understanding do modelo CRISP-DM, foi realizada uma análise sistemática da estrutura do dataset com o objetivo de caracterizar formalmente o espaço de características, avaliar a sua adequação ao problema de classificação supervisionada e identificar propriedades com implicações nas fases subsequentes de preparação e modelação.
+
+O dataset foi carregado na sua forma bruta e convertido numa estrutura do tipo DataFrame, permitindo a inspeção programática da sua composição e propriedades estatísticas. A análise estrutural confirmou que o dataset é composto por 1470 observações e 35 variáveis, em conformidade com a documentação original. Cada observação corresponde a um registo independente no espaço de características, descrito por um conjunto de variáveis demográficas, organizacionais, profissionais e psicométricas, bem como pelo respetivo valor da variável alvo `Attrition`.
+
+A inspeção dos tipos de dados revelou a presença de variáveis numéricas inteiras e variáveis categóricas codificadas como texto, refletindo a natureza discreta e categórica das dimensões representadas. Esta estrutura é consistente com um problema de classificação supervisionada, em que cada observação constitui uma instância independente caracterizada por um vetor de atributos e uma variável alvo associada.
+
+
+
+### 4.1.2 Avaliação da Qualidade e Integridade dos Dados
+
+Foi realizada uma verificação formal da integridade do dataset com o objetivo de avaliar a sua completude, consistência e unicidade. Esta análise confirmou a ausência total de valores nulos em todas as variáveis, garantindo que o dataset se encontra completo e eliminando a necessidade de aplicar técnicas de imputação. Esta propriedade permite preservar as distribuições empíricas observadas e evita a introdução de viés decorrente de estimativas artificiais.
+
+Adicionalmente, verificou-se a inexistência de registos duplicados, garantindo que cada observação representa uma entidade distinta no espaço de dados. Esta condição é fundamental para preservar a independência das observações, um pressuposto assumido pela maioria dos algoritmos de Machine Learning e essencial para assegurar a validade estatística do processo de modelação.
+
+
+
+### 4.1.3 Identificação e Remoção de Variáveis Não Informativas
+
+A análise da cardinalidade e variabilidade das variáveis permitiu identificar a presença de variáveis sem capacidade discriminativa ou relevância preditiva para o problema em estudo. Em particular, verificou-se que as variáveis `EmployeeCount`, `Over18` e `StandardHours` apresentam valores constantes em todas as observações, não contribuindo para a explicação da variabilidade da variável alvo. Adicionalmente, a variável `EmployeeNumber` constitui um identificador único atribuído a cada observação, não possuindo qualquer significado estatístico ou relação causal com o fenómeno em análise.
+
+Do ponto de vista da teoria da informação, estas variáveis apresentam entropia nula ou irrelevante, sendo incapazes de fornecer informação útil ao processo de aprendizagem. A sua inclusão aumentaria artificialmente a dimensionalidade do espaço de características, podendo introduzir ruído e reduzir a eficiência dos algoritmos de modelação. Por este motivo, estas variáveis foram removidas programaticamente, reduzindo o número de variáveis de 35 para 31 e melhorando a qualidade analítica do dataset.
+
+
+
 ### Fonte de Dados
 * **Dataset:** https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset
 * **Fonte do Código:** https://www.kaggle.com/code/lusfigueira/m1-inicia-o
