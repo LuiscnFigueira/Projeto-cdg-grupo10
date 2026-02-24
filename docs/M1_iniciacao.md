@@ -99,7 +99,7 @@ O projeto segue uma abordagem baseada no modelo CRISP-DM (Cross-Industry Standar
    *  Identificação de limitações e riscos do dataset
    *  Discussão da abordagem metodológica (CRISP-DM)
      
-**Ferramentas de Colaboração:** Kaggle Notebooks (ambiente de desenvolvimento), GitHub (controlo de versões e partilha de código), GitHub Projects (gestão de tarefas), mensagens diárias (WhatsApp), distribuição de tarefas (Notion) e reuniões de dois em dois dias (Google Meet).
+**Ferramentas de Colaboração:** Kaggle Notebooks (ambiente de desenvolvimento), GitHub (controlo de versões e partilha de código), GitHub Projects (gestão de tarefas), Whatsapp (mensagens diárias), Notion (distribuição de tarefas) e Google Meet (reuniões de dois em dois dias).
  
 ## 4. Análise de Viabilidade dos Dados 
 * **Disponibilidade:** O dataset IBM HR Analytics Employee Attrition & Performance encontra-se disponível publicamente na plataforma Kaggle em formato CSV, sob licença de utilização para fins académicos. Os dados foram já importados para o ambiente Kaggle Notebook e encontram-se organizados numa estrutura tabular com 1470 observações e 35 variáveis, o que facilita a aplicação de técnicas de análise estatística e de modelação supervisionada, sem necessidade de integração adicional com bases de dados relacionais nesta fase.
