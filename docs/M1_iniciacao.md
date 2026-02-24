@@ -36,21 +36,21 @@ Especificamente, pretende-se realizar uma análise exploratória detalhada do da
 
 Este projeto demonstra a aplicação prática de técnicas de análise de dados ao domínio da gestão de recursos humanos, evidenciando o potencial da Ciência de Dados como ferramenta de suporte à tomada de decisão estratégica e à otimização da gestão do capital humano.
 
-## 2. Objetivos SMARTer
+## 2. Objetivos SMART
  
 1.  **Objetivo 1:** Desenvolver um modelo de classificação supervisionado para prever o attrition, alcançando um
-F1-Score mínimo de 0,80 em validação cruzada estratificada (k=5), até ao dia 28/02/2026
+F1-Score mínimo de 0,80 em validação cruzada estratificada (k=5), até ao dia 21/04/2026
 (Milestone 3).
  
 2.  **Objetivo 2:** Construir um índice de risco de attrition baseado nas probabilidades previstas pelo modelo,
 classificando os colaboradores em categorias de baixo risco (<30%), médio risco (30–60%) e alto
-risco (>60%), até ao dia 07/03/2026.
+risco (>60%), até ao dia 21/04/2026.
 
 3. **Objetivo 3:** Aplicar técnicas de clustering não supervisionado para identificar e caracterizar perfis distintos de
 colaboradores com base nas variáveis relevantes do dataset, determinando o número ótimo de
 clusters através do método do cotovelo e do Silhouette Score, garantindo um valor médio de
 Silhouette superior a 0,50, e descrevendo estatisticamente cada perfil identificado, até ao dia
-07/03/2026.
+21/04/2026.
 
 ### 2.1 Perguntas de Investigação
 
@@ -108,7 +108,7 @@ O projeto segue uma abordagem baseada no modelo CRISP-DM (Cross-Industry Standar
 
 ### Unidade de Análise
 
-Cada observação do dataset corresponde a um registo individual identificado unicamente pela variável EmployeeNumber. Cada registo contém os valores observados para as variáveis que caracterizam a entidade observada, incluindo atributos demográficos, profissionais, salariais, organizacionais e níveis de satisfação, bem como o respetivo valor da variável Attrition.
+Cada observação corresponde a uma instância independente no espaço de características, identificada unicamente pela variável EmployeeNumber, que funciona como identificador técnico sem significado analítico. Cada registo contém os valores observados para as variáveis que caracterizam a entidade observada, incluindo atributos demográficos, profissionais, salariais, organizacionais e níveis de satisfação, bem como o respetivo valor da variável Attrition.
 
 O dataset é composto por 1470 observações, correspondendo cada linha a um registo distinto. A variável Attrition está associada a cada observação e indica o estado de permanência ou saída da entidade observada no contexto organizacional.
 
@@ -201,6 +201,18 @@ A análise realizada permitiu confirmar que o dataset apresenta elevada qualidad
 Adicionalmente, a caracterização estatística das variáveis e a análise da distribuição da variável alvo permitiram identificar propriedades relevantes, incluindo diferenças na escala das variáveis e a presença de desequilíbrio entre classes, fatores com implicações diretas na preparação dos dados e no desenvolvimento de modelos preditivos.
 
 Esta fase estabelece uma base metodológica sólida para as etapas subsequentes do processo CRISP-DM, nomeadamente a preparação dos dados, transformação das variáveis e desenvolvimento de modelos de classificação supervisionada robustos e generalizáveis.
+
+## 4.2 Limitações do Dataset
+
+Apesar da elevada qualidade estrutural do dataset, existem limitações metodológicas que devem ser consideradas na interpretação dos resultados e no desenvolvimento dos modelos preditivos.
+
+Em primeiro lugar, o dataset é de natureza sintética, tendo sido gerado pela IBM para fins de demonstração do IBM Watson Analytics. Consequentemente, as relações entre variáveis podem não refletir integralmente os padrões observados em contextos organizacionais reais, o que, aliado à estrutura transversal do dataset, limita simultaneamente a generalização externa dos resultados e a inferência de relações causais dinâmicas.
+
+Em segundo lugar, a variável `PerformanceRating` apresenta variância praticamente nula, com a quase totalidade das observações concentradas nos valores 3 e 4, o que limita o seu poder discriminativo e poderá justificar a sua exclusão ou tratamento específico na fase de preparação dos dados.
+
+Adicionalmente, o dataset não inclui determinadas variáveis potencialmente relevantes, como indicadores de desempenho histórico detalhado, métricas de engagement ou fatores externos ao contexto organizacional, o que pode condicionar o poder preditivo máximo dos modelos.
+
+Estas limitações serão consideradas na interpretação dos resultados e na avaliação da capacidade de generalização dos modelos desenvolvidos.
 
 ### Fonte de Dados
 * **Dataset:** https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset
