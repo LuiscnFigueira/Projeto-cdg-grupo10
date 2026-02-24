@@ -272,9 +272,6 @@ Adicionalmente, o dataset não inclui determinadas variáveis potencialmente rel
 
 Estas limitações serão consideradas na interpretação dos resultados e na avaliação da capacidade de generalização dos modelos desenvolvidos.
 
-### Fonte de Dados
-* **Dataset:** https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset
-* **Fonte do Código:** https://www.kaggle.com/code/lusfigueira/m1-inicia-o
 
 ## 5. Cronograma Interno 
 | Fase | Data Limite | Entregável Esperado | 
@@ -284,8 +281,16 @@ Estas limitações serão consideradas na interpretação dos resultados e na av
 | M3: Modelação | [21/04/2026] | Comparação de algoritmos e métricas. | 
 | M4: Finalização| [21/05/2026] | Pitch e Relatório Final. | 
  --- 
- ### Referência do Dataset
-IBM Watson Analytics. (2016). IBM HR Analytics Employee Attrition & Performance Dataset. IBM Corporation.  
+## 6. Fonte de Dados
+
+* **Dataset:** https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset  
+* **Fonte do Código:** https://www.kaggle.com/code/lusfigueira/m1-inicia-o  
+
+---
+
+## 7. Referências
+
+IBM Watson Analytics. (2016). *IBM HR Analytics Employee Attrition & Performance Dataset*. IBM Corporation.  
 Disponível em: https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset
 
 *Data de última atualização: 24/02/2026*
