@@ -95,12 +95,16 @@ do método ganho de informação]
 ### Recomendações de Inovação
 1. [Sugestão prática baseada nos resultados]
 ## Como Reproduzir este Projeto
-1. Clone o repositório: `git clone [url-do-repo]`
+1. Clone o repositório: `git clone https://github.com/LuiscnFigueira/Projeto-cdg-grupo10`
 2. Instale as dependências: `pip install -r requirements.txt`
 3. Execute os notebooks na pasta `notebooks/` seguindo a ordem numérica.
+   
 **Instituição:** Coimbra Business School | ISCAC
+
 **Curso:** Licenciatura em Ciência de Dados para a Gestão
+
 **Unidade Curricular:** Projeto em Ciência de Dados
+
 **Professor Responsável:** Dora Melo (dmelo@iscac.pt)
 
 ## Referências
