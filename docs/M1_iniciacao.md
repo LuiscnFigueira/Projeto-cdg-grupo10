@@ -72,6 +72,40 @@ As perguntas de investigação estruturam o enquadramento científico do estudo,
 
 **8.** Que fatores distinguem os colaboradores com maior risco de attrition dos restantes, e como podem ser utilizados para apoiar estratégias de retenção?
 
+### 2.3 Operacionalização das Perguntas de Investigação
+
+1. **Identificação das variáveis com maior poder explicativo e preditivo**
+
+Será realizada uma análise exploratória e estatística com o objetivo de identificar as variáveis com maior associação à variável alvo `Attrition`. Esta análise incluirá o cálculo de medidas de associação estatística, análise comparativa entre classes e avaliação da importância das variáveis em modelos de classificação supervisionada, permitindo identificar os principais fatores associados à saída dos colaboradores.
+
+2. **Avaliação da associação entre OverTime e Attrition**
+
+A relação entre a variável `OverTime` e a variável alvo será analisada através de testes estatísticos de independência, nomeadamente o teste do qui-quadrado, bem como através da comparação das proporções de attrition entre grupos. Esta análise permitirá avaliar se a realização de horas extraordinárias está estatisticamente associada a um aumento da probabilidade de saída.
+
+3. **Análise do impacto de variáveis psicométricas ordinais**
+
+Será analisada a relação entre variáveis ordinais, como `JobSatisfaction`, `EnvironmentSatisfaction`, `RelationshipSatisfaction` e `WorkLifeBalance`, e a variável alvo. Serão utilizadas técnicas de análise estatística e comparação de distribuições entre classes, bem como medidas de correlação não paramétrica, de forma a avaliar se níveis reduzidos de satisfação constituem fatores preditivos de attrition.
+
+4. **Avaliação do impacto do rendimento mensal na probabilidade de attrition**
+
+Será investigada a relação entre a variável `MonthlyIncome` e a variável alvo, analisando a sua distribuição entre colaboradores que permanecem e colaboradores que saem. Esta análise será complementada por modelos multivariáveis, permitindo avaliar se o rendimento apresenta capacidade preditiva independente após controlo de outras variáveis relevantes.
+
+5. **Comparação do desempenho de diferentes algoritmos de classificação**
+
+Serão treinados e avaliados múltiplos algoritmos de classificação supervisionada, incluindo Regressão Logística, Random Forest e Gradient Boosting. O desempenho será avaliado através de validação cruzada estratificada, com base em métricas como F1-score, Precision, Recall e AUC-ROC, permitindo identificar o modelo com melhor capacidade de generalização.
+
+6. **Avaliação do impacto do desequilíbrio de classes e aplicação de SMOTE**
+
+Será analisado o impacto do desequilíbrio da variável alvo no desempenho dos modelos, comparando os resultados obtidos antes e após a aplicação da técnica SMOTE. Esta análise permitirá avaliar se o balanceamento das classes melhora a capacidade do modelo de identificar corretamente observações pertencentes à classe minoritária.
+
+7. **Construção e validação de um índice de risco de attrition**
+
+Será desenvolvido um índice de risco baseado nas probabilidades previstas pelo modelo de classificação. As observações serão segmentadas em categorias de risco, e será avaliada a capacidade deste índice para discriminar diferentes níveis de probabilidade de attrition, garantindo a sua interpretabilidade e utilidade analítica.
+
+8. **Identificação de perfis distintos através de clustering**
+
+Serão aplicadas técnicas de clustering, nomeadamente o algoritmo K-Means, com o objetivo de identificar perfis distintos de colaboradores com base nas suas características. Os clusters obtidos serão caracterizados estatisticamente, permitindo identificar segmentos com diferentes padrões estruturais e níveis de risco associados ao attrition.
+
  
 ## 3. Metodologia de Gestão (PBL) 
 O projeto segue uma abordagem baseada no modelo CRISP-DM (Cross-Industry Standard Process for Data Mining), que estrutura o desenvolvimento em seis fases principais: compreensão do problema, compreensão dos dados, preparação dos dados, modelação, avaliação e implementação. Embora estas fases tenham uma ordem lógica, o processo é iterativo e permite regressar a fases anteriores sempre que necessário. Esta metodologia assegura uma abordagem estruturada, sistemática e rigorosa ao desenvolvimento de projetos de Ciência de Dados.
