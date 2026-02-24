@@ -89,7 +89,7 @@ O projeto segue uma abordagem baseada no modelo CRISP-DM (Cross-Industry Standar
    *  Análise da existência de valores nulos
   
  **Mateus Afonso:** 
-  *  
+  *  Análise preliminar da distribuição da variável alvo Attrition
   *  Compreensão inicial das variáveis e tipos de dados
   *  Preparação de entregáveis de Milestone 1 (relatório e estrutura de projeto)
 
