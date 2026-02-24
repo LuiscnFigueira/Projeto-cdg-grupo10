@@ -72,6 +72,30 @@ As perguntas de investigação estruturam o enquadramento científico do estudo,
 
 **8.** Que fatores distinguem os colaboradores com maior risco de attrition dos restantes, e como podem ser utilizados para apoiar estratégias de retenção?
 
+## 2.2 Operacionalização dos Objetivos
+
+Os objetivos definidos para este projeto foram operacionalizados em termos técnicos, especificando os métodos, métricas de avaliação, critérios de validação e resultados esperados. Esta operacionalização assegura que os objetivos são mensuráveis, reprodutíveis e cientificamente verificáveis, estabelecendo uma ligação clara entre o enquadramento conceptual e a sua implementação prática.
+
+### Objetivo 1 — Desenvolvimento de um Modelo Preditivo de Attrition
+
+O primeiro objetivo consiste no desenvolvimento e validação de um modelo de classificação supervisionado capaz de prever a variável alvo Attrition, utilizando as variáveis explicativas disponíveis no dataset. O problema é formalizado como um problema de classificação binária, no qual cada observação é representada por um conjunto de atributos e uma variável alvo que indica o estado de permanência ou saída.
+
+Serão avaliados diferentes algoritmos de Machine Learning, incluindo métodos lineares e baseados em árvores de decisão, sendo o desempenho avaliado através de validação cruzada estratificada com k = 5 folds. A métrica principal de avaliação será o F1-Score, devido à sua adequação em contextos de desequilíbrio de classes, sendo definido como objetivo atingir um valor mínimo de 0,80. Adicionalmente, serão consideradas métricas complementares, como Precision, Recall e AUC-ROC, de forma a garantir uma avaliação robusta e abrangente do desempenho dos modelos.
+
+### Objetivo 2 — Construção de um Índice de Risco de Attrition
+
+O segundo objetivo consiste na construção de um índice de risco de attrition baseado nas probabilidades previstas pelo modelo desenvolvido. A probabilidade estimada de saída será utilizada como medida quantitativa de risco individual, permitindo transformar a previsão do modelo numa métrica interpretável e operacional.
+
+Com base nesta probabilidade, os colaboradores serão classificados em três categorias de risco: baixo risco (probabilidade inferior a 30%), risco intermédio (probabilidade entre 30% e 60%) e alto risco (probabilidade superior a 60%). Esta segmentação permitirá identificar diferentes níveis de vulnerabilidade e suportar a análise diferenciada dos perfis de risco presentes no dataset.
+
+### Objetivo 3 — Identificação de Perfis de Colaboradores através de Clustering
+
+O terceiro objetivo consiste na aplicação de técnicas de aprendizagem não supervisionada com o propósito de identificar perfis distintos de colaboradores com base nas suas características. Será utilizado o algoritmo K-Means como método principal de clustering, sendo o número ótimo de clusters determinado com recurso ao método do cotovelo e ao coeficiente de Silhouette.
+
+O coeficiente de Silhouette será utilizado como critério quantitativo de validação, sendo definido como objetivo alcançar um valor médio superior a 0,50, indicando uma estrutura de clusters bem definida. Após a identificação dos clusters, será realizada uma caracterização estatística detalhada de cada perfil, permitindo identificar diferenças estruturais entre segmentos e compreender melhor a heterogeneidade presente no dataset.
+
+Esta operacionalização assegura que os objetivos do projeto são implementados de forma rigorosa e mensurável, estabelecendo uma base metodológica sólida para as fases subsequentes de preparação dos dados, modelação e avaliação.
+
 ### 2.3 Operacionalização das Perguntas de Investigação
 
 1. **Identificação das variáveis com maior poder explicativo e preditivo**
