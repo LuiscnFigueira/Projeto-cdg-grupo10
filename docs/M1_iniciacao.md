@@ -2,7 +2,7 @@
  
 ## 1. Descrição Detalhada do Problema
 
-**Contexto do Setor: Gestão de Capital Humano e HR Analytics** 
+### Contexto do Setor: Gestão de Capital Humano e HR Analytics 
 
 O capital humano constitui um dos ativos mais críticos para o desempenho, inovação e sustentabilidade das organizações modernas, particularmente em setores intensivos em conhecimento, como o setor tecnológico e de serviços. Neste contexto, a área de HR Analytics (People Analytics) tem emergido como uma disciplina estratégica que utiliza dados e técnicas de análise quantitativa para apoiar a tomada de decisão na gestão de recursos humanos.
 
@@ -10,7 +10,7 @@ Tradicionalmente, a gestão de recursos humanos baseava-se em abordagens maiorit
 
 Uma das aplicações mais relevantes neste domínio é a análise da rotatividade de colaboradores (Employee Attrition), que corresponde à saída de colaboradores de uma organização e constitui um indicador crítico da estabilidade e eficiência organizacional.
 
-**Relevância do Problema no Contexto Atual**
+### Relevância do Problema no Contexto Atual
 
 A rotatividade de colaboradores representa um desafio estratégico significativo devido ao seu impacto direto e indireto nas organizações. Do ponto de vista financeiro, a saída de um colaborador implica custos associados ao recrutamento, seleção, integração e formação de novos colaboradores, bem como custos indiretos relacionados com a perda de produtividade e transferência de conhecimento. Em funções especializadas, estes custos podem atingir valores substanciais.
 
@@ -18,7 +18,7 @@ Para além do impacto económico, a rotatividade afeta também o desempenho orga
 
 A saída de colaboradores é influenciada por múltiplos fatores, incluindo características demográficas, condições de trabalho, remuneração, progressão na carreira e níveis de satisfação profissional. A identificação e análise destes fatores constitui um passo fundamental para permitir às organizações desenvolver estratégias eficazes de retenção e otimizar a gestão do seu capital humano.
 
-**Formulação do Problema no Contexto da Ciência de Dados**
+### Formulação do Problema no Contexto da Ciência de Dados
 
 Para analisar este problema, será utilizado o dataset IBM HR Analytics Employee Attrition & Performance, disponibilizado na plataforma Kaggle, que contém dados estruturados relativos a 1470 colaboradores e 35 variáveis que descrevem características demográficas, profissionais, salariais e níveis de satisfação.
 
@@ -28,7 +28,7 @@ O problema pode ser formalizado como um problema de análise exploratória de da
 
 Através da aplicação de técnicas de análise de dados, será possível transformar dados organizacionais em conhecimento relevante, permitindo compreender melhor os determinantes da rotatividade e apoiar futuras abordagens preditivas.
 
-**Objetivo Analítico do Projeto**
+### Objetivo Analítico do Projeto
 
 O objetivo analítico principal deste projeto consiste em aplicar metodologias de Ciência de Dados ao dataset IBM HR Analytics Employee Attrition & Performance, com o propósito de identificar, analisar e compreender os fatores associados à rotatividade de colaboradores.
 
@@ -75,11 +75,22 @@ As perguntas de investigação estruturam o enquadramento científico do estudo,
  
 ## 3. Metodologia de Gestão (PBL) 
 O projeto segue uma abordagem baseada no modelo CRISP-DM (Cross-Industry Standard Process for Data Mining), que estrutura o desenvolvimento em seis fases principais: compreensão do problema, compreensão dos dados, preparação dos dados, modelação, avaliação e implementação. Embora estas fases tenham uma ordem lógica, o processo é iterativo e permite regressar a fases anteriores sempre que necessário. Esta metodologia assegura uma abordagem estruturada, sistemática e rigorosa ao desenvolvimento de projetos de Ciência de Dados.
-* **Divisão de Tarefas:** 
-  * **Membro A:** Responsável pela Engenharia de Dados. 
-  * **Membro B:** Responsável pela Modelação Estatística. 
-  * **Membro C:** Responsável pela Visualização e Documentação. 
-* **Ferramentas de Colaboração:** Kaggle Notebooks (ambiente de desenvolvimento), GitHub (controlo de versões e partilha de código), GitHub Projects (gestão de tarefas) e reuniões semanais (Google Meet).
+
+**Divisão de Tarefas:** 
+
+ **Luís Figueira:** 
+   *  Supervisão geral do projeto
+   *  Preparação e estruturação do projeto
+   *  Coordenação da comunicação entre membros
+    
+ **Martim Ferreira:** Responsável pelo Código.
+  
+ **Mateus Afonso:** 
+  *  Definição clara do problema e objetivos SMART
+  *  Compreensão inicial das variáveis e tipos de dados
+  *  Preparaçã de entregáveis de Milestone 1 (relatório e estrutura de projeto)
+  
+**Ferramentas de Colaboração:** Kaggle Notebooks (ambiente de desenvolvimento), GitHub (controlo de versões e partilha de código), GitHub Projects (gestão de tarefas), mensagens diárias (WhatsApp), distribuição de tarefas (Notion) e reuniões de dois em dois dias (Google Meet).
  
 ## 4. Análise de Viabilidade dos Dados 
 * **Disponibilidade:** O dataset "IBM HR Analytics Employee Attrition & Performance" encontra-se disponível publicamente na plataforma Kaggle em formato CSV. Os dados já foram importados para o ambiente Kaggle Notebook, estando estruturados de forma tabular com 1470 observações e 35 variáveis. A estrutura é ideal para análise estatística e modelação supervisionada, sem necessidade de integração com bases de dados relacionais externas nesta fase. 
