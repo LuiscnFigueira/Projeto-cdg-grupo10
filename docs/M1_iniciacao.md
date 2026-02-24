@@ -36,7 +36,7 @@ Especificamente, pretende-se realizar uma análise exploratória detalhada do da
 
 Este projeto demonstra a aplicação prática de técnicas de análise de dados ao domínio da gestão de recursos humanos, evidenciando o potencial da Ciência de Dados como ferramenta de suporte à tomada de decisão estratégica e à otimização da gestão do capital humano.
 
-## 2. Objetivos SMART 
+## 2. Objetivos SMARTer
  
 1.  **Objetivo 1:** Desenvolver um modelo de classificação supervisionado para prever o attrition, alcançando um
 F1-Score mínimo de 0,80 em validação cruzada estratificada (k=5), até ao dia 28/02/2026
