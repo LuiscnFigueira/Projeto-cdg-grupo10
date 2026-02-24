@@ -2,9 +2,9 @@
 ## Identificação da Equipa
 * **Grupo nº:** 10
 * **Membros:**
-* Luís Figueira - 2022160309
-* Martim Ferreira - 2023132459
-* Mateus Afonso - 2023142275
+* Luís Figueira - 2022160309 - a2022160309@alumni.iscac.pt 
+* Martim Ferreira - 2023132459 - a2023132459@alumni.iscac.pt
+* Mateus Afonso - 2023142275 - a2023142275@alumni.iscac.pt
 ## Organização do Repositório
 A estrutura deste projeto segue as boas práticas de Ciência de Dados e Engenharia de Software:
 * **`data/`**: Armazenamento de dados (dados brutos em `raw/` e processados em `processed/`).
