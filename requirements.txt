@@ -1,1 +1,2 @@
-
+Pandas versão: 2.2.2
+NumPy versão: 2.0.2
