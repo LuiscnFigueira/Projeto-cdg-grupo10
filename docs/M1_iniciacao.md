@@ -158,7 +158,29 @@ A análise da cardinalidade e variabilidade das variáveis permitiu identificar 
 
 Do ponto de vista da teoria da informação, estas variáveis apresentam entropia nula ou irrelevante, sendo incapazes de fornecer informação útil ao processo de aprendizagem. A sua inclusão aumentaria artificialmente a dimensionalidade do espaço de características, podendo introduzir ruído e reduzir a eficiência dos algoritmos de modelação. Por este motivo, estas variáveis foram removidas programaticamente, reduzindo o número de variáveis de 35 para 31 e melhorando a qualidade analítica do dataset.
 
+### 4.1.4 Caracterização Estatística das Variáveis
 
+Foi realizada uma análise estatística descritiva das variáveis numéricas com o objetivo de caracterizar a sua distribuição, amplitude e variabilidade. Esta análise incluiu o cálculo de estatísticas fundamentais, como média, mediana, desvio padrão, valores mínimos e máximos e percentis.
+
+Os resultados evidenciaram diferenças significativas na escala e dispersão das variáveis, refletindo a heterogeneidade das características representadas. Estas diferenças são particularmente relevantes no contexto da modelação preditiva, uma vez que determinados algoritmos, como regressão logística, máquinas de vetores de suporte e redes neuronais, são sensíveis à escala das variáveis. Esta observação justifica a eventual aplicação de técnicas de normalização ou padronização na fase de preparação dos dados, com o objetivo de garantir estabilidade numérica e melhorar o desempenho dos modelos.
+
+A análise confirmou ainda que as variáveis apresentam variabilidade suficiente para suportar o processo de aprendizagem automática, não tendo sido identificadas anomalias estruturais ou inconsistências evidentes.
+
+
+### 4.1.5 Distribuição da Variável Alvo
+
+Foi analisada a distribuição da variável alvo `Attrition`, que representa o estado de permanência ou saída de cada colaborador. A análise revelou um cenário de desequilíbrio de classes (*class imbalance*), com aproximadamente 83.9% das observações correspondentes à classe negativa (permanência) e 16.1% à classe positiva (saída).
+
+Este desequilíbrio constitui um fator crítico no contexto da modelação supervisionada, uma vez que algoritmos treinados diretamente sobre dados desequilibrados tendem a favorecer a classe maioritária, podendo apresentar desempenho aparentemente elevado em termos de acurácia, mas reduzida capacidade de identificação da classe minoritária. Este aspeto será considerado nas fases subsequentes do processo CRISP-DM, nomeadamente na seleção de métricas de avaliação apropriadas, como Precision, Recall, F1-score e Precision-Recall AUC, e na eventual aplicação de técnicas de balanceamento de classes.
+
+
+### 4.1.6 Síntese da Compreensão dos Dados
+
+A análise realizada permitiu confirmar que o dataset apresenta elevada qualidade estrutural, caracterizada pela ausência de valores em falta, inexistência de registos duplicados e presença de variáveis com variabilidade adequada ao problema em estudo. A identificação e remoção de variáveis não informativas contribuiu para melhorar a qualidade do espaço de características e reduzir a complexidade do processo de modelação.
+
+Adicionalmente, a caracterização estatística das variáveis e a análise da distribuição da variável alvo permitiram identificar propriedades relevantes, incluindo diferenças na escala das variáveis e a presença de desequilíbrio entre classes, fatores com implicações diretas na preparação dos dados e no desenvolvimento de modelos preditivos.
+
+Esta fase estabelece uma base metodológica sólida para as etapas subsequentes do processo CRISP-DM, nomeadamente a preparação dos dados, transformação das variáveis e desenvolvimento de modelos de classificação supervisionada robustos e generalizáveis.
 
 ### Fonte de Dados
 * **Dataset:** https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset
@@ -175,4 +197,4 @@ Disponível em: https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-a
 | M3: Modelação | [21/04/2026] | Comparação de algoritmos e métricas. | 
 | M4: Finalização| [21/05/2026] | Pitch e Relatório Final. | 
  --- 
-*Data de última atualização: 22/02/2026*
+*Data de última atualização: 24/02/2026*
