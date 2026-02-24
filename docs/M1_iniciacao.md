@@ -56,21 +56,21 @@ Silhouette superior a 0,50, e descrevendo estatisticamente cada perfil identific
 
 As perguntas de investigação estruturam o enquadramento científico do estudo, orientando a análise empírica dos dados com o objetivo de identificar os principais determinantes do attrition, avaliar a sua relevância estatística e preditiva e verificar a viabilidade de desenvolver modelos capazes de prever este fenómeno de forma fiável.
 
-1. **Quais são as variáveis com maior poder explicativo e preditivo do attrition dos colaboradores?**
+**1.** Quais são as variáveis com maior poder explicativo e preditivo do attrition dos colaboradores?
 
-2. **Existe uma associação estatisticamente significativa entre a realização de horas extraordinárias (OverTime) e a probabilidade de attrition?**
+**2.** Existe uma associação estatisticamente significativa entre a realização de horas extraordinárias (OverTime) e a probabilidade de attrition?
 
-3. **O nível de satisfação no trabalho (JobSatisfaction) e o equilíbrio entre vida pessoal e profissional (WorkLifeBalance) influenciam significativamente o risco de attrition?**
+**3.** O nível de satisfação no trabalho (JobSatisfaction) e o equilíbrio entre vida pessoal e profissional (WorkLifeBalance) influenciam significativamente o risco de attrition?
 
-4. **O rendimento mensal (MonthlyIncome) tem impacto significativo na probabilidade de attrition, mesmo após controlo multivariável?**
+**4.** O rendimento mensal (MonthlyIncome) tem impacto significativo na probabilidade de attrition, mesmo após controlo multivariável?
 
-5. **Qual dos algoritmos de classificação testados apresenta melhor desempenho e maior estabilidade na previsão do attrition?**
+**5.** Qual dos algoritmos de classificação testados apresenta melhor desempenho e maior estabilidade na previsão do attrition?
 
-6. **O desequilíbrio da variável alvo influencia o desempenho dos modelos preditivos e pode ser mitigado através da aplicação da técnica SMOTE?**
+**6.** O desequilíbrio da variável alvo influencia o desempenho dos modelos preditivos e pode ser mitigado através da aplicação da técnica SMOTE?
 
-7. **É possível construir um índice de risco de attrition interpretável e fiável que permita classificar os colaboradores de acordo com o seu nível de risco?**
+**7.** É possível construir um índice de risco de attrition interpretável e fiável que permita classificar os colaboradores de acordo com o seu nível de risco?
 
-8. **Que fatores distinguem os colaboradores com maior risco de attrition dos restantes, e como podem ser utilizados para apoiar estratégias de retenção?**
+**8.** Que fatores distinguem os colaboradores com maior risco de attrition dos restantes, e como podem ser utilizados para apoiar estratégias de retenção?
 
  
 ## 3. Metodologia de Gestão (PBL) 
@@ -83,13 +83,22 @@ O projeto segue uma abordagem baseada no modelo CRISP-DM (Cross-Industry Standar
    *  Preparação e estruturação do projeto
    *  Coordenação da comunicação entre membros
     
- **Martim Ferreira:** Responsável pelo Código.
+ **Martim Ferreira:**
+   *  Verificação da qualidade e integridade dos dados
+   *  Planeamento do cronograma interno
+   *  Análise da existência de valores nulos
   
  **Mateus Afonso:** 
-  *  Definição clara do problema e objetivos SMART
+  *  
   *  Compreensão inicial das variáveis e tipos de dados
-  *  Preparaçã de entregáveis de Milestone 1 (relatório e estrutura de projeto)
-  
+  *  Preparação de entregáveis de Milestone 1 (relatório e estrutura de projeto)
+
+  **Tarefas conjuntas**
+   *  Análise do dataset IBM HR Analytics Employee Attrition & Performance
+   *  Definição clara do problema e objetivos SMART
+   *  Identificação de limitações e riscos do dataset
+   *  Discussão da abordagem metodológica (CRISP-DM)
+     
 **Ferramentas de Colaboração:** Kaggle Notebooks (ambiente de desenvolvimento), GitHub (controlo de versões e partilha de código), GitHub Projects (gestão de tarefas), mensagens diárias (WhatsApp), distribuição de tarefas (Notion) e reuniões de dois em dois dias (Google Meet).
  
 ## 4. Análise de Viabilidade dos Dados 
@@ -196,18 +205,16 @@ Esta fase estabelece uma base metodológica sólida para as etapas subsequentes 
 ### Fonte de Dados
 * **Dataset:** https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset
 * **Fonte do Código:** https://www.kaggle.com/code/lusfigueira/m1-inicia-o
-
+### Referência do Dataset
+IBM Watson Analytics. (2016). IBM HR Analytics Employee Attrition & Performance Dataset. IBM Corporation.  
+Disponível em: https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset
 
 ## 5. Cronograma Interno 
 | Fase | Data Limite | Entregável Esperado | 
 | :--- | :--- | :--- | 
-| M1: Iniciação | [24/02/2026] | Repositório estruturado e Plano de Projeto. | 
+| M1: Iniciação | 24/02/2026 | Repositório estruturado e Plano de Projeto. | 
 | M2: Exploração | [24/03/2026] | Notebook de EDA e Dados Processados. | 
 | M3: Modelação | [21/04/2026] | Comparação de algoritmos e métricas. | 
 | M4: Finalização| [21/05/2026] | Pitch e Relatório Final. | 
  --- 
- ### Referência do Dataset
-IBM Watson Analytics. (2016). IBM HR Analytics Employee Attrition & Performance Dataset. IBM Corporation.  
-Disponível em: https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset
- 
 *Data de última atualização: 24/02/2026*
