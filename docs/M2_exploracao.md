@@ -30,7 +30,7 @@ A análise da distribuição revelou:
 
 Esta distribuição demonstra um desequilíbrio significativo entre classes, sendo a classe “Yes” (saída) claramente minoritária.
 
-### Desafio para a Modelação
+### Desafios Técnicos Resultantes do Desequilíbrio de Classes
 
 O desequilíbrio poderá influenciar negativamente modelos que utilizem métricas globais como a accuracy, uma vez que um modelo que classifique sempre como “No” obteria uma precisão aparente elevada (cerca de 84%), mas sem qualquer utilidade prática.
 
@@ -108,4 +108,4 @@ pela idade do cliente.")
 *O que aprenderam sobre o dataset que não sabiam no final do Milestone 1? Os dados são suficientes 
 para avançar para a modelação?* 
  --- 
-*Data de última atualização: 25/02/2026*
+*Data de última atualização: 26/02/2026*
