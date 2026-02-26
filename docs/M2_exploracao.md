@@ -18,6 +18,29 @@ geraram no Kaggle.*
 cancelamento.") 
 * **Atributo B vs. Alvo:** (Ex: "O tipo de contrato mensal está fortemente ligado à saída de 
 clientes.") 
+
+### 1.3. Problema de Aprendizagem Supervisionada
+A variável alvo do presente projeto, Attrition, indica se o colaborador abandonou a organização (Yes) ou permaneceu (No).
+
+A análise da distribuição revelou:
+
+* 83.9% dos colaboradores permaneceram na empresa
+
+* 16.1% dos colaboradores abandonaram a empresa
+
+Esta distribuição demonstra um desequilíbrio significativo entre classes, sendo a classe “Yes” (saída) claramente minoritária.
+
+### Desafio para a Modelação
+
+O desequilíbrio poderá influenciar negativamente modelos que utilizem métricas globais como a accuracy, uma vez que um modelo que classifique sempre como “No” obteria uma precisão aparente elevada (cerca de 84%), mas sem qualquer utilidade prática.
+
+Dado que o abandono de colaboradores representa um custo elevado para a organização (recrutamento, integração e perda de conhecimento), a correta identificação da classe minoritária é crítica.
+
+Assim, nas fases seguintes será necessário:
+
+* Utilizar métricas adequadas (Precision, Recall, F1-Score, ROC-AUC)
+* Considerar técnicas de balanceamento (SMOTE)
+* Avaliar cuidadosamente a matriz de confusão
  
 ## 2. Qualidade dos Dados e Limpeza 
 ### 2.1. Tratamento de Dados em Falta (Missing Data) 
