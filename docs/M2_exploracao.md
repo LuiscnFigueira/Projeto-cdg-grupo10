@@ -7,9 +7,11 @@ deve consultar essa Milestone.
 ## 1. Análise Exploratória de Dados (EDA) 
 ### 1.1. Distribuição da Variável Alvo 
 
-Foi analisada a distribuição da variável alvo `Attrition`, que representa o estado de permanência ou saída de cada colaborador. A análise revelou um cenário de desequilíbrio de classes (*class imbalance*), com aproximadamente 83.9% das observações correspondentes à classe negativa (permanência) e 16.1% à classe positiva (saída).
+Foi analisada a distribuição da variável alvo Attrition, que representa o estado de permanência ou saída de cada colaborador. Tratando-se de uma variável categórica binária, o conceito estatístico de distribuição normal não se aplica, baseando-se a nossa análise na proporção de frequências entre as duas categorias.
 
-Este desequilíbrio constitui um fator crítico no contexto da modelação supervisionada, uma vez que algoritmos treinados diretamente sobre dados desequilibrados tendem a favorecer a classe maioritária, podendo apresentar desempenho aparentemente elevado em termos de acurácia, mas reduzida capacidade de identificação da classe minoritária. Este aspeto será considerado nas fases subsequentes do processo CRISP-DM, nomeadamente na seleção de métricas de avaliação apropriadas, como Precision, Recall, F1-score e Precision-Recall AUC, e na eventual aplicação de técnicas de balanceamento de classes.
+A análise exploratória revelou um cenário de forte desequilíbrio de classes (class imbalance), com aproximadamente 83.9% das observações correspondentes à classe negativa (permanência) e 16.1% à classe positiva (saída).
+
+Este desequilíbrio constitui um fator crítico no contexto da modelação supervisionada, uma vez que algoritmos treinados diretamente sobre dados desequilibrados tendem a favorecer a classe maioritária. Isto pode apresentar um desempenho aparentemente elevado em termos de acurácia (Accuracy), mas com uma reduzida capacidade de identificação da classe minoritária. Este aspeto será estritamente considerado nas fases subsequentes do processo CRISP-DM, nomeadamente na seleção de métricas de avaliação apropriadas, como Precision, Recall, F1-score e Precision-Recall AUC, e na eventual aplicação de técnicas de balanceamento de classes (ex: SMOTE).
  
 ### 1.2. Correlações Relevantes 
 *Quais as variáveis que têm maior relação com o problema? Incluam referências a gráficos que 
