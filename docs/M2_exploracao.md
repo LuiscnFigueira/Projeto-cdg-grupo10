@@ -45,10 +45,12 @@ Assim, nas fases seguintes será necessário:
 * Avaliar cuidadosamente a matriz de confusão
  
 ## 2. Qualidade dos Dados e Limpeza 
-### 2.1. Tratamento de Dados em Falta (Missing Data) 
-* **Colunas afetadas:** [Lista de colunas] 
-* **Estratégia adotada:** (Ex: "Substituímos os nulos da coluna 'Salário' pela mediana para 
-evitar o impacto de outliers.") 
+### 2.1. Tratamento de Dados em Falta 
+Foi analisada a presença de valores em falta em todas as variáveis do dataset.
+
+A análise revelou que não existem valores nulos nas variáveis consideradas, pelo que não foi necessária a aplicação de técnicas de imputação ou eliminação de observações.
+
+Esta característica aumenta a robustez do processo de modelação, uma vez que reduz o risco de enviesamento introduzido por estratégias artificiais de preenchimento. 
  
 ### 2.2. Outliers e Inconsistências 
 *Descrevam se encontraram valores impossíveis (ex: idade = 200) e como os resolveram.* 
