@@ -53,8 +53,33 @@ A análise revelou que não existem valores nulos nas variáveis consideradas, p
 Esta característica aumenta a robustez do processo de modelação, uma vez que reduz o risco de enviesamento introduzido por estratégias artificiais de preenchimento. 
  
 ### 2.2. Outliers e Inconsistências 
-*Descrevam se encontraram valores impossíveis (ex: idade = 200) e como os resolveram.* 
- 
+
+Com o objetivo de identificar possíveis valores atípicos que pudessem enviesar a modelação, foi aplicado o método do Intervalo Interquartil (IQR) às variáveis numéricas do dataset.
+
+A análise revelou a existência de valores extremos em diversas variáveis, nomeadamente:
+
+* TrainingTimesLastYear
+* PerformanceRating
+* MonthlyIncome
+* YearsSinceLastPromotion
+*YearsAtCompany
+*TotalWorkingYears
+* NumCompaniesWorked
+* YearsInCurrentRole
+* YearsWithCurrManager	
+
+Contudo, após análise detalhada, verificou-se que:
+
+Não foram identificados valores impossíveis (por exemplo: idades irrealistas ou salários negativos);
+
+Algumas variáveis sinalizadas pelo método IQR são discretas ou ordinais (por exemplo: PerformanceRating), o que pode originar falsos positivos na deteção de outliers;
+
+Os valores extremos observados em variáveis como MonthlyIncome ou TotalWorkingYears são plausíveis no contexto organizacional, podendo corresponder a colaboradores com maior antiguidade ou posições de maior responsabilidade.
+
+Deste modo, concluiu-se que os valores identificados representam variação real da população organizacional e não erros de registo ou inconsistências nos dados.
+
+Assim, optou-se por não eliminar observações, preservando a integridade e representatividade do dataset. O eventual impacto destes valores será mitigado na fase de modelação através de técnicas de normalização e da utilização de modelos robustos a valores extremos.
+
 ## 3. Engenharia de Atributos (Feature Engineering) 
 ### 3.1. Transformações Realizadas 
 * **Encoding:** (Ex: "Convertemos a variável 'Género' em numérica usando One-Hot Encoding.") 
