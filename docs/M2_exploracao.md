@@ -7,7 +7,7 @@ deve consultar essa Milestone.
 ## 1. Análise Exploratória de Dados (EDA) 
 ### 1.1. Distribuição da Variável Alvo 
 
-Foi analisada a distribuição da variável alvo Attrition, que representa o estado de permanência ou saída de cada colaborador. Tratando-se de uma variável categórica binária, o conceito estatístico de distribuição normal não se aplica, baseando-se a nossa análise na proporção de frequências entre as duas categorias.
+Foi analisada a distribuição da variável alvo `Attrition`, que representa o estado de permanência ou saída de cada colaborador. Tratando-se de uma variável categórica binária, o conceito estatístico de distribuição normal não se aplica, baseando-se a nossa análise na proporção de frequências entre as duas categorias.
 
 A análise exploratória revelou um cenário de forte desequilíbrio de classes (class imbalance), com aproximadamente 83.9% das observações correspondentes à classe negativa (permanência) e 16.1% à classe positiva (saída).
 
@@ -110,4 +110,4 @@ pela idade do cliente.")
 *O que aprenderam sobre o dataset que não sabiam no final do Milestone 1? Os dados são suficientes 
 para avançar para a modelação?* 
  --- 
-*Data de última atualização: 26/02/2026*
+*Data de última atualização: 27/02/2026*
