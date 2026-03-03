@@ -51,15 +51,15 @@ Assim, nas fases seguintes será necessário:
 
 ### 1.4 Matriz de Correlação (Heatmap)
 
-Foi gerada uma matriz de correlação para as variáveis numéricas, com o objetivo de identificar relações lineares relevantes e potenciais situações de multicolinearidade. A análise do heatmap evidenciou três padrões principais:
+Para viabilizar a análise multivariada e a identificação de relações lineares entre os atributos do dataset, procedeu-se previamente à codificação binária (Label Encoding) das variáveis categóricas dicotómicas `Attrition`, `OverTime` e `Gender`), transformando-as em formato numérico (0 e 1). Seguidamente, foi gerada uma matriz de correlação, cuja análise do heatmap evidenciou três padrões principais:
 
-* Observou-se uma correlação muito elevada entre JobLevel e MonthlyIncome (≈ 0.95), sugerindo redundância informacional entre progressão hierárquica e remuneração.
+* Observou-se uma correlação muito elevada entre `JobLevel` e `MonthlyIncome` (≈ 0.95), sugerindo redundância informacional entre progressão hierárquica e remuneração.
 
-* Verificou-se um conjunto de variáveis relacionadas com antiguidade na empresa com correlações elevadas, nomeadamente YearsAtCompany com YearsInCurrentRole (≈ 0.76) e com YearsWithCurrManager (≈ 0.77), indicando sobreposição na medição de estabilidade/tenure.
+* Verificou-se um conjunto de variáveis relacionadas com antiguidade na empresa com correlações elevadas, nomeadamente `YearsAtCompany` com `YearsInCurrentRole` (≈ 0.76) e com `YearsWithCurrManager` (≈ 0.77), indicando sobreposição na medição de estabilidade/tenure.
 
-* Relativamente à variável-alvo (Attrition_bin), a associação linear mais evidente ocorre com OverTime_bin (≈ 0.25). Adicionalmente, Age, MonthlyIncome, JobLevel e TotalWorkingYears apresentam correlações negativas moderadas (≈ -0.16 a -0.17), sugerindo maior probabilidade de saída em colaboradores mais jovens e em níveis salariais/hierárquicos mais baixos.
+* Relativamente à variável-alvo (`Attrition_bin`), a associação linear mais evidente ocorre com `OverTime_bin` (≈ 0.25). Adicionalmente, `Age`, `MonthlyIncome`, `JobLevel` e `TotalWorkingYears` apresentam correlações negativas moderadas (≈ -0.16 a -0.17), sugerindo maior probabilidade de saída em colaboradores mais jovens e em níveis salariais/hierárquicos mais baixos.
 
-Estes resultados serão considerados na fase de modelação, particularmente na seleção de atributos e na mitigação de multicolinearidade. Importa referir que correlação não implica causalidade, representando apenas associações lineares observadas nos dados.
+Estes resultados serão determinantes na fase de Modelação e Preparação de Dados, particularmente na seleção de atributos e na mitigação da multicolinearidade. Importa ressalvar que a correlação não implica causalidade, representando apenas associações lineares observadas na amostra.
  
 ## 2. Qualidade dos Dados e Limpeza 
 ### 2.1. Tratamento de Dados em Falta 
