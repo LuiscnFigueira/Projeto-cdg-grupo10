@@ -42,6 +42,18 @@ Assim, nas fases seguintes será necessário:
 * Utilizar métricas adequadas (Precision, Recall, F1-Score, ROC-AUC)
 * Considerar técnicas de balanceamento (SMOTE)
 * Avaliar cuidadosamente a matriz de confusão
+
+### 1.4 Matriz de Correlação (Heatmap)
+
+Foi gerada uma matriz de correlação para as variáveis numéricas, com o objetivo de identificar relações lineares relevantes e potenciais situações de multicolinearidade. A análise do heatmap evidenciou três padrões principais:
+
+* Observou-se uma correlação muito elevada entre JobLevel e MonthlyIncome (≈ 0.95), sugerindo redundância informacional entre progressão hierárquica e remuneração.
+
+* Verificou-se um conjunto de variáveis relacionadas com antiguidade na empresa com correlações elevadas, nomeadamente YearsAtCompany com YearsInCurrentRole (≈ 0.76) e com YearsWithCurrManager (≈ 0.77), indicando sobreposição na medição de estabilidade/tenure.
+
+* Relativamente à variável-alvo (Attrition_bin), a associação linear mais evidente ocorre com OverTime_bin (≈ 0.25). Adicionalmente, Age, MonthlyIncome, JobLevel e TotalWorkingYears apresentam correlações negativas moderadas (≈ -0.16 a -0.17), sugerindo maior probabilidade de saída em colaboradores mais jovens e em níveis salariais/hierárquicos mais baixos.
+
+Estes resultados serão considerados na fase de modelação, particularmente na seleção de atributos e na mitigação de multicolinearidade. Importa referir que correlação não implica causalidade, representando apenas associações lineares observadas nos dados.
  
 ## 2. Qualidade dos Dados e Limpeza 
 ### 2.1. Tratamento de Dados em Falta 
