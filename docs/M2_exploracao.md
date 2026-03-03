@@ -13,12 +13,18 @@ Este desequilíbrio constitui um fator crítico no contexto da modelação super
 
 Nesta fase de análise bivariada, utilizámos gráficos de dispersão (scatter plots) para cruzar os atributos do dataset diretamente com a variável alvo `Attrition`, com o objetivo de identificar os principais preditores de rotatividade. Aplicámos um nível de transparência aos pontos do gráfico para revelar a densidade de colaboradores em cada eixo categórico ("Yes" / "No").
 
-*Quais as variáveis que têm maior relação com o problema? Incluam referências a gráficos que 
-geraram no Kaggle.* 
 
 * **Atributo Idade (Age) vs. Alvo:** Notámos que a idade apresenta uma forte relação com a probabilidade de saída. Observando o scatter plot, a densidade de pontos na classe "Yes" (abandono) está claramente concentrada na faixa etária mais jovem (entre os 20 e os 35 anos). Por outro lado, a linha correspondente aos colaboradores que permanecem ("No") apresenta uma distribuição muito mais vasta e contínua ao longo de todas as idades, indicando que a retenção é superior em faixas etárias mais maduras.
 
+* gráfico:
+  
+* referências:
+
 * **Atributo Rendimento Mensal (MonthlyIncome) vs. Alvo:** O fator financeiro está fortemente ligado à saída de colaboradores. No gráfico de dispersão, a esmagadora maioria dos pontos de Attrition ("Yes") aglomera-se de forma densa no limite inferior do eixo X (salários mais baixos). À medida que o rendimento mensal aumenta, a presença de pontos na classe "Yes" torna-se cada vez mais rara, confirmando que pacotes salariais superiores atuam como um forte mecanismo de retenção.
+
+*  gráfico:
+
+*  referências:
 
 ### 1.3. Problema de Aprendizagem Supervisionada
 A variável alvo do presente projeto, Attrition, indica se o colaborador abandonou a organização (Yes) ou permaneceu (No).
