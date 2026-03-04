@@ -81,11 +81,11 @@ A análise dos gráficos de dispersão permitiu identificar alguns padrões visu
 
 **Relação Linear entre Idade e Experiência**
 
-Existe uma relação linear positiva muito forte e perfeitamente visível no gráfico. Como é lógico, à medida que a idade (Age) do colaborador avança, o seu total de anos de experiência (TotalWorkingYears) também cresce, formando uma linha diagonal densa. Curiosamente, notamos que a esmagadora maioria dos pontos vermelhos (saídas da empresa) concentra-se precisamente na base desta diagonal, ou seja, em colaboradores com baixos valores tanto em Age como em TotalWorkingYears (jovens com pouca experiência).
+Existe uma relação linear positiva muito forte e perfeitamente visível no gráfico. Como é lógico, à medida que a idade (`Age`) do colaborador avança, o seu total de anos de experiência (`TotalWorkingYears`) também cresce, formando uma linha diagonal densa. Curiosamente, notamos que a esmagadora maioria dos pontos vermelhos (saídas da empresa) concentra-se precisamente na base desta diagonal, ou seja, em colaboradores com baixos valores tanto em `Age` como em `TotalWorkingYears` (jovens com pouca experiência).
 
 **Progressão Financeira por Experiência**
 
-Observa-se uma clara tendência linear ascendente no gráfico cruzado, evidenciando que a empresa recompensa a senioridade. À medida que o total de anos de experiência (TotalWorkingYears) de um colaborador aumenta, o seu rendimento mensal (MonthlyIncome) acompanha esse crescimento de forma proporcional, formando um padrão visual semelhante a uma "escada". É também notório que a retenção (marcada pelos abundantes pontos azuis) é substancialmente mais robusta nos patamares superiores, quer de experiência, quer de salário.
+Observa-se uma clara tendência linear ascendente no gráfico cruzado, evidenciando que a empresa recompensa a senioridade. À medida que o total de anos de experiência (`TotalWorkingYears`) de um colaborador aumenta, o seu rendimento mensal (`MonthlyIncome`) acompanha esse crescimento de forma proporcional, formando um padrão visual semelhante a uma "escada". É também notório que a retenção (marcada pelos abundantes pontos azuis) é substancialmente mais robusta nos patamares superiores, quer de experiência, quer de salário.
 
 **Relação entre Variáveis de Antiguidade na Empresa**
 
