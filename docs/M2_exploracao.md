@@ -75,11 +75,22 @@ Importa salientar que correlação mede apenas associações lineares e não imp
 
 Estes resultados sugerem que fatores relacionados com carga de trabalho, progressão na carreira e remuneração desempenham um papel relevante na retenção de talento.
 
-### 1.6 As primeiras 3 conclusões visuais importantes
+### 1.6 Conclusões Visuais da Análise Bivariada
+
+A análise dos gráficos de dispersão permitiu identificar alguns padrões visuais relevantes entre variáveis numéricas do dataset. Estes padrões ajudam a compreender melhor a estrutura dos dados e possíveis relações entre características dos colaboradores e o fenómeno de saída da organização.
 
 
+** **
 
+** **
 
+**Relação entre Variáveis de Antiguidade na Empresa**
+
+Os gráficos scatter-plots `YearsAtCompany` vs `YearsWithCurrManager` e `TotalWorkingYears` vs `YearsAtCompany` evidenciam uma relação positiva entre variáveis associadas à antiguidade do colaborador na organização.
+
+Verifica-se que colaboradores com mais anos na empresa tendem também a apresentar mais anos na função atual ou com o mesmo gestor. Este padrão sugere que estas variáveis capturam dimensões semelhantes da estabilidade profissional dentro da organização.
+
+Esta observação ajuda também a explicar as correlações elevadas identificadas anteriormente na matriz de correlação entre variáveis como YearsAtCompany, YearsInCurrentRole e YearsWithCurrManager.
 
 ## 2. Qualidade dos Dados e Limpeza 
 ### 2.1. Tratamento de Dados em Falta 
