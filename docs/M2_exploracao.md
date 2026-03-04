@@ -28,6 +28,10 @@ Nesta fase de análise bivariada, utilizámos gráficos de dispersão (scatter p
 
 * **Atributo Experiência Total (`TotalWorkingYears`) vs. Alvo:** Notámos que a senioridade e o tempo de carreira estão intimamente ligados à retenção. Observando o scatter plot, a grande mancha de densidade de abandonos ("Yes") concentra-se nos colaboradores com menos de 10 anos de experiência total. Em contrapartida, profissionais com carreiras mais longas (especialmente acima dos 15-20 anos) apresentam uma dispersão residual na linha de saída, provando que a consolidação da carreira reduz drasticamente a rotatividade.
 
+*  gráfico:
+
+*  referências:
+
 ### 1.3. Problema de Aprendizagem Supervisionada
 A variável alvo do presente projeto, `Attrition`, indica se o colaborador abandonou a organização (Yes) ou permaneceu (No).
 
