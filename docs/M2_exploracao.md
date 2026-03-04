@@ -60,7 +60,21 @@ Foi gerada uma matriz de correlação para as variáveis numéricas, com o objet
 * Relativamente à variável-alvo (`Attrition_bin`), a associação linear mais evidente ocorre com `OverTime_bin` (≈ 0.25). Adicionalmente, `Age`, `MonthlyIncome`, `JobLevel` e `TotalWorkingYears` apresentam correlações negativas moderadas (≈ -0.16 a -0.17), sugerindo maior probabilidade de saída em colaboradores mais jovens e em níveis salariais/hierárquicos mais baixos.
 
 Estes resultados serão considerados na fase de modelação, particularmente na seleção de atributos e na mitigação de multicolinearidade. Importa referir que correlação não implica causalidade, representando apenas associações lineares observadas nos dados.
- 
+
+ ### 1.5 Análise da Correlação com a Variável Alvo
+
+Para compreender quais variáveis apresentam maior associação com a saída de colaboradores, foi analisada a correlação entre os atributos numéricos e a variável alvo `Attrition_bin`.
+
+Os resultados evidenciam que `OverTime_bin` apresenta a maior correlação positiva (≈ 0.25), sugerindo que colaboradores que realizam horas extraordinárias apresentam maior probabilidade de abandonar a organização. Também se observa uma correlação positiva moderada em `DistanceFromHome`, indicando que colaboradores que vivem mais afastados podem ter maior propensão para saída.
+
+Por outro lado, variáveis relacionadas com experiência profissional e progressão na carreira apresentam correlação negativa moderada com a variável alvo, incluindo `TotalWorkingYears`, `JobLevel`, `MonthlyIncome`, `Age` e `YearsInCurrentRole`. Este padrão sugere que colaboradores mais experientes, com maior remuneração ou posição hierárquica mais elevada tendem a permanecer na organização.
+
+Por fim, algumas variáveis apresentam correlação praticamente nula com a saída, como `PerformanceRating`, `PercentSalaryHike` e `HourlyRate`, indicando que estes fatores não parecem influenciar diretamente a decisão de abandono.
+
+Importa salientar que correlação mede apenas associações lineares e não implica causalidade.
+
+Estes resultados sugerem que fatores relacionados com carga de trabalho, progressão na carreira e remuneração desempenham um papel relevante na retenção de talento.
+
 ## 2. Qualidade dos Dados e Limpeza 
 ### 2.1. Tratamento de Dados em Falta 
 Foi analisada a presença de valores em falta em todas as variáveis do dataset.
