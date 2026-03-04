@@ -168,4 +168,4 @@ pela idade do cliente.")
 *O que aprenderam sobre o dataset que não sabiam no final do Milestone 1? Os dados são suficientes 
 para avançar para a modelação?* 
  --- 
-*Data de última atualização: 03/03/2026*
+*Data de última atualização: 04/03/2026*
