@@ -75,6 +75,12 @@ Importa salientar que correlação mede apenas associações lineares e não imp
 
 Estes resultados sugerem que fatores relacionados com carga de trabalho, progressão na carreira e remuneração desempenham um papel relevante na retenção de talento.
 
+### 1.6 As primeiras 3 conclusões visuais importantes
+
+
+
+
+
 ## 2. Qualidade dos Dados e Limpeza 
 ### 2.1. Tratamento de Dados em Falta 
 Foi analisada a presença de valores em falta em todas as variáveis do dataset.
