@@ -27,7 +27,7 @@ Nesta fase de análise bivariada, utilizámos gráficos de dispersão (scatter p
 *  referências:
 
 ### 1.3. Problema de Aprendizagem Supervisionada
-A variável alvo do presente projeto, Attrition, indica se o colaborador abandonou a organização (Yes) ou permaneceu (No).
+A variável alvo do presente projeto, `Attrition`, indica se o colaborador abandonou a organização (Yes) ou permaneceu (No).
 
 A análise da distribuição revelou:
 
