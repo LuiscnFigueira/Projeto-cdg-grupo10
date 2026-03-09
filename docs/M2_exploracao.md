@@ -103,33 +103,15 @@ Esta observação ajuda também a explicar as correlações elevadas identificad
 
 ### 1.7 Distribuição das Variáveis Numéricas
 
-A análise univariada das variáveis numéricas foi realizada através de histogramas e boxplots, permitindo compreender a forma das distribuições, identificar possíveis assimetrias e avaliar a presença de valores extremos no dataset.
+A análise das variáveis numéricas através de histogramas, boxplots e estatística descritiva revelou diferentes padrões de distribuição no dataset. Dado que várias variáveis apresentam comportamentos semelhantes, optou-se por agrupá-las por tipo de distribuição, o que permite uma interpretação mais clara e evita descrições redundantes.
 
-A variável `Age` apresenta uma distribuição aproximadamente unimodal, com maior concentração de colaboradores entre os 30 e os 40 anos. Observa-se uma ligeira assimetria positiva, indicando a existência de um número menor de colaboradores em idades mais elevadas.
+As variáveis `DailyRate`, `HourlyRate` e `MonthlyRate` apresentam distribuições relativamente uniformes ao longo do intervalo de valores observados, sem concentrações muito acentuadas em regiões específicas. Este comportamento sugere uma dispersão mais equilibrada das taxas administrativas associadas aos colaboradores.
 
-A variável `DailyRate` apresenta uma distribuição relativamente uniforme ao longo do intervalo de valores observados, não sendo visível uma concentração marcada em intervalos específicos. Este padrão sugere uma dispersão significativa nas taxas diárias atribuídas aos colaboradores.
+As variáveis `Age`, `DistanceFromHome`, `PercentSalaryHike`, `TrainingTimesLastYear` e `YearsInCurrentRole` apresentam uma assimetria positiva ligeira ou moderada. Isto significa que a maioria das observações se concentra em valores baixos ou intermédios, enquanto valores mais elevados ocorrem com menor frequência.
 
-A variável `DistanceFromHome` apresenta uma distribuição assimétrica positiva, com maior concentração de colaboradores a residir a distâncias reduzidas do local de trabalho. À medida que a distância aumenta, a frequência de observações diminui gradualmente, sendo relativamente poucos os colaboradores que vivem a distâncias muito elevadas.
+Por outro lado, as variáveis `MonthlyIncome`, `TotalWorkingYears`, `YearsAtCompany`, `YearsSinceLastPromotion`, `YearsWithCurrManager` e `NumCompaniesWorked` apresentam uma assimetria positiva mais pronunciada, caracterizada por uma forte concentração de observações nos valores mais baixos e uma cauda longa à direita. Este padrão indica que apenas uma pequena fração de colaboradores apresenta salários elevados, muitos anos de experiência ou níveis elevados de antiguidade organizacional.
 
-A variável `HourlyRate` apresenta uma distribuição relativamente uniforme, indicando que os valores da taxa horária se encontram distribuídos de forma relativamente equilibrada ao longo do intervalo observado.
-
-A variável `MonthlyIncome` apresenta uma forte assimetria positiva (*right skewness*), caracterizada por uma elevada concentração de colaboradores nos níveis salariais mais baixos e um número reduzido de observações com rendimentos significativamente mais elevados. Este padrão é consistente com estruturas salariais organizacionais típicas, onde apenas uma pequena proporção de colaboradores ocupa posições de maior remuneração.
-
-A variável `MonthlyRate` apresenta uma distribuição relativamente uniforme ao longo do intervalo de valores possíveis, não evidenciando uma concentração clara em regiões específicas da distribuição.
-
-A variável `NumCompaniesWorked` apresenta uma distribuição concentrada em valores baixos, indicando que a maioria dos colaboradores trabalhou em poucas empresas ao longo da sua carreira. A frequência diminui progressivamente à medida que o número de empregadores anteriores aumenta.
-
-A variável `PercentSalaryHike` apresenta uma distribuição moderadamente assimétrica à direita, com maior concentração de observações nos intervalos de aumentos salariais mais baixos. Valores mais elevados de aumento salarial ocorrem com menor frequência.
-
-A variável `TotalWorkingYears` apresenta uma distribuição assimétrica positiva, indicando que a maioria dos colaboradores possui níveis moderados de experiência profissional. Observa-se uma diminuição gradual da frequência à medida que o número total de anos de experiência aumenta.
-
-A variável `TrainingTimesLastYear` apresenta uma distribuição concentrada em valores baixos a moderados, sugerindo que a maioria dos colaboradores participou em um número limitado de formações no último ano.
-
-As variáveis `YearsAtCompany`, `YearsInCurrentRole` e `YearsWithCurrManager` apresentam distribuições semelhantes, caracterizadas por uma forte concentração nos primeiros anos e uma redução progressiva da frequência para valores mais elevados. Este padrão sugere que a maioria dos colaboradores possui níveis moderados de antiguidade na empresa, na função atual ou sob o mesmo gestor.
-
-Por fim, a variável `YearsSinceLastPromotion` apresenta uma distribuição fortemente assimétrica à direita, evidenciando que a maioria dos colaboradores recebeu promoções recentemente ou possui poucos anos desde a última promoção, enquanto um número reduzido apresenta períodos significativamente mais longos sem progressão.
-
-De forma geral, a análise das distribuições revela padrões estatisticamente plausíveis em contexto organizacional, caracterizados por assimetrias positivas em variáveis relacionadas com experiência, remuneração e antiguidade. Estes padrões são coerentes com o que seria expectável em organizações hierarquizadas, onde a maioria dos colaboradores se concentra em níveis intermédios de carreira, enquanto apenas uma fração reduzida ocupa posições associadas a maior antiguidade ou remuneração.
+No conjunto, verifica-se que as variáveis relacionadas com remuneração, progressão de carreira e antiguidade são aquelas que apresentam maior grau de assimetria positiva, enquanto `DailyRate`, `HourlyRate` e `MonthlyRate` evidenciam distribuições mais homogéneas. Estes resultados são consistentes com estruturas organizacionais hierarquizadas, onde a maioria dos colaboradores se concentra em níveis intermédios de carreira, enquanto apenas uma pequena proporção ocupa posições mais séniores ou de maior remuneração.
 
 ## 2. Qualidade dos Dados e Limpeza 
 ### 2.1. Tratamento de Dados em Falta 
