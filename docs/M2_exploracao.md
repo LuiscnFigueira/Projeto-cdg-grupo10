@@ -113,6 +113,24 @@ Por outro lado, as variáveis `MonthlyIncome`, `TotalWorkingYears`, `YearsAtComp
 
 No conjunto, verifica-se que as variáveis relacionadas com remuneração, progressão de carreira e antiguidade são aquelas que apresentam maior grau de assimetria positiva, enquanto `DailyRate`, `HourlyRate` e `MonthlyRate` evidenciam distribuições mais homogéneas. Estes resultados são consistentes com estruturas organizacionais hierarquizadas, onde a maioria dos colaboradores se concentra em níveis intermédios de carreira, enquanto apenas uma pequena proporção ocupa posições mais séniores ou de maior remuneração.
 
+### 1.8 Distribuição das Variáveis Categóricas
+
+A análise das variáveis categóricas foi realizada através de gráficos de frequência, permitindo compreender a composição estrutural da força de trabalho representada no dataset. Tal como na análise das variáveis numéricas, optou-se por interpretar os padrões de forma agregada, agrupando variáveis com comportamentos semelhantes para facilitar a leitura e evitar descrições repetitivas.
+
+Relativamente à variável alvo 'Attrition', observa-se um claro desequilíbrio entre classes, com predominância de colaboradores que permanecem na organização ('No') face aos que abandonam a empresa ('Yes'). Este padrão confirma a presença de **class imbalance**, um fator relevante que deverá ser considerado na fase de modelação.
+
+No que diz respeito à mobilidade profissional, a variável 'BusinessTravel' apresenta uma forte concentração na categoria 'Travel_Rarely', indicando que a maioria dos colaboradores realiza deslocações profissionais apenas ocasionalmente.
+
+A distribuição da variável 'Department' evidencia uma clara predominância do departamento 'Research & Development', seguido pelo departamento 'Sales', enquanto 'Human Resources' apresenta uma representação significativamente menor. Este padrão sugere uma estrutura organizacional fortemente orientada para atividades técnicas e de investigação.
+
+Relativamente à formação académica, a variável 'EducationField' mostra maior concentração nas áreas 'Life Sciences' e 'Medical', indicando que a maioria dos colaboradores possui formação em áreas científicas ou técnicas.
+
+No plano demográfico, a variável 'Gender' apresenta uma distribuição relativamente equilibrada, embora com ligeira predominância de colaboradores do género masculino. Já a variável 'MaritalStatus' revela maior presença de colaboradores 'Married', seguida das categorias 'Single' e 'Divorced'.
+
+Por fim, a variável 'OverTime' indica que a maioria dos colaboradores não realiza horas extraordinárias, embora exista uma proporção relevante que reporta trabalho extra. Este fator assume particular interesse para a análise da rotatividade, uma vez que poderá estar associado a níveis mais elevados de desgaste profissional.
+
+No conjunto, as variáveis categóricas apresentam distribuições plausíveis e coerentes com a estrutura organizacional representada no dataset, não sendo identificadas categorias com frequências anómalas ou inconsistentes.
+
 ## 2. Qualidade dos Dados e Limpeza 
 ### 2.1. Tratamento de Dados em Falta 
 Foi analisada a presença de valores em falta em todas as variáveis do dataset.
