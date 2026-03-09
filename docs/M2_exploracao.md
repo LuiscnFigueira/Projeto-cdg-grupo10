@@ -177,8 +177,36 @@ fiquem na mesma escala.")
 *Descrevam as variáveis que criaram para ajudar o modelo.* 
 * **Nova Variável [Nome]:** (Ex: "Criámos a 'Tenure_Per_Year' que divide o tempo de contrato 
 pela idade do cliente.") 
+
+ ## 4. Metodologia de Gestão (PBL) 
+O projeto segue uma abordagem baseada no modelo CRISP-DM (Cross-Industry Standard Process for Data Mining), que estrutura o desenvolvimento em seis fases principais: compreensão do problema, compreensão dos dados, preparação dos dados, modelação, avaliação e implementação. Embora estas fases tenham uma ordem lógica, o processo é iterativo e permite regressar a fases anteriores sempre que necessário. Esta metodologia assegura uma abordagem estruturada, sistemática e rigorosa ao desenvolvimento de projetos de Ciência de Dados.
+
+**Divisão de Tarefas:** 
+
+ **Luís Figueira:** 
+   *  tarefa1
+   *  tarefa2
+   *  tarefa3
+    
+ **Martim Ferreira:**
+   *  Análise da qualidade dos dados e limpeza
+   *  Análise da correlação das variáveis com a variável alvo
+   *  tarefa4
+  
+ **Mateus Afonso:** 
+  *  tarefa5
+  *  tarefa6
+  *  tarefa7
+
+  **Tarefas conjuntas**
+   *  tarefa8
+   *  tarefa9
+   *  tareefa10
+   *  tarefa11
+     
+**Ferramentas de Colaboração:** Kaggle Notebooks (ambiente de desenvolvimento), GitHub (controlo de versões e partilha de código), GitHub Projects (gestão de tarefas), Whatsapp (mensagens diárias), Notion (distribuição de tarefas) e Google Meet (reuniões de dois em dois dias).
  
-## 4. Dicionário de Dados Final (Pós-Processamento) 
+## 5. Dicionário de Dados Final (Pós-Processamento) 
 *Listagem final das variáveis que serão entregues ao modelo na Fase 3. - por confirmar no fim da análise exploratória* 
 
 
@@ -224,4 +252,4 @@ pela idade do cliente.")
 *O que aprenderam sobre o dataset que não sabiam no final do Milestone 1? Os dados são suficientes 
 para avançar para a modelação?* 
  --- 
-*Data de última atualização: 04/03/2026*
+*Data de última atualização: 09/03/2026*
