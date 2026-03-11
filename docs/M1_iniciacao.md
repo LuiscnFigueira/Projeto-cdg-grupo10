@@ -6,7 +6,7 @@
 
 O capital humano constitui um dos ativos mais críticos para o desempenho, inovação e sustentabilidade das organizações modernas, particularmente em setores intensivos em conhecimento, como o setor tecnológico e de serviços. Neste contexto, a área de HR Analytics (People Analytics) tem emergido como uma disciplina estratégica que utiliza dados e técnicas de análise quantitativa para apoiar a tomada de decisão na gestão de recursos humanos.
 
-Tradicionalmente, a gestão de recursos humanos baseava-se em abordagens maioritariamente reativas e qualitativas. No entanto, com o aumento da disponibilidade de dados organizacionais e o desenvolvimento de técnicas de Ciência de Dados e Machine Learning, tornou-se possível adotar uma abordagem orientada por dados, permitindo analisar padrões comportamentais, identificar fatores de risco e antecipar fenómenos relevantes. Esta evolução permite transformar os Recursos Humanos numa função estratégica e preditiva, contribuindo para uma gestão mais eficiente e fundamentada do capital humano.
+Tradicionalmente, a gestão de recursos humanos baseava-se em abordagens maioritariamente reativas e qualitativas. No entanto, com o aumento da disponibilidade de dados organizacionais e o desenvolvimento de técnicas de Ciência de Dados e Aprendizagem Automática (Machine Learning), tornou-se possível adotar uma abordagem orientada por dados, permitindo analisar padrões comportamentais, identificar fatores de risco e antecipar fenómenos relevantes. Esta evolução permite transformar os Recursos Humanos numa função estratégica e preditiva, contribuindo para uma gestão mais eficiente e fundamentada do capital humano.
 
 Uma das aplicações mais relevantes neste domínio é a análise da rotatividade de colaboradores (Employee Attrition), que corresponde à saída de colaboradores de uma organização e constitui um indicador crítico da estabilidade e eficiência organizacional.
 
@@ -30,9 +30,9 @@ Através da aplicação de técnicas de análise exploratória de dados e de apr
 
 ### Objetivo Analítico do Projeto
 
-O objetivo analítico principal deste projeto consiste em analisar o fenómeno de rotatividade de colaboradores com recurso a técnicas de análise exploratória de dados, estatística descritiva e aprendizagem automática supervisionada, aplicadas ao dataset IBM HR Analytics Employee Attrition & Performance. Pretende-se identificar os fatores mais associados ao abandono da organização e criar uma base analítica sólida para o desenvolvimento de modelos preditivos de `Attrition`.
+O objetivo analítico principal deste projeto consiste em analisar o fenómeno de rotatividade de colaboradores com recurso a técnicas de análise exploratória de dados, estatística descritiva e aprendizagem automática supervisionada, aplicadas ao dataset IBM HR Analytics Employee Attrition & Performance. Pretende-se identificar os fatores mais associados ao abandono da organização e criar uma base analítica sólida para o desenvolvimento de modelos preditivos de atrito (`Attrition`).
 
-Especificamente, pretende-se realizar uma análise exploratória detalhada do dataset, avaliar a relação entre as variáveis explicativas e a variável alvo Attrition, e estabelecer uma base analítica robusta que suporte o desenvolvimento e validação de modelos preditivos em fases posteriores do projeto.
+Especificamente, pretende-se realizar uma análise exploratória detalhada do dataset, avaliar a relação entre as variáveis explicativas e a variável alvo `Attrition`, e estabelecer uma base analítica robusta que suporte o desenvolvimento e validação de modelos preditivos em fases posteriores do projeto.
 
 Este projeto demonstra a aplicação prática de técnicas de análise de dados ao domínio da gestão de recursos humanos, evidenciando o potencial da Ciência de Dados como ferramenta de suporte à tomada de decisão estratégica e à otimização da gestão do capital humano.
 
