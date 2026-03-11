@@ -149,8 +149,8 @@ A análise revelou a existência de valores extremos em diversas variáveis, nom
 * PerformanceRating
 * MonthlyIncome
 * YearsSinceLastPromotion
-*YearsAtCompany
-*TotalWorkingYears
+* YearsAtCompany
+* TotalWorkingYears
 * NumCompaniesWorked
 * YearsInCurrentRole
 * YearsWithCurrManager	
