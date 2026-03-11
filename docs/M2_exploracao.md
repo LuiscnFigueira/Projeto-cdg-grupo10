@@ -145,23 +145,23 @@ Com o objetivo de identificar possíveis valores atípicos que pudessem enviesar
 
 A análise revelou a existência de valores extremos em diversas variáveis, nomeadamente:
 
-* TrainingTimesLastYear
-* PerformanceRating
-* MonthlyIncome
-* YearsSinceLastPromotion
-* YearsAtCompany
-* TotalWorkingYears
-* NumCompaniesWorked
-* YearsInCurrentRole
-* YearsWithCurrManager	
+* `TrainingTimesLastYear`
+* `PerformanceRating`
+* `MonthlyIncome`
+* `YearsSinceLastPromotion`
+* `YearsAtCompany`
+* `TotalWorkingYears`
+* `NumCompaniesWorked`
+* `YearsInCurrentRole`
+* `YearsWithCurrManager`	
 
 Contudo, após análise detalhada, verificou-se que:
 
 Não foram identificados valores impossíveis (por exemplo: idades irrealistas ou salários negativos);
 
-Algumas variáveis sinalizadas pelo método IQR são discretas ou ordinais (por exemplo: PerformanceRating), o que pode originar falsos positivos na deteção de outliers;
+Algumas variáveis sinalizadas pelo método IQR são discretas ou ordinais (por exemplo: `PerformanceRating`), o que pode originar falsos positivos na deteção de outliers;
 
-Os valores extremos observados em variáveis como MonthlyIncome ou TotalWorkingYears são plausíveis no contexto organizacional, podendo corresponder a colaboradores com maior antiguidade ou posições de maior responsabilidade.
+Os valores extremos observados em variáveis como `MonthlyIncome` ou `TotalWorkingYears` são plausíveis no contexto organizacional, podendo corresponder a colaboradores com maior antiguidade ou posições de maior responsabilidade.
 
 Deste modo, concluiu-se que os valores identificados representam variação real da população organizacional e não erros de registo ou inconsistências nos dados.
 
