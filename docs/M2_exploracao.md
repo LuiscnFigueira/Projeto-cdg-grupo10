@@ -132,17 +132,18 @@ No conjunto, as variáveis categóricas apresentam distribuições plausíveis e
 
 ## 2. Qualidade dos Dados e Limpeza 
 ### 2.1. Tratamento de Dados em Falta 
-Foi analisada a presença de valores em falta em todas as variáveis do dataset.
 
-A análise revelou que não existem valores nulos nas variáveis consideradas, pelo que não foi necessária a aplicação de técnicas de imputação ou eliminação de observações.
+Foi realizada uma análise à presença de valores em falta em todas as variáveis do dataset.
 
-Esta característica aumenta a robustez do processo de modelação, uma vez que reduz o risco de enviesamento introduzido por estratégias artificiais de preenchimento. 
+Os resultados indicaram que não existem valores nulos nas variáveis consideradas, não sendo portanto necessária a aplicação de técnicas de imputação ou a eliminação de observações.
+
+A inexistência de dados em falta constitui uma vantagem para o processo de modelação, uma vez que reduz a necessidade de intervenções artificiais nos dados e diminui o risco de introdução de enviesamento associado a estratégias de preenchimento.
  
 ### 2.2. Outliers e Inconsistências 
 
-Com o objetivo de identificar possíveis valores atípicos que pudessem enviesar a modelação, foi aplicado o método do Intervalo Interquartil (IQR) às variáveis numéricas do dataset.
+Com o objetivo de identificar possíveis valores atípicos que pudessem influenciar negativamente o desempenho dos modelos de aprendizagem automática, foi aplicado o método do Intervalo Interquartil (IQR) às variáveis numéricas do dataset.
 
-A análise revelou a existência de valores extremos em diversas variáveis, nomeadamente:
+A aplicação deste método permitiu identificar valores extremos em diversas variáveis, nomeadamente:
 
 * `TrainingTimesLastYear`
 * `PerformanceRating`
@@ -154,17 +155,17 @@ A análise revelou a existência de valores extremos em diversas variáveis, nom
 * `YearsInCurrentRole`
 * `YearsWithCurrManager`	
 
-Contudo, após análise detalhada, verificou-se que:
+No entanto, uma análise mais detalhada destes resultados permitiu verificar que:
 
 Não foram identificados valores impossíveis (por exemplo: idades irrealistas ou salários negativos);
 
-Algumas variáveis sinalizadas pelo método IQR são discretas ou ordinais (por exemplo: `PerformanceRating`), o que pode originar falsos positivos na deteção de outliers;
+Algumas variáveis sinalizadas pelo método IQR correspondem a variáveis discretas ou ordinais, como `PerformanceRating`, o que pode originar falsos positivos na deteção de outliers;
 
-Os valores extremos observados em variáveis como `MonthlyIncome` ou `TotalWorkingYears` são plausíveis no contexto organizacional, podendo corresponder a colaboradores com maior antiguidade ou posições de maior responsabilidade.
+Os valores extremos observados em variáveis como `MonthlyIncome` ou `TotalWorkingYears` são plausíveis no contexto organizacional, podendo corresponder a colaboradores com maior experiência profissional ou a posições hierárquicas mais elevadas.
 
-Deste modo, concluiu-se que os valores identificados representam variação real da população organizacional e não erros de registo ou inconsistências nos dados.
+Deste modo, concluiu-se que os valores identificados refletem variabilidade real da população organizacional, e não erros de registo ou inconsistências nos dados.
 
-Assim, optou-se por não eliminar observações, preservando a integridade e representatividade do dataset. O eventual impacto destes valores será mitigado na fase de modelação através de técnicas de normalização e da utilização de modelos robustos a valores extremos.
+Assim, optou-se por não remover estas observações, de forma a preservar a integridade e a representatividade do dataset. O eventual impacto destes valores será posteriormente mitigado na fase de modelação através da aplicação de técnicas de normalização e da utilização de modelos robustos a valores extremos.
 
 ## 3. Engenharia de Atributos (Feature Engineering) 
 ### 3.1. Transformações Realizadas 
