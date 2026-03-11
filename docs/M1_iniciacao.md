@@ -30,7 +30,7 @@ Através da aplicação de técnicas de análise exploratória de dados e de apr
 
 ### Objetivo Analítico do Projeto
 
-O objetivo analítico principal deste projeto consiste em analisar o fenómeno de rotatividade de colaboradores com recurso a técnicas de análise exploratória de dados, estatística descritiva e aprendizagem automática supervisionada, aplicadas ao dataset IBM HR Analytics Employee Attrition & Performance. Pretende-se identificar os fatores mais associados ao abandono da organização e criar uma base analítica sólida para o desenvolvimento de modelos preditivos de `attrition`.
+O objetivo analítico principal deste projeto consiste em analisar o fenómeno de rotatividade de colaboradores com recurso a técnicas de análise exploratória de dados, estatística descritiva e aprendizagem automática supervisionada, aplicadas ao dataset IBM HR Analytics Employee Attrition & Performance. Pretende-se identificar os fatores mais associados ao abandono da organização e criar uma base analítica sólida para o desenvolvimento de modelos preditivos de `Attrition`.
 
 Especificamente, pretende-se realizar uma análise exploratória detalhada do dataset, avaliar a relação entre as variáveis explicativas e a variável alvo Attrition, e estabelecer uma base analítica robusta que suporte o desenvolvimento e validação de modelos preditivos em fases posteriores do projeto.
 
