@@ -24,13 +24,13 @@ Para analisar este problema, será utilizado o dataset IBM HR Analytics Employee
 
 A variável central deste estudo é Attrition, uma variável categórica binária que indica se um colaborador abandonou a organização ("Yes") ou permaneceu na empresa ("No"). Esta variável constitui a variável alvo do projeto.
 
-O problema pode ser formalizado como um problema de análise exploratória de dados e classificação supervisionada, em que o objetivo consiste em analisar a relação entre um conjunto de variáveis explicativas e a variável alvo Attrition. Esta análise permitirá identificar padrões e fatores associados à rotatividade de colaboradores, bem como compreender a influência relativa das diferentes variáveis disponíveis no dataset.
+O problema pode ser formalizado como um problema de análise preditiva, suportado por técnicas de aprendizagem supervisionada, uma vez que existe uma variável alvo previamente definida (`Attrition`). Mais concretamente, trata-se de um problema de classificação binária, cujo objetivo é prever se um colaborador abandonará a organização (Yes) ou permanecerá na empresa (No), com base num conjunto de variáveis explicativas. Numa fase inicial, será também realizada análise exploratória de dados, com o objetivo de compreender a estrutura do dataset, identificar padrões relevantes e apoiar a preparação dos dados para a modelação.
 
-Através da aplicação de técnicas de análise de dados, será possível transformar dados organizacionais em conhecimento relevante, permitindo compreender melhor os determinantes da rotatividade e apoiar futuras abordagens preditivas.
+Através da aplicação de técnicas de análise exploratória de dados e de aprendizagem automática supervisionada, será possível transformar dados organizacionais em conhecimento relevante, permitindo compreender melhor os determinantes da rotatividade e apoiar futuras abordagens preditivas.
 
 ### Objetivo Analítico do Projeto
 
-O objetivo analítico principal deste projeto consiste em aplicar metodologias de Ciência de Dados ao dataset IBM HR Analytics Employee Attrition & Performance, com o propósito de identificar, analisar e compreender os fatores associados à rotatividade de colaboradores.
+O objetivo analítico principal deste projeto consiste em analisar o fenómeno de rotatividade de colaboradores com recurso a técnicas de análise exploratória de dados, estatística descritiva e aprendizagem automática supervisionada, aplicadas ao dataset IBM HR Analytics Employee Attrition & Performance. Pretende-se identificar os fatores mais associados ao abandono da organização e criar uma base analítica sólida para o desenvolvimento de modelos preditivos de `attrition`.
 
 Especificamente, pretende-se realizar uma análise exploratória detalhada do dataset, avaliar a relação entre as variáveis explicativas e a variável alvo Attrition, e estabelecer uma base analítica robusta que suporte o desenvolvimento e validação de modelos preditivos em fases posteriores do projeto.
 
