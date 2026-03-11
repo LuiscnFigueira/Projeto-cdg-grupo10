@@ -157,11 +157,11 @@ A aplicação deste método permitiu identificar valores extremos em diversas va
 
 No entanto, uma análise mais detalhada destes resultados permitiu verificar que:
 
-Não foram identificados valores impossíveis (por exemplo: idades irrealistas ou salários negativos);
+* Não foram identificados valores impossíveis (por exemplo: idades irrealistas ou salários negativos);
 
-Algumas variáveis sinalizadas pelo método IQR correspondem a variáveis discretas ou ordinais, como `PerformanceRating`, o que pode originar falsos positivos na deteção de outliers;
+* Algumas variáveis sinalizadas pelo método IQR correspondem a variáveis discretas ou ordinais, como `PerformanceRating`, o que pode originar falsos positivos na deteção de outliers;
 
-Os valores extremos observados em variáveis como `MonthlyIncome` ou `TotalWorkingYears` são plausíveis no contexto organizacional, podendo corresponder a colaboradores com maior experiência profissional ou a posições hierárquicas mais elevadas.
+* Os valores extremos observados em variáveis como `MonthlyIncome` ou `TotalWorkingYears` são plausíveis no contexto organizacional, podendo corresponder a colaboradores com maior experiência profissional ou a posições hierárquicas mais elevadas.
 
 Deste modo, concluiu-se que os valores identificados refletem variabilidade real da população organizacional, e não erros de registo ou inconsistências nos dados.
 
