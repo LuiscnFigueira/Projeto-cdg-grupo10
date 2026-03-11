@@ -248,8 +248,12 @@ O projeto segue uma abordagem baseada no modelo CRISP-DM (Cross-Industry Standar
 | YearsSinceLastPromotion  | Numérica discreta     | [0, 15]                     | —                                                                                                                                                                                                | Tempo desde última promoção.                         | Organizacional        |
 | YearsWithCurrManager     | Numérica discreta     | [0, 17]                     | —                                                                                                                                                                                                | Tempo com gestor atual.                              | Organizacional        |
  
-## 5. Conclusões da Fase de Exploração 
+## 6. Conclusões da Fase de Exploração 
 *O que aprenderam sobre o dataset que não sabiam no final do Milestone 1? Os dados são suficientes 
 para avançar para a modelação?* 
  --- 
-*Data de última atualização: 09/03/2026*
+
+ ## 7. Referências
+
+ 
+*Data de última atualização: 11/03/2026*
