@@ -293,4 +293,4 @@ Estas limitações serão consideradas na interpretação dos resultados e na av
 IBM Watson Analytics. (2016). *IBM HR Analytics Employee Attrition & Performance Dataset*. IBM Corporation.  
 Disponível em: https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset
 
-*Data de última atualização: 24/02/2026*
+*Data de última atualização: 11/03/2026*
