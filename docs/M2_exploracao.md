@@ -3,17 +3,17 @@
 ## 1. Análise Exploratória de Dados (EDA) 
 ### 1.1. Distribuição da Variável Alvo 
 
-A variável alvo do presente projeto, `Attrition`, indica se o colaborador abandonou a organização (Yes) ou permaneceu na empresa (No). Trata-se de uma variável categórica binária que representa o fenómeno de rotatividade de colaboradores e constitui o principal objeto de análise deste estudo.
+A variável alvo do presente projeto, `Attrition`, indica se o colaborador abandonou a organização (**Yes**) ou permaneceu na empresa (**No**). Trata-se de uma variável categórica binária que representa o fenómeno de rotatividade de colaboradores e constitui o principal objeto de análise deste estudo.
 
 Foi realizada uma análise da distribuição desta variável com o objetivo de compreender a proporção de colaboradores que permanecem na organização face aos que abandonam a empresa. Dado tratar-se de uma variável categórica binária, o conceito estatístico de distribuição normal não é aplicável, sendo a análise baseada na proporção de frequências entre as duas categorias.
 
 A análise revelou a seguinte distribuição:
 
-* 83.9% dos colaboradores permaneceram na empresa
+* **83.9%** dos colaboradores **permaneceram** na empresa
 
-* 16.1% dos colaboradores abandonaram a organização
+* **16.1%** dos colaboradores **abandonaram** a organização
 
-Estes resultados evidenciam um desequilíbrio significativo entre classes, sendo a classe “Yes” (saída) claramente minoritária.
+Estes resultados evidenciam um **desequilíbrio significativo entre classes**, sendo a classe “Yes” (saída) claramente minoritária.
 
 ### Desafios Técnicos Resultantes do Desequilíbrio de Classes
 
@@ -124,13 +124,31 @@ No conjunto, as variáveis categóricas apresentam distribuições plausíveis e
 
 ### 1.8 Resposta à 2ª Pergunta de Investigação
 
-Para avaliar a existência de associação entre a realização de horas extraordinárias (`OverTime`) e a saída de colaboradores (`Attrition`), foi aplicado o teste do qui-quadrado de independência.
+Para avaliar se existe uma associação estatisticamente significativa entre a realização de horas extraordinárias (`OverTime`) e a probabilidade de saída da organização (`Attrition`), foi aplicado o **teste do qui-quadrado de independência**, adequado para analisar relações entre variáveis categóricas.
 
-Os resultados revelaram uma associação estatisticamente significativa entre as duas variáveis (χ² = 87.56, p < 0.001), indicando que a probabilidade de abandono da organização não é independente da realização de horas extraordinárias.
+A análise da tabela de contingência revelou diferenças relevantes na proporção de saída entre colaboradores que realizam horas extraordinárias e aqueles que não realizam.
 
-A análise das frequências relativas mostrou que 30.53% dos colaboradores que realizam horas extraordinárias abandonaram a organização, enquanto entre os colaboradores que não realizam horas extra essa proporção é significativamente menor (10.44%).
+Em particular, observou-se que:
 
-O tamanho do efeito, medido através de Cramér's V (0.24), indica uma associação de intensidade fraca a moderada, sugerindo que, embora a realização de horas extraordinárias esteja relacionada com o attrition, outros fatores também contribuem para o fenómeno de rotatividade.
+* **10.44%** dos colaboradores que **não realizam horas extraordinárias** abandonaram a organização;
+
+* **30.53%** dos colaboradores que **realizam horas extraordinárias** abandonaram a organização.
+
+Este resultado sugere que colaboradores que realizam horas extraordinárias apresentam uma probabilidade substancialmente superior de saída da empresa.
+
+Para verificar se esta diferença é estatisticamente significativa, foi aplicado o **teste do qui-quadrado de independência**, que produziu os seguintes resultados:
+
+χ² = 87.56
+
+p-value < 0.001
+
+graus de liberdade = 1
+
+Dado que o **p-value é inferior ao nível de significância de 0.05**, rejeita-se a hipótese nula de independência entre as variáveis. Assim, conclui-se que **existe uma associação estatisticamente significativa entre a realização de horas extraordinárias (`OverTime`) e a variável alvo (`Attrition`)**.
+
+Adicionalmente, foi calculado o tamanho do efeito através da medida **Cramér’s V**, que apresentou um valor de **0.24**, indicando uma **associação de intensidade fraca a moderada entre as duas variáveis**. Isto significa que, embora a realização de horas extraordinárias esteja relacionada com o abandono da organização, este fenómeno é provavelmente influenciado também por outros fatores presentes no dataset.
+
+Do ponto de vista organizacional, estes resultados sugerem que a realização frequente de horas extraordinárias pode estar associada a níveis mais elevados de desgaste profissional, carga de trabalho ou insatisfação laboral, fatores que podem contribuir para o aumento da rotatividade de colaboradores.
 
 ## 2. Qualidade dos Dados e Limpeza 
 ### 2.1. Tratamento de Dados em Falta 
