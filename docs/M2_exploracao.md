@@ -25,9 +25,9 @@ Do ponto de vista organizacional, esta limitação é particularmente crítica, 
 
 Deste modo, nas fases subsequentes do projeto serão adotadas estratégias adequadas para lidar com o desequilíbrio de classes, nomeadamente:
 
-* utilização de métricas de avaliação apropriadas, como Precision, Recall, F1-score e ROC-AUC;
+* utilização de métricas de avaliação apropriadas, como Precision, Recall, F1-score e ROC-AUC.
 
-* eventual aplicação de técnicas de balanceamento de classes (por exemplo, SMOTE);
+* eventual aplicação de técnicas de balanceamento de classes (por exemplo, SMOTE).
 
 * análise detalhada da matriz de confusão para avaliar o desempenho do modelo na identificação da classe minoritária.
  
@@ -36,11 +36,11 @@ Deste modo, nas fases subsequentes do projeto serão adotadas estratégias adequ
 Nesta fase de análise bivariada, utilizámos gráficos de dispersão (scatter plots) para cruzar os atributos do dataset diretamente com a variável alvo `Attrition`, com o objetivo de identificar os principais preditores de rotatividade. Aplicámos um nível de transparência aos pontos do gráfico para revelar a densidade de colaboradores em cada eixo categórico ("Yes" / "No").
 
 
-* **Atributo Idade (`Age`) vs. Alvo:** Notámos que a idade apresenta uma forte relação com a probabilidade de saída. Observando o scatter plot, a densidade de pontos na classe "Yes" (abandono) está claramente concentrada na faixa etária mais jovem (entre os 20 e os 35 anos). Por outro lado, a linha correspondente aos colaboradores que permanecem ("No") apresenta uma distribuição muito mais vasta e contínua ao longo de todas as idades, indicando que a retenção é superior em faixas etárias mais maduras.
+* **Atributo Idade (`Age`) vs. Variável Alvo (`Attrition`):** Notámos que a idade apresenta uma forte relação com a probabilidade de saída. Observando o scatter plot, a densidade de pontos na classe "Yes" (abandono) está claramente concentrada na faixa etária mais jovem (entre os 20 e os 35 anos). Por outro lado, a linha correspondente aos colaboradores que permanecem ("No") apresenta uma distribuição muito mais vasta e contínua ao longo de todas as idades, indicando que a retenção é superior em faixas etárias mais maduras.
 
-* **Atributo Rendimento Mensal (`MonthlyIncome`) vs. Alvo:** O fator financeiro está fortemente ligado à saída de colaboradores. No gráfico de dispersão, a esmagadora maioria dos pontos de Attrition ("Yes") aglomera-se de forma densa no limite inferior do eixo X (salários mais baixos). À medida que o rendimento mensal aumenta, a presença de pontos na classe "Yes" torna-se cada vez mais rara, confirmando que pacotes salariais superiores atuam como um forte mecanismo de retenção.
+* **Atributo Rendimento Mensal (`MonthlyIncome`) vs. Variável Alvo (`Attrition`):** O fator financeiro está fortemente ligado à saída de colaboradores. No gráfico de dispersão, a esmagadora maioria dos pontos de Attrition ("Yes") aglomera-se de forma densa no limite inferior do eixo X (salários mais baixos). À medida que o rendimento mensal aumenta, a presença de pontos na classe "Yes" torna-se cada vez mais rara, confirmando que pacotes salariais superiores atuam como um forte mecanismo de retenção.
 
-* **Atributo Experiência Total (`TotalWorkingYears`) vs. Alvo:** Notámos que a senioridade e o tempo de carreira estão intimamente ligados à retenção. Observando o scatter plot, a grande mancha de densidade de abandonos ("Yes") concentra-se nos colaboradores com menos de 10 anos de experiência total. Em contrapartida, profissionais com carreiras mais longas (especialmente acima dos 15-20 anos) apresentam uma dispersão residual na linha de saída, provando que a consolidação da carreira reduz drasticamente a rotatividade.
+* **Atributo Experiência Total (`TotalWorkingYears`) vs. Variável Alvo (`Attrition`):** Notámos que a senioridade e o tempo de carreira estão intimamente ligados à retenção. Observando o scatter plot, a grande mancha de densidade de abandonos ("Yes") concentra-se nos colaboradores com menos de 10 anos de experiência total. Em contrapartida, profissionais com carreiras mais longas (especialmente acima dos 15-20 anos) apresentam uma dispersão residual na linha de saída, provando que a consolidação da carreira reduz drasticamente a rotatividade.
 
 *  gráficos:
 
@@ -103,6 +103,7 @@ As variáveis `Age`, `DistanceFromHome`, `PercentSalaryHike`, `TrainingTimesLast
 Por outro lado, as variáveis `MonthlyIncome`, `TotalWorkingYears`, `YearsAtCompany`, `YearsSinceLastPromotion`, `YearsWithCurrManager` e `NumCompaniesWorked` apresentam uma assimetria positiva mais pronunciada, caracterizada por uma forte concentração de observações nos valores mais baixos e uma cauda longa à direita. Este padrão indica que apenas uma pequena fração de colaboradores apresenta salários elevados, muitos anos de experiência ou níveis elevados de antiguidade organizacional.
 
 No conjunto, verifica-se que as variáveis relacionadas com remuneração, progressão de carreira e antiguidade são aquelas que apresentam maior grau de assimetria positiva, enquanto `DailyRate`, `HourlyRate` e `MonthlyRate` evidenciam distribuições mais homogéneas. Estes resultados são consistentes com estruturas organizacionais hierarquizadas, onde a maioria dos colaboradores se concentra em níveis intermédios de carreira, enquanto apenas uma pequena proporção ocupa posições mais séniores ou de maior remuneração.
+
 ### 1.7 Distribuição das Variáveis Categóricas
 
 A análise das variáveis categóricas foi realizada através de gráficos de frequência, permitindo compreender a composição estrutural da força de trabalho representada no dataset. Tal como na análise das variáveis numéricas, optou-se por interpretar os padrões de forma agregada, agrupando variáveis com comportamentos semelhantes para facilitar a leitura e evitar descrições repetitivas.
@@ -252,8 +253,6 @@ O projeto segue uma abordagem baseada no modelo CRISP-DM (Cross-Industry Standar
    *  tareefa10
    *  tarefa11
      
-**Ferramentas de Colaboração:** Kaggle Notebooks (ambiente de desenvolvimento), GitHub (controlo de versões e partilha de código), GitHub Projects (gestão de tarefas), Whatsapp (mensagens diárias), Notion (distribuição de tarefas) e Google Meet (reuniões de dois em dois dias).
-
  ## 7. Referências
 
  
