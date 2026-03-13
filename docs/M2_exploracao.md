@@ -108,11 +108,11 @@ No conjunto, verifica-se que as variáveis relacionadas com remuneração, progr
 
 A análise das variáveis categóricas foi realizada através de gráficos de frequência, permitindo compreender a composição estrutural da força de trabalho representada no dataset. Tal como na análise das variáveis numéricas, optou-se por interpretar os padrões de forma agregada, agrupando variáveis com comportamentos semelhantes para facilitar a leitura e evitar descrições repetitivas.
 
-Relativamente à variável alvo `Attrition`, observa-se um claro desequilíbrio entre classes, com predominância de colaboradores que permanecem na organização (`No`) face aos que abandonam a empresa (`Yes`). Este padrão confirma a presença de `class imbalance`, um fator relevante que deverá ser considerado na fase de modelação.
+Relativamente à variável alvo `Attrition`, observa-se um claro desequilíbrio entre classes, com predominância de colaboradores que permanecem na organização (`No`) face aos que abandonam a empresa (`Yes`). Este padrão confirma a presença de desbalanceamento de classes (`class imbalance`), um fator relevante que deverá ser considerado na fase de modelação.
 
 No que diz respeito à mobilidade profissional, a variável `BusinessTravel` apresenta uma forte concentração na categoria `Travel_Rarely`, indicando que a maioria dos colaboradores realiza deslocações profissionais apenas ocasionalmente.
 
-A distribuição da variável `Department` evidencia uma clara predominância do departamento `Research & Development`, seguido pelo departamento `Sales`, enquanto `Human Resources` apresenta uma representação significativamente menor. Este padrão sugere uma estrutura organizacional fortemente orientada para atividades técnicas e de investigação.
+A distribuição da variável `Department` evidencia uma clara predominância do departamento nvestigação e Desenvolvimento (`Research & Development`), seguido pelo departamento Vendas (`Sales`), enquanto Recursos Humanos (`Human Resources`) apresenta uma representação significativamente menor. Este padrão sugere uma estrutura organizacional fortemente orientada para atividades técnicas e de investigação.
 
 Relativamente à formação académica, a variável `EducationField` mostra maior concentração nas áreas `Life Sciences` e `Medical`, indicando que a maioria dos colaboradores possui formação em áreas científicas ou técnicas.
 
