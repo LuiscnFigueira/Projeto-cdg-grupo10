@@ -122,7 +122,7 @@ Por fim, a variável `OverTime` indica que a maioria dos colaboradores não real
 
 No conjunto, as variáveis categóricas apresentam distribuições plausíveis e coerentes com a estrutura organizacional representada no dataset, não sendo identificadas categorias com frequências anómalas ou inconsistentes.
 
-### Pergunta de Investigação 2
+### 1.9 Resposta à 2ª Pergunta de Investigação
 
 Para avaliar a existência de associação entre a realização de horas extraordinárias (`OverTime`) e a saída de colaboradores (`Attrition`), foi aplicado o teste do qui-quadrado de independência.
 
