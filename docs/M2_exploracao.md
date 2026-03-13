@@ -112,7 +112,7 @@ Relativamente à variável alvo `Attrition`, observa-se um claro desequilíbrio 
 
 No que diz respeito à mobilidade profissional, a variável `BusinessTravel` apresenta uma forte concentração na categoria `Travel_Rarely`, indicando que a maioria dos colaboradores realiza deslocações profissionais apenas ocasionalmente.
 
-A distribuição da variável `Department` evidencia uma clara predominância do departamento nvestigação e Desenvolvimento (`Research & Development`), seguido pelo departamento Vendas (`Sales`), enquanto Recursos Humanos (`Human Resources`) apresenta uma representação significativamente menor. Este padrão sugere uma estrutura organizacional fortemente orientada para atividades técnicas e de investigação.
+A distribuição da variável `Department` evidencia uma clara predominância do departamento Investigação e Desenvolvimento (`Research & Development`), seguido pelo departamento Vendas (`Sales`), enquanto Recursos Humanos (`Human Resources`) apresenta uma representação significativamente menor. Este padrão sugere uma estrutura organizacional fortemente orientada para atividades técnicas e de investigação.
 
 Relativamente à formação académica, a variável `EducationField` mostra maior concentração nas áreas `Life Sciences` e `Medical`, indicando que a maioria dos colaboradores possui formação em áreas científicas ou técnicas.
 
