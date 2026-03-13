@@ -3,11 +3,33 @@
 ## 1. Análise Exploratória de Dados (EDA) 
 ### 1.1. Distribuição da Variável Alvo 
 
-Foi analisada a distribuição da variável alvo `Attrition`, que representa o estado de permanência ou saída de cada colaborador. Tratando-se de uma variável categórica binária, o conceito estatístico de distribuição normal não se aplica, baseando-se a nossa análise na proporção de frequências entre as duas categorias.
+A variável alvo do presente projeto, `Attrition`, indica se o colaborador abandonou a organização (Yes) ou permaneceu na empresa (No). Trata-se de uma variável categórica binária que representa o fenómeno de rotatividade de colaboradores e constitui o principal objeto de análise deste estudo.
 
-A análise exploratória revelou um cenário de forte desequilíbrio de classes (class imbalance), com aproximadamente 83.9% das observações correspondentes à classe negativa (permanência) e 16.1% à classe positiva (saída).
+Foi realizada uma análise da distribuição desta variável com o objetivo de compreender a proporção de colaboradores que permanecem na organização face aos que abandonam a empresa. Dado tratar-se de uma variável categórica binária, o conceito estatístico de distribuição normal não é aplicável, sendo a análise baseada na proporção de frequências entre as duas categorias.
 
-Este desequilíbrio constitui um fator crítico no contexto da modelação supervisionada, uma vez que algoritmos treinados diretamente sobre dados desequilibrados tendem a favorecer a classe maioritária. Isto pode apresentar um desempenho aparentemente elevado em termos de acurácia (Accuracy), mas com uma reduzida capacidade de identificação da classe minoritária. Este aspeto será estritamente considerado nas fases subsequentes do processo CRISP-DM, nomeadamente na seleção de métricas de avaliação apropriadas, como Precision, Recall, F1-score e Precision-Recall AUC, e na eventual aplicação de técnicas de balanceamento de classes (ex: SMOTE).
+A análise revelou a seguinte distribuição:
+
+* 83.9% dos colaboradores permaneceram na empresa
+
+* 16.1% dos colaboradores abandonaram a organização
+
+Estes resultados evidenciam um desequilíbrio significativo entre classes, sendo a classe “Yes” (saída) claramente minoritária.
+
+### Desafios Técnicos Resultantes do Desequilíbrio de Classes
+
+O desequilíbrio entre classes constitui um desafio relevante no contexto da modelação preditiva supervisionada. Em datasets desequilibrados, algoritmos de classificação podem tender a favorecer a classe maioritária, conduzindo a modelos que apresentam valores elevados de accuracy, mas com reduzida capacidade de identificar corretamente a classe minoritária.
+
+Por exemplo, um modelo que classificasse todos os colaboradores como “No” obteria uma precisão aparente de aproximadamente 84%, apesar de não conseguir identificar corretamente os casos de abandono.
+
+Do ponto de vista organizacional, esta limitação é particularmente crítica, uma vez que o abandono de colaboradores representa custos significativos associados ao recrutamento, integração e perda de conhecimento organizacional.
+
+Deste modo, nas fases subsequentes do projeto serão adotadas estratégias adequadas para lidar com o desequilíbrio de classes, nomeadamente:
+
+* utilização de métricas de avaliação apropriadas, como Precision, Recall, F1-score e ROC-AUC;
+
+* eventual aplicação de técnicas de balanceamento de classes (por exemplo, SMOTE);
+
+* análise detalhada da matriz de confusão para avaliar o desempenho do modelo na identificação da classe minoritária.
  
 ### 1.2. Correlações Relevantes
 
@@ -24,30 +46,7 @@ Nesta fase de análise bivariada, utilizámos gráficos de dispersão (scatter p
 
 *  referências:
 
-### 1.3. Problema de Aprendizagem Supervisionada
-A variável alvo do presente projeto, `Attrition`, indica se o colaborador abandonou a organização (Yes) ou permaneceu (No).
-
-A análise da distribuição revelou:
-
-* 83.9% dos colaboradores permaneceram na empresa
-
-* 16.1% dos colaboradores abandonaram a empresa
-
-Esta distribuição demonstra um desequilíbrio significativo entre classes, sendo a classe “Yes” (saída) claramente minoritária.
-
-### Desafios Técnicos Resultantes do Desequilíbrio de Classes
-
-O desequilíbrio poderá influenciar negativamente modelos que utilizem métricas globais como a accuracy, uma vez que um modelo que classifique sempre como “No” obteria uma precisão aparente elevada (cerca de 84%), mas sem qualquer utilidade prática.
-
-Dado que o abandono de colaboradores representa um custo elevado para a organização (recrutamento, integração e perda de conhecimento), a correta identificação da classe minoritária é crítica.
-
-Assim, nas fases seguintes será necessário:
-
-* Utilizar métricas adequadas (Precision, Recall, F1-Score, ROC-AUC)
-* Considerar técnicas de balanceamento (SMOTE)
-* Avaliar cuidadosamente a matriz de confusão
-
-### 1.4 Matriz de Correlação (Heatmap)
+### 1.3 Matriz de Correlação (Heatmap)
 
 Foi gerada uma matriz de correlação para as variáveis numéricas, com o objetivo de identificar relações lineares relevantes e potenciais situações de multicolinearidade. A análise do heatmap evidenciou três padrões principais:
 
@@ -59,7 +58,7 @@ Foi gerada uma matriz de correlação para as variáveis numéricas, com o objet
 
 Estes resultados serão considerados na fase de modelação, particularmente na seleção de atributos e na mitigação de multicolinearidade. Importa referir que correlação não implica causalidade, representando apenas associações lineares observadas nos dados.
 
- ### 1.5 Análise da Correlação com a Variável Alvo
+ ### 1.4 Análise da Correlação com a Variável Alvo
 
 Para compreender quais variáveis apresentam maior associação com a saída de colaboradores, foi analisada a correlação entre os atributos numéricos e a variável alvo `Attrition_bin`.
 
@@ -73,7 +72,7 @@ Importa salientar que correlação mede apenas associações lineares e não imp
 
 Estes resultados sugerem que fatores relacionados com carga de trabalho, progressão na carreira e remuneração desempenham um papel relevante na retenção de talento.
 
-### 1.6 Conclusões Visuais da Análise Bivariada
+### 1.5 Conclusões Visuais da Análise Bivariada
 
 A análise dos gráficos de dispersão permitiu identificar alguns padrões visuais relevantes entre variáveis numéricas do dataset. Estes padrões ajudam a compreender melhor a estrutura dos dados e possíveis relações entre características dos colaboradores e o fenómeno de saída da organização.
 
@@ -93,7 +92,7 @@ Verifica-se que colaboradores com mais anos na empresa tendem também a apresent
 
 Esta observação ajuda também a explicar as correlações elevadas identificadas anteriormente na matriz de correlação entre variáveis como  `YearsAtCompany `, `YearsInCurrentRole` e `YearsWithCurrManager`.
 
-### 1.7 Distribuição das Variáveis Numéricas
+### 1.6 Distribuição das Variáveis Numéricas
 
 A análise das variáveis numéricas através de histogramas, boxplots e estatística descritiva revelou diferentes padrões de distribuição no dataset. Dado que várias variáveis apresentam comportamentos semelhantes, optou-se por agrupá-las por tipo de distribuição, o que permite uma interpretação mais clara e evita descrições redundantes.
 
@@ -104,7 +103,7 @@ As variáveis `Age`, `DistanceFromHome`, `PercentSalaryHike`, `TrainingTimesLast
 Por outro lado, as variáveis `MonthlyIncome`, `TotalWorkingYears`, `YearsAtCompany`, `YearsSinceLastPromotion`, `YearsWithCurrManager` e `NumCompaniesWorked` apresentam uma assimetria positiva mais pronunciada, caracterizada por uma forte concentração de observações nos valores mais baixos e uma cauda longa à direita. Este padrão indica que apenas uma pequena fração de colaboradores apresenta salários elevados, muitos anos de experiência ou níveis elevados de antiguidade organizacional.
 
 No conjunto, verifica-se que as variáveis relacionadas com remuneração, progressão de carreira e antiguidade são aquelas que apresentam maior grau de assimetria positiva, enquanto `DailyRate`, `HourlyRate` e `MonthlyRate` evidenciam distribuições mais homogéneas. Estes resultados são consistentes com estruturas organizacionais hierarquizadas, onde a maioria dos colaboradores se concentra em níveis intermédios de carreira, enquanto apenas uma pequena proporção ocupa posições mais séniores ou de maior remuneração.
-### 1.8 Distribuição das Variáveis Categóricas
+### 1.7 Distribuição das Variáveis Categóricas
 
 A análise das variáveis categóricas foi realizada através de gráficos de frequência, permitindo compreender a composição estrutural da força de trabalho representada no dataset. Tal como na análise das variáveis numéricas, optou-se por interpretar os padrões de forma agregada, agrupando variáveis com comportamentos semelhantes para facilitar a leitura e evitar descrições repetitivas.
 
@@ -122,7 +121,7 @@ Por fim, a variável `OverTime` indica que a maioria dos colaboradores não real
 
 No conjunto, as variáveis categóricas apresentam distribuições plausíveis e coerentes com a estrutura organizacional representada no dataset, não sendo identificadas categorias com frequências anómalas ou inconsistentes.
 
-### 1.9 Resposta à 2ª Pergunta de Investigação
+### 1.8 Resposta à 2ª Pergunta de Investigação
 
 Para avaliar a existência de associação entre a realização de horas extraordinárias (`OverTime`) e a saída de colaboradores (`Attrition`), foi aplicado o teste do qui-quadrado de independência.
 
