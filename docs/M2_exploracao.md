@@ -122,6 +122,16 @@ Por fim, a variável `OverTime` indica que a maioria dos colaboradores não real
 
 No conjunto, as variáveis categóricas apresentam distribuições plausíveis e coerentes com a estrutura organizacional representada no dataset, não sendo identificadas categorias com frequências anómalas ou inconsistentes.
 
+### Pergunta de Investigação 2
+
+Para avaliar a existência de associação entre a realização de horas extraordinárias (`OverTime`) e a saída de colaboradores (`Attrition`), foi aplicado o teste do qui-quadrado de independência.
+
+Os resultados revelaram uma associação estatisticamente significativa entre as duas variáveis (χ² = 87.56, p < 0.001), indicando que a probabilidade de abandono da organização não é independente da realização de horas extraordinárias.
+
+A análise das frequências relativas mostrou que 30.53% dos colaboradores que realizam horas extraordinárias abandonaram a organização, enquanto entre os colaboradores que não realizam horas extra essa proporção é significativamente menor (10.44%).
+
+O tamanho do efeito, medido através de Cramér's V (0.24), indica uma associação de intensidade fraca a moderada, sugerindo que, embora a realização de horas extraordinárias esteja relacionada com o attrition, outros fatores também contribuem para o fenómeno de rotatividade.
+
 ## 2. Qualidade dos Dados e Limpeza 
 ### 2.1. Tratamento de Dados em Falta 
 
