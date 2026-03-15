@@ -296,5 +296,10 @@ O projeto segue uma abordagem baseada no modelo CRISP-DM (Cross-Industry Standar
      
  ## 7. Referências
 
+Géron, A. (2022).  
+*Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow* (3ª ed.). O’Reilly Media.
+
+James, G., Witten, D., Hastie, T., & Tibshirani, R. (2021).  
+*An Introduction to Statistical Learning: with Applications in R* (2ª ed.). Springer.
  
-*Data de última atualização: 13/03/2026*
+*Data de última atualização: 15/03/2026*
