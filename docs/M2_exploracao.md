@@ -220,7 +220,7 @@ fiquem na mesma escala.")
 
 No âmbito da fase de preparação dos dados, foi realizada uma etapa de engenharia de atributos (*feature engineering*) com o objetivo de enriquecer o espaço de características do dataset. Esta abordagem consiste na criação de novas variáveis derivadas a partir de variáveis já existentes, permitindo representar de forma mais direta determinadas dimensões organizacionais e comportamentais potencialmente associadas ao fenómeno de attrition.
 
-A criação de atributos derivados constitui uma prática comum em projetos de ciência de dados, uma vez que a transformação e combinação de variáveis existentes pode aumentar a capacidade explicativa dos modelos e facilitar a identificação de padrões relevantes nos dados (Géron, 2022).
+A criação de atributos derivados constitui uma prática comum em projetos de ciência de dados, uma vez que a transformação e combinação de variáveis existentes pode aumentar a capacidade explicativa dos modelos e facilitar a identificação de padrões relevantes nos dados (Géron, 2022; James et al., 2021).
 
 Neste contexto, foram criadas quatro novas variáveis: **RatioYearsInRole**, **SatisfactionIndex**, **CareerStagnation** e **IncomePerLevel**.
 
