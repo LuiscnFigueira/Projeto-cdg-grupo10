@@ -188,7 +188,23 @@ Deste modo, concluiu-se que os valores identificados refletem variabilidade real
 Assim, optou-se por não remover estas observações, de forma a preservar a integridade e a representatividade do dataset. O eventual impacto destes valores será posteriormente mitigado na fase de modelação através da aplicação de técnicas de normalização e da utilização de modelos robustos a valores extremos.
 
 ## 3. Engenharia de Atributos (Feature Engineering) 
-### 3.1 Transformação e Codificação das Variáveis Categóricas
+### 3.1 Verificação da Qualidade e Consistência dos Dados
+
+Antes de proceder às etapas de transformação das variáveis e de criação de novos atributos, foi realizada uma verificação preliminar da qualidade e consistência dos dados presentes no dataset. Esta etapa tem como objetivo identificar possíveis valores inválidos, inconsistências lógicas entre variáveis ou padrões anómalos que possam comprometer a fiabilidade das análises subsequentes. A verificação da qualidade dos dados constitui uma fase essencial no processo de preparação de dados, uma vez que modelos de aprendizagem automática são particularmente sensíveis a erros ou incoerências presentes no conjunto de dados (Géron, 2022).
+
+Numa primeira fase, foi analisada a presença de valores iguais a zero em variáveis associadas à experiência profissional dos colaboradores. Foram consideradas as variáveis `TotalWorkingYears`, `YearsAtCompany`, `YearsInCurrentRole`, `YearsSinceLastPromotion` e `YearsWithCurrManager`. A análise revelou a existência de algumas observações com valor zero nestas variáveis. Em particular, foram identificadas 11 ocorrências em `TotalWorkingYears`, 44 em `YearsAtCompany`, 244 em `YearsInCurrentRole`, 581 em `YearsSinceLastPromotion` e 263 em `YearsWithCurrManager`. Estes valores não representam necessariamente erros nos dados, podendo corresponder a situações plausíveis, como colaboradores recentemente contratados, colaboradores que iniciaram recentemente uma nova função ou casos em que ocorreu uma promoção recente.
+
+De seguida, foi analisada a variável `Age`, com o objetivo de identificar possíveis idades inválidas. Em particular, verificou-se a existência de colaboradores com idade inferior a 18 anos, uma vez que tal situação seria inconsistente com o contexto laboral considerado. A análise revelou que não existem observações com idade inferior a este limiar, indicando que os valores registados para a idade se encontram dentro de intervalos plausíveis.
+
+Foi também analisada a coerência entre a idade dos colaboradores e a sua experiência profissional total. Para tal, verificaram-se situações em que `TotalWorkingYears` seria superior ao valor registado em `Age`, o que representaria uma inconsistência lógica. Os resultados obtidos indicam que não existem ocorrências deste tipo no dataset, sugerindo que os valores relativos à experiência profissional são compatíveis com a idade dos colaboradores.
+
+Adicionalmente, foram avaliadas possíveis inconsistências entre variáveis temporais relacionadas com o percurso profissional dentro da empresa. Em particular, verificou-se se o número de anos na função atual `YearsInCurrentRole`, o número de anos desde a última promoção `YearsSinceLastPromotion` ou o número de anos com o gestor atual `YearsWithCurrManager` excediam o número total de anos na empresa `YearsAtCompany`. A análise revelou que não existem observações que violem estas relações lógicas, indicando consistência temporal entre estas variáveis.
+
+Por fim, foi realizada uma análise descritiva da variável `MonthlyIncome` em função do nível hierárquico `JobLevel`. Esta análise teve como objetivo avaliar a coerência da estrutura salarial presente no dataset. Os resultados mostram uma progressão consistente da remuneração média à medida que aumenta o nível hierárquico. O nível 1 apresenta um rendimento médio mensal de aproximadamente 2786.92, enquanto os níveis superiores apresentam valores progressivamente mais elevados, atingindo cerca de 19191.83 no nível 5. Esta distribuição confirma a existência de uma estrutura salarial coerente com a hierarquia organizacional representada nos dados.
+
+Em síntese, a verificação realizada não revelou inconsistências críticas ou valores inválidos que comprometam a análise subsequente. As variáveis temporais apresentam relações lógicas coerentes e a distribuição salarial mostra-se consistente com a estrutura hierárquica da organização. Deste modo, foi possível avançar para a etapa seguinte de preparação dos dados, nomeadamente a transformação e codificação das variáveis categóricas.
+
+### 3.2 Transformação e Codificação das Variáveis Categóricas
 
 No âmbito da fase de preparação dos dados, foi necessário proceder à transformação das variáveis categóricas presentes no dataset para representações numéricas. Esta transformação é essencial no contexto da modelação preditiva, uma vez que a maioria dos algoritmos de aprendizagem automática opera exclusivamente sobre variáveis quantitativas e não consegue processar diretamente valores de natureza textual (Géron, 2022).
 
@@ -216,7 +232,7 @@ Como consequência deste processo de codificação, o número total de variávei
 * **Escalonamento:** (Ex: "Aplicámos o StandardScaler nas variáveis numéricas para que todas 
 fiquem na mesma escala.") 
  
-### 3.2. Criação de Novos Atributos 
+### 3.3 Criação de Novos Atributos 
 
 No âmbito da fase de preparação dos dados, foi realizada uma etapa de engenharia de atributos (*feature engineering*) com o objetivo de enriquecer o espaço de características do dataset. Esta abordagem consiste na criação de novas variáveis derivadas a partir de variáveis já existentes, permitindo representar de forma mais direta determinadas dimensões organizacionais e comportamentais potencialmente associadas ao fenómeno de attrition.
 
