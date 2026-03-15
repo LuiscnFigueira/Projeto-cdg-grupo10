@@ -217,10 +217,42 @@ Como consequência deste processo de codificação, o número total de variávei
 fiquem na mesma escala.") 
  
 ### 3.2. Criação de Novos Atributos 
-*Descrevam as variáveis que criaram para ajudar o modelo.* 
-* **Nova Variável [Nome]:** (Ex: "Criámos a 'Tenure_Per_Year' que divide o tempo de contrato 
-pela idade do cliente.") 
 
+No âmbito da fase de preparação dos dados, foi realizada uma etapa de engenharia de atributos (*feature engineering*) com o objetivo de enriquecer o espaço de características do dataset. Esta abordagem consiste na criação de novas variáveis derivadas a partir de variáveis já existentes, permitindo representar de forma mais direta determinadas dimensões organizacionais e comportamentais potencialmente associadas ao fenómeno de attrition.
+
+A criação de atributos derivados constitui uma prática comum em projetos de ciência de dados, uma vez que a transformação e combinação de variáveis existentes pode aumentar a capacidade explicativa dos modelos e facilitar a identificação de padrões relevantes nos dados (Géron, 2022).
+
+Neste contexto, foram criadas quatro novas variáveis: **RatioYearsInRole**, **SatisfactionIndex**, **CareerStagnation** e **IncomePerLevel**.
+
+**RatioYearsInRole**
+
+A variável **RatioYearsInRole** representa a proporção do tempo que um colaborador permanece na sua função atual relativamente ao tempo total de permanência na empresa. Este indicador foi calculado como a razão entre `YearsInCurrentRole` e `YearsAtCompany`. Para evitar situações de divisão por zero, sempre que `YearsAtCompany` assume valor igual a zero, o indicador é definido como 0.
+
+Este atributo permite avaliar o grau de mobilidade interna do colaborador, distinguindo entre situações em que a permanência na mesma função ocupa grande parte do percurso na organização e situações em que existe maior progressão ou mudança funcional ao longo do tempo.
+
+**SatisfactionIndex**
+
+Foi igualmente construído um índice composto designado **SatisfactionIndex**, com o objetivo de sintetizar o nível global de satisfação profissional do colaborador. Este índice resulta da combinação de quatro variáveis presentes no dataset: `JobSatisfaction`, `EnvironmentSatisfaction`, `RelationshipSatisfaction` e `WorkLifeBalance`.
+
+Estas variáveis utilizam uma escala ordinal de quatro níveis, em que valores mais elevados correspondem a níveis superiores de satisfação. A construção do índice baseou-se na contagem da frequência de cada nível de satisfação nas quatro variáveis e na aplicação de regras de decisão que permitem classificar o nível global de satisfação do colaborador.
+
+O índice assume valor **4 (Muito Alto)** quando existem três ou mais valores iguais a 4 e nenhuma variável apresenta valor inferior a 3. Assume valor **3 (Alto)** quando existem pelo menos três valores iguais a 3 ou 4 e apenas uma variável assume valor 2. O valor **2 (Moderado)** é atribuído quando existem dois ou mais valores iguais a 2 ou quando existe exatamente um valor igual a 1. Por fim, o índice assume valor **1 (Baixo)** quando existem duas ou mais variáveis com valor igual a 1. Nos restantes casos, o índice assume, por defeito, o valor 2.
+
+A agregação destas variáveis permite sintetizar diferentes dimensões de satisfação organizacional numa única variável interpretável, reduzindo simultaneamente a complexidade associada à análise isolada de cada indicador psicométrico.
+
+**CareerStagnation**
+
+Foi criada a variável **CareerStagnation**, destinada a identificar possíveis situações de estagnação na progressão profissional. Esta variável assume valor **1** quando um colaborador não recebeu qualquer promoção há mais de cinco anos (`YearsSinceLastPromotion > 5`) e permanece na mesma função há mais de cinco anos (`YearsInCurrentRole > 5`). Caso contrário, assume o valor **0**.
+
+Este indicador procura captar situações em que a ausência prolongada de progressão na carreira pode estar associada a níveis mais elevados de insatisfação profissional ou a uma maior propensão para a saída da organização.
+
+**IncomePerLevel**
+
+Por fim, foi criada a variável **IncomePerLevel**, que representa o rendimento mensal relativo ao nível hierárquico ocupado pelo colaborador. Este atributo foi calculado como a razão entre `MonthlyIncome` e `JobLevel`.
+
+Este indicador permite analisar a relação entre remuneração e posição hierárquica na organização, possibilitando identificar eventuais discrepâncias entre rendimento auferido e responsabilidade organizacional associada ao nível funcional.
+
+Em síntese, a introdução destas variáveis derivadas permite enriquecer o espaço de características do dataset, captando de forma mais direta dimensões relacionadas com mobilidade profissional, satisfação no trabalho, progressão na carreira e estrutura salarial. Estes indicadores adicionais contribuem para aprofundar a análise exploratória dos dados e poderão reforçar o poder explicativo dos modelos de aprendizagem automática a desenvolver nas fases subsequentes do projeto.
 ## 4. Dicionário de Dados Final (Pós-Processamento) 
 *Listagem final das variáveis que serão entregues ao modelo na Fase 3. - por confirmar no fim da análise exploratória* 
 
