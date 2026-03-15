@@ -188,8 +188,31 @@ Deste modo, concluiu-se que os valores identificados refletem variabilidade real
 Assim, optou-se por não remover estas observações, de forma a preservar a integridade e a representatividade do dataset. O eventual impacto destes valores será posteriormente mitigado na fase de modelação através da aplicação de técnicas de normalização e da utilização de modelos robustos a valores extremos.
 
 ## 3. Engenharia de Atributos (Feature Engineering) 
-### 3.1. Transformações Realizadas 
-* **Encoding:** (Ex: "Convertemos a variável 'Género' em numérica usando One-Hot Encoding.") 
+### 3.1 Transformação e Codificação das Variáveis Categóricas
+
+No âmbito da fase de preparação dos dados, foi necessário proceder à transformação das variáveis categóricas presentes no dataset para representações numéricas. Esta transformação é essencial no contexto da modelação preditiva, uma vez que a maioria dos algoritmos de aprendizagem automática opera exclusivamente sobre variáveis quantitativas e não consegue processar diretamente valores de natureza textual (Géron, 2022).
+
+A estratégia adotada teve em consideração a natureza das variáveis categóricas existentes no dataset, distinguindo entre variáveis binárias e variáveis nominais com múltiplas categorias.
+
+No caso das variáveis categóricas binárias, foi aplicada uma codificação numérica simples baseada em variáveis indicadoras. Este procedimento consistiu na conversão das categorias de texto em valores binários (0 e 1), permitindo representar cada variável de forma compacta e interpretável. Foram transformadas três variáveis deste tipo: `Attrition`, `OverTime` e `Gender`.
+
+A variável `Attrition`, que constitui a variável alvo do estudo, foi convertida numa nova variável denominada `Attrition_bin`. Nesta representação, o valor **1** indica que o colaborador abandonou a organização (`Yes`), enquanto o valor **0** indica que o colaborador permaneceu na empresa (`No`). Esta transformação permite representar diretamente o fenómeno de rotatividade de colaboradores numa escala binária adequada para problemas de classificação supervisionada.
+
+De forma semelhante, a variável `OverTime` foi convertida na variável `OverTime_bin`, assumindo o valor **1** quando o colaborador realiza horas extraordinárias (`Yes`) e **0** quando não realiza (`No`). Esta transformação permite representar a presença ou ausência de trabalho extraordinário de forma quantitativa, possibilitando a sua utilização em análises estatísticas e modelos preditivos.
+
+Por sua vez, a variável `Gender` foi transformada na variável `Gender_bin`, assumindo o valor **1** para colaboradores do género masculino (`Male`) e **0** para colaboradores do género feminino (`Female`). Embora esta variável seja categórica, a sua natureza binária permite uma representação numérica direta sem perda de informação.
+
+Para as restantes variáveis categóricas, que apresentam mais de duas categorias e não possuem uma ordem natural entre si, foi aplicada a técnica de **One-Hot Encoding**. Este método consiste em criar uma variável binária independente para cada categoria existente, permitindo representar cada categoria de forma explícita no espaço de características (James et al., 2021).
+
+A aplicação desta técnica foi realizada nas variáveis `BusinessTravel`, `Department`, `EducationField`, `JobRole` e `MaritalStatus`. Neste processo, cada categoria passou a ser representada por uma nova variável indicadora que assume o valor **1** quando a observação pertence à categoria correspondente e **0** caso contrário.
+
+Por exemplo, a variável `MaritalStatus`, originalmente composta pelas categorias `Single`, `Married` e `Divorced`, foi transformada em três variáveis binárias distintas que indicam explicitamente se o colaborador pertence a cada uma destas categorias. De forma análoga, as restantes variáveis categóricas foram expandidas em múltiplas variáveis indicadoras, permitindo representar adequadamente as diferentes categorias presentes no dataset.
+
+A utilização do **One-Hot Encoding** evita a introdução de relações ordinais artificiais entre categorias, assegurando que os modelos de aprendizagem automática tratam cada categoria como uma entidade independente (Géron, 2022).
+
+Como consequência deste processo de codificação, o número total de variáveis do dataset aumentou, uma vez que cada categoria passou a ser representada por uma variável binária própria. Apesar deste aumento na dimensionalidade do espaço de características, esta abordagem permite preservar integralmente a informação contida nas variáveis categóricas e garante que o dataset se encontra preparado para a aplicação de técnicas estatísticas, análise de correlação e algoritmos de aprendizagem automática nas fases subsequentes do projeto.
+
+
 * **Escalonamento:** (Ex: "Aplicámos o StandardScaler nas variáveis numéricas para que todas 
 fiquem na mesma escala.") 
  
