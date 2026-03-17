@@ -254,6 +254,22 @@ Este indicador permite analisar a relação entre remuneração e posição hier
 
 Em síntese, a introdução destas variáveis derivadas permite enriquecer o espaço de características do dataset, captando de forma mais direta dimensões relacionadas com mobilidade profissional, satisfação no trabalho, progressão na carreira e estrutura salarial. Estes indicadores adicionais contribuem para aprofundar a análise exploratória dos dados e poderão reforçar o poder explicativo dos modelos de aprendizagem automática a desenvolver nas fases subsequentes do projeto.
 
+### 3.3 Relação das Novas Variáveis com Variável Alvo
+
+Após a criação de novas variáveis, procedeu-se à análise da sua relação com a variável alvo (`Attrition`), com o objetivo de avaliar o seu contributo potencial para a modelação preditiva.
+
+A análise baseou-se na observação da correlação com a variável alvo, bem como na comparação das distribuições e valores médios entre as classes.
+
+Os resultados evidenciam que a variável `SatisfactionIndex` apresenta a associação mais relevante com `Attrition` (correlação ≈ -0.17), verificando-se que colaboradores com níveis mais elevados de satisfação global tendem a apresentar menor probabilidade de abandono da organização. Esta relação é consistente com a interpretação dos indicadores individuais de satisfação e reforça a importância desta dimensão no contexto da retenção de talento.
+
+A variável `RatioYearsInRole` apresenta igualmente uma associação negativa moderada (≈ -0.13), sugerindo que colaboradores com maior estabilidade relativa na função tendem a permanecer na organização. Este indicador permite capturar padrões de mobilidade interna que não são diretamente observáveis através das variáveis originais.
+
+Relativamente à variável `IncomePerLevel`, observa-se também uma associação negativa (≈ -0.11), indicando que colaboradores com menor rendimento relativo ao nível hierárquico apresentam maior propensão para abandonar a empresa. Este resultado reforça a relevância da componente remuneratória ajustada à posição organizacional.
+
+`CareerStagnation` (≈ -0.08) - por analisar.
+
+De forma geral, as novas variáveis demonstram capacidade para capturar dimensões relevantes do comportamento organizacional, contribuindo para enriquecer o conjunto de atributos disponíveis para a fase de modelação.
+
 ## 4. Dicionário de Dados Final (Pós-Processamento) 
 *Listagem final das variáveis que serão entregues ao modelo na Fase 3. - por confirmar no fim da análise exploratória* 
 
