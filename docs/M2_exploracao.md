@@ -153,12 +153,14 @@ Do ponto de vista organizacional, estes resultados sugerem que a realização fr
 ## 2. Qualidade dos Dados e Limpeza 
 ### 2.1. Tratamento de Dados em Falta 
 
-Foi realizada uma análise à presença de valores em falta em todas as variáveis do dataset.
+Com o objetivo de avaliar a qualidade do dataset, foi realizada uma análise à presença de valores em falta em todas as variáveis consideradas.
 
-Os resultados indicaram que não existem valores nulos nas variáveis consideradas, não sendo portanto necessária a aplicação de técnicas de imputação ou a eliminação de observações.
+Os resultados obtidos indicaram que não existem valores em falta no dataset, não sendo, portanto, necessária a aplicação de técnicas de imputação ou a eliminação de observações.
 
-A inexistência de dados em falta constitui uma vantagem para o processo de modelação, uma vez que reduz a necessidade de intervenções artificiais nos dados e diminui o risco de introdução de enviesamento associado a estratégias de preenchimento.
- 
+Esta ausência constitui uma vantagem para o processo de preparação e modelação dos dados, uma vez que reduz a necessidade de intervenções artificiais no dataset e minimiza o risco de introdução de enviesamento associado a estratégias de imputação. Em contextos de aprendizagem automática, a presença de valores em falta pode comprometer a qualidade das inferências e afetar o desempenho dos modelos preditivos, exigindo a aplicação de técnicas específicas de tratamento e pré-processamento dos dados (Géron, 2022; James et al., 2021).
+
+Assim, foi possível prosseguir diretamente para as etapas subsequentes de análise de outliers e verificação da consistência dos dados.
+
 ### 2.2 Outliers
 
 Com o objetivo de identificar possíveis valores atípicos nas variáveis numéricas do dataset, foi aplicado o método do Intervalo Interquartil (_Interquartile Range_ – IQR). Este método permite detetar observações que se encontram significativamente afastadas da distribuição central dos dados, sendo amplamente utilizado em análise exploratória para a identificação de valores extremos (Rousseeuw & Hubert, 2011).
@@ -360,4 +362,4 @@ Géron, A. (2022).
 James, G., Witten, D., Hastie, T., & Tibshirani, R. (2021).  
 *An Introduction to Statistical Learning: with Applications in R* (2ª ed.). Springer.
  
-*Data de última atualização: 17/03/2026*
+*Data de última atualização: 18/03/2026*
