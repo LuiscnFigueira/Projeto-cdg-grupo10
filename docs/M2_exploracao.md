@@ -214,9 +214,11 @@ A utilização do **One-Hot Encoding** evita a introdução de relações ordina
 
 Como consequência deste processo de codificação, o número total de variáveis do dataset aumentou, uma vez que cada categoria passou a ser representada por uma variável binária própria. Apesar deste aumento na dimensionalidade do espaço de características, esta abordagem permite preservar integralmente a informação contida nas variáveis categóricas e garante que o dataset se encontra preparado para a aplicação de técnicas estatísticas, análise de correlação e algoritmos de aprendizagem automática nas fases subsequentes do projeto.
 
+**Escalonamento**
 
-* **Escalonamento:** (Ex: "Aplicámos o StandardScaler nas variáveis numéricas para que todas 
-fiquem na mesma escala.") 
+Nesta fase não foi aplicado qualquer método de escalonamento às variáveis numéricas. Esta decisão deve-se ao facto de, nas etapas subsequentes de modelação, serem utilizados diferentes algoritmos de aprendizagem automática, os quais podem apresentar requisitos distintos em termos de pré-processamento dos dados.
+
+Em particular, alguns algoritmos (como modelos baseados em árvores de decisão) são invariantes à escala das variáveis, enquanto outros (como regressão logística, SVM ou métodos baseados em distância) beneficiam da aplicação de técnicas de normalização ou padronização. Deste modo, o escalonamento será realizado numa fase posterior do projeto, de forma específica e adequada a cada modelo considerado (Géron, 2022).
  
 ### 3.2 Criação de Novos Atributos 
 
