@@ -112,7 +112,7 @@ Será analisada a relação entre variáveis ordinais, como satisfação com o c
 
 4. **Avaliação do impacto do rendimento mensal na probabilidade de atrito (`Attrition`)**
 
-Será investigada a relação entre a variável Renda Mensal (`MonthlyIncome`) e a variável alvo, analisando a sua distribuição entre colaboradores que permanecem e colaboradores que saem. Esta análise será complementada por modelos multivariáveis, permitindo avaliar se o rendimento apresenta capacidade preditiva independente após controlo de outras variáveis relevantes.
+Será investigada a relação entre a variável renda mensal (`MonthlyIncome`) e a variável alvo, analisando a sua distribuição entre colaboradores que permanecem e colaboradores que saem. Esta análise será complementada por modelos multivariáveis, permitindo avaliar se o rendimento apresenta capacidade preditiva independente após controlo de outras variáveis relevantes.
 
 5. **Comparação do desempenho de diferentes algoritmos de classificação**
 
@@ -293,4 +293,4 @@ Estas limitações serão consideradas na interpretação dos resultados e na av
 IBM Watson Analytics. (2016). *IBM HR Analytics Employee Attrition & Performance Dataset*. IBM Corporation.  
 Disponível em: https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset
 
-*Data de última atualização: 11/03/2026*
+*Data de última atualização: 19/03/2026*
