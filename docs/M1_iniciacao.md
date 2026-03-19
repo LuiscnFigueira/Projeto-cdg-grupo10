@@ -90,9 +90,9 @@ Com base nesta probabilidade, os colaboradores serão classificados em três cat
 
 ### Objetivo 3 — Identificação de Perfis de Colaboradores através de agrupamento (Clustering)
 
-O terceiro objetivo consiste na aplicação de técnicas de aprendizagem não supervisionada com o propósito de identificar perfis distintos de colaboradores com base nas suas características. Será utilizado o algoritmo K-Means como método principal de clustering, sendo o número ótimo de clusters determinado com recurso ao método do cotovelo e ao coeficiente de Silhouette.
+O terceiro objetivo consiste na aplicação de técnicas de aprendizagem não supervisionada com o propósito de identificar perfis distintos de colaboradores com base nas suas características. Será utilizado o algoritmo K-Means como método principal de agrupamento (clustering), sendo o número ótimo de agrupamentos (clusters) determinado com recurso ao método do cotovelo e ao coeficiente de Silhouette.
 
-O coeficiente de Silhouette será utilizado como critério quantitativo de validação, sendo definido como objetivo alcançar um valor médio superior a 0,50, indicando uma estrutura de clusters bem definida. Após a identificação dos clusters, será realizada uma caracterização estatística detalhada de cada perfil, permitindo identificar diferenças estruturais entre segmentos e compreender melhor a heterogeneidade presente no dataset.
+O coeficiente de Silhouette será utilizado como critério quantitativo de validação, sendo definido como objetivo alcançar um valor médio superior a 0,50, indicando uma estrutura de agrupamentos (clusters) bem definida. Após a identificação dos agrupamentos (clusters), será realizada uma caracterização estatística detalhada de cada perfil, permitindo identificar diferenças estruturais entre segmentos e compreender melhor a heterogeneidade presente no dataset.
 
 Esta operacionalização assegura que os objetivos do projeto são implementados de forma rigorosa e mensurável, estabelecendo uma base metodológica sólida para as fases subsequentes de preparação dos dados, modelação e avaliação.
 
@@ -102,17 +102,17 @@ Esta operacionalização assegura que os objetivos do projeto são implementados
 
 Será realizada uma análise exploratória e estatística com o objetivo de identificar as variáveis com maior associação à variável alvo `Attrition`. Esta análise incluirá o cálculo de medidas de associação estatística, análise comparativa entre classes e avaliação da importância das variáveis em modelos de classificação supervisionada, permitindo identificar os principais fatores associados à saída dos colaboradores.
 
-2. **Avaliação da associação entre OverTime e Attrition**
+2. **Avaliação da associação entre horas extras (`OverTime`) e atrito (`Attrition`)**
 
-A relação entre a variável `OverTime` e a variável alvo será analisada através de testes estatísticos de independência, nomeadamente o teste do qui-quadrado, bem como através da comparação das proporções de attrition entre grupos. Esta análise permitirá avaliar se a realização de horas extraordinárias está estatisticamente associada a um aumento da probabilidade de saída.
+A relação entre a variável horas extras (`OverTime`) e a variável alvo será analisada através de testes estatísticos de independência, nomeadamente o teste do qui-quadrado, bem como através da comparação das proporções de atrito (`attrition`) entre grupos. Esta análise permitirá avaliar se a realização de horas extraordinárias está estatisticamente associada a um aumento da probabilidade de saída.
 
 3. **Análise do impacto de variáveis psicométricas ordinais**
 
-Será analisada a relação entre variáveis ordinais, como `JobSatisfaction`, `EnvironmentSatisfaction`, `RelationshipSatisfaction` e `WorkLifeBalance`, e a variável alvo. Serão utilizadas técnicas de análise estatística e comparação de distribuições entre classes, bem como medidas de correlação não paramétrica, de forma a avaliar se níveis reduzidos de satisfação constituem fatores preditivos de attrition.
+Será analisada a relação entre variáveis ordinais, como satisfação com o cargo (`JobSatisfaction`), satisfação com o ambiente (`EnvironmentSatisfaction`), satisfação com relacionamentos (`RelationshipSatisfaction`) e equilíbrio entre trabalho e vida pessoal (`WorkLifeBalance`), e a variável alvo. Serão utilizadas técnicas de análise estatística e comparação de distribuições entre classes, bem como medidas de correlação não paramétrica, de forma a avaliar se níveis reduzidos de satisfação constituem fatores preditivos de atrito (`attrition`).
 
-4. **Avaliação do impacto do rendimento mensal na probabilidade de attrition**
+4. **Avaliação do impacto do rendimento mensal na probabilidade de atrito (`Attrition`)**
 
-Será investigada a relação entre a variável `MonthlyIncome` e a variável alvo, analisando a sua distribuição entre colaboradores que permanecem e colaboradores que saem. Esta análise será complementada por modelos multivariáveis, permitindo avaliar se o rendimento apresenta capacidade preditiva independente após controlo de outras variáveis relevantes.
+Será investigada a relação entre a variável Renda Mensal (`MonthlyIncome`) e a variável alvo, analisando a sua distribuição entre colaboradores que permanecem e colaboradores que saem. Esta análise será complementada por modelos multivariáveis, permitindo avaliar se o rendimento apresenta capacidade preditiva independente após controlo de outras variáveis relevantes.
 
 5. **Comparação do desempenho de diferentes algoritmos de classificação**
 
@@ -122,13 +122,13 @@ Serão treinados e avaliados múltiplos algoritmos de classificação supervisio
 
 Será analisado o impacto do desequilíbrio da variável alvo no desempenho dos modelos, comparando os resultados obtidos antes e após a aplicação da técnica SMOTE. Esta análise permitirá avaliar se o balanceamento das classes melhora a capacidade do modelo de identificar corretamente observações pertencentes à classe minoritária.
 
-7. **Construção e validação de um índice de risco de attrition**
+7. **Construção e validação de um índice de risco de atrito (`Attrition`)**
 
 Será desenvolvido um índice de risco baseado nas probabilidades previstas pelo modelo de classificação. As observações serão segmentadas em categorias de risco, e será avaliada a capacidade deste índice para discriminar diferentes níveis de probabilidade de attrition, garantindo a sua interpretabilidade e utilidade analítica.
 
-8. **Identificação de perfis distintos através de clustering**
+8. **Identificação de perfis distintos através de agrupamento (clustering)**
 
-Serão aplicadas técnicas de clustering, nomeadamente o algoritmo K-Means, com o objetivo de identificar perfis distintos de colaboradores com base nas suas características. Os clusters obtidos serão caracterizados estatisticamente, permitindo identificar segmentos com diferentes padrões estruturais e níveis de risco associados ao attrition.
+Serão aplicadas técnicas de agrupamento (clustering), nomeadamente o algoritmo K-Means, com o objetivo de identificar perfis distintos de colaboradores com base nas suas características. Os agrupamentos (clusters) obtidos serão caracterizados estatisticamente, permitindo identificar segmentos com diferentes padrões estruturais e níveis de risco associados ao (`attrition`).
 
  
 ## 3. Metodologia de Gestão (PBL) 
