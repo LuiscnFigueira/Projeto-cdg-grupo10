@@ -3,17 +3,17 @@
 ## 1. Análise Exploratória de Dados (EDA) 
 ### 1.1. Distribuição da Variável Alvo 
 
-A variável alvo do presente projeto, `Attrition`, indica se o colaborador abandonou a organização (**Yes**) ou permaneceu na empresa (**No**). Trata-se de uma variável categórica binária que representa o fenómeno de rotatividade de colaboradores e constitui o principal objeto de análise deste estudo.
+A variável alvo do presente projeto, `Attrition`, indica se o colaborador abandonou a organização (Yes) ou permaneceu na empresa (No). Trata-se de uma variável categórica binária que representa o fenómeno de rotatividade de colaboradores e constitui o principal objeto de análise deste estudo.
 
 Foi realizada uma análise da distribuição desta variável com o objetivo de compreender a proporção de colaboradores que permanecem na organização face aos que abandonam a empresa. Dado tratar-se de uma variável categórica binária, o conceito estatístico de distribuição normal não é aplicável, sendo a análise baseada na proporção de frequências entre as duas categorias.
 
 A análise revelou a seguinte distribuição:
 
-* **83.9%** dos colaboradores **permaneceram** na empresa
+* 83.9% dos colaboradores permaneceram na empresa
 
-* **16.1%** dos colaboradores **abandonaram** a organização
+* 16.1% dos colaboradores abandonaram a organização
 
-Estes resultados evidenciam um **desequilíbrio significativo entre classes**, sendo a classe “Yes” (saída) claramente minoritária.
+Estes resultados evidenciam um desequilíbrio significativo entre classes, sendo a classe “Yes” (saída) claramente minoritária.
 
 ### Desafios Técnicos Resultantes do Desequilíbrio de Classes
 
@@ -36,11 +36,11 @@ Deste modo, nas fases subsequentes do projeto serão adotadas estratégias adequ
 Nesta fase de análise bivariada, utilizámos gráficos de dispersão (scatter plots) para cruzar os atributos do dataset diretamente com a variável alvo `Attrition`, com o objetivo de identificar os principais preditores de rotatividade. Aplicámos um nível de transparência aos pontos do gráfico para revelar a densidade de colaboradores em cada eixo categórico ("Yes" / "No").
 
 
-* **Atributo Idade (`Age`) vs. Variável Alvo (`Attrition`):** Notámos que a idade apresenta uma forte relação com a probabilidade de saída. Observando o scatter plot, a densidade de pontos na classe "Yes" (abandono) está claramente concentrada na faixa etária mais jovem (entre os 20 e os 35 anos). Por outro lado, a linha correspondente aos colaboradores que permanecem ("No") apresenta uma distribuição muito mais vasta e contínua ao longo de todas as idades, indicando que a retenção é superior em faixas etárias mais maduras.
+* Atributo Idade (`Age`) vs. Variável Alvo (`Attrition`): Notámos que a idade apresenta uma forte relação com a probabilidade de saída. Observando o scatter plot, a densidade de pontos na classe "Yes" (abandono) está claramente concentrada na faixa etária mais jovem (entre os 20 e os 35 anos). Por outro lado, a linha correspondente aos colaboradores que permanecem ("No") apresenta uma distribuição muito mais vasta e contínua ao longo de todas as idades, indicando que a retenção é superior em faixas etárias mais maduras.
 
-* **Atributo Rendimento Mensal (`MonthlyIncome`) vs. Variável Alvo (`Attrition`):** O fator financeiro está fortemente ligado à saída de colaboradores. No gráfico de dispersão, a esmagadora maioria dos pontos de Attrition ("Yes") aglomera-se de forma densa no limite inferior do eixo X (salários mais baixos). À medida que o rendimento mensal aumenta, a presença de pontos na classe "Yes" torna-se cada vez mais rara, confirmando que pacotes salariais superiores atuam como um forte mecanismo de retenção.
+* Atributo Rendimento Mensal (`MonthlyIncome`) vs. Variável Alvo (`Attrition`): O fator financeiro está fortemente ligado à saída de colaboradores. No gráfico de dispersão, a esmagadora maioria dos pontos de Attrition ("Yes") aglomera-se de forma densa no limite inferior do eixo X (salários mais baixos). À medida que o rendimento mensal aumenta, a presença de pontos na classe "Yes" torna-se cada vez mais rara, confirmando que pacotes salariais superiores atuam como um forte mecanismo de retenção.
 
-* **Atributo Experiência Total (`TotalWorkingYears`) vs. Variável Alvo (`Attrition`):** Notámos que a senioridade e o tempo de carreira estão intimamente ligados à retenção. Observando o scatter plot, a grande mancha de densidade de abandonos ("Yes") concentra-se nos colaboradores com menos de 10 anos de experiência total. Em contrapartida, profissionais com carreiras mais longas (especialmente acima dos 15-20 anos) apresentam uma dispersão residual na linha de saída, provando que a consolidação da carreira reduz drasticamente a rotatividade.
+* Atributo Experiência Total (`TotalWorkingYears`) vs. Variável Alvo (`Attrition`): Notámos que a senioridade e o tempo de carreira estão intimamente ligados à retenção. Observando o scatter plot, a grande mancha de densidade de abandonos ("Yes") concentra-se nos colaboradores com menos de 10 anos de experiência total. Em contrapartida, profissionais com carreiras mais longas (especialmente acima dos 15-20 anos) apresentam uma dispersão residual na linha de saída, provando que a consolidação da carreira reduz drasticamente a rotatividade.
 
 *  gráficos:
 
@@ -124,19 +124,19 @@ No conjunto, as variáveis categóricas apresentam distribuições plausíveis e
 
 ### 1.8 Resposta à 2ª Pergunta de Investigação
 
-Para avaliar se existe uma associação estatisticamente significativa entre a realização de horas extraordinárias (`OverTime`) e a probabilidade de saída da organização (`Attrition`), foi aplicado o **teste do qui-quadrado de independência**, adequado para analisar relações entre variáveis categóricas.
+Para avaliar se existe uma associação estatisticamente significativa entre a realização de horas extraordinárias (`OverTime`) e a probabilidade de saída da organização (`Attrition`), foi aplicado o teste do qui-quadrado de independência, adequado para analisar relações entre variáveis categóricas.
 
 A análise da tabela de contingência revelou diferenças relevantes na proporção de saída entre colaboradores que realizam horas extraordinárias e aqueles que não realizam.
 
 Em particular, observou-se que:
 
-* **10.44%** dos colaboradores que **não realizam horas extraordinárias** abandonaram a organização;
+* 10.44% dos colaboradores que não realizam horas extraordinárias abandonaram a organização;
 
-* **30.53%** dos colaboradores que **realizam horas extraordinárias** abandonaram a organização.
+* 30.53% dos colaboradores que realizam horas extraordinárias abandonaram a organização.
 
 Este resultado sugere que colaboradores que realizam horas extraordinárias apresentam uma probabilidade substancialmente superior de saída da empresa.
 
-Para verificar se esta diferença é estatisticamente significativa, foi aplicado o **teste do qui-quadrado de independência**, que produziu os seguintes resultados:
+Para verificar se esta diferença é estatisticamente significativa, foi aplicado o teste do qui-quadrado de independência, que produziu os seguintes resultados:
 
 χ² = 87.56
 
@@ -144,9 +144,9 @@ p-value < 0.001
 
 graus de liberdade = 1
 
-Dado que o **p-value é inferior ao nível de significância de 0.05**, rejeita-se a hipótese nula de independência entre as variáveis. Assim, conclui-se que **existe uma associação estatisticamente significativa entre a realização de horas extraordinárias (`OverTime`) e a variável alvo (`Attrition`)**.
+Dado que o p-value é inferior ao nível de significância de 0.05, rejeita-se a hipótese nula de independência entre as variáveis. Assim, conclui-se que existe uma associação estatisticamente significativa entre a realização de horas extraordinárias (`OverTime`) e a variável alvo (`Attrition`).
 
-Adicionalmente, foi calculado o tamanho do efeito através da medida **Cramér’s V**, que apresentou um valor de **0.24**, indicando uma **associação de intensidade fraca a moderada entre as duas variáveis**. Isto significa que, embora a realização de horas extraordinárias esteja relacionada com o abandono da organização, este fenómeno é provavelmente influenciado também por outros fatores presentes no dataset.
+Adicionalmente, foi calculado o tamanho do efeito através da medida Cramér’s V, que apresentou um valor de 0.24, indicando uma associação de intensidade fraca a moderada entre as duas variáveis. Isto significa que, embora a realização de horas extraordinárias esteja relacionada com o abandono da organização, este fenómeno é provavelmente influenciado também por outros fatores presentes no dataset.
 
 Do ponto de vista organizacional, estes resultados sugerem que a realização frequente de horas extraordinárias pode estar associada a níveis mais elevados de desgaste profissional, carga de trabalho ou insatisfação laboral, fatores que podem contribuir para o aumento da rotatividade de colaboradores.
 
@@ -198,19 +198,19 @@ A estratégia adotada teve em consideração a natureza das variáveis categóri
 
 No caso das variáveis categóricas binárias, foi aplicada uma codificação numérica simples baseada em variáveis indicadoras. Este procedimento consistiu na conversão das categorias de texto em valores binários (0 e 1), permitindo representar cada variável de forma compacta e interpretável. Foram transformadas três variáveis deste tipo: `Attrition`, `OverTime` e `Gender`.
 
-A variável `Attrition`, que constitui a variável alvo do estudo, foi convertida numa nova variável denominada `Attrition_bin`. Nesta representação, o valor **1** indica que o colaborador abandonou a organização (`Yes`), enquanto o valor **0** indica que o colaborador permaneceu na empresa (`No`). Esta transformação permite representar diretamente o fenómeno de rotatividade de colaboradores numa escala binária adequada para problemas de classificação supervisionada.
+A variável `Attrition`, que constitui a variável alvo do estudo, foi convertida numa nova variável denominada `Attrition_bin`. Nesta representação, o valor 1 indica que o colaborador abandonou a organização (`Yes`), enquanto o valor 0 indica que o colaborador permaneceu na empresa (`No`). Esta transformação permite representar diretamente o fenómeno de rotatividade de colaboradores numa escala binária adequada para problemas de classificação supervisionada.
 
-De forma semelhante, a variável `OverTime` foi convertida na variável `OverTime_bin`, assumindo o valor **1** quando o colaborador realiza horas extraordinárias (`Yes`) e **0** quando não realiza (`No`). Esta transformação permite representar a presença ou ausência de trabalho extraordinário de forma quantitativa, possibilitando a sua utilização em análises estatísticas e modelos preditivos.
+De forma semelhante, a variável `OverTime` foi convertida na variável `OverTime_bin`, assumindo o valor 1 quando o colaborador realiza horas extraordinárias (`Yes`) e 0 quando não realiza (`No`). Esta transformação permite representar a presença ou ausência de trabalho extraordinário de forma quantitativa, possibilitando a sua utilização em análises estatísticas e modelos preditivos.
 
-Por sua vez, a variável `Gender` foi transformada na variável `Gender_bin`, assumindo o valor **1** para colaboradores do género masculino (`Male`) e **0** para colaboradores do género feminino (`Female`). Embora esta variável seja categórica, a sua natureza binária permite uma representação numérica direta sem perda de informação.
+Por sua vez, a variável `Gender` foi transformada na variável `Gender_bin`, assumindo o valor 1 para colaboradores do género masculino (`Male`) e 0 para colaboradores do género feminino (`Female`). Embora esta variável seja categórica, a sua natureza binária permite uma representação numérica direta sem perda de informação.
 
-Para as restantes variáveis categóricas, que apresentam mais de duas categorias e não possuem uma ordem natural entre si, foi aplicada a técnica de **One-Hot Encoding**. Este método consiste em criar uma variável binária independente para cada categoria existente, permitindo representar cada categoria de forma explícita no espaço de características (James et al., 2021).
+Para as restantes variáveis categóricas, que apresentam mais de duas categorias e não possuem uma ordem natural entre si, foi aplicada a técnica de One-Hot Encoding. Este método consiste em criar uma variável binária independente para cada categoria existente, permitindo representar cada categoria de forma explícita no espaço de características (James et al., 2021).
 
-A aplicação desta técnica foi realizada nas variáveis `BusinessTravel`, `Department`, `EducationField`, `JobRole` e `MaritalStatus`. Neste processo, cada categoria passou a ser representada por uma nova variável indicadora que assume o valor **1** quando a observação pertence à categoria correspondente e **0** caso contrário.
+A aplicação desta técnica foi realizada nas variáveis `BusinessTravel`, `Department`, `EducationField`, `JobRole` e `MaritalStatus`. Neste processo, cada categoria passou a ser representada por uma nova variável indicadora que assume o valor 1 quando a observação pertence à categoria correspondente e 0 caso contrário.
 
 Por exemplo, a variável `MaritalStatus`, originalmente composta pelas categorias `Single`, `Married` e `Divorced`, foi transformada em três variáveis binárias distintas que indicam explicitamente se o colaborador pertence a cada uma destas categorias. De forma análoga, as restantes variáveis categóricas foram expandidas em múltiplas variáveis indicadoras, permitindo representar adequadamente as diferentes categorias presentes no dataset.
 
-A utilização do **One-Hot Encoding** evita a introdução de relações ordinais artificiais entre categorias, assegurando que os modelos de aprendizagem automática tratam cada categoria como uma entidade independente (Géron, 2022).
+A utilização do One-Hot Encoding evita a introdução de relações ordinais artificiais entre categorias, assegurando que os modelos de aprendizagem automática tratam cada categoria como uma entidade independente (Géron, 2022).
 
 Como consequência deste processo de codificação, o número total de variáveis do dataset aumentou, uma vez que cada categoria passou a ser representada por uma variável binária própria. Apesar deste aumento na dimensionalidade do espaço de características, esta abordagem permite preservar integralmente a informação contida nas variáveis categóricas e garante que o dataset se encontra preparado para a aplicação de técnicas estatísticas, análise de correlação e algoritmos de aprendizagem automática nas fases subsequentes do projeto.
 
@@ -226,33 +226,33 @@ No âmbito da fase de preparação dos dados, foi realizada uma etapa de engenha
 
 A criação de atributos derivados constitui uma prática comum em projetos de ciência de dados, uma vez que a transformação e combinação de variáveis existentes pode aumentar a capacidade explicativa dos modelos e facilitar a identificação de padrões relevantes nos dados (Géron, 2022; James et al., 2021).
 
-Neste contexto, foram criadas quatro novas variáveis: **RatioYearsInRole**, **SatisfactionIndex**, **CareerStagnation** e **IncomePerLevel**.
+Neste contexto, foram criadas quatro novas variáveis: `RatioYearsInRole`, `SatisfactionIndex`, `CareerStagnation` e `IncomePerLevel`.
 
 **RatioYearsInRole**
 
-A variável **RatioYearsInRole** representa a proporção do tempo que um colaborador permanece na sua função atual relativamente ao tempo total de permanência na empresa. Este indicador foi calculado como a razão entre `YearsInCurrentRole` e `YearsAtCompany`. Para evitar situações de divisão por zero, sempre que `YearsAtCompany` assume valor igual a zero, o indicador é definido como 0.
+A variável `RatioYearsInRole` representa a proporção do tempo que um colaborador permanece na sua função atual relativamente ao tempo total de permanência na empresa. Este indicador foi calculado como a razão entre `YearsInCurrentRole` e `YearsAtCompany`. Para evitar situações de divisão por zero, sempre que `YearsAtCompany` assume valor igual a zero, o indicador é definido como 0.
 
 Este atributo permite avaliar o grau de mobilidade interna do colaborador, distinguindo entre situações em que a permanência na mesma função ocupa grande parte do percurso na organização e situações em que existe maior progressão ou mudança funcional ao longo do tempo.
 
 **SatisfactionIndex**
 
-Foi igualmente construído um índice composto designado **SatisfactionIndex**, com o objetivo de sintetizar o nível global de satisfação profissional do colaborador. Este índice resulta da combinação de quatro variáveis presentes no dataset: `JobSatisfaction`, `EnvironmentSatisfaction`, `RelationshipSatisfaction` e `WorkLifeBalance`.
+Foi igualmente construído um índice composto designado `SatisfactionIndex`, com o objetivo de sintetizar o nível global de satisfação profissional do colaborador. Este índice resulta da combinação de quatro variáveis presentes no dataset: `JobSatisfaction`, `EnvironmentSatisfaction`, `RelationshipSatisfaction` e `WorkLifeBalance`.
 
 Estas variáveis utilizam uma escala ordinal de quatro níveis, em que valores mais elevados correspondem a níveis superiores de satisfação. A construção do índice baseou-se na contagem da frequência de cada nível de satisfação nas quatro variáveis e na aplicação de regras de decisão que permitem classificar o nível global de satisfação do colaborador.
 
-O índice assume valor **4 (Muito Alto)** quando existem três ou mais valores iguais a 4 e nenhuma variável apresenta valor inferior a 3. Assume valor **3 (Alto)** quando existem pelo menos três valores iguais a 3 ou 4 e apenas uma variável assume valor 2. O valor **2 (Moderado)** é atribuído quando existem dois ou mais valores iguais a 2 ou quando existe exatamente um valor igual a 1. Por fim, o índice assume valor **1 (Baixo)** quando existem duas ou mais variáveis com valor igual a 1. Nos restantes casos, o índice assume, por defeito, o valor 2.
+O índice assume valor 4 (Muito Alto) quando existem três ou mais valores iguais a 4 e nenhuma variável apresenta valor inferior a 3. Assume valor 3 (Alto) quando existem pelo menos três valores iguais a 3 ou 4 e apenas uma variável assume valor 2. O valor 2 (Moderado) é atribuído quando existem dois ou mais valores iguais a 2 ou quando existe exatamente um valor igual a 1. Por fim, o índice assume valor 1 (Baixo) quando existem duas ou mais variáveis com valor igual a 1. Nos restantes casos, o índice assume, por defeito, o valor 2.
 
 A agregação destas variáveis permite sintetizar diferentes dimensões de satisfação organizacional numa única variável interpretável, reduzindo simultaneamente a complexidade associada à análise isolada de cada indicador psicométrico.
 
 **CareerStagnation**
 
-Foi criada a variável **CareerStagnation**, destinada a identificar possíveis situações de estagnação na progressão profissional. Esta variável assume valor **1** quando um colaborador não recebeu qualquer promoção há mais de cinco anos (`YearsSinceLastPromotion > 5`) e permanece na mesma função há mais de cinco anos (`YearsInCurrentRole > 5`). Caso contrário, assume o valor **0**.
+Foi criada a variável `CareerStagnation`, destinada a identificar possíveis situações de estagnação na progressão profissional. Esta variável assume valor 1 quando um colaborador não recebeu qualquer promoção há mais de cinco anos (`YearsSinceLastPromotion > 5`) e permanece na mesma função há mais de cinco anos (`YearsInCurrentRole > 5`). Caso contrário, assume o valor 0.
 
 Este indicador procura captar situações em que a ausência prolongada de progressão na carreira pode estar associada a níveis mais elevados de insatisfação profissional ou a uma maior propensão para a saída da organização.
 
 **IncomePerLevel**
 
-Por fim, foi criada a variável **IncomePerLevel**, que representa o rendimento mensal relativo ao nível hierárquico ocupado pelo colaborador. Este atributo foi calculado como a razão entre `MonthlyIncome` e `JobLevel`.
+Por fim, foi criada a variável `IncomePerLevel`, que representa o rendimento mensal relativo ao nível hierárquico ocupado pelo colaborador. Este atributo foi calculado como a razão entre `MonthlyIncome` e `JobLevel`.
 
 Este indicador permite analisar a relação entre remuneração e posição hierárquica na organização, possibilitando identificar eventuais discrepâncias entre rendimento auferido e responsabilidade organizacional associada ao nível funcional.
 
@@ -364,4 +364,4 @@ Géron, A. (2022).
 James, G., Witten, D., Hastie, T., & Tibshirani, R. (2021).  
 *An Introduction to Statistical Learning: with Applications in R* (2ª ed.). Springer.
  
-*Data de última atualização: 18/03/2026*
+*Data de última atualização: 20/03/2026*
