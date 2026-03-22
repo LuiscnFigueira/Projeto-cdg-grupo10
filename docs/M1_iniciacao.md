@@ -6,13 +6,13 @@
 
 O capital humano constitui um dos ativos mais críticos para o desempenho, inovação e sustentabilidade das organizações modernas, particularmente em setores intensivos em conhecimento, como o setor tecnológico e de serviços. Neste contexto, a área de HR Analytics (People Analytics) tem emergido como uma disciplina estratégica que utiliza dados e técnicas de análise quantitativa para apoiar a tomada de decisão na gestão de recursos humanos.
 
-Tradicionalmente, a gestão de recursos humanos baseava-se em abordagens maioritariamente reativas e qualitativas. No entanto, com o aumento da disponibilidade de dados organizacionais e o desenvolvimento de técnicas de Ciência de Dados e Aprendizagem Automática (Machine Learning), tornou-se possível adotar uma abordagem orientada por dados, permitindo analisar padrões comportamentais, identificar fatores de risco e antecipar fenómenos relevantes. Esta evolução permite transformar os Recursos Humanos numa função estratégica e preditiva, contribuindo para uma gestão mais eficiente e fundamentada do capital humano.
+Tradicionalmente, a gestão de recursos humanos baseava-se em abordagens maioritariamente reativas e qualitativas. No entanto, com o aumento da disponibilidade de dados organizacionais e o desenvolvimento de técnicas de Ciência de Dados e Aprendizagem Automática (_Machine Learning_), tornou-se possível adotar uma abordagem orientada por dados, permitindo analisar padrões comportamentais, identificar fatores de risco e antecipar fenómenos relevantes. Esta evolução permite transformar os Recursos Humanos numa função estratégica e preditiva, contribuindo para uma gestão mais eficiente e fundamentada do capital humano.
 
 Uma das aplicações mais relevantes neste domínio é a análise da rotatividade de colaboradores (Employee Attrition), que corresponde à saída de colaboradores de uma organização e constitui um indicador crítico da estabilidade e eficiência organizacional.
 
 ### Relevância do Problema no Contexto Atual
 
-A rotatividade de colaboradores representa um desafio estratégico significativo devido ao seu impacto direto e indireto nas organizações. Do ponto de vista financeiro, a saída de um colaborador implica custos associados ao recrutamento, seleção, integração e formação de novos colaboradores, bem como custos indiretos relacionados com a perda de produtividade e transferência de conhecimento. Em funções especializadas, estes custos podem atingir valores substanciais.
+A rotatividade de colaboradores representa um desafio estratégico significativo devido ao seu impacto direto e indireto nas organizações (Hom et al., 2017). Do ponto de vista financeiro, a saída de um colaborador implica custos associados ao recrutamento, seleção, integração e formação de novos colaboradores, bem como custos indiretos relacionados com a perda de produtividade e transferência de conhecimento. Em funções especializadas, estes custos podem atingir valores substanciais.
 
 Para além do impacto económico, a rotatividade afeta também o desempenho organizacional, podendo comprometer a continuidade operacional, reduzir a coesão das equipas e afetar negativamente o clima organizacional. Num contexto de elevada competitividade e escassez de talento qualificado, a capacidade de reter colaboradores constitui um fator determinante para a vantagem competitiva e sustentabilidade das organizações.
 
@@ -20,11 +20,11 @@ A saída de colaboradores é influenciada por múltiplos fatores, incluindo cara
 
 ### Formulação do Problema no Contexto da Ciência de Dados
 
-Para analisar este problema, será utilizado o dataset IBM HR Analytics Employee Attrition & Performance, disponibilizado na plataforma Kaggle, que contém dados estruturados relativos a 1470 colaboradores e 35 variáveis que descrevem características demográficas, profissionais, salariais e níveis de satisfação.
+Para analisar este problema, será utilizado o dataset IBM HR Analytics Employee Attrition & Performance (IBM Watson Analytics, 2016), disponibilizado na plataforma Kaggle, que contém dados estruturados relativos a 1470 colaboradores e 35 variáveis que descrevem características demográficas, profissionais, salariais e níveis de satisfação.
 
 A variável central deste estudo é Attrition, uma variável categórica binária que indica se um colaborador abandonou a organização ("Yes") ou permaneceu na empresa ("No"). Esta variável constitui a variável alvo do projeto.
 
-O problema pode ser formalizado como um problema de análise preditiva, suportado por técnicas de aprendizagem supervisionada, uma vez que existe uma variável alvo previamente definida (`Attrition`). Mais concretamente, trata-se de um problema de classificação binária, cujo objetivo é prever se um colaborador abandonará a organização (Yes) ou permanecerá na empresa (No), com base num conjunto de variáveis explicativas. Numa fase inicial, será também realizada análise exploratória de dados, com o objetivo de compreender a estrutura do dataset, identificar padrões relevantes e apoiar a preparação dos dados para a modelação.
+O problema pode ser formalizado como um problema de análise preditiva, suportado por técnicas de aprendizagem supervisionada, uma vez que existe uma variável alvo previamente definida (`Attrition`). Mais concretamente, trata-se de um problema de classificação binária, cujo objetivo é prever se um colaborador abandonará a organização (Yes) ou permanecerá na empresa (No), com base num conjunto de variáveis explicativas (James et al., 2021). Numa fase inicial, será também realizada análise exploratória de dados, com o objetivo de compreender a estrutura do dataset, identificar padrões relevantes e apoiar a preparação dos dados para a modelação.
 
 Através da aplicação de técnicas de análise exploratória de dados e de aprendizagem automática supervisionada, será possível transformar dados organizacionais em conhecimento relevante, permitindo compreender melhor os determinantes da rotatividade e apoiar futuras abordagens preditivas.
 
@@ -80,7 +80,7 @@ Os objetivos definidos para este projeto foram operacionalizados em termos técn
 
 O primeiro objetivo consiste no desenvolvimento e validação de um modelo de classificação supervisionado capaz de prever a variável alvo (`Attrition`), utilizando as variáveis explicativas disponíveis no dataset. O problema é formalizado como um problema de classificação binária, no qual cada observação é representada por um conjunto de atributos e uma variável alvo que indica o estado de permanência ou saída.
 
-Serão avaliados diferentes algoritmos de Machine Learning, incluindo métodos lineares e baseados em árvores de decisão, sendo o desempenho avaliado através de validação cruzada estratificada com k = 5 folds. A métrica principal de avaliação será o F1-Score, devido à sua adequação em contextos de desequilíbrio de classes, sendo definido como objetivo atingir um valor mínimo de 0,80. Adicionalmente, serão consideradas métricas complementares, como Precision, Recall e AUC-ROC, de forma a garantir uma avaliação robusta e abrangente do desempenho dos modelos.
+Serão avaliados diferentes algoritmos de Aprendizagem Automática (_Machine Learning_), incluindo métodos lineares e baseados em árvores de decisão, sendo o desempenho avaliado através de validação cruzada estratificada com k = 5 folds. A métrica principal de avaliação será o F1-Score, devido à sua adequação em contextos de desequilíbrio de classes, sendo definido como objetivo atingir um valor mínimo de 0,80. Adicionalmente, serão consideradas métricas complementares, como Precision, Recall e AUC-ROC, de forma a garantir uma avaliação robusta e abrangente do desempenho dos modelos.
 
 ### Objetivo 2 — Construção de um Índice de Risco de atrito (`Attrition`)
 
@@ -132,7 +132,7 @@ Serão aplicadas técnicas de agrupamento (clustering), nomeadamente o algoritmo
 
  
 ## 3. Metodologia de Gestão (PBL) 
-O projeto segue uma abordagem baseada no modelo CRISP-DM (Cross-Industry Standard Process for Data Mining), que estrutura o desenvolvimento em seis fases principais: compreensão do problema, compreensão dos dados, preparação dos dados, modelação, avaliação e implementação. Embora estas fases tenham uma ordem lógica, o processo é iterativo e permite regressar a fases anteriores sempre que necessário. Esta metodologia assegura uma abordagem estruturada, sistemática e rigorosa ao desenvolvimento de projetos de Ciência de Dados.
+O projeto segue uma abordagem baseada no modelo CRISP-DM (Cross-Industry Standard Process for Data Mining), amplamente utilizado em projetos de Ciência de Dados, que organiza o desenvolvimento em seis fases principais: compreensão do problema, compreensão dos dados, preparação dos dados, modelação, avaliação e implementação. Apesar de apresentarem uma sequência lógica, estas fases são iterativas, permitindo revisitar etapas anteriores sempre que necessário. Esta metodologia proporciona uma abordagem estruturada, sistemática e rigorosa ao desenvolvimento de projetos de Ciência de Dados (Chapman et al., 2000).
 
 **Divisão de Tarefas:** 
 
@@ -226,7 +226,7 @@ A inspeção dos tipos de dados revelou a presença de variáveis numéricas int
 
 Foi realizada uma verificação formal da integridade do dataset com o objetivo de avaliar a sua completude, consistência e unicidade. Esta análise confirmou a ausência total de valores nulos em todas as variáveis, garantindo que o dataset se encontra completo e eliminando a necessidade de aplicar técnicas de imputação. Esta propriedade permite preservar as distribuições empíricas observadas e evita a introdução de viés decorrente de estimativas artificiais.
 
-Adicionalmente, verificou-se a inexistência de registos duplicados, garantindo que cada observação representa uma entidade distinta no espaço de dados. Esta condição é fundamental para preservar a independência das observações, um pressuposto assumido pela maioria dos algoritmos de Machine Learning e essencial para assegurar a validade estatística do processo de modelação.
+Adicionalmente, verificou-se a inexistência de registos duplicados, garantindo que cada observação representa uma entidade distinta no espaço de dados. Esta condição é fundamental para preservar a independência das observações, um pressuposto assumido pela maioria dos algoritmos de Aprendizagem Automática (_Machine Learning_) e essencial para assegurar a validade estatística do processo de modelação.
 
 
 
@@ -290,7 +290,16 @@ Estas limitações serão consideradas na interpretação dos resultados e na av
 
 ## 7. Referências
 
+Chapman, P., Clinton, J., Khabaza, T., Reinartz, T., & Wirth, R. (2000). 
+*CRISP-DM 1.0: Step-by-step data mining guide*.
+
+Hom, P. W., Lee, T. W., Shaw, J. D., & Hausknecht, J. P. (2017). 
+*One hundred years of employee turnover theory and research*. Journal of Applied Psychology.
+
 IBM Watson Analytics. (2016). *IBM HR Analytics Employee Attrition & Performance Dataset*. IBM Corporation.  
 Disponível em: https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset
 
-*Data de última atualização: 19/03/2026*
+James, G., Witten, D., Hastie, T., & Tibshirani, R. (2021). 
+*An Introduction to Statistical Learning: with Applications in R* (2nd ed.). Springer.
+
+*Data de última atualização: 22/03/2026*
