@@ -150,6 +150,46 @@ Adicionalmente, foi calculado o tamanho do efeito através da medida Cramér’s
 
 Do ponto de vista organizacional, estes resultados sugerem que a realização frequente de horas extraordinárias pode estar associada a níveis mais elevados de desgaste profissional, carga de trabalho ou insatisfação laboral, fatores que podem contribuir para o aumento da rotatividade de colaboradores.
 
+### 1.9 Análise Estatística Inferencial
+
+Para além da análise exploratória, foi realizado um conjunto de testes estatísticos com o objetivo de verificar, de forma mais rigorosa, quais as variáveis que apresentam uma relação real com a probabilidade de saída dos colaboradores. A metodologia seguiu uma abordagem faseada, passando pela verificação prévia da normalidade dos dados, pela escolha do teste mais adequado com base nessa verificação e pelo cálculo do tamanho do efeito para avaliar a importância prática de cada resultado (James et al., 2021).
+
+Esta última medida é importante porque um teste estatístico pode assinalar uma diferença como significativa apenas por a amostra ser grande, mesmo que essa diferença seja muito pequena na prática. O tamanho do efeito ajuda a perceber se a diferença encontrada é, de facto, relevante.
+
+#### 1.9.1 Verificação de Normalidade - Teste de Shapiro-Wilk
+
+Antes de aplicar os testes de comparação entre grupos, foi verificado se os dados de cada variável numérica seguem uma distribuição normal, analisando separadamente os colaboradores que saíram e os que ficaram. O teste de Shapiro-Wilk foi escolhido por ser considerado um dos mais adequados para este tipo de verificação.
+
+Os resultados mostraram que nenhuma variável numérica segue uma distribuição normal em nenhum dos dois grupos, o que determinou a utilização exclusiva de testes não-paramétricos nas análises seguintes. Os testes não-paramétricos são uma alternativa que não exige que os dados sigam uma distribuição normal.
+
+#### 1.9.2 Variáveis Numéricas - Teste de Mann-Whitney U
+
+Uma vez que os dados não seguem uma distribuição normal, foi aplicado o teste de Mann-Whitney U para comparar cada variável numérica entre os colaboradores que saíram e os que ficaram. Este teste verifica se os dois grupos apresentam distribuições diferentes de forma estatisticamente significativa, sem exigir que os dados sigam uma distribuição normal (James et al., 2021). Para medir a importância prática das diferenças encontradas, foi calculado o d de Cohen, uma medida que indica se a diferença entre os dois grupos é grande ou pequena em termos reais.
+
+As variáveis que melhor distinguem os colaboradores que saem dos que ficam são `TotalWorkingYears`, `YearsInCurrentRole`, `MonthlyIncome`, `Age`, `YearsWithCurrManager` e `YearsAtCompany`, todas com diferenças estatisticamente significativas e com um tamanho de efeito considerado pequeno. A variável `DistanceFromHome` apresentou também uma diferença significativa, com os colaboradores que saem a residir em média mais longe do local de trabalho. As variáveis `DailyRate`, `YearsSinceLastPromotion` e `TrainingTimesLastYear` mostraram diferenças estatisticamente significativas mas com um tamanho de efeito muito pequeno, o que limita a sua relevância do ponto de vista prático. Por fim, as variáveis `NumCompaniesWorked`, `PercentSalaryHike`, `MonthlyRate` e `HourlyRate` não apresentaram diferenças significativas entre os dois grupos, pelo que não parecem contribuir para explicar o fenómeno de attrition neste dataset.
+
+#### 1.9.3 Variáveis Categóricas - Teste do Qui-Quadrado e Cramér's V
+
+Para as variáveis categóricas, foi aplicado o teste do qui-quadrado de independência, que permite verificar se existe uma associação entre duas variáveis categóricas ou se essas variáveis são independentes entre si (James et al., 2021). Para medir a intensidade dessa associação, foi calculado o Cramér's V, uma medida que indica o grau de relação entre as duas variáveis de forma comparável entre diferentes pares.
+
+Entre as variáveis categóricas, `OverTime` e `JobRole` apresentam as associações mais fortes com `Attrition`, ambas estatisticamente significativas e com uma força de associação classificada como fraca. `MaritalStatus` surge em terceiro lugar, seguida de `BusinessTravel` e `EducationField`, todas com associações estatisticamente significativas. O `Department` apresenta uma associação muito fraca, ainda que significativa. A variável `Gender` é a única que não revela qualquer associação estatisticamente significativa com a variável alvo, confirmando que o género não é um fator relevante para explicar a saída de colaboradores neste contexto.
+
+#### 1.9.4 Variáveis Ordinais - Teste de Kruskal-Wallis
+
+As variáveis com escalas ordenadas, como os níveis de satisfação e o nível hierárquico, foram analisadas com o teste de Kruskal-Wallis, que permite comparar as distribuições de mais de dois grupos sem exigir que os dados sigam uma distribuição normal (James et al., 2021).
+
+`JobLevel` e `StockOptionLevel` revelaram-se as variáveis com maior diferença entre os grupos, sugerindo que tanto a posição hierárquica como o acesso a opções sobre ações estão associados à probabilidade de saída. A dimensão `EnvironmentSatisfaction` apresentou também uma diferença significativa entre os dois grupos. `JobSatisfaction` e `WorkLifeBalance` revelaram igualmente diferenças estatisticamente significativas, embora o tamanho do efeito seja muito reduzido em ambos os casos, o que limita a sua relevância prática.
+
+Em sentido contrário, `RelationshipSatisfaction` e `Education` não mostraram diferenças relevantes entre os colaboradores que saem e os que ficam. O resultado de `PerformanceRating` é particularmente expressivo, com o valor do teste praticamente nulo, confirmando que a avaliação de desempenho não tem qualquer relação com a probabilidade de abandono, o que é consistente com o que foi observado anteriormente na análise de correlação e com o que a literatura refere sobre a baixa capacidade preditiva das avaliações de desempenho formais neste tipo de contexto (James et al., 2021).
+
+#### 1.9.5 Síntese dos Testes Estatísticos
+
+Os testes realizados permitiram identificar quais as variáveis com maior relevância para prever a saída de colaboradores. As que apresentam uma associação mais forte e consistente com `Attrition` são `TotalWorkingYears`, `MonthlyIncome`, `YearsInCurrentRole`, `Age`, `YearsWithCurrManager`, `OverTime` e `JobRole`, que deverão ter um papel central nos modelos a desenvolver na fase seguinte.
+
+As variáveis que não apresentaram associação significativa com a saída em nenhum dos testes - `Gender`, `PerformanceRating`, `PercentSalaryHike`, `MonthlyRate`, `HourlyRate`, `RelationshipSatisfaction` e `Education` - serão avaliadas com maior cuidado na fase de modelação. A sua relevância não deve ser descartada com base apenas nos testes de associação bivariada, uma vez que uma variável pode não mostrar relação direta com a variável alvo mas ainda assim contribuir em combinação com outras variáveis dentro de um modelo (Géron, 2022). A decisão sobre quais variáveis incluir será tomada com base na importância que os próprios modelos atribuírem a cada variável durante o treino, na Milestone 3.
+
+Para além da seleção de variáveis, há outros desafios a resolver na fase de modelação: o desequilíbrio entre classes da variável alvo, que pode enviesar os modelos para a classe maioritária, e a multicolinearidade elevada entre algumas variáveis, que pode afetar o desempenho de certos algoritmos. Ambos serão tratados com estratégias adequadas ao tipo de modelo utilizado.
+
 ## 2. Qualidade dos Dados e Limpeza 
 ### 2.1. Tratamento de Dados em Falta 
 
