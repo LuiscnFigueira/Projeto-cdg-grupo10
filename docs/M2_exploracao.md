@@ -286,9 +286,11 @@ A agregação destas variáveis permite sintetizar diferentes dimensões de sati
 
 **CareerStagnation**
 
-Foi criada a variável `CareerStagnation`, destinada a identificar possíveis situações de estagnação na progressão profissional. Esta variável assume valor 1 quando um colaborador não recebeu qualquer promoção há mais de cinco anos (`YearsSinceLastPromotion > 5`) e permanece na mesma função há mais de cinco anos (`YearsInCurrentRole > 5`). Caso contrário, assume o valor 0.
+Foi criada a variável CareerStagnation, destinada a identificar possíveis situações de estagnação na progressão profissional. O conceito de career plateau, introduzido por Ference et al. (1977), descreve o ponto a partir do qual a progressão hierárquica de um colaborador deixa de ser provável, podendo esta situação assumir uma dimensão hierárquica, quando não existem oportunidades de promoção, ou uma dimensão de conteúdo, quando o colaborador permanece na mesma função sem que as suas responsabilidades se alterem de forma significativa.
 
-Este indicador procura captar situações em que a ausência prolongada de progressão na carreira pode estar associada a níveis mais elevados de insatisfação profissional ou a uma maior propensão para a saída da organização.
+Com base nesta conceptualização, a variável foi construída para captar simultaneamente as duas dimensões, assumindo valor 1 quando um colaborador não recebeu qualquer promoção há mais de cinco anos (YearsSinceLastPromotion > 5) e permanece na mesma função há mais de cinco anos (YearsInCurrentRole > 5). O limiar de cinco anos foi adotado com base no critério objetivo de plateau hierárquico utilizado na literatura, que operacionaliza a estagnação a partir de um período mínimo de cinco anos sem alterações significativas na posição do colaborador (Yang et al., 2019). Caso contrário, a variável assume o valor 0.
+
+Este indicador procura captar situações em que a ausência prolongada de progressão na carreira pode estar associada a níveis mais elevados de insatisfação profissional ou a uma maior propensão para a saída da organização (Ference et al., 1977).
 
 **IncomePerLevel**
 
@@ -360,13 +362,20 @@ O projeto segue uma abordagem baseada no modelo CRISP-DM (Cross-Industry Standar
    *  tarefa11
      
  ## 7. Referências
-Rousseeuw, P. J., & Hubert, M. (2011). 
-Robust statistics for outlier detection. Wiley Interdisciplinary Reviews: Data Mining and Knowledge Discovery, 1(1), 73–79.
+ 
+Ference, T. P., Stoner, J. A. F., & Warren, E. K. (1977).
+Managing the career plateau. *Academy of Management Review*.
 
 Géron, A. (2022).  
 *Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow* (3ª ed.). O’Reilly Media.
 
 James, G., Witten, D., Hastie, T., & Tibshirani, R. (2021).  
 *An Introduction to Statistical Learning: with Applications in R* (2ª ed.). Springer.
+
+Yang, W., Niven, K., & Johnson, S. (2019).
+Career plateau: A review of 40 years of research. *Journal of Vocational Behavior*.
+
+Rousseeuw, P. J., & Hubert, M. (2011).
+Robust statistics for outlier detection. *Wiley Interdisciplinary Reviews: Data Mining and Knowledge Discovery*.
  
 *Data de última atualização: 20/03/2026*
