@@ -317,7 +317,7 @@ Relativamente à variável `IncomePerLevel`, observa-se também uma associação
 
 Por outro lado, a variável `CareerStagnation` apresenta uma correlação praticamente nula com a variável alvo (≈ -0.01), não evidenciando qualquer relação estatisticamente relevante com o atrito. Este resultado sugere que a forma como a variável foi definida poderá não capturar adequadamente o fenómeno de estagnação na carreira, ou que este fator, isoladamente, não tem um impacto significativo na decisão de abandono no contexto do dataset analisado.
 
-De forma global, as novas variáveis - em particular `SatisfactionIndex`, `RatioYearsInRole` e `IncomePerLevel` - demonstram capacidade para captar dimensões relevantes do comportamento organizacional, contribuindo para enriquecer o conjunto de atributos disponíveis. Estas variáveis apresentam potencial para melhorar a capacidade preditiva dos modelos a desenvolver nas fases subsequentes do projeto.
+De forma global, as novas variáveis demonstram capacidade para captar dimensões relevantes do comportamento organizacional, contribuindo para enriquecer o conjunto de atributos disponíveis. Estas variáveis apresentam potencial para melhorar a capacidade preditiva dos modelos a desenvolver nas fases subsequentes do projeto.
 
 ## 4. Dicionário de Dados Final (Pós-Processamento) 
 *Listagem final das variáveis que serão entregues ao modelo na Fase 3. - por confirmar no fim da análise exploratória* 
