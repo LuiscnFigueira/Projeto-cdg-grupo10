@@ -49,7 +49,7 @@ Nesta fase de análise bivariada, utilizámos gráficos de dispersão (*scatter 
 
 ### 1.3 Matriz de Correlação (Heatmap)
 
-Foi gerada uma matriz de correlação para as variáveis numéricas, com o objetivo de identificar relações lineares relevantes e potenciais situações de multicolinearidade. A análise do heatmap evidenciou três padrões principais:
+Foi gerada uma matriz de correlação para as variáveis numéricas, com o objetivo de identificar relações lineares relevantes e potenciais situações de multicolinearidade. A análise visual do *heatmap* (ver `HeatmapVariaveisNumeric.png`) evidenciou três padrões principais:
 
 * Observou-se uma correlação muito elevada entre `JobLevel` e `MonthlyIncome` (≈ 0.95), sugerindo redundância informacional entre progressão hierárquica e remuneração.
 
