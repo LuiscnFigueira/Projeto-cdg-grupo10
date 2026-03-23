@@ -315,15 +315,39 @@ De forma global, as novas variáveis demonstram capacidade para captar dimensõe
 *Listagem final das variáveis que serão entregues ao modelo na Fase 3. - por confirmar no fim da análise exploratória* 
 
 
-| Variável | Tipo Estatístico | Domínio | Classes / Escala Semântica | Definição Operacional | Papel Analítico |
-|----------|------------------|---------|-----------------------------|----------------------|----------------|
-| Attrition_bin | Categórica binária | {0,1} | 1 = Abandonou<br>0 = Permaneceu | Codificação binária da variável Attrition. | Variável alvo |
-| OverTime_bin | Categórica binária | {0,1} | 1 = Realiza horas extraordinárias<br>0 = Não realiza horas extra | Codificação binária da variável OverTime. | Condições de trabalho |
-| Gender_bin | Categórica binária | {0,1} | 1 = Homem<br>0 = Mulher | Codificação binária da variável Gender. | Demográfica |
-| CareerStagnation | Categórica binária | {0,1} | 1 = Estagnação de carreira<br>0 = Progressão normal | Assume valor 1 quando YearsSinceLastPromotion > 5 e YearsInCurrentRole > 5; caso contrário assume 0. | Progressão profissional |
-| IncomePerLevel | Numérica contínua | ℝ⁺ | - | Rácio entre MonthlyIncome e JobLevel, representando o rendimento relativo ao nível hierárquico. | Compensação |
-| RatioYearsInRole | Numérica contínua | [0,1] | - | Proporção entre YearsInCurrentRole e YearsAtCompany; assume 0 quando YearsAtCompany = 0 para evitar divisão por zero. | Mobilidade organizacional |
-| SatisfactionIndex | Categórica ordinal | {1,2,3,4} | 1 Baixo<br>2 Moderado<br>3 Alto<br>4 Muito Alto | Índice composto construído a partir de JobSatisfaction, EnvironmentSatisfaction, RelationshipSatisfaction e WorkLifeBalance. | Psicométrica |
+| Variável | Tipo Estatístico | Domínio | Classes / Escala Semântica | Definição Operacional | Papel Analítico | Método de Criação |
+|----------|------------------|---------|-----------------------------|----------------------|----------------|-------------------|
+| Attrition_bin | Categórica binária | {0,1} | 1 = Abandonou<br>0 = Permaneceu | Codificação binária da variável Attrition. | Variável alvo | Codificação Binária |
+| OverTime_bin | Categórica binária | {0,1} | 1 = Realiza horas extra<br>0 = Não realiza horas extra | Codificação binária da variável OverTime. | Condições de trabalho | Codificação Binária |
+| Gender_bin | Categórica binária | {0,1} | 1 = Homem<br>0 = Mulher | Codificação binária da variável Gender. | Demográfica | Codificação Binária |
+| CareerStagnation | Categórica binária | {0,1} | 1 = Estagnação<br>0 = Progressão normal | Assume 1 quando YearsSinceLastPromotion > 5 e YearsInCurrentRole > 5; caso contrário 0. | Progressão | Engenharia de Atributos |
+| IncomePerLevel | Numérica contínua | ℝ⁺ | - | Rácio entre MonthlyIncome e JobLevel. | Compensação | Engenharia de Atributos |
+| RatioYearsInRole | Numérica contínua | [0,1] | - | Proporção entre YearsInCurrentRole e YearsAtCompany. | Mobilidade | Engenharia de Atributos |
+| SatisfactionIndex | Categórica ordinal | {1,2,3,4} | 1 Baixo a 4 Muito Alto | Índice composto de várias variáveis de satisfação. | Psicométrica | Engenharia de Atributos |
+| BusinessTravel_Non-Travel | Categórica binária | {0,1} | 1 = Sim<br>0 = Não | Variável indicadora gerada para a categoria 'Non-Travel'. | Condições de trabalho | One-Hot Encoding |
+| BusinessTravel_Travel_Frequently | Categórica binária | {0,1} | 1 = Sim<br>0 = Não | Variável indicadora gerada para a categoria 'Travel_Frequently'. | Condições de trabalho | One-Hot Encoding |
+| BusinessTravel_Travel_Rarely | Categórica binária | {0,1} | 1 = Sim<br>0 = Não | Variável indicadora gerada para a categoria 'Travel_Rarely'. | Condições de trabalho | One-Hot Encoding |
+| Department_Human Resources | Categórica binária | {0,1} | 1 = Sim<br>0 = Não | Variável indicadora gerada para o departamento 'Human Resources'. | Organizacional | One-Hot Encoding |
+| Department_Research & Development | Categórica binária | {0,1} | 1 = Sim<br>0 = Não | Variável indicadora gerada para o departamento 'Research & Development'. | Organizacional | One-Hot Encoding |
+| Department_Sales | Categórica binária | {0,1} | 1 = Sim<br>0 = Não | Variável indicadora gerada para o departamento 'Sales'. | Organizacional | One-Hot Encoding |
+| EducationField_Human Resources | Categórica binária | {0,1} | 1 = Sim<br>0 = Não | Variável indicadora gerada para a área 'Human Resources'. | Formação Académica | One-Hot Encoding |
+| EducationField_Life Sciences | Categórica binária | {0,1} | 1 = Sim<br>0 = Não | Variável indicadora gerada para a área 'Life Sciences'. | Formação Académica | One-Hot Encoding |
+| EducationField_Marketing | Categórica binária | {0,1} | 1 = Sim<br>0 = Não | Variável indicadora gerada para a área 'Marketing'. | Formação Académica | One-Hot Encoding |
+| EducationField_Medical | Categórica binária | {0,1} | 1 = Sim<br>0 = Não | Variável indicadora gerada para a área 'Medical'. | Formação Académica | One-Hot Encoding |
+| EducationField_Other | Categórica binária | {0,1} | 1 = Sim<br>0 = Não | Variável indicadora gerada para a área 'Other'. | Formação Académica | One-Hot Encoding |
+| EducationField_Technical Degree | Categórica binária | {0,1} | 1 = Sim<br>0 = Não | Variável indicadora gerada para a área 'Technical Degree'. | Formação Académica | One-Hot Encoding |
+| JobRole_Healthcare Representative | Categórica binária | {0,1} | 1 = Sim<br>0 = Não | Variável indicadora gerada para o cargo 'Healthcare Representative'. | Funcional | One-Hot Encoding |
+| JobRole_Human Resources | Categórica binária | {0,1} | 1 = Sim<br>0 = Não | Variável indicadora gerada para o cargo 'Human Resources'. | Funcional | One-Hot Encoding |
+| JobRole_Laboratory Technician | Categórica binária | {0,1} | 1 = Sim<br>0 = Não | Variável indicadora gerada para o cargo 'Laboratory Technician'. | Funcional | One-Hot Encoding |
+| JobRole_Manager | Categórica binária | {0,1} | 1 = Sim<br>0 = Não | Variável indicadora gerada para o cargo 'Manager'. | Funcional | One-Hot Encoding |
+| JobRole_Manufacturing Director | Categórica binária | {0,1} | 1 = Sim<br>0 = Não | Variável indicadora gerada para o cargo 'Manufacturing Director'. | Funcional | One-Hot Encoding |
+| JobRole_Research Director | Categórica binária | {0,1} | 1 = Sim<br>0 = Não | Variável indicadora gerada para o cargo 'Research Director'. | Funcional | One-Hot Encoding |
+| JobRole_Research Scientist | Categórica binária | {0,1} | 1 = Sim<br>0 = Não | Variável indicadora gerada para o cargo 'Research Scientist'. | Funcional | One-Hot Encoding |
+| JobRole_Sales Executive | Categórica binária | {0,1} | 1 = Sim<br>0 = Não | Variável indicadora gerada para o cargo 'Sales Executive'. | Funcional | One-Hot Encoding |
+| JobRole_Sales Representative | Categórica binária | {0,1} | 1 = Sim<br>0 = Não | Variável indicadora gerada para o cargo 'Sales Representative'. | Funcional | One-Hot Encoding |
+| MaritalStatus_Divorced | Categórica binária | {0,1} | 1 = Sim<br>0 = Não | Variável indicadora gerada para o estado civil 'Divorced'. | Demográfica | One-Hot Encoding |
+| MaritalStatus_Married | Categórica binária | {0,1} | 1 = Sim<br>0 = Não | Variável indicadora gerada para o estado civil 'Married'. | Demográfica | One-Hot Encoding |
+| MaritalStatus_Single | Categórica binária | {0,1} | 1 = Sim<br>0 = Não | Variável indicadora gerada para o estado civil 'Single'. | Demográfica | One-Hot Encoding |
  
 ## 5. Conclusões da Fase de Exploração 
 *O que aprenderam sobre o dataset que não sabiam no final do Milestone 1? Os dados são suficientes 
