@@ -270,33 +270,35 @@ Neste contexto, foram criadas quatro novas variáveis: `RatioYearsInRole`, `Sati
 
 **RatioYearsInRole**
 
-A variável `RatioYearsInRole` representa a proporção do tempo que um colaborador permanece na sua função atual relativamente ao tempo total de permanência na empresa. Este indicador foi calculado como a razão entre `YearsInCurrentRole` e `YearsAtCompany`. Para evitar situações de divisão por zero, sempre que `YearsAtCompany` assume valor igual a zero, o indicador é definido como 0.
+A variável `RatioYearsInRole` representa a proporção do tempo que um colaborador permanece na sua função atual relativamente ao tempo total de permanência na empresa. A literatura empírica demonstra que a mobilidade interna está associada a menores níveis de turnover, uma vez que a diversidade de experiências e oportunidades de progressão contribui para maior envolvimento organizacional (Dalton & Todor, 1987).
 
-Este atributo permite avaliar o grau de mobilidade interna do colaborador, distinguindo entre situações em que a permanência na mesma função ocupa grande parte do percurso na organização e situações em que existe maior progressão ou mudança funcional ao longo do tempo.
+Com base neste princípio, foi construída uma medida objetiva de mobilidade interna, calculada como a razão entre `YearsInCurrentRole` e `YearsAtCompany`. Valores próximos de 1 indicam que o colaborador passou a maior parte do seu tempo na empresa na mesma função, enquanto valores mais baixos refletem maior progressão ou mudança funcional. Para evitar situações de divisão por zero, sempre que `YearsAtCompany` assume valor igual a zero, o indicador é definido como 0.
+
+A operacionalização específica deste rácio foi desenvolvida para este projeto, não existindo na literatura uma fórmula padronizada para medir diretamente esta proporção com base em dados administrativos de recursos humanos.
 
 **SatisfactionIndex**
 
-Foi igualmente construído um índice composto designado `SatisfactionIndex`, com o objetivo de sintetizar o nível global de satisfação profissional do colaborador. Este índice resulta da combinação de quatro variáveis presentes no dataset: `JobSatisfaction`, `EnvironmentSatisfaction`, `RelationshipSatisfaction` e `WorkLifeBalance`.
+Foi construído um índice composto designado `SatisfactionIndex`, com o objetivo de sintetizar o nível global de satisfação profissional do colaborador. A literatura demonstra que a satisfação no trabalho está negativamente associada à intenção de saída, sendo relevante considerar múltiplas dimensões de satisfação de forma integrada (Tett & Meyer, 1993). Com base neste fundamento, o índice combina as quatro variáveis presentes no dataset que captam estas dimensões: `JobSatisfaction`, `EnvironmentSatisfaction`, `RelationshipSatisfaction` e `WorkLifeBalance`.
 
-Estas variáveis utilizam uma escala ordinal de quatro níveis, em que valores mais elevados correspondem a níveis superiores de satisfação. A construção do índice baseou-se na contagem da frequência de cada nível de satisfação nas quatro variáveis e na aplicação de regras de decisão que permitem classificar o nível global de satisfação do colaborador.
+Estas variáveis utilizam uma escala ordinal de quatro níveis, em que valores mais elevados correspondem a níveis superiores de satisfação. A construção do índice baseou-se na contagem da frequência de cada nível de satisfação nas quatro variáveis e na aplicação de regras de decisão que permitem classificar o nível global de satisfação do colaborador. As regras de agregação foram definidas com base na lógica ordinal das variáveis originais.
 
 O índice assume valor 4 (Muito Alto) quando existem três ou mais valores iguais a 4 e nenhuma variável apresenta valor inferior a 3. Assume valor 3 (Alto) quando existem pelo menos três valores iguais a 3 ou 4 e apenas uma variável assume valor 2. O valor 2 (Moderado) é atribuído quando existem dois ou mais valores iguais a 2 ou quando existe exatamente um valor igual a 1. Por fim, o índice assume valor 1 (Baixo) quando existem duas ou mais variáveis com valor igual a 1. Nos restantes casos, o índice assume, por defeito, o valor 2.
 
-A agregação destas variáveis permite sintetizar diferentes dimensões de satisfação organizacional numa única variável interpretável, reduzindo simultaneamente a complexidade associada à análise isolada de cada indicador psicométrico.
+A agregação destas variáveis permite sintetizar diferentes dimensões de satisfação organizacional numa única variável interpretável, reduzindo a complexidade associada à análise isolada de cada indicador.
 
 **CareerStagnation**
 
-Foi criada a variável CareerStagnation, destinada a identificar possíveis situações de estagnação na progressão profissional. O conceito de career plateau, introduzido por Ference et al. (1977), descreve o ponto a partir do qual a progressão hierárquica de um colaborador deixa de ser provável, podendo esta situação assumir uma dimensão hierárquica, quando não existem oportunidades de promoção, ou uma dimensão de conteúdo, quando o colaborador permanece na mesma função sem que as suas responsabilidades se alterem de forma significativa.
+Foi criada a variável `CareerStagnation`, destinada a identificar possíveis situações de estagnação na progressão profissional. O conceito de *career plateau*, introduzido por Ference et al. (1977), descreve o ponto a partir do qual a progressão hierárquica de um colaborador deixa de ser provável, podendo esta situação assumir uma dimensão hierárquica ou de conteúdo. Adicionalmente, Yang et al. (2019), numa revisão de 40 anos de investigação, reforçam a relevância deste fenómeno na compreensão de comportamentos organizacionais como a intenção de saída.
 
-Com base nesta conceptualização, a variável foi construída para captar simultaneamente as duas dimensões, assumindo valor 1 quando um colaborador não recebeu qualquer promoção há mais de cinco anos (YearsSinceLastPromotion > 5) e permanece na mesma função há mais de cinco anos (YearsInCurrentRole > 5). O limiar de cinco anos foi adotado com base no critério objetivo de plateau hierárquico utilizado na literatura, que operacionaliza a estagnação a partir de um período mínimo de cinco anos sem alterações significativas na posição do colaborador (Yang et al., 2019). Caso contrário, a variável assume o valor 0.
+Com base nesta conceptualização, a variável foi construída para captar simultaneamente as duas dimensões, assumindo valor 1 quando um colaborador não recebeu qualquer promoção há mais de cinco anos (`YearsSinceLastPromotion > 5`) e permanece na mesma função há mais de cinco anos (`YearsInCurrentRole > 5`). Este limiar foi definido com base em critérios frequentemente utilizados na literatura para operacionalizar situações de estagnação prolongada na carreira (Yang et al., 2019). Caso contrário, a variável assume o valor 0.
 
-Este indicador procura captar situações em que a ausência prolongada de progressão na carreira pode estar associada a níveis mais elevados de insatisfação profissional ou a uma maior propensão para a saída da organização (Ference et al., 1977).
+Este indicador procura captar situações em que a ausência prolongada de progressão na carreira pode estar associada a níveis mais elevados de insatisfação profissional e a uma maior propensão para a saída da organização (Ference et al., 1977).
 
 **IncomePerLevel**
 
-Por fim, foi criada a variável `IncomePerLevel`, que representa o rendimento mensal relativo ao nível hierárquico ocupado pelo colaborador. Este atributo foi calculado como a razão entre `MonthlyIncome` e `JobLevel`.
+Por fim, foi criada a variável `IncomePerLevel`, com o objetivo de identificar possíveis discrepâncias entre o rendimento auferido e a responsabilidade organizacional associada ao nível hierárquico do colaborador. A literatura na área da compensação sugere que práticas de remuneração podem influenciar o comportamento de saída dos colaboradores, nomeadamente quando afetam a perceção da relação entre desempenho, recompensa e reconhecimento organizacional (Pohler & Schmidt, 2016). Com base neste princípio, foi construída uma medida objetiva desta discrepância, calculada como a razão entre `MonthlyIncome` e `JobLevel`.
 
-Este indicador permite analisar a relação entre remuneração e posição hierárquica na organização, possibilitando identificar eventuais discrepâncias entre rendimento auferido e responsabilidade organizacional associada ao nível funcional.
+A operacionalização através deste rácio foi desenvolvida como uma aproximação quantitativa à relação entre remuneração e posição hierárquica.
 
 Em síntese, a introdução destas variáveis derivadas permite enriquecer o espaço de características do dataset, captando de forma mais direta dimensões relacionadas com mobilidade profissional, satisfação no trabalho, progressão na carreira e estrutura salarial. Estes indicadores adicionais contribuem para aprofundar a análise exploratória dos dados e poderão reforçar o poder explicativo dos modelos de aprendizagem automática a desenvolver nas fases subsequentes do projeto.
 
@@ -308,7 +310,7 @@ A análise foi conduzida através de uma abordagem complementar, combinando a ob
 
 Os resultados evidenciam que a variável `SatisfactionIndex` apresenta a associação mais relevante com `Attrition` (correlação ≈ -0.13). Verifica-se que colaboradores com níveis mais elevados de satisfação global tendem a apresentar menor probabilidade de abandono da organização, sendo esta diferença também visível na separação das distribuições entre as classes. Esta relação é consistente com a interpretação dos indicadores individuais de satisfação e reforça a importância desta dimensão no contexto da retenção de talento.
 
-A variável `RatioYearsInRole` apresenta igualmente uma associação negativa moderada (≈ -0.13), sugerindo que colaboradores com maior proporção do tempo passado na função atual tendem a permanecer na organização. Este resultado indica que a estabilidade funcional ou a progressão consistente dentro da organização poderá estar associada a menores níveis de rotatividade, permitindo captar padrões de mobilidade interna não diretamente observáveis nas variáveis originais.
+A variável `RatioYearsInRole` apresenta igualmente uma associação negativa moderada (≈ -0.13), sugerindo que colaboradores com maior proporção do tempo passado na função atual tendem a apresentar menor probabilidade de abandono. Este resultado pode refletir tanto padrões de estabilidade funcional como possíveis limitações na mobilidade interna, dependendo do contexto organizacional, captando assim dinâmicas que não são diretamente observáveis nas variáveis originais.
 
 Relativamente à variável `IncomePerLevel`, observa-se também uma associação negativa (≈ -0.11), evidenciando que colaboradores com menor rendimento relativo ao nível hierárquico apresentam maior propensão para abandonar a empresa. Este resultado sugere que a perceção de desajuste entre remuneração e responsabilidade poderá influenciar a decisão de saída, reforçando a relevância de políticas salariais ajustadas à estrutura organizacional.
 
@@ -362,9 +364,9 @@ O projeto segue uma abordagem baseada no modelo CRISP-DM (Cross-Industry Standar
    *  tarefa11
      
  ## 7. Referências
- 
-Ference, T. P., Stoner, J. A. F., & Warren, E. K. (1977).
-Managing the career plateau. *Academy of Management Review*.
+
+Ference, T. P., Stoner, J. A. F., & Warren, E. K. (1977).  
+*Managing the career plateau*. *Academy of Management Review*.
 
 Géron, A. (2022).  
 *Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow* (3ª ed.). O’Reilly Media.
@@ -372,10 +374,19 @@ Géron, A. (2022).
 James, G., Witten, D., Hastie, T., & Tibshirani, R. (2021).  
 *An Introduction to Statistical Learning: with Applications in R* (2ª ed.). Springer.
 
-Yang, W., Niven, K., & Johnson, S. (2019).
-Career plateau: A review of 40 years of research. *Journal of Vocational Behavior*.
+Yang, W., Niven, K., & Johnson, S. (2019).  
+*Career plateau: A review of 40 years of research*. *Journal of Vocational Behavior*.
 
-Rousseeuw, P. J., & Hubert, M. (2011).
-Robust statistics for outlier detection. *Wiley Interdisciplinary Reviews: Data Mining and Knowledge Discovery*.
+Rousseeuw, P. J., & Hubert, M. (2011).  
+*Robust statistics for outlier detection*. *Wiley Interdisciplinary Reviews: Data Mining and Knowledge Discovery*.
+
+Pohler, D., & Schmidt, J. A. (2016).  
+*Does pay-for-performance strain the employment relationship? The effect of manager bonus eligibility on nonmanagement employee turnover*. *Personnel Psychology*.
+
+Dalton, D. R., & Todor, W. D. (1987).  
+*The attenuating effects of internal mobility on employee turnover: Multiple field assessments*. *Journal of Management*.
+
+Tett, R. P., & Meyer, J. P. (1993).  
+*Job satisfaction, organizational commitment, turnover intention, and turnover: Path analyses based on meta-analytic findings*. *Personnel Psychology*.
  
-*Data de última atualização: 20/03/2026*
+*Data de última atualização: 23/03/2026*
