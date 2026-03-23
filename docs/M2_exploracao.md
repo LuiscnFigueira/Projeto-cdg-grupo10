@@ -331,20 +331,25 @@ para avançar para a modelação?*
  --- 
 
  ## 6. Metodologia de Gestão (PBL) 
-O projeto segue uma abordagem baseada no modelo CRISP-DM (Cross-Industry Standard Process for Data Mining), que estrutura o desenvolvimento em seis fases principais: compreensão do problema, compreensão dos dados, preparação dos dados, modelação, avaliação e implementação. Embora estas fases tenham uma ordem lógica, o processo é iterativo e permite regressar a fases anteriores sempre que necessário. Esta metodologia assegura uma abordagem estruturada, sistemática e rigorosa ao desenvolvimento de projetos de Ciência de Dados.
+O projeto segue uma abordagem baseada no modelo CRISP-DM (Cross-Industry Standard Process for Data Mining), que estrutura o desenvolvimento em seis fases principais: compreensão do problema, compreensão dos dados, preparação dos dados, modelação, avaliação e implementação.
+
+Na presente fase - Milestone 2 (Exploração dos Dados) - o foco incidiu essencialmente nas etapas de Data Understanding e Data Preparation, com o objetivo de analisar a qualidade dos dados, identificar padrões relevantes e preparar o dataset para fases posteriores de modelação.
+
+Embora o processo siga uma lógica sequencial, manteve-se uma abordagem iterativa, permitindo revisitar etapas anteriores sempre que necessário, nomeadamente na validação de variáveis e interpretação de resultados.
 
 **Divisão de Tarefas:** 
 
  **Luís Figueira:** 
    *  tarefa1
-   *  tarefa2
+   *  Criação de novas variáveis (feature engineering)
    *  tarefa3
     
  **Martim Ferreira:**
-   *  Análise da qualidade dos dados e limpeza
-   *  Análise da correlação das variáveis com a variável alvo
-   *  tarefa4
-  
+   *  Análise da qualidade dos dados (valores em falta, consistência e validação lógica)
+   *  Deteção e análise de outliers
+   *  Análise da correlação entre variáveis e a variável alvo (`Attrition`)
+   *  Avaliação do impacto das novas variáveis
+
  **Mateus Afonso:** 
   *  tarefa5
   *  tarefa6
