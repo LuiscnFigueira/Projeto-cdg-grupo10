@@ -35,17 +35,17 @@ Deste modo, nas fases subsequentes do projeto serão adotadas estratégias adequ
 
 Nesta fase de análise bivariada, utilizámos gráficos de dispersão (*scatter plots*) para cruzar os atributos do *dataset* diretamente com a variável alvo `Attrition`, com o objetivo de identificar os principais preditores de rotatividade. Estas observações visuais são suportadas pelos valores matemáticos retirados do nosso gráfico de **Correlação das Variáveis com Attrition** (`CorrelaçãoVariávelAlvo.png`). Aplicámos um nível de transparência aos pontos do gráfico para revelar a densidade de colaboradores em cada eixo categórico ("Yes" / "No").
 
-* **Atributo Idade (`Age`) vs. Variável Alvo (`Attrition`):** Notámos que a idade apresenta uma forte relação com a probabilidade de saída (com uma correlação de **-0.16**). Observando o *scatter plot*, a densidade de pontos na classe "Yes" (abandono) está claramente concentrada na faixa etária mais jovem (entre os 20 e os 35 anos). Por outro lado, a linha correspondente aos colaboradores que permanecem ("No") apresenta uma distribuição muito mais vasta e contínua ao longo de todas as idades, indicando que a retenção é superior em faixas etárias mais maduras.
+* **Atributo Idade (`Age`) vs. Variável Alvo (`Attrition`):** Notámos que a idade apresenta uma forte relação com a probabilidade de saída (com uma correlação de **-0.16**). Observando os *scatter plots*, especialmente quando cruzamos a idade com o salário (ver **Figura 1**) ou com a experiência (ver **Figura 2**), a densidade de pontos vermelhos na classe "Yes" (abandono) está claramente concentrada na faixa etária mais jovem (entre os 20 e os 35 anos). Por outro lado, a área correspondente aos colaboradores que permanecem ("No") apresenta uma distribuição muito mais vasta e contínua ao longo de todas as idades, indicando que a retenção é superior em faixas etárias mais maduras.
 
-* **Atributo Rendimento Mensal (`MonthlyIncome`) vs. Variável Alvo (`Attrition`):** O fator financeiro está fortemente ligado à saída de colaboradores, apresentando igualmente uma correlação de **-0.16**. No gráfico de dispersão, a esmagadora maioria dos pontos de `Attrition` ("Yes") aglomera-se de forma densa no limite inferior do eixo X (salários mais baixos). À medida que o rendimento mensal aumenta, a presença de pontos na classe "Yes" torna-se cada vez mais rara, confirmando que pacotes salariais superiores atuam como um forte mecanismo de retenção.
+* **Atributo Rendimento Mensal (`MonthlyIncome`) vs. Variável Alvo (`Attrition`):** O fator financeiro está fortemente ligado à saída de colaboradores, apresentando igualmente uma correlação de **-0.16**. Nos gráficos de dispersão (ver **Figura 1** e **Figura 3**), a esmagadora maioria dos pontos de `Attrition` ("Yes") aglomera-se de forma densa no limite inferior do eixo dos salários mais baixos. À medida que o rendimento mensal aumenta, a presença de pontos na classe "Yes" torna-se cada vez mais rara, confirmando que pacotes salariais superiores atuam como um forte mecanismo de retenção.
 
-* **Atributo Experiência Total (`TotalWorkingYears`) vs. Variável Alvo (`Attrition`):** Notámos que a senioridade e o tempo de carreira estão intimamente ligados à retenção, sendo a variável numérica com a correlação negativa mais forte (**-0.17**). Observando o *scatter plot*, a grande mancha de densidade de abandonos ("Yes") concentra-se nos colaboradores com menos de 10 anos de experiência total. Em contrapartida, profissionais com carreiras mais longas (especialmente acima dos 15-20 anos) apresentam uma dispersão residual na linha de saída, provando que a consolidação da carreira reduz drasticamente a rotatividade.
+* **Atributo Experiência Total (`TotalWorkingYears`) vs. Variável Alvo (`Attrition`):** Notámos que a senioridade e o tempo de carreira estão intimamente ligados à retenção, sendo a variável numérica com a correlação negativa mais forte (**-0.17**). Observando a intersecção da experiência com o rendimento (ver **Figura 3**), a grande mancha de densidade de abandonos ("Yes") concentra-se nos colaboradores com menos de 10 anos de experiência total. Em contrapartida, profissionais com carreiras mais longas (especialmente acima dos 15-20 anos) apresentam uma dispersão residual na linha de saída, provando que a consolidação da carreira reduz drasticamente a rotatividade.
 
-![Age vs Monthly Income](figures/ScatterPlotsAgevsMonthlyIncome.png)
+**Gráficos de Suporte:**
 
-![Age vs Total Working Years](figures/ScatterPlotsAgevsTotalWorkingYears.png)
-
-![Total Working Years vs Monthly Income](figures/ScatterPlotsTotalWorkingYearsvsMonthlyIncome.png)
+* **Figura 1:** Idade vs. Rendimento Mensal (`ScatterPlotsAgevsMonthlyIncome.png`)
+* **Figura 2:** Idade vs. Experiência Total (`ScatterPlotsAgevsTotalWorkingYears.png`)
+* **Figura 3:** Experiência Total vs. Rendimento Mensal (`ScatterPlotsTotalWorkingYearsvsMonthlyIncome.png`))
 
 ### 1.3 Matriz de Correlação (Heatmap)
 
