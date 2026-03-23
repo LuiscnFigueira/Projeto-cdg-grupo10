@@ -17,41 +17,50 @@ A estrutura deste projeto segue as boas práticas de Ciência de Dados e Engenha
 
 Este projeto aplica metodologias de Ciência de Dados ao problema da rotatividade de colaboradores (Employee Attrition) no contexto de HR Analytics. A retenção de talento constitui um desafio estratégico para organizações modernas, com impacto direto nos custos operacionais, produtividade e sustentabilidade organizacional.
 
-Com base no dataset IBM HR Analytics Employee Attrition & Performance (1470 colaboradores, 35 variáveis), o objetivo consiste em analisar os fatores associados ao atrito (`attrition`) e desenvolver modelos preditivos capazes de estimar o risco de saída de colaboradores.
+Com base no dataset IBM HR Analytics Employee Attrition & Performance (1470 colaboradores, 35 variáveis), o objetivo consiste em analisar os fatores associados ao atrito (`Attrition`) e desenvolver modelos preditivos capazes de estimar o risco de saída de colaboradores.
 
 O projeto segue a metodologia CRISP-DM e encontra-se estruturado em quatro milestones: iniciação, exploração, modelação e finalização.
 
 ### Objetivos do Projeto (SMART)
-* **Objetivo 1:** Desenvolver um modelo de classificação supervisionado para prever o atrito (`attrition`), alcançando um F1-Score mínimo de 0,80 em validação cruzada estratificada (k=5), até ao dia 21/04/2026 (Milestone 3).
-* **Objetivo 2:** Construir um índice de risco de atrito (`attrition`) baseado nas probabilidades previstas pelo modelo, classificando os colaboradores em categorias de baixo risco (<30%), médio risco (30–60%) e alto risco (>60%), até ao dia 21/04/2026.
+* **Objetivo 1:** Desenvolver um modelo de classificação supervisionado para prever o atrito (`Attrition`), alcançando um F1-Score mínimo de 0,80 em validação cruzada estratificada (k=5), até ao dia 21/04/2026 (Milestone 3).
+* **Objetivo 2:** Construir um índice de risco de atrito (`Attrition`) baseado nas probabilidades previstas pelo modelo, classificando os colaboradores em categorias de baixo risco (<30%), médio risco (30–60%) e alto risco (>60%), até ao dia 21/04/2026.
 * **Objetivo 3:** Aplicar técnicas de clustering não supervisionado para identificar e caracterizar perfis distintos de colaboradores com base nas variáveis relevantes do dataset, determinando o número ótimo de agrupamentos (clusters) através do método do cotovelo e do Silhouette Score, garantindo um valor médio de Silhouette superior a 0,50, e descrevendo estatisticamente cada perfil identificado, até ao dia 21/04/2026.
 ### Perguntas de Investigação
 
-As perguntas de investigação estruturam o enquadramento científico do estudo, orientando a análise empírica dos dados com o objetivo de identificar os principais determinantes do atrito (`attrition`), avaliar a sua relevância estatística e preditiva e verificar a viabilidade de desenvolver modelos capazes de prever este fenómeno de forma fiável.
+As perguntas de investigação estruturam o enquadramento científico do estudo, orientando a análise empírica dos dados com o objetivo de identificar os principais determinantes do atrito (`Attrition`), avaliar a sua relevância estatística e preditiva e verificar a viabilidade de desenvolver modelos capazes de prever este fenómeno de forma fiável.
 
-**1.** Quais são as variáveis com maior poder explicativo e preditivo do atrito (`attrition`) dos colaboradores?
+**1.** Quais são as variáveis com maior poder explicativo e preditivo do atrito (`Attrition`) dos colaboradores?
 
-**2.** Existe uma associação estatisticamente significativa entre a realização de horas extraordinárias (`OverTime`) e a probabilidade de atrito (`attrition`)?
+**2.** Existe uma associação estatisticamente significativa entre a realização de horas extraordinárias (`OverTime`) e a probabilidade de atrito (`Attrition`)?
 
-**3.** O nível de satisfação no trabalho (`JobSatisfaction`) e o equilíbrio entre vida pessoal e profissional (`WorkLifeBalance`) influenciam significativamente o risco de atrito (`attrition`)?
+**3.** O nível de satisfação no trabalho (`JobSatisfaction`) e o equilíbrio entre vida pessoal e profissional (`WorkLifeBalance`) influenciam significativamente o risco de atrito (`Attrition`)?
 
-**4.** O rendimento mensal (`MonthlyIncome`) tem impacto significativo na probabilidade de atrito (`attrition`), mesmo após controlo multivariável?
+**4.** O rendimento mensal (`MonthlyIncome`) tem impacto significativo na probabilidade de atrito (`Attrition`), mesmo após controlo multivariável?
 
-**5.** Qual dos algoritmos de classificação testados apresenta melhor desempenho e maior estabilidade na previsão do atrito (`attrition`)?
+**5.** Qual dos algoritmos de classificação testados apresenta melhor desempenho e maior estabilidade na previsão do atrito (`Attrition`)?
 
 **6.** O desequilíbrio da variável alvo influencia o desempenho dos modelos preditivos e pode ser mitigado através da aplicação da técnica SMOTE?
 
-**7.** É possível construir um índice de risco de atrito (`attrition`) interpretável e fiável que permita classificar os colaboradores de acordo com o seu nível de risco?
+**7.** É possível construir um índice de risco de atrito (`Attrition`) interpretável e fiável que permita classificar os colaboradores de acordo com o seu nível de risco?
 
-**8.** Que fatores distinguem os colaboradores com maior risco de atrito (`attrition`) dos restantes, e como podem ser utilizados para apoiar estratégias de retenção?
+**8.** Que fatores distinguem os colaboradores com maior risco de atrito (`Attrition`) dos restantes, e como podem ser utilizados para apoiar estratégias de retenção?
 
 ## 2. Exploração (Milestone 2)
 ### Limpeza e Preparação
-* [Breve resumo das ações de limpeza tomadas. Detalhes em `docs/M2_exploracao.md`]
+
+Foi realizada uma análise da qualidade dos dados com o objetivo de garantir a consistência e fiabilidade do dataset antes da modelação.
+
+* Valores em falta: Não foram identificados valores nulos, não sendo necessária a aplicação de técnicas de imputação ou remoção de observações.
+* Outliers: Foram detetados valores extremos em várias variáveis numéricas através do método IQR. No entanto, estes valores foram considerados plausíveis no contexto organizacional, tendo-se optado por não remover observações, de forma a preservar a representatividade dos dados.
+* Consistência dos dados: Foi validada a coerência entre variáveis relacionadas com experiência profissional e idade, não tendo sido identificadas inconsistências lógicas. A estrutura salarial revelou-se consistente com os níveis hierárquicos.
+
+De forma geral, o dataset apresenta boa qualidade e consistência, permitindo avançar para as etapas de transformação e modelação sem necessidade de intervenções corretivas significativas.
+
 ### Principais Conclusões (EDA)
 > *Dica: Insere aqui o gráfico mais importante do projeto.*
 * **Ponto-chave:** [Ex: Identificámos que o fator X influencia em 40% o resultado Y, por aplicação
 do método ganho de informação]
+
 ## 3. Modelação (Milestone 3)
 ### Abordagem Técnica
 * **Modelos:** [Ex: Random Forest e XGBoost]
