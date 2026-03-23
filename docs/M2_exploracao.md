@@ -35,43 +35,35 @@ Deste modo, nas fases subsequentes do projeto serão adotadas estratégias adequ
 
 Nesta fase de análise bivariada, utilizámos gráficos de dispersão (*scatter plots*) para cruzar os atributos do *dataset* diretamente com a variável alvo `Attrition`, com o objetivo de identificar os principais preditores de rotatividade. Estas observações visuais são suportadas pelos valores matemáticos retirados do nosso gráfico de **Correlação das Variáveis com Attrition** (`CorrelaçãoVariávelAlvo.png`). Aplicámos um nível de transparência aos pontos do gráfico para revelar a densidade de colaboradores em cada eixo categórico ("Yes" / "No").
 
-* **Atributo Idade (`Age`) vs. Variável Alvo (`Attrition`):** Notámos que a idade apresenta uma forte relação com a probabilidade de saída (com uma correlação de **-0.16**). Observando os *scatter plots*, especialmente quando cruzamos a idade com o salário (ver **Figura 1**) ou com a experiência (ver **Figura 2**), a densidade de pontos vermelhos na classe "Yes" (abandono) está claramente concentrada na faixa etária mais jovem (entre os 20 e os 35 anos). Por outro lado, a área correspondente aos colaboradores que permanecem ("No") apresenta uma distribuição muito mais vasta e contínua ao longo de todas as idades, indicando que a retenção é superior em faixas etárias mais maduras.
+* **Atributo Idade (`Age`) vs. Variável Alvo (`Attrition`):** Notámos que a idade apresenta uma forte relação com a probabilidade de saída (com uma correlação de -0.16). Observando os *scatter plots*, especialmente quando cruzamos a idade com o salário (ver `ScatterPlotsAgevsMonthlyIncome.png`) ou com a experiência (ver `ScatterPlotsAgevsTotalWorkingYears.png`), a densidade de pontos vermelhos na classe "Yes" (abandono) está claramente concentrada na faixa etária mais jovem (entre os 20 e os 35 anos). Por outro lado, a área correspondente aos colaboradores que permanecem ("No") apresenta uma distribuição muito mais vasta e contínua ao longo de todas as idades, indicando que a retenção é superior em faixas etárias mais maduras.
 
-* **Atributo Rendimento Mensal (`MonthlyIncome`) vs. Variável Alvo (`Attrition`):** O fator financeiro está fortemente ligado à saída de colaboradores, apresentando igualmente uma correlação de **-0.16**. Nos gráficos de dispersão (ver **Figura 1** e **Figura 3**), a esmagadora maioria dos pontos de `Attrition` ("Yes") aglomera-se de forma densa no limite inferior do eixo dos salários mais baixos. À medida que o rendimento mensal aumenta, a presença de pontos na classe "Yes" torna-se cada vez mais rara, confirmando que pacotes salariais superiores atuam como um forte mecanismo de retenção.
+* **Atributo Rendimento Mensal (`MonthlyIncome`) vs. Variável Alvo (`Attrition`):** O fator financeiro está fortemente ligado à saída de colaboradores, apresentando igualmente uma correlação de -0.16. Nos gráficos de dispersão (ver `ScatterPlotsAgevsMonthlyIncome.png` e `ScatterPlotsTotalWorkingYearsvsMonthlyIncome.png`), a esmagadora maioria dos pontos de `Attrition` ("Yes") aglomera-se de forma densa no limite inferior do eixo dos salários mais baixos. À medida que o rendimento mensal aumenta, a presença de pontos na classe "Yes" torna-se cada vez mais rara, confirmando que pacotes salariais superiores atuam como um forte mecanismo de retenção.
 
-* **Atributo Experiência Total (`TotalWorkingYears`) vs. Variável Alvo (`Attrition`):** Notámos que a senioridade e o tempo de carreira estão intimamente ligados à retenção, sendo a variável numérica com a correlação negativa mais forte (**-0.17**). Observando a intersecção da experiência com o rendimento (ver **Figura 3**), a grande mancha de densidade de abandonos ("Yes") concentra-se nos colaboradores com menos de 10 anos de experiência total. Em contrapartida, profissionais com carreiras mais longas (especialmente acima dos 15-20 anos) apresentam uma dispersão residual na linha de saída, provando que a consolidação da carreira reduz drasticamente a rotatividade.
-
-**Gráficos de Suporte:**
-
-* **Figura 1:** Idade vs. Rendimento Mensal (`ScatterPlotsAgevsMonthlyIncome.png`)
-* **Figura 2:** Idade vs. Experiência Total (`ScatterPlotsAgevsTotalWorkingYears.png`)
-* **Figura 3:** Experiência Total vs. Rendimento Mensal (`ScatterPlotsTotalWorkingYearsvsMonthlyIncome.png`))
+* **Atributo Experiência Total (`TotalWorkingYears`) vs. Variável Alvo (`Attrition`):** Notámos que a senioridade e o tempo de carreira estão intimamente ligados à retenção, sendo a variável numérica com a correlação negativa mais forte (-0.17). Observando a intersecção da experiência com o rendimento (ver `ScatterPlotsTotalWorkingYearsvsMonthlyIncome.png`), a grande mancha de densidade de abandonos ("Yes") concentra-se nos colaboradores com menos de 10 anos de experiência total. Em contrapartida, profissionais com carreiras mais longas (especialmente acima dos 15-20 anos) apresentam uma dispersão residual na linha de saída, provando que a consolidação da carreira reduz drasticamente a rotatividade.
 
 ### 1.3 Matriz de Correlação (Heatmap)
 
 Foi gerada uma matriz de correlação para as variáveis numéricas, com o objetivo de identificar relações lineares relevantes e potenciais situações de multicolinearidade. A análise visual do *heatmap* (ver `HeatmapVariaveisNumeric.png`) evidenciou três padrões principais:
 
-* Observou-se uma correlação muito elevada entre `JobLevel` e `MonthlyIncome` (≈ 0.95), sugerindo redundância informacional entre progressão hierárquica e remuneração.
+Observou-se uma correlação muito elevada entre `JobLevel` e `MonthlyIncome` (≈ 0.95), sugerindo redundância informacional entre progressão hierárquica e remuneração.
 
-* Verificou-se um conjunto de variáveis relacionadas com antiguidade na empresa com correlações elevadas, nomeadamente `YearsAtCompany` com `YearsInCurrentRole` (≈ 0.76) e com `YearsWithCurrManager` (≈ 0.77), indicando sobreposição na medição de estabilidade/tenure.
+Verificou-se um conjunto de variáveis relacionadas com antiguidade na empresa com correlações elevadas, nomeadamente `YearsAtCompany` com `YearsInCurrentRole` (≈ 0.76) e com `YearsWithCurrManager` (≈ 0.77), indicando sobreposição na medição de estabilidade/tenure.
 
-* Relativamente à variável-alvo (`Attrition_bin`), a associação linear mais evidente ocorre com `OverTime_bin` (≈ 0.25). Adicionalmente, `Age`, `MonthlyIncome`, `JobLevel` e `TotalWorkingYears` apresentam correlações negativas moderadas (≈ -0.16 a -0.17), sugerindo maior probabilidade de saída em colaboradores mais jovens e em níveis salariais/hierárquicos mais baixos.
+Relativamente à variável-alvo (`Attrition_bin`), a associação linear mais evidente ocorre com `OverTime_bin` (≈ 0.25). Adicionalmente, `Age`, `MonthlyIncome`, `JobLevel` e `TotalWorkingYears` apresentam correlações negativas moderadas (≈ -0.16 a -0.17), sugerindo maior probabilidade de saída em colaboradores mais jovens e em níveis salariais/hierárquicos mais baixos.
 
 Estes resultados serão considerados na fase de modelação, particularmente na seleção de atributos e na mitigação de multicolinearidade. Importa referir que correlação não implica causalidade, representando apenas associações lineares observadas nos dados.
 
- ### 1.4 Análise da Correlação com a Variável Alvo
+### 1.4 Análise da Correlação com a Variável Alvo
 
-Para compreender quais variáveis apresentam maior associação com a saída de colaboradores, foi analisada a correlação entre os atributos numéricos e a variável alvo `Attrition_bin`.
+Para compreender quais variáveis apresentam maior associação com a saída de colaboradores, foi analisada a correlação entre os atributos numéricos e a variável alvo `Attrition_bin` (ver `CorrelaçãoVariávelAlvo.png`).
 
-Os resultados evidenciam que `OverTime_bin` apresenta a maior correlação positiva (≈ 0.25), sugerindo que colaboradores que realizam horas extraordinárias apresentam maior probabilidade de abandonar a organização. Também se observa uma correlação positiva moderada em `DistanceFromHome`, indicando que colaboradores que vivem mais afastados podem ter maior propensão para saída.
+Os resultados evidenciam que `OverTime_bin` apresenta a maior correlação positiva (≈ 0.25), sugerindo que colaboradores que realizam horas extraordinárias apresentam maior probabilidade de abandonar a organização. Também se observa uma correlação positiva em `DistanceFromHome`, indicando que colaboradores que vivem mais afastados podem ter maior propensão para saída.
 
 Por outro lado, variáveis relacionadas com experiência profissional e progressão na carreira apresentam correlação negativa moderada com a variável alvo, incluindo `TotalWorkingYears`, `JobLevel`, `MonthlyIncome`, `Age` e `YearsInCurrentRole`. Este padrão sugere que colaboradores mais experientes, com maior remuneração ou posição hierárquica mais elevada tendem a permanecer na organização.
 
 Por fim, algumas variáveis apresentam correlação praticamente nula com a saída, como `PerformanceRating`, `PercentSalaryHike` e `HourlyRate`, indicando que estes fatores não parecem influenciar diretamente a decisão de abandono.
 
-Importa salientar que correlação mede apenas associações lineares e não implica causalidade.
-
-Estes resultados sugerem que fatores relacionados com carga de trabalho, progressão na carreira e remuneração desempenham um papel relevante na retenção de talento.
+Importa salientar que correlação mede apenas associações lineares e não implica causalidade. Estes resultados sugerem que fatores relacionados com carga de trabalho, progressão na carreira e remuneração desempenham um papel relevante na retenção de talento.
 
 ### 1.5 Conclusões Visuais da Análise Bivariada
 
