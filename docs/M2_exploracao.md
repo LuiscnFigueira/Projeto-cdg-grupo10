@@ -316,7 +316,7 @@ Relativamente à variável `IncomePerLevel`, observa-se também uma associação
 
 Por outro lado, a variável `CareerStagnation` apresenta uma correlação praticamente nula com a variável alvo (≈ -0.01), não evidenciando qualquer relação estatisticamente relevante com o atrito. Este resultado sugere que a forma como a variável foi definida poderá não capturar adequadamente o fenómeno de estagnação na carreira, ou que este fator, isoladamente, não tem um impacto significativo na decisão de abandono no contexto do dataset analisado.
 
-De forma global, as novas variáveis — em particular `SatisfactionIndex`, `RatioYearsInRole` e `IncomePerLevel` — demonstram capacidade para captar dimensões relevantes do comportamento organizacional, contribuindo para enriquecer o conjunto de atributos disponíveis. Estas variáveis apresentam potencial para melhorar a capacidade preditiva dos modelos a desenvolver nas fases subsequentes do projeto.
+De forma global, as novas variáveis - em particular `SatisfactionIndex`, `RatioYearsInRole` e `IncomePerLevel` - demonstram capacidade para captar dimensões relevantes do comportamento organizacional, contribuindo para enriquecer o conjunto de atributos disponíveis. Estas variáveis apresentam potencial para melhorar a capacidade preditiva dos modelos a desenvolver nas fases subsequentes do projeto.
 
 ## 4. Dicionário de Dados Final (Pós-Processamento) 
 *Listagem final das variáveis que serão entregues ao modelo na Fase 3. - por confirmar no fim da análise exploratória* 
@@ -328,8 +328,8 @@ De forma global, as novas variáveis — em particular `SatisfactionIndex`, `Rat
 | OverTime_bin | Categórica binária | {0,1} | 1 = Realiza horas extraordinárias<br>0 = Não realiza horas extra | Codificação binária da variável OverTime. | Condições de trabalho |
 | Gender_bin | Categórica binária | {0,1} | 1 = Homem<br>0 = Mulher | Codificação binária da variável Gender. | Demográfica |
 | CareerStagnation | Categórica binária | {0,1} | 1 = Estagnação de carreira<br>0 = Progressão normal | Assume valor 1 quando YearsSinceLastPromotion > 5 e YearsInCurrentRole > 5; caso contrário assume 0. | Progressão profissional |
-| IncomePerLevel | Numérica contínua | ℝ⁺ | — | Rácio entre MonthlyIncome e JobLevel, representando o rendimento relativo ao nível hierárquico. | Compensação |
-| RatioYearsInRole | Numérica contínua | [0,1] | — | Proporção entre YearsInCurrentRole e YearsAtCompany; assume 0 quando YearsAtCompany = 0 para evitar divisão por zero. | Mobilidade organizacional |
+| IncomePerLevel | Numérica contínua | ℝ⁺ | - | Rácio entre MonthlyIncome e JobLevel, representando o rendimento relativo ao nível hierárquico. | Compensação |
+| RatioYearsInRole | Numérica contínua | [0,1] | - | Proporção entre YearsInCurrentRole e YearsAtCompany; assume 0 quando YearsAtCompany = 0 para evitar divisão por zero. | Mobilidade organizacional |
 | SatisfactionIndex | Categórica ordinal | {1,2,3,4} | 1 Baixo<br>2 Moderado<br>3 Alto<br>4 Muito Alto | Índice composto construído a partir de JobSatisfaction, EnvironmentSatisfaction, RelationshipSatisfaction e WorkLifeBalance. | Psicométrica |
  
 ## 5. Conclusões da Fase de Exploração 
