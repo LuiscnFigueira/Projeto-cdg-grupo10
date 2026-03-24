@@ -19,19 +19,19 @@ Deste modo, nas fases subsequentes do projeto serão adotadas estratégias adequ
  
 ### 1.2. Correlações Relevantes
 
-Nesta fase de análise bivariada, utilizámos gráficos de dispersão (*scatter plots*) para cruzar os atributos do *dataset* diretamente com a variável alvo `Attrition`, com o objetivo de identificar os principais preditores de rotatividade. Estas observações visuais são suportadas pelos valores matemáticos retirados do nosso gráfico de Correlação das Variáveis com Attrition (`CorrelaçãoVariávelAlvo.png`). Aplicámos um nível de transparência aos pontos do gráfico para revelar a densidade de colaboradores em cada eixo categórico ("Yes" / "No").
+Nesta fase de análise bivariada, utilizámos gráficos de dispersão (*scatter plots*) para cruzar os atributos do *dataset* diretamente com a variável alvo `Attrition`, com o objetivo de identificar os principais preditores de rotatividade. Estas observações visuais são suportadas pelos valores matemáticos retirados do nosso gráfico de Correlação das Variáveis com Attrition (`CorrelaçãoVariávelAlvo.png`). Aplicámos um nível de transparência aos pontos do gráfico para revelar a densidade de colaboradores em cada eixo categórico ((Yes) / (No)).
 
 **Atributo Idade (`Age`) vs. Variável Alvo (`Attrition`)**
 
-Notámos que a idade apresenta uma forte relação com a probabilidade de saída (com uma correlação de -0.16). Observando os *scatter plots*, especialmente quando cruzamos a idade com o salário (ver `ScatterPlotsAgevsMonthlyIncome.png`) ou com a experiência (ver `ScatterPlotsAgevsTotalWorkingYears.png`), a densidade de pontos vermelhos na classe "Yes" (abandono) está claramente concentrada na faixa etária mais jovem (entre os 20 e os 35 anos). Por outro lado, a área correspondente aos colaboradores que permanecem ("No") apresenta uma distribuição muito mais vasta e contínua ao longo de todas as idades, indicando que a retenção é superior em faixas etárias mais maduras.
+Notámos que a idade apresenta uma forte relação com a probabilidade de saída (com uma correlação de -0.16). Observando os *scatter plots*, especialmente quando cruzamos a idade com o salário (ver `ScatterPlotsAgevsMonthlyIncome.png`) ou com a experiência (ver `ScatterPlotsAgevsTotalWorkingYears.png`), a densidade de pontos vermelhos na classe (Yes) (abandono) está claramente concentrada na faixa etária mais jovem (entre os 20 e os 35 anos). Por outro lado, a área correspondente aos colaboradores que permanecem (No) apresenta uma distribuição muito mais vasta e contínua ao longo de todas as idades, indicando que a retenção é superior em faixas etárias mais maduras.
 
 **Atributo Rendimento Mensal (`MonthlyIncome`) vs. Variável Alvo (`Attrition`)** 
 
-O fator financeiro está fortemente ligado à saída de colaboradores, apresentando igualmente uma correlação de -0.16. Nos gráficos de dispersão (ver `ScatterPlotsAgevsMonthlyIncome.png` e `ScatterPlotsTotalWorkingYearsvsMonthlyIncome.png`), a esmagadora maioria dos pontos de `Attrition` ("Yes") aglomera-se de forma densa no limite inferior do eixo dos salários mais baixos. À medida que o rendimento mensal aumenta, a presença de pontos na classe "Yes" torna-se cada vez mais rara, confirmando que pacotes salariais superiores atuam como um forte mecanismo de retenção.
+O fator financeiro está fortemente ligado à saída de colaboradores, apresentando igualmente uma correlação de -0.16. Nos gráficos de dispersão (ver `ScatterPlotsAgevsMonthlyIncome.png` e `ScatterPlotsTotalWorkingYearsvsMonthlyIncome.png`), a esmagadora maioria dos pontos de `Attrition` (Yes) aglomera-se de forma densa no limite inferior do eixo dos salários mais baixos. À medida que o rendimento mensal aumenta, a presença de pontos na classe (Yes) torna-se cada vez mais rara, confirmando que pacotes salariais superiores atuam como um forte mecanismo de retenção.
 
 **Atributo Experiência Total (`TotalWorkingYears`) vs. Variável Alvo (`Attrition`)** 
 
-Notámos que a senioridade e o tempo de carreira estão intimamente ligados à retenção, sendo a variável numérica com a correlação negativa mais forte (-0.17). Observando a intersecção da experiência com o rendimento (ver `ScatterPlotsTotalWorkingYearsvsMonthlyIncome.png`), a grande mancha de densidade de abandonos ("Yes") concentra-se nos colaboradores com menos de 10 anos de experiência total. Em contrapartida, profissionais com carreiras mais longas (especialmente acima dos 15-20 anos) apresentam uma dispersão residual na linha de saída, provando que a consolidação da carreira reduz drasticamente a rotatividade.
+Notámos que a senioridade e o tempo de carreira estão intimamente ligados à retenção, sendo a variável numérica com a correlação negativa mais forte (-0.17). Observando a intersecção da experiência com o rendimento (ver `ScatterPlotsTotalWorkingYearsvsMonthlyIncome.png`), a grande mancha de densidade de abandonos ((Yes)) concentra-se nos colaboradores com menos de 10 anos de experiência total. Em contrapartida, profissionais com carreiras mais longas (especialmente acima dos 15-20 anos) apresentam uma dispersão residual na linha de saída, provando que a consolidação da carreira reduz drasticamente a rotatividade.
 
 ### 1.3 Matriz de Correlação (Heatmap)
 
@@ -89,7 +89,7 @@ No conjunto, verifica-se que as variáveis relacionadas com remuneração, progr
 
 A análise das variáveis categóricas foi realizada através de gráficos de frequência, permitindo compreender a composição estrutural da força de trabalho representada no dataset. Tal como na análise das variáveis numéricas, optou-se por interpretar os padrões de forma agregada, agrupando variáveis com comportamentos semelhantes para facilitar a leitura e evitar descrições repetitivas.
 
-Relativamente à variável alvo `Attrition`, observa-se um claro desequilíbrio entre classes, com predominância de colaboradores que permanecem na organização (`No`) face aos que abandonam a empresa (`Yes`). Este padrão confirma a presença de desbalanceamento de classes (`class imbalance`), um fator relevante que deverá ser considerado na fase de modelação.
+Relativamente à variável alvo `Attrition`, observa-se um claro desequilíbrio entre classes, com predominância de colaboradores que permanecem na organização (No) face aos que abandonam a empresa (Yes). Este padrão confirma a presença de desbalanceamento de classes (`class imbalance`), um fator relevante que deverá ser considerado na fase de modelação.
 
 No que diz respeito à mobilidade profissional, a variável `BusinessTravel` apresenta uma forte concentração na categoria `Travel_Rarely`, indicando que a maioria dos colaboradores realiza deslocações profissionais apenas ocasionalmente.
 
@@ -313,7 +313,7 @@ Para consolidar todas as modificações realizadas durante a fase de preparaçã
 
 O conjunto de dados original foi expandido e enriquecido através de três abordagens metodológicas distintas:
 
-Primeiramente, a codificação binária foi aplicada às variáveis dicotómicas originais, tais como `Attrition`, `OverTime` e `Gender`. Este processo consistiu na tradução direta de texto (por exemplo, "Yes"/"No" ou "Male"/"Female") para uma linguagem numérica de 1 e 0. Desta forma, garantiu-se que a informação original permanecesse intacta, tornando-se, contudo, perfeitamente legível para os algoritmos de modelação.
+Primeiramente, a codificação binária foi aplicada às variáveis dicotómicas originais, tais como `Attrition`, `OverTime` e `Gender`. Este processo consistiu na tradução direta de texto (por exemplo, (Yes)/(No) ou "Male"/"Female") para uma linguagem numérica de 1 e 0. Desta forma, garantiu-se que a informação original permanecesse intacta, tornando-se, contudo, perfeitamente legível para os algoritmos de modelação.
 
 Em segundo lugar, recorreu-se à engenharia de atributos (*Feature Engineering*) para a criação de variáveis inteiramente novas. Esta etapa envolveu a combinação matemática ou lógica de atributos já existentes, resultando em novas *features* de alto valor analítico, como o `IncomePerLevel`, a `CareerStagnation`, o `RatioYearsInRole` e o `SatisfactionIndex`. O principal objetivo desta abordagem foi extrair um conhecimento de negócio mais profundo e revelar métricas complexas de comportamento, como a mobilidade interna do colaborador ou índices psicométricos compostos de satisfação, que não se encontravam explícitas nos dados originais.
 
@@ -430,5 +430,8 @@ Dalton, D. R., & Todor, W. D. (1987).
 
 Tett, R. P., & Meyer, J. P. (1993).  
 *Job satisfaction, organizational commitment, turnover intention, and turnover: Path analyses based on meta-analytic findings*. *Personnel Psychology*.
+
+Hom, P. W., Lee, T. W., Shaw, J. D., & Hausknecht, J. P. (2017).  
+*One hundred years of employee turnover theory and research*. *Journal of Applied Psychology*.
  
 *Data de última atualização: 24/03/2026*
