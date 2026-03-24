@@ -46,20 +46,33 @@ As perguntas de investigação estruturam o enquadramento científico do estudo,
 **8.** Que fatores distinguem os colaboradores com maior risco de atrito (`Attrition`) dos restantes, e como podem ser utilizados para apoiar estratégias de retenção?
 
 ## 2. Exploração (Milestone 2)
+
 ### Limpeza e Preparação
 
 Foi realizada uma análise da qualidade dos dados com o objetivo de garantir a consistência e fiabilidade do dataset antes da modelação.
 
-* Valores em falta: Não foram identificados valores nulos, não sendo necessária a aplicação de técnicas de imputação ou remoção de observações.
-* Outliers: Foram detetados valores extremos em várias variáveis numéricas através do método IQR. No entanto, estes valores foram considerados plausíveis no contexto organizacional, tendo-se optado por não remover observações, de forma a preservar a representatividade dos dados.
-* Consistência dos dados: Foi validada a coerência entre variáveis relacionadas com experiência profissional e idade, não tendo sido identificadas inconsistências lógicas. A estrutura salarial revelou-se consistente com os níveis hierárquicos.
+* **Valores em falta:** Não foram identificados valores nulos, não sendo necessária a aplicação de técnicas de imputação ou remoção de observações.
+* **Outliers:** Foram detetados valores extremos em várias variáveis numéricas através do método IQR. No entanto, estes valores foram considerados plausíveis no contexto organizacional, tendo-se optado por não remover observações, de forma a preservar a representatividade dos dados.
+* **Consistência dos dados:** Foi validada a coerência entre variáveis relacionadas com experiência profissional e idade, não tendo sido identificadas inconsistências lógicas. A estrutura salarial revelou-se consistente com os níveis hierárquicos.
+* **Encoding:** Codificação binária (0/1) aplicada a `Attrition`, `OverTime` e `Gender`; One-Hot Encoding aplicado a `BusinessTravel`, `Department`, `EducationField`, `JobRole` e `MaritalStatus`.
+* **Escalonamento:** Adiado para a Milestone 3, onde será integrado nas pipelines de cada modelo para evitar *data leakage*.
 
 De forma geral, o dataset apresenta boa qualidade e consistência, permitindo avançar para as etapas de transformação e modelação sem necessidade de intervenções corretivas significativas.
 
+> Detalhes completos em [`docs/M2_exploracao.md`](docs/M2_exploracao.md)
+
+---
+
 ### Principais Conclusões (EDA)
-> *Dica: Insere aqui o gráfico mais importante do projeto.*
-* **Ponto-chave:** [Ex: Identificámos que o fator X influencia em 40% o resultado Y, por aplicação
-do método ganho de informação]
+
+<p align="center">
+  <img src="reports/figures/CorrelaçãoVariávelAlvo.png" alt="Correlação com Variável Alvo" width="700"/>
+</p>
+
+* **Ponto-chave 1 — Horas Extraordinárias:** Colaboradores que realizam horas extra apresentam uma taxa de saída de 30.5%, face a **10.4%** nos restantes. O teste qui-quadrado confirmou esta associação (χ² = 87.56, p < 0.001, Cramér's V = 0.24).
+* **Ponto-chave 2 — Perfil de risco:** Os colaboradores com maior probabilidade de abandono tendem a ser jovens (20–35 anos), com baixo rendimento mensal e menos de 10 anos de experiência total.
+* **Ponto-chave 3 — Desequilíbrio de classes:** A variável alvo `Attrition` apresenta *class imbalance* significativo: 83.9% (No) vs 16.1% (Yes). A Milestone 3 adotará métricas adequadas (F1-Score, ROC-AUC) e técnicas de balanceamento (SMOTE).
+* **Ponto-chave 4 — Engenharia de atributos:** Criadas 4 novas variáveis — `SatisfactionIndex`, `RatioYearsInRole`, `IncomePerLevel` e `CareerStagnation` — das quais as três primeiras apresentam correlação relevante com `Attrition`.
 
 ## 3. Modelação (Milestone 3)
 ### Abordagem Técnica
