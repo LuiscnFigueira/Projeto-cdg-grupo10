@@ -5,31 +5,17 @@
 
 A variável alvo do presente projeto, `Attrition`, indica se o colaborador abandonou a organização (Yes) ou permaneceu na empresa (No). Trata-se de uma variável categórica binária que representa o fenómeno de rotatividade de colaboradores e constitui o principal objeto de análise deste estudo.
 
-Foi realizada uma análise da distribuição desta variável com o objetivo de compreender a proporção de colaboradores que permanecem na organização face aos que abandonam a empresa. Dado tratar-se de uma variável categórica binária, o conceito estatístico de distribuição normal não é aplicável, sendo a análise baseada na proporção de frequências entre as duas categorias.
+Foi realizada uma análise da distribuição desta variável com o objetivo de compreender a proporção de colaboradores que permanecem na organização face aos que a abandonam. Dado tratar-se de uma variável categórica binária, o conceito estatístico de distribuição normal não é aplicável, sendo a análise baseada na proporção de frequências entre as duas categorias.
 
-A análise revelou a seguinte distribuição:
-
-* 83.9% dos colaboradores permaneceram na empresa
-
-* 16.1% dos colaboradores abandonaram a organização
-
-Estes resultados evidenciam um desequilíbrio significativo entre classes, sendo a classe “Yes” (saída) claramente minoritária.
+A análise revelou que 83.9% dos colaboradores permaneceram na empresa, correspondendo à classe (No), enquanto 16.1% abandonaram a organização, correspondendo à classe (Yes). Estes resultados evidenciam um desequilíbrio significativo entre classes (*class imbalance*), sendo a classe positiva claramente minoritária. Este desequilíbrio constitui um fator crítico no contexto da modelação preditiva supervisionada, uma vez que algoritmos treinados sem estratégias de compensação tendem a favorecer a classe maioritária, podendo atingir valores de acurácia aparentemente elevados sem, contudo, identificar corretamente os casos de abandono (Géron, 2022; James et al., 2021).
 
 ### Desafios Técnicos Resultantes do Desequilíbrio de Classes
 
-O desequilíbrio entre classes constitui um desafio relevante no contexto da modelação preditiva supervisionada. Em datasets desequilibrados, algoritmos de classificação podem tender a favorecer a classe maioritária, conduzindo a modelos que apresentam valores elevados de accuracy, mas com reduzida capacidade de identificar corretamente a classe minoritária.
+O desequilíbrio entre classes constitui um desafio relevante no contexto da modelação preditiva supervisionada. Em datasets desequilibrados, algoritmos de classificação podem tender a favorecer a classe maioritária, conduzindo a modelos que apresentam valores elevados de *accuracy*, mas com reduzida capacidade de identificar corretamente a classe minoritária (Géron, 2022; James et al., 2021).
 
-Por exemplo, um modelo que classificasse todos os colaboradores como “No” obteria uma precisão aparente de aproximadamente 84%, apesar de não conseguir identificar corretamente os casos de abandono.
+A título ilustrativo, um modelo que classificasse todos os colaboradores como (No) obteria uma precisão aparente de aproximadamente 84%, apesar de não conseguir identificar corretamente os casos de abandono. Do ponto de vista organizacional, esta limitação é particularmente crítica, uma vez que o abandono de colaboradores representa custos significativos associados ao recrutamento, integração e perda de conhecimento organizacional (Hom et al., 2017).
 
-Do ponto de vista organizacional, esta limitação é particularmente crítica, uma vez que o abandono de colaboradores representa custos significativos associados ao recrutamento, integração e perda de conhecimento organizacional.
-
-Deste modo, nas fases subsequentes do projeto serão adotadas estratégias adequadas para lidar com o desequilíbrio de classes, nomeadamente:
-
-* utilização de métricas de avaliação apropriadas, como Precision, Recall, F1-score e ROC-AUC.
-
-* eventual aplicação de técnicas de balanceamento de classes (por exemplo, SMOTE).
-
-* análise detalhada da matriz de confusão para avaliar o desempenho do modelo na identificação da classe minoritária.
+Deste modo, nas fases subsequentes do projeto serão adotadas estratégias adequadas para lidar com o desequilíbrio de classes, nomeadamente a utilização de métricas de avaliação apropriadas, como *Precision*, *Recall*, *F1-score* e *ROC-AUC*, a eventual aplicação de técnicas de balanceamento de classes, como SMOTE, e uma análise detalhada da matriz de confusão para avaliar o desempenho do modelo na identificação da classe minoritária (Géron, 2022).
  
 ### 1.2. Correlações Relevantes
 
