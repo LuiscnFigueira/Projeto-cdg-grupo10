@@ -405,9 +405,10 @@ Embora o processo siga uma lógica sequencial, manteve-se uma abordagem iterativ
 **Divisão de Tarefas:** 
 
  **Luís Figueira:** 
-   *  tarefa1
+   *  Supervisão e coordenação do Milestone 2
+   *  Engenharia de Atributos: codificação e escalonamento
    *  Criação de novas variáveis (feature engineering)
-   *  tarefa3
+   *  Estruturação e organização do notebook
     
  **Martim Ferreira:**
    *  Análise da qualidade dos dados (valores em falta, consistência e validação lógica)
@@ -421,7 +422,7 @@ Embora o processo siga uma lógica sequencial, manteve-se uma abordagem iterativ
   *  tarefa7
 
   **Tarefas conjuntas**
-   *  tarefa8
+   *  Discussão dos principais fatores associados ao (`Attrition`)
    *  tarefa9
    *  tareefa10
    *  tarefa11
