@@ -105,31 +105,15 @@ No conjunto, as variáveis categóricas apresentam distribuições plausíveis e
 
 ### 1.8 Resposta à 2ª Pergunta de Investigação
 
-Para avaliar se existe uma associação estatisticamente significativa entre a realização de horas extraordinárias (`OverTime`) e a probabilidade de saída da organização (`Attrition`), foi aplicado o teste do qui-quadrado de independência, adequado para analisar relações entre variáveis categóricas.
+Para avaliar se existe uma associação estatisticamente significativa entre a realização de horas extraordinárias (`OverTime`) e a probabilidade de saída da organização (`Attrition`), foi aplicado o teste do qui-quadrado de independência, adequado para analisar relações entre variáveis categóricas (James et al., 2021).
 
-A análise da tabela de contingência revelou diferenças relevantes na proporção de saída entre colaboradores que realizam horas extraordinárias e aqueles que não realizam.
+A análise da tabela de contingência revelou diferenças relevantes na proporção de saída entre colaboradores que realizam horas extraordinárias e aqueles que não realizam. Em particular, observou-se que 10.44% dos colaboradores que não realizam horas extraordinárias abandonaram a organização, face a 30.53% dos colaboradores que realizam horas extraordinárias. Este resultado sugere que colaboradores que realizam horas extraordinárias apresentam uma probabilidade substancialmente superior de saída da empresa.
 
-Em particular, observou-se que:
+Para verificar se esta diferença é estatisticamente significativa, foi aplicado o teste do qui-quadrado de independência, que produziu os seguintes resultados: χ² = 87.56, p-value < 0.001, graus de liberdade = 1. Dado que o p-value é inferior ao nível de significância de 0.05, rejeita-se a hipótese nula de independência entre as variáveis. Assim, conclui-se que existe uma associação estatisticamente significativa entre a realização de horas extraordinárias (`OverTime`) e a variável alvo (`Attrition`).
 
-* 10.44% dos colaboradores que não realizam horas extraordinárias abandonaram a organização;
+Adicionalmente, foi calculado o tamanho do efeito através da medida Cramér's V, que apresentou um valor de 0.24, indicando uma associação de intensidade fraca a moderada entre as duas variáveis. Isto significa que, embora a realização de horas extraordinárias esteja relacionada com o abandono da organização, este fenómeno é provavelmente influenciado também por outros fatores presentes no dataset.
 
-* 30.53% dos colaboradores que realizam horas extraordinárias abandonaram a organização.
-
-Este resultado sugere que colaboradores que realizam horas extraordinárias apresentam uma probabilidade substancialmente superior de saída da empresa.
-
-Para verificar se esta diferença é estatisticamente significativa, foi aplicado o teste do qui-quadrado de independência, que produziu os seguintes resultados:
-
-χ² = 87.56
-
-p-value < 0.001
-
-graus de liberdade = 1
-
-Dado que o p-value é inferior ao nível de significância de 0.05, rejeita-se a hipótese nula de independência entre as variáveis. Assim, conclui-se que existe uma associação estatisticamente significativa entre a realização de horas extraordinárias (`OverTime`) e a variável alvo (`Attrition`).
-
-Adicionalmente, foi calculado o tamanho do efeito através da medida Cramér’s V, que apresentou um valor de 0.24, indicando uma associação de intensidade fraca a moderada entre as duas variáveis. Isto significa que, embora a realização de horas extraordinárias esteja relacionada com o abandono da organização, este fenómeno é provavelmente influenciado também por outros fatores presentes no dataset.
-
-Do ponto de vista organizacional, estes resultados sugerem que a realização frequente de horas extraordinárias pode estar associada a níveis mais elevados de desgaste profissional, carga de trabalho ou insatisfação laboral, fatores que podem contribuir para o aumento da rotatividade de colaboradores.
+Do ponto de vista organizacional, estes resultados sugerem que a realização frequente de horas extraordinárias pode estar associada a níveis mais elevados de desgaste profissional, carga de trabalho ou insatisfação laboral, fatores que podem contribuir para o aumento da rotatividade de colaboradores (Hom et al., 2017).
 
 ### 1.9 Análise Estatística Inferencial
 
