@@ -69,10 +69,10 @@ De forma geral, o dataset apresenta boa qualidade e consistência, permitindo av
   <img src="reports/figures/CorrelaçãoVariávelAlvo.png" alt="Correlação com Variável Alvo" width="700"/>
 </p>
 
-* **Ponto-chave 1 — Horas Extraordinárias:** Colaboradores que realizam horas extra apresentam uma taxa de saída de 30.5%, face a **10.4%** nos restantes. O teste qui-quadrado confirmou esta associação (χ² = 87.56, p < 0.001, Cramér's V = 0.24).
-* **Ponto-chave 2 — Perfil de risco:** Os colaboradores com maior probabilidade de abandono tendem a ser jovens (20–35 anos), com baixo rendimento mensal e menos de 10 anos de experiência total.
-* **Ponto-chave 3 — Desequilíbrio de classes:** A variável alvo `Attrition` apresenta *class imbalance* significativo: 83.9% (No) vs 16.1% (Yes). A Milestone 3 adotará métricas adequadas (F1-Score, ROC-AUC) e técnicas de balanceamento (SMOTE).
-* **Ponto-chave 4 — Engenharia de atributos:** Criadas 4 novas variáveis — `SatisfactionIndex`, `RatioYearsInRole`, `IncomePerLevel` e `CareerStagnation`.
+* **Ponto-chave 1 - Horas Extraordinárias:** Colaboradores que realizam horas extra apresentam uma taxa de saída de 30.5%, face a **10.4%** nos restantes. O teste qui-quadrado confirmou esta associação (χ² = 87.56, p < 0.001, Cramér's V = 0.24).
+* **Ponto-chave 2 - Perfil de risco:** Os colaboradores com maior probabilidade de abandono tendem a ser jovens (20–35 anos), com baixo rendimento mensal e menos de 10 anos de experiência total.
+* **Ponto-chave 3 - Desequilíbrio de classes:** A variável alvo `Attrition` apresenta *class imbalance* significativo: 83.9% (No) vs 16.1% (Yes). A Milestone 3 adotará métricas adequadas (F1-Score, ROC-AUC) e técnicas de balanceamento (SMOTE).
+* **Ponto-chave 4 - Engenharia de atributos:** Criadas 4 novas variáveis - `SatisfactionIndex`, `RatioYearsInRole`, `IncomePerLevel` e `CareerStagnation`.
 
 ## 3. Modelação (Milestone 3)
 ### Abordagem Técnica
