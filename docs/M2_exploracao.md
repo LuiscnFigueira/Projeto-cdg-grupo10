@@ -317,7 +317,7 @@ Com base na análise da matriz de correlação, foram identificadas situações 
 
 Adicionalmente, as variáveis `JobSatisfaction`, `EnvironmentSatisfaction`, `RelationshipSatisfaction` e `WorkLifeBalance` foram consolidadas num único índice composto (`SatisfactionIndex`) durante a fase de engenharia de atributos, pelo que a sua manutenção individual introduziria redundância direta com a variável derivada.
 
-Estas situações de multicolinearidade serão tratadas na fase de modelação, onde serão removidas as variáveis redundantes identificadas, nomeadamente `JobLevel`, `YearsInCurrentRole` e as componentes individuais de satisfação já representadas pelo `SatisfactionIndex`. Esta decisão visa reduzir a dimensionalidade do espaço de características sem perda de informação relevante, melhorando a estabilidade e interpretabilidade dos modelos, em particular os mais sensíveis a este problema, como a regressão logística.
+Estas situações foram documentadas e serão tidas em consideração na fase de modelação, nomeadamente na escolha e configuração dos algoritmos. Modelos sensíveis à multicolinearidade, como a regressão logística, exigirão uma abordagem cuidada na seleção das variáveis a incluir, enquanto modelos baseados em árvores de decisão são naturalmente robustos a este fenómeno e poderão utilizar o conjunto completo de atributos disponíveis (James et al., 2021; Géron, 2022).
 
 ## 4. Dicionário de Dados Final (Pós-Processamento) 
 
