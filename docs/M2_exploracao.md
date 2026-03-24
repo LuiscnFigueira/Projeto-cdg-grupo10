@@ -87,21 +87,25 @@ No conjunto, verifica-se que as variáveis relacionadas com remuneração, progr
 
 ### 1.7 Distribuição das Variáveis Categóricas
 
-A análise das variáveis categóricas foi realizada através de gráficos de frequência, permitindo compreender a composição estrutural da força de trabalho representada no dataset. Tal como na análise das variáveis numéricas, optou-se por interpretar os padrões de forma agregada, agrupando variáveis com comportamentos semelhantes para facilitar a leitura e evitar descrições repetitivas.
+A análise das variáveis categóricas foi realizada através de gráficos de frequência, permitindo compreender a composição estrutural da força de trabalho representada no *dataset*. Tal como na análise das variáveis numéricas, optou-se por interpretar os padrões de forma agregada, agrupando variáveis com comportamentos semelhantes para facilitar a leitura e evitar descrições repetitivas.
 
-Relativamente à variável alvo `Attrition`, observa-se um claro desequilíbrio entre classes, com predominância de colaboradores que permanecem na organização (No) face aos que abandonam a empresa (Yes). Este padrão confirma a presença de desbalanceamento de classes (`class imbalance`), um fator relevante que deverá ser considerado na fase de modelação.
+**Variável Alvo e Desequilíbrio de Classes** 
 
-No que diz respeito à mobilidade profissional, a variável `BusinessTravel` apresenta uma forte concentração na categoria `Travel_Rarely`, indicando que a maioria dos colaboradores realiza deslocações profissionais apenas ocasionalmente.
+Relativamente à variável alvo `Attrition`, observa-se um claro desequilíbrio entre classes, com predominância de colaboradores que permanecem na organização ("No") face aos que abandonam a empresa ("Yes") (ver `Frequencia_Attrition.png`). Este padrão confirma a presença de desbalanceamento de classes (*class imbalance*), um fator relevante que deverá ser rigorosamente tratado na fase de modelação.
 
-A distribuição da variável `Department` evidencia uma clara predominância do departamento Investigação e Desenvolvimento (`Research & Development`), seguido pelo departamento Vendas (`Sales`), enquanto Recursos Humanos (`Human Resources`) apresenta uma representação significativamente menor. Este padrão sugere uma estrutura organizacional fortemente orientada para atividades técnicas e de investigação.
+**Mobilidade e Estrutura Organizacional**
 
-Relativamente à formação académica, a variável `EducationField` mostra maior concentração nas áreas `Life Sciences` e `Medical`, indicando que a maioria dos colaboradores possui formação em áreas científicas ou técnicas.
+No que diz respeito à mobilidade profissional, a variável `BusinessTravel` apresenta uma forte concentração na categoria "Travel_Rarely" (ver `Frequencia_BusinessTravel.png`), indicando que a maioria dos colaboradores realiza deslocações profissionais apenas ocasionalmente. A distribuição da variável `Department` evidencia uma clara predominância do departamento de Investigação e Desenvolvimento ("Research & Development"), seguido pelo departamento de Vendas ("Sales"), enquanto os Recursos Humanos ("Human Resources") apresentam uma representação significativamente menor. Este padrão sugere uma estrutura organizacional fortemente orientada para atividades técnicas e de investigação.
 
-No plano demográfico, a variável `Gender` apresenta uma distribuição relativamente equilibrada, embora com ligeira predominância de colaboradores do género masculino. Já a variável `MaritalStatus` revela maior presença de colaboradores `Married`, seguida das categorias `Single` e `Divorced`.
+**Perfil Académico e Demográfico**
 
-Por fim, a variável `OverTime` indica que a maioria dos colaboradores não realiza horas extraordinárias, embora exista uma proporção relevante que reporta trabalho extra. Este fator assume particular interesse para a análise da rotatividade, uma vez que poderá estar associado a níveis mais elevados de desgaste profissional.
+Relativamente à formação académica, a variável `EducationField` mostra maior concentração nas áreas "Life Sciences" e "Medical" (ver `Frequencia_EducationField.png`), indicando que a maioria dos colaboradores possui formação em áreas científicas ou técnicas. No plano demográfico, a variável `Gender` apresenta uma distribuição relativamente equilibrada, embora com ligeira predominância de colaboradores do género masculino. Já a variável `MaritalStatus` revela maior presença de colaboradores "Married", seguida das categorias "Single" e "Divorced".
 
-No conjunto, as variáveis categóricas apresentam distribuições plausíveis e coerentes com a estrutura organizacional representada no dataset, não sendo identificadas categorias com frequências anómalas ou inconsistentes.
+**Condições de Trabalho**
+
+Por fim, a variável `OverTime` indica que a maioria dos colaboradores não realiza horas extraordinárias, embora exista uma proporção relevante que reporta trabalho extra (ver `Frequencia_OverTime.png`). Este fator assume particular interesse para a análise da rotatividade, uma vez que poderá estar associado a níveis mais elevados de desgaste profissional.
+
+No conjunto, as variáveis categóricas apresentam distribuições plausíveis e coerentes com a estrutura organizacional representada no *dataset*, não sendo identificadas categorias com frequências anómalas ou inconsistentes.
 
 ### 1.8 Resposta à 2ª Pergunta de Investigação
 
