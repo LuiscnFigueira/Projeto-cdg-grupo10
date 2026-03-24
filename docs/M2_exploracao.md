@@ -73,23 +73,16 @@ Importa salientar que correlação mede apenas associações lineares e não imp
 
 ### 1.5 Conclusões Visuais da Análise Bivariada
 
-A análise dos gráficos de dispersão permitiu identificar alguns padrões visuais relevantes entre variáveis numéricas do dataset. Estes padrões ajudam a compreender melhor a estrutura dos dados e possíveis relações entre características dos colaboradores e o fenómeno de saída da organização.
+A análise dos gráficos de dispersão permitiu identificar alguns padrões visuais relevantes entre as variáveis numéricas do *dataset*. Estes padrões ajudam a compreender melhor a estrutura dos dados e possíveis relações entre características dos colaboradores e o fenómeno de saída da organização.
 
 **Relação Linear entre Idade e Experiência**
-
-Existe uma relação linear positiva muito forte e perfeitamente visível no gráfico. Verificámos que à medida que a idade (`Age`) do colaborador aumenta, o seu total de anos de experiência (`TotalWorkingYears`) também cresce, formando uma linha diagonal densa. Curiosamente, notamos que a esmagadora maioria dos pontos vermelhos (saídas da empresa) concentra-se precisamente na base desta diagonal, ou seja, em colaboradores com baixos valores tanto em `Age` como em `TotalWorkingYears` (jovens com pouca experiência).
+Existe uma relação linear positiva muito forte e perfeitamente visível no gráfico de cruzamento destas variáveis (ver `ScatterPlotsAgevsTotalWorkingYears.png). Verificámos que, à medida que a idade (`Age`) do colaborador aumenta, o seu total de anos de experiência (`TotalWorkingYears`) também cresce, formando uma linha diagonal densa. Curiosamente, notamos que a esmagadora maioria dos pontos vermelhos (saídas da empresa) concentra-se precisamente na base desta diagonal, ou seja, em colaboradores com baixos valores tanto em `Age` como em `TotalWorkingYears` (jovens com pouca experiência).
 
 **Progressão Financeira por Experiência**
-
-Observa-se uma clara tendência linear ascendente no gráfico cruzado, evidenciando que a empresa recompensa a senioridade. À medida que o total de anos de experiência (`TotalWorkingYears`) de um colaborador aumenta, o seu rendimento mensal (`MonthlyIncome`) acompanha esse crescimento de forma proporcional, formando um padrão visual semelhante a uma "escada". É também notório que a retenção (marcada pelos abundantes pontos azuis) é substancialmente mais robusta nos patamares superiores, quer de experiência, quer de salário.
+Observa-se uma clara tendência linear ascendente no respetivo gráfico cruzado (ver `ScatterPlotsTotalWorkingYearsvsMonthlyIncome.png`), evidenciando que a empresa recompensa a senioridade. À medida que o total de anos de experiência (`TotalWorkingYears`) de um colaborador aumenta, o seu rendimento mensal (`MonthlyIncome`) acompanha esse crescimento de forma proporcional, formando um padrão visual semelhante a uma "escada". É também notório que a retenção (marcada pelos abundantes pontos azuis) é substancialmente mais robusta nos patamares superiores, quer de experiência, quer de salário.
 
 **Relação entre Variáveis de Antiguidade na Empresa**
-
-Os gráficos `YearsAtCompany` vs `YearsWithCurrManager` e `TotalWorkingYears` vs `YearsAtCompany` evidenciam uma relação positiva entre variáveis associadas à antiguidade do colaborador na organização.
-
-Verifica-se que colaboradores com mais anos na empresa tendem também a apresentar mais anos na função atual ou com o mesmo gestor. Este padrão sugere que estas variáveis capturam dimensões semelhantes da estabilidade profissional dentro da organização.
-
-Esta observação ajuda também a explicar as correlações elevadas identificadas anteriormente na matriz de correlação entre variáveis como  `YearsAtCompany`, `YearsInCurrentRole` e `YearsWithCurrManager`.
+Os cruzamentos visuais (ver `ScatterPlotsYearsAtCompanyvsYearsWithCurrManager.png` e `ScatterPlotsTotalWorkingYearsvsYearsAtCompany.png`) evidenciam uma relação positiva entre variáveis associadas à antiguidade do colaborador na organização. Verifica-se que colaboradores com mais anos na empresa (`YearsAtCompany`) tendem também a apresentar mais anos na função atual (`YearsInCurrentRole`) ou com o mesmo gestor (`YearsWithCurrManager`). Este padrão sugere que estas variáveis capturam dimensões semelhantes da estabilidade profissional dentro da organização. Esta observação ajuda também a explicar as correlações elevadas identificadas anteriormente na matriz de correlação (ver `HeatmapVariaveisNumeric.png`) entre estas mesmas variáveis.
 
 ### 1.6 Distribuição das Variáveis Numéricas
 
