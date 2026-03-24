@@ -311,6 +311,14 @@ Por outro lado, a variável `CareerStagnation` apresenta uma correlação pratic
 
 De forma global, as novas variáveis demonstram capacidade para captar dimensões relevantes do comportamento organizacional, contribuindo para enriquecer o conjunto de atributos disponíveis. Estas variáveis apresentam potencial para melhorar a capacidade preditiva dos modelos a desenvolver nas fases subsequentes do projeto.
 
+### 3.4 Seleção de Atributos - Multicolinearidade
+
+Com base na análise da matriz de correlação, foram identificadas situações de multicolinearidade entre variáveis do dataset. A correlação muito elevada entre `JobLevel` e `MonthlyIncome` (≈ 0.95) indica redundância informacional entre progressão hierárquica e remuneração, uma vez que ambas medem essencialmente a mesma dimensão organizacional. De forma análoga, as variáveis `YearsAtCompany`, `YearsInCurrentRole` e `YearsWithCurrManager` apresentam correlações elevadas entre si (≈ 0.76–0.77), refletindo sobreposição na medição de estabilidade e permanência na organização.
+
+Adicionalmente, as variáveis `JobSatisfaction`, `EnvironmentSatisfaction`, `RelationshipSatisfaction` e `WorkLifeBalance` foram consolidadas num único índice composto (`SatisfactionIndex`) durante a fase de engenharia de atributos, pelo que a sua manutenção individual introduziria redundância direta com a variável derivada.
+
+Estas situações de multicolinearidade serão tratadas na fase de modelação, onde serão removidas as variáveis redundantes identificadas, nomeadamente `JobLevel`, `YearsInCurrentRole` e as componentes individuais de satisfação já representadas pelo `SatisfactionIndex`. Esta decisão visa reduzir a dimensionalidade do espaço de características sem perda de informação relevante, melhorando a estabilidade e interpretabilidade dos modelos, em particular os mais sensíveis a este problema, como a regressão logística.
+
 ## 4. Dicionário de Dados Final (Pós-Processamento) 
 
 Para consolidar todas as modificações realizadas durante a fase de preparação de dados, apresentamos o Dicionário de Dados atualizado. Este documento funciona como o mapa oficial do nosso *dataset* modificado, refletindo a transição de dados brutos para um formato otimizado e pronto para a modelação preditiva.
@@ -319,7 +327,7 @@ O conjunto de dados original foi expandido e enriquecido através de três abord
 
 Primeiramente, a **codificação binária** foi aplicada às variáveis dicotómicas originais, tais como `Attrition`, `OverTime` e `Gender`. Este processo consistiu na tradução direta de texto (por exemplo, "Yes"/"No" ou "Male"/"Female") para uma linguagem numérica de 1 e 0. Desta forma, garantiu-se que a informação original permanecesse intacta, tornando-se, contudo, perfeitamente legível para os algoritmos de modelação.
 
-Em segundo lugar, recorreu-se à **engenharia de atributos (*Feature Engineering*)** para a criação de variáveis inteiramente novas. Esta etapa envolveu a combinação matemática ou lógica de atributos já existentes, resultando em novas *features* de alto valor analítico, como o `IncomePerLevel`, a `CareerStagnation`, o `RatioYearsInRole` e o `SatisfactionIndex`. O principal objetivo desta abordagem foi extrair um conhecimento de negócio mais profundo e revelar métricas complexas de comportamento — como a mobilidade interna do colaborador ou índices psicométricos compostos de satisfação — que não se encontravam explícitas nos dados originais.
+Em segundo lugar, recorreu-se à **engenharia de atributos (*Feature Engineering*)** para a criação de variáveis inteiramente novas. Esta etapa envolveu a combinação matemática ou lógica de atributos já existentes, resultando em novas *features* de alto valor analítico, como o `IncomePerLevel`, a `CareerStagnation`, o `RatioYearsInRole` e o `SatisfactionIndex`. O principal objetivo desta abordagem foi extrair um conhecimento de negócio mais profundo e revelar métricas complexas de comportamento - como a mobilidade interna do colaborador ou índices psicométricos compostos de satisfação - que não se encontravam explícitas nos dados originais.
 
 Por fim, o método de **One-Hot Encoding** foi aplicado às variáveis categóricas nominais compostas por múltiplas classes, como é o caso de `Department`, `JobRole`, `EducationField` e `MaritalStatus`. Esta transformação foi crucial para evitar que os modelos matemáticos assumissem falsas hierarquias ou relações ordinais inexistentes entre os diferentes departamentos, cargos, áreas de estudo ou estados civis. Assim, cada categoria foi isolada e transformada numa coluna independente de base binária, assumindo o valor de 1 para a presença da característica e 0 para a sua ausência.
 
