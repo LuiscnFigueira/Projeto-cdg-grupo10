@@ -350,8 +350,24 @@ De forma global, as novas variáveis demonstram capacidade para captar dimensõe
 | MaritalStatus_Single | Categórica binária | {0,1} | 1 = Sim<br>0 = Não | Variável indicadora gerada para o estado civil 'Single'. | Demográfica | One-Hot Encoding |
  
 ## 5. Conclusões da Fase de Exploração 
-*O que aprenderam sobre o dataset que não sabiam no final do Milestone 1? Os dados são suficientes 
-para avançar para a modelação?* 
+
+A análise exploratória realizada nesta segunda fase do projeto permitiu aprofundar substancialmente o conhecimento sobre o dataset e sobre os fatores associados à rotatividade de colaboradores, indo muito além da caracterização descritiva efetuada na Milestone 1.
+
+Em primeiro lugar, a análise da variável alvo revelou um desequilíbrio significativo entre classes, com apenas 16.1% dos colaboradores a abandonar a organização. Este dado, que não havia sido explorado em detalhe anteriormente, tem implicações diretas na estratégia de modelação a adotar, exigindo a utilização de métricas adequadas e eventuais técnicas de balanceamento de classes para garantir que os modelos consigam identificar eficazmente os casos de saída.
+
+A análise bivariada e os testes de hipótese permitiram identificar com evidência estatística os principais fatores associados ao abandono. Variáveis como `OverTime`, `Age`, `MonthlyIncome`, `TotalWorkingYears`, `YearsInCurrentRole` e `YearsWithCurrManager` apresentaram associações estatisticamente significativas com a variável alvo, confirmando que a carga de trabalho, a maturidade profissional e a remuneração desempenham um papel relevante na decisão de permanência. Em particular, a realização de horas extraordinárias destacou-se como o preditor com maior correlação positiva com o attrition, tendo o teste do qui-quadrado confirmado a significância desta relação com um Cramér's V de 0.24. Com isto, a 2ª Pergunta de Investigação - *"Existe uma associação estatisticamente significativa entre a realização de horas extraordinárias (`OverTime`) e a probabilidade de atrito (`Attrition`)?"* - ficou respondida com evidência empírica robusta.
+
+Por outro lado, variáveis como `PerformanceRating`, `HourlyRate` e `PercentSalaryHike` revelaram correlações praticamente nulas com a variável alvo, sugerindo que a avaliação de desempenho e os pequenos incrementos salariais não exercem influência direta na retenção de colaboradores neste contexto organizacional. Este resultado constitui uma descoberta relevante, na medida em que contraria pressupostos intuitivos sobre a relação entre desempenho avaliado e permanência na empresa.
+
+A matriz de correlação evidenciou ainda situações de multicolinearidade entre variáveis, nomeadamente entre `JobLevel` e `MonthlyIncome` e entre as variáveis de antiguidade na organização. Estas relações deverão ser consideradas na fase de seleção de atributos para evitar redundância informacional e instabilidade nos modelos.
+
+No plano da qualidade dos dados, a verificação realizada confirmou a ausência de valores em falta, de idades inválidas e de inconsistências lógicas entre variáveis temporais. A estrutura salarial revelou-se coerente com a hierarquia organizacional e os outliers identificados pelo método IQR foram considerados observações legítimas, correspondendo à variabilidade natural da população representada no dataset. Esta robustez dos dados constitui uma vantagem importante para a fase de modelação, dispensando intervenções artificiais que poderiam introduzir enviesamento.
+
+A engenharia de atributos permitiu enriquecer o espaço de características com quatro novas variáveis derivadas. Destas, `SatisfactionIndex`, `RatioYearsInRole` e `IncomePerLevel` demonstraram capacidade discriminativa relevante em relação à variável alvo, captando dimensões que as variáveis originais não representavam de forma direta. A variável `CareerStagnation` não evidenciou associação significativa com o attrition na forma como foi definida; ainda assim, optou-se por mantê-la no dataset processado, uma vez que uma variável pode não mostrar relação direta com a variável alvo em análise bivariada mas ainda assim contribuir em combinação com outras variáveis dentro de um modelo (Géron, 2022). A sua relevância preditiva será avaliada pela importância que os modelos lhe atribuírem durante o treino na Milestone 3.
+
+Em síntese, o dataset encontra-se limpo, consistente e enriquecido com atributos derivados que captam dimensões organizacionais relevantes. A análise estatística identificou um conjunto robusto de preditores com associação significativa ao fenómeno de rotatividade, fornecendo uma base sólida para a construção de modelos preditivos. Considera-se, portanto, que os dados são suficientes e adequados para avançar para a fase de modelação na Milestone 3, devendo esta fase contemplar estratégias específicas para lidar com o desequilíbrio de classes, a multicolinearidade identificada e o escalonamento das variáveis de acordo com os requisitos de cada algoritmo.
+
+
  --- 
 
  ## 6. Metodologia de Gestão (PBL) 
