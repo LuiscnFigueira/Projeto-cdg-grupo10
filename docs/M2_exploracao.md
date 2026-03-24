@@ -417,9 +417,10 @@ Embora o processo siga uma lógica sequencial, manteve-se uma abordagem iterativ
    *  Avaliação do impacto das novas variáveis
 
  **Mateus Afonso:** 
-  *  tarefa5
-  *  tarefa6
-  *  tarefa7
+  * Construção e interpretação de gráficos (boxplots, Histogramas) para análise da relação entre variáveis e attrition
+  *  Análise da distribuição da variável alvo
+  *  Criação do Dicionário de Dados Final (Pós-Processamento)
+  *  Gerir as figures e as suas citações
 
   **Tarefas conjuntas**
    *  Discussão dos principais fatores associados ao (`Attrition`)
