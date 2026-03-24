@@ -172,15 +172,15 @@ Assim, foi possível prosseguir diretamente para as etapas subsequentes de anál
 
 ### 2.2 Outliers
 
-Com o objetivo de identificar possíveis valores atípicos nas variáveis numéricas do dataset, foi aplicado o método do Intervalo Interquartil (_Interquartile Range_ – IQR). Este método permite detetar observações que se encontram significativamente afastadas da distribuição central dos dados, sendo amplamente utilizado em análise exploratória para a identificação de valores extremos (Rousseeuw & Hubert, 2011).
+Com o objetivo de identificar possíveis valores atípicos nas variáveis numéricas do *dataset*, foi aplicado o método do Intervalo Interquartil (Interquartile Range – IQR). Este método permite detetar observações que se encontram significativamente afastadas da distribuição central dos dados, sendo amplamente utilizado em análise exploratória para a identificação de valores extremos (Rousseeuw & Hubert, 2011).
 
-A aplicação do método sinalizou potenciais outliers em várias variáveis, nomeadamente: `TrainingTimesLastYear`, `PerformanceRating`, `MonthlyIncome`, `YearsSinceLastPromotion`, `YearsAtCompany`, `TotalWorkingYears`, `NumCompaniesWorked`, `YearsInCurrentRole` e `YearsWithCurrManager`.
+A aplicação do método sinalizou potenciais *outliers* em várias variáveis, nomeadamente: `TrainingTimesLastYear`, `PerformanceRating`, `MonthlyIncome`, `YearsSinceLastPromotion`, `YearsAtCompany`, `TotalWorkingYears`, `NumCompaniesWorked`, `YearsInCurrentRole` e `YearsWithCurrManager`.
 
-Contudo, uma análise mais detalhada revelou que estes valores não correspondem necessariamente a erros de registo ou inconsistências nos dados. Em primeiro lugar, não foram identificados valores impossíveis, como idades irrealistas ou valores negativos de rendimento. Em segundo lugar, algumas das variáveis identificadas são de natureza discreta ou ordinal, como `PerformanceRating`, o que pode originar deteções de outliers que não representam necessariamente anomalias reais.
+Contudo, uma análise mais detalhada revelou que estes valores não correspondem necessariamente a erros de registo ou inconsistências nos dados. Em primeiro lugar, não foram identificados valores impossíveis, como idades irrealistas ou valores negativos de rendimento. Em segundo lugar, algumas das variáveis identificadas são de natureza discreta ou ordinal, como `PerformanceRating`, o que pode originar deteções de *outliers* que não representam necessariamente anomalias reais.
 
-Adicionalmente, valores elevados em variáveis como `MonthlyIncome` ou `TotalWorkingYears` são plausíveis no contexto organizacional, podendo corresponder a colaboradores com maior experiência profissional ou posições hierárquicas mais elevadas. Em contextos organizacionais, a presença de valores extremos pode refletir a heterogeneidade natural da população analisada e não erros nos dados (Rousseeuw & Hubert, 2011).
+Adicionalmente, valores elevados em variáveis como `MonthlyIncome` (ver `BoxplotMonthlyIncome.png`) ou `TotalWorkingYears` (ver `BoxplotTotalWorkingYears.png`) são plenamente plausíveis no contexto organizacional. Como ilustram os respetivos gráficos, estes pontos além dos limites interquartis correspondem a uma franja reduzida de colaboradores com maior experiência profissional ou posições hierárquicas de topo (executivos e diretores). Em contextos organizacionais, a presença destes valores extremos reflete a heterogeneidade natural da população analisada e não erros nos dados (Rousseeuw & Hubert, 2011).
 
-Deste modo, concluiu-se que os valores identificados refletem a variabilidade natural da população organizacional representada no dataset. Assim, optou-se por não remover estas observações, preservando a integridade e a representatividade dos dados para as etapas subsequentes de análise e modelação.
+Deste modo, concluiu-se que os valores identificados refletem a variabilidade natural da população organizacional representada no *dataset*. Assim, optou-se por não remover estas observações, preservando a integridade e a representatividade dos dados para as etapas subsequentes de análise e modelação.
 
 ### 2.3 Verificação da Qualidade e Consistência dos Dados
 
