@@ -251,7 +251,7 @@ Como consequência deste processo de codificação, o número total de variávei
 
 Nesta fase não foi aplicado qualquer método de escalonamento às variáveis numéricas. Esta decisão deve-se ao facto de, nas etapas subsequentes de modelação, serem utilizados diferentes algoritmos de aprendizagem automática, os quais podem apresentar requisitos distintos em termos de pré-processamento dos dados.
 
-Em particular, alguns algoritmos (como modelos baseados em árvores de decisão) são invariantes à escala das variáveis, enquanto outros (como regressão logística, SVM ou métodos baseados em distância) beneficiam da aplicação de técnicas de normalização ou padronização. Deste modo, o escalonamento será realizado numa fase posterior do projeto, de forma específica e adequada a cada modelo considerado (Géron, 2022).
+Em particular, alguns algoritmos (como modelos baseados em árvores de decisão) são invariantes à escala das variáveis, enquanto outros (como regressão logística, SVM ou métodos baseados em distância) beneficiam da aplicação de técnicas de normalização ou padronização. Deste modo, o escalonamento será integrado diretamente nas *pipelines* de cada modelo na Milestone 3, sendo aplicado exclusivamente aos dados de treino, de forma a evitar *data leakage*, e posteriormente replicado nos dados de teste utilizando os parâmetros aprendidos durante o treino (Géron, 2022).
  
 ### 3.2 Criação de Novos Atributos 
 
