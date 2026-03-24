@@ -311,7 +311,7 @@ Relativamente à variável `IncomePerLevel`, observa-se também uma associação
 
 Por outro lado, a variável `CareerStagnation` apresenta uma correlação praticamente nula com a variável alvo (≈ -0.01), não evidenciando qualquer relação estatisticamente relevante com o atrito. Este resultado sugere que a forma como a variável foi definida poderá não capturar adequadamente o fenómeno de estagnação na carreira, ou que este fator, isoladamente, não tem um impacto significativo na decisão de abandono no contexto do dataset analisado.
 
-De forma global, as novas variáveis demonstram capacidade para captar dimensões relevantes do comportamento organizacional, contribuindo para enriquecer o conjunto de atributos disponíveis. Estas variáveis apresentam potencial para melhorar a capacidade preditiva dos modelos a desenvolver nas fases subsequentes do projeto.
+De forma geral, as novas variáveis -  em particular `SatisfactionIndex`, `RatioYearsInRole` e `IncomePerLevel` - demonstram capacidade para captar dimensões relevantes do comportamento organizacional, contribuindo para enriquecer o conjunto de atributos disponíveis. Estas variáveis apresentam potencial para melhorar a capacidade preditiva dos modelos a desenvolver nas fases subsequentes do projeto.
 
 ### 3.4 Seleção de Atributos - Multicolinearidade
 
@@ -407,7 +407,7 @@ Embora o processo siga uma lógica sequencial, manteve-se uma abordagem iterativ
    *  Análise da qualidade dos dados (valores em falta, consistência e validação lógica)
    *  Deteção e análise de outliers
    *  Análise da correlação entre variáveis e a variável alvo (`Attrition`)
-   *  Avaliação do impacto das novas variáveis
+   *  Avaliação da relação entre as novas variáveis e o `Attrition`
 
  **Mateus Afonso:** 
   * Construção e interpretação de gráficos (boxplots, Histogramas) para análise da relação entre variáveis e attrition
