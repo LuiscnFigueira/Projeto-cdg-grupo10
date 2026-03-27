@@ -1,6 +1,17 @@
-Pandas versão: 2.3.3
-NumPy versão: 2.0.2
-Matplotlib versão: 3.10.0
-Seaborn versão: 0.13.2
-Scipy versão: 1.16.3
-Scikit-learn versão: 1.6.1
+# Manipulação e análise de dados
+pandas==2.3.3
+
+# Computação numérica
+numpy==2.0.2
+
+# Visualização de dados
+matplotlib==3.10.0
+
+# Visualização estatística
+seaborn==0.13.2
+
+# Computação científica
+scipy==1.16.3
+
+# Machine learning
+scikit-learn==1.6.1
