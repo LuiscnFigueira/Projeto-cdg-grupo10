@@ -46,8 +46,6 @@ final.*
 
 ## 6. Metodologia de Gestão (PBL)
 
-## 6. Metodologia de Gestão (PBL)
-
 O projeto segue uma abordagem baseada no modelo CRISP-DM (Cross-Industry Standard Process for Data Mining), que estrutura o desenvolvimento em seis fases principais: compreensão do problema, compreensão dos dados, preparação dos dados, modelação, avaliação e implementação.
 
 Na presente fase - Milestone 3 (Modelação e Avaliação) - o foco incide na utilização de modelos supervisionados para estimar a probabilidade de ocorrência do fenómeno de *Attrition*, permitindo a construção de um índice de risco de abandono.
