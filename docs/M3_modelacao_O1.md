@@ -43,8 +43,7 @@ dataset é desequilibrado e queremos evitar falsos negativos.")
 *Justifiquem por que razão este modelo está pronto (ou não) para ser apresentado como solução 
 final.* 
  --- 
-
- ## 6. Metodologia de Gestão (PBL) 
+ 
 ## 6. Metodologia de Gestão (PBL)
 
 O projeto segue uma abordagem baseada no modelo CRISP-DM (Cross-Industry Standard Process for Data Mining), que estrutura o desenvolvimento em seis fases principais: compreensão do problema, compreensão dos dados, preparação dos dados, modelação, avaliação e implementação.
@@ -75,13 +74,13 @@ O processo mantém uma natureza iterativa, permitindo ajustar variáveis, parâm
    *  
    *  
    *  
-   * 
+   *  
 
   **Tarefas conjuntas**
    *  
    *  
    *  
-   *   
+   *
    
  ## 7. Referências
 
