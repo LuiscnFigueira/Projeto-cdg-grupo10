@@ -43,4 +43,47 @@ dataset é desequilibrado e queremos evitar falsos negativos.")
 *Justifiquem por que razão este modelo está pronto (ou não) para ser apresentado como solução 
 final.* 
  --- 
-Data de última atualização: 25/03/2026
+
+ ## 6. Metodologia de Gestão (PBL) 
+## 6. Metodologia de Gestão (PBL)
+
+O projeto segue uma abordagem baseada no modelo CRISP-DM (Cross-Industry Standard Process for Data Mining), que estrutura o desenvolvimento em seis fases principais: compreensão do problema, compreensão dos dados, preparação dos dados, modelação, avaliação e implementação.
+
+Na presente fase - Milestone 3 (Modelação e Avaliação) - o foco incide nas etapas de *Modelling* e *Evaluation*, com o objetivo de desenvolver um modelo de classificação supervisionado capaz de prever o fenómeno de *Attrition*.
+
+Nesta fase, são implementados e comparados diferentes algoritmos de classificação, incluindo um modelo baseline e modelos mais avançados, com vista à maximização do desempenho preditivo. É definida uma estratégia de validação robusta, recorrendo a *train-test split* e *cross-validation estratificada*, garantindo a capacidade de generalização dos modelos.
+
+Dado o desequilíbrio da variável alvo, a avaliação é orientada para métricas adequadas, com particular foco no *Recall* e no *F1-Score*, assegurando a correta identificação da classe minoritária (colaboradores que abandonam a organização).
+
+O processo mantém uma natureza iterativa, permitindo ajustar variáveis, parâmetros e algoritmos com base nos resultados obtidos, com o objetivo de alcançar um modelo robusto e com valor para a tomada de decisão em contexto de gestão de recursos humanos.
+
+**Divisão de Tarefas:** 
+
+ **Luís Figueira:** 
+   *  
+   *  
+   *  
+   *  
+    
+ **Martim Ferreira:**
+   *  
+   *  
+   *  
+   *  
+
+ **Mateus Afonso:** 
+   *  
+   *  
+   *  
+   * 
+
+  **Tarefas conjuntas**
+   *  
+   *  
+   *  
+   *   
+   
+ ## 7. Referências
+
+ 
+Data de última atualização: 15/04/2026
