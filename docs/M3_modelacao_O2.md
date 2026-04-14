@@ -43,4 +43,48 @@ dataset é desequilibrado e queremos evitar falsos negativos.")
 *Justifiquem por que razão este modelo está pronto (ou não) para ser apresentado como solução 
 final.* 
  --- 
-Data de última atualização: 25/03/2026
+
+## 6. Metodologia de Gestão (PBL)
+
+## 6. Metodologia de Gestão (PBL)
+
+O projeto segue uma abordagem baseada no modelo CRISP-DM (Cross-Industry Standard Process for Data Mining), que estrutura o desenvolvimento em seis fases principais: compreensão do problema, compreensão dos dados, preparação dos dados, modelação, avaliação e implementação.
+
+Na presente fase - Milestone 3 (Modelação e Avaliação) - o foco incide na utilização de modelos supervisionados para estimar a probabilidade de ocorrência do fenómeno de *Attrition*, permitindo a construção de um índice de risco de abandono.
+
+A partir das probabilidades previstas pelos modelos de classificação desenvolvidos, é criado um sistema de segmentação de risco, categorizando os colaboradores em níveis de risco, com base em limiares definidos.
+
+A validação do modelo baseia-se em métricas adequadas ao problema de classificação, assegurando que as probabilidades estimadas são fiáveis e discriminativas. Adicionalmente, é considerada a capacidade do modelo em suportar decisões de negócio, nomeadamente na identificação preventiva de colaboradores em risco de saída.
+
+O processo mantém uma abordagem iterativa, permitindo ajustar os limiares de classificação e refinar o modelo com base nos resultados obtidos, garantindo que o índice de risco gerado é interpretável, consistente e útil para a gestão estratégica de recursos humanos.
+
+**Divisão de Tarefas:** 
+
+ **Luís Figueira:** 
+   *  
+   *  
+   *  
+   *  
+    
+ **Martim Ferreira:**
+   *  
+   *  
+   *  
+   *  
+
+ **Mateus Afonso:** 
+   *  
+   *  
+   *  
+   * 
+
+  **Tarefas conjuntas**
+   *  
+   *  
+   *  
+   *   
+   
+ ## 7. Referências
+
+ 
+Data de última atualização: 15/04/2026
