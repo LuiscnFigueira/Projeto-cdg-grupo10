@@ -43,4 +43,46 @@ dataset é desequilibrado e queremos evitar falsos negativos.")
 *Justifiquem por que razão este modelo está pronto (ou não) para ser apresentado como solução 
 final.* 
  --- 
-Data de última atualização: 25/03/2026
+
+## 6. Metodologia de Gestão (PBL)
+
+O projeto segue uma abordagem baseada no modelo CRISP-DM (Cross-Industry Standard Process for Data Mining), que estrutura o desenvolvimento em seis fases principais: compreensão do problema, compreensão dos dados, preparação dos dados, modelação, avaliação e implementação.
+
+Na presente fase - Milestone 3 (Modelação e Avaliação) - o foco incide na aplicação de técnicas de aprendizagem não supervisionada, com o objetivo de identificar padrões e perfis distintos de colaboradores através de métodos de *clustering*.
+
+São implementados algoritmos de agrupamento, nomeadamente o K-Means, sendo exploradas diferentes configurações para determinar o número ótimo de clusters. Para tal, são utilizadas métricas internas de avaliação, como o *Silhouette Score*, o método do cotovelo (*Elbow Method*) e indicadores adicionais como o índice de Davies-Bouldin e Calinski-Harabasz.
+
+A análise inclui ainda a interpretação dos clusters obtidos, através da caracterização estatística dos grupos e da identificação de padrões relevantes no contexto organizacional.
+
+À semelhança das restantes abordagens, o processo é iterativo, permitindo ajustar as variáveis utilizadas, aplicar técnicas de redução de dimensionalidade e testar diferentes algoritmos, com o objetivo de melhorar a qualidade dos agrupamentos e extrair conhecimento útil para a segmentação de colaboradores.
+
+**Divisão de Tarefas:** 
+
+ **Luís Figueira:** 
+   *  
+   *  
+   *  
+   *  
+    
+ **Martim Ferreira:**
+   *  
+   *  
+   *  
+   *  
+
+ **Mateus Afonso:** 
+   *  
+   *  
+   *  
+   * 
+
+  **Tarefas conjuntas**
+   *  
+   *  
+   *  
+   *   
+   
+ ## 7. Referências
+
+ 
+Data de última atualização: 15/04/2026
