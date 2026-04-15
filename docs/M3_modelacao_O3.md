@@ -1,11 +1,59 @@
 # Milestone 3: Modelação e Avaliação 
  
 ## 1. Estratégia de Modelação 
-*Descrevam como prepararam os dados para os algoritmos.* 
-* **Divisão do dataset:** (p/ex.: "Utilizámos uma divisão de 70% para treino e 30% para teste 
-com semente aleatória (random_state) fixa.") 
-* **Métrica de Sucesso:** (p/ex.: "A métrica principal escolhida foi o F1-Score, pois o nosso 
-dataset é desequilibrado e queremos evitar falsos negativos.") 
+
+### 1.1 Divisão do Dataset (Treino/Teste)
+
+O dataset foi dividido em dois subconjuntos distintos: treino (80%) e teste (20%), utilizando uma semente aleatória fixa (`random_state=42`) para garantir a reprodutibilidade dos resultados.
+
+Apesar de se tratar de um problema de aprendizagem não supervisionada, foi adotada uma estratégia de amostragem estratificada com base na variável `Attrition_bin`, assegurando que a proporção de colaboradores com e sem atrito se mantém consistente entre os dois subconjuntos. Esta decisão é particularmente relevante do ponto de vista de negócio, uma vez que permite avaliar se os padrões identificados nos clusters são estáveis face à distribuição real do fenómeno de `Attrition`.
+
+Os resultados da divisão demonstram essa consistência:
+
+- Conjunto de treino: 1176 observações (80%)
+- Conjunto de teste: 294 observações (20%)
+- Proporção de *Attrition* no treino: 16.2%
+- Proporção de *Attrition* no teste: 16.0%
+
+Esta abordagem permite uma avaliação mais robusta da capacidade de generalização dos modelos, verificando se os agrupamentos identificados no treino se mantêm quando aplicados a novos dados.
+
+### 1.2 Normalização dos Dados
+
+Antes da aplicação dos algoritmos de clustering, foi realizada a normalização das variáveis numéricas utilizando o método `StandardScaler`.
+
+Esta etapa é crítica porque algoritmos comoK-Means, DBSCAN e GMM baseiam-se em distâncias (nomeadamente distância euclidiana). Sem normalização, variáveis com maior escala (por exemplo, rendimento mensal) dominariam o cálculo das distâncias, distorcendo os resultados e comprometendo a qualidade dos clusters.
+
+Para garantir rigor metodológico e evitar data leakage, o processo foi conduzido da seguinte forma:
+
+- O `StandardScaler` foi ajustado (fit) apenas no conjunto de treino;
+- Posteriormente, os parâmetros aprendidos foram aplicados (transform) ao conjunto de teste.
+
+Após a normalização, verificou-se que:
+
+- Média das variáveis ≈ 0
+- Desvio padrão ≈ 1
+
+Este procedimento assegura que todas as variáveis contribuem de forma equilibrada para a formação dos clusters, aumentando a fiabilidade dos modelos.
+
+### 1.3 Métricas de Sucesso
+
+A avaliação dos modelos de clustering foi realizada com base em métricas internas, uma vez que não existem rótulos reais que permitam uma validação supervisionada.
+
+A métrica principal definida foi o Silhouette Score, que mede simultaneamente:
+
+- A coesão interna dos clusters
+- A separação entre clusters
+
+Os seus valores variam entre -1 e 1, sendo valores mais elevados indicativos de melhor qualidade de agrupamento. Foi definido como objetivo atingir um valor superior a 0.50, correspondente a clusters bem definidos e separados.
+
+Contudo, reconhecendo que o Silhouette Score, isoladamente, pode não captar toda a complexidade dos dados, foram também consideradas métricas complementares:
+
+- Davies-Bouldin Index (DB): avalia a sobreposição entre clusters (quanto menor, melhor)
+- Calinski-Harabasz Index (CH): mede a separação global entre clusters e a sua compacidade (quanto maior, melhor)
+
+Para além destas métricas, foi igualmente analisada a estabilidade dos modelos, através da comparação dos resultados obtidos nos conjuntos de treino e teste. Um modelo robusto deverá apresentar métricas consistentes entre ambos, indicando capacidade de generalização.
+
+Desta forma, a seleção do modelo final baseou-se numa abordagem multi-critério, combinando desempenho quantitativo, robustez estatística e interpretabilidade dos resultados no contexto do problema de negócio, nomeadamente a identificação de padrões associados ao `attrition` de colaboradores.
  
 ## 2. Experiências Realizadas 
 ### 2.1. Modelo Baseline 
