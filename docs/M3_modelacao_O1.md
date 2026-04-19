@@ -9,9 +9,13 @@
  
 ## 2. Experiências Realizadas 
 ### 2.1. Modelo Baseline 
-*O ponto de partida simples.* 
-* **Algoritmo:** (p/ex.: Regressão Logística) 
-* **Resultado:** (p/ex.: Accuracy: 0.72) 
+
+**Algoritmo:** Árvore de Decisão (`DecisionTreeClassifier`) com todos os parâmetros *default*, sem normalização nem balanceamento dos dados.
+
+**Resultados:** F1 Treino: 1.0000 | F1 Teste: 0.1793 | Precision: 0.2097 | Recall: 0.1566 | AUC Teste: 0.5216
+
+O modelo baseline evidencia *overfitting* severo: a árvore de decisão sem restrições de profundidade memorizou completamente os dados de treino (F1 = 1.0000), não generalizando para dados não vistos (F1 = 0.1793). O gap de 0.8207 entre o F1 de treino e de teste confirma este comportamento - esperado e documentado na literatura, dado que árvores de decisão sem regularização tendem a crescer até memorizar o conjunto de treino, resultando em fraca capacidade de generalização (James et al., 2021). A Precision (0.2097) e o Recall (0.1566) igualmente baixos indicam que o modelo falha tanto na identificação correta dos colaboradores em risco como na cobertura dos casos reais de atrito. O valor de AUC = 0.5216 confirma uma capacidade discriminativa próxima do aleatório (0.50), reforçando a necessidade de aplicar técnicas de controlo de complexidade e balanceamento de classes nas experiências subsequentes (Géron, 2022).
+
  
 ### 2.2. Modelos Candidatos 
 *Listagem dos algoritmos testados e a justificação da escolha.* 
