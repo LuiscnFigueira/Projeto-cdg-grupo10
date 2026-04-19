@@ -1,11 +1,11 @@
 # Milestone 3: Modelação e Avaliação 
  
-## 1. Estratégia de Modelação 
-*Descrevam como prepararam os dados para os algoritmos.* 
-* **Divisão do dataset:** (p/ex.: "Utilizámos uma divisão de 70% para treino e 30% para teste 
-com semente aleatória (random_state) fixa.") 
-* **Métrica de Sucesso:** (p/ex.: "A métrica principal escolhida foi o F1-Score, pois o nosso 
-dataset é desequilibrado e queremos evitar falsos negativos.") 
+## 1. Estratégia de Modelação
+
+**Divisão do dataset:** Utilizámos uma divisão de 80% para treino e 20% para teste, estratificada pela variável alvo `Attrition_bin` (random_state=42), garantindo a mesma proporção de colaboradores com atrito (~16%) em ambos os conjuntos. Esta abordagem de divisão estratificada é recomendada na literatura como boa prática em problemas de classificação com desequilíbrio de classes, assegurando que ambos os conjuntos representam fielmente a distribuição real dos dados (Géron, 2022; James et al., 2021). As variáveis categóricas originais (`Attrition`, `OverTime`, `Gender`, `BusinessTravel`, `Department`, `EducationField`, `JobRole`, `MaritalStatus`) foram removidas do conjunto de features, utilizando as respetivas versões já codificadas no dataset processado. Apenas variáveis numéricas foram consideradas, em linha com o processo de preparação de dados definido no âmbito do CRISP-DM (Chapman et al., 2000).
+
+**Métrica de Sucesso:** A métrica principal escolhida foi o F1-Score, por ser a mais adequada para datasets desequilibrados como o nosso (~84% Não Saiu vs ~16% Saiu). O F1-Score combina *Precision* e *Recall* numa única métrica, penalizando tanto os falsos positivos como os falsos negativos — característica particularmente relevante no contexto de atrito organizacional, onde tanto a falha em identificar colaboradores em risco como a geração de alertas desnecessários têm custos práticos para as organizações (Hom et al., 2017; James et al., 2021). Como métrica complementar foi utilizado o AUC-ROC, que mede a capacidade discriminativa do modelo independentemente do *threshold* de decisão, permitindo uma avaliação mais abrangente da qualidade de separação entre classes (Géron, 2022; James et al., 2021).
+
  
 ## 2. Experiências Realizadas 
 ### 2.1. Modelo Baseline 
@@ -83,6 +83,14 @@ O processo mantém uma natureza iterativa, permitindo ajustar variáveis, parâm
    *
    
  ## 7. Referências
+ 
+Chapman, P., Clinton, J., Khabaza, T., Reinartz, T., & Wirth, R. (2000). *CRISP-DM 1.0: Step-by-step data mining guide.*
+
+Géron, A. (2022). *Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow* (3.ª ed.). O'Reilly Media.
+
+Hom, P. W., Lee, T. W., Shaw, J. D., & Hausknecht, J. P. (2017). One hundred years of employee turnover theory and research. *Journal of Applied Psychology.*
+
+James, G., Witten, D., Hastie, T., & Tibshirani, R. (2021). *An Introduction to Statistical Learning: with Applications in R* (2.ª ed.). Springer.
 
  
 Data de última atualização: 15/04/2026
