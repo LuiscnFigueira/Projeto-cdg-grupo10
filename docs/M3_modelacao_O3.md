@@ -4,56 +4,37 @@
 
 ### 1.1 Divisão do Dataset (Treino/Teste)
 
-O dataset foi dividido em dois subconjuntos distintos: treino (80%) e teste (20%), utilizando uma semente aleatória fixa (`random_state=42`) para garantir a reprodutibilidade dos resultados.
+Para selecionar a divisão de dados mais adequada, foram testados seis rácios distintos (65/35, 70/30, 75/25, 80/20, 85/15 e 90/10), com semente aleatória fixa (random_state=42) para garantir a reprodutibilidade dos resultados (Chapman et al., 2000). Os resultados comparativos de todas as divisões encontram-se disponíveis no repositório do projeto (pasta `/resultados/splits/Objetivo3`). A divisão que produziu os melhores resultados globais foi a de 80% para treino e 20% para teste, garantindo um conjunto de treino suficientemente representativo para estabilidade dos clusters e um conjunto de teste com dimensão adequada à avaliação da generalização dos modelos.
 
-Apesar de se tratar de um problema de aprendizagem não supervisionada, foi adotada uma estratégia de amostragem estratificada com base na variável `Attrition_bin`, assegurando que a proporção de colaboradores com e sem atrito se mantém consistente entre os dois subconjuntos. Esta decisão é particularmente relevante do ponto de vista de negócio, uma vez que permite avaliar se os padrões identificados nos clusters são estáveis face à distribuição real do fenómeno de `Attrition`.
+Esta proporção assegura que o conjunto de treino dispõe de informação suficiente para a identificação de padrões estáveis, enquanto o conjunto de teste permite avaliar se os agrupamentos identificados se mantêm quando aplicados a dados não observados durante o treino - critério especialmente relevante em aprendizagem não supervisionada, onde não existe uma métrica externa de referência (Jain, 2010; Géron, 2022).
 
-Os resultados da divisão demonstram essa consistência:
-
-- Conjunto de treino: 1176 observações (80%)
-- Conjunto de teste: 294 observações (20%)
-- Proporção de *Attrition* no treino: 16.2%
-- Proporção de *Attrition* no teste: 16.0%
-
-Esta abordagem permite uma avaliação mais robusta da capacidade de generalização dos modelos, verificando se os agrupamentos identificados no treino se mantêm quando aplicados a novos dados.
 
 ### 1.2 Normalização dos Dados
 
-Antes da aplicação dos algoritmos de clustering, foi realizada a normalização das variáveis numéricas utilizando o método `StandardScaler`.
+Antes da aplicação dos algoritmos de clustering, foi realizada a normalização das variáveis numéricas utilizando o método `StandardScaler`, que transforma cada variável para média zero e desvio padrão unitário (z-score). Esta etapa é crítica porque algoritmos como K-Means, DBSCAN e GMM baseiam-se em distâncias euclidianas: sem normalização, variáveis com maior escala - como o salário mensal, cujos valores superam a ordem de grandeza de variáveis binárias (0/1) - dominariam o cálculo das distâncias, distorcendo os resultados e comprometendo a qualidade dos clusters (Géron, 2022; James et al., 2021).
 
-Esta etapa é crítica porque algoritmos comoK-Means, DBSCAN e GMM baseiam-se em distâncias (nomeadamente distância euclidiana). Sem normalização, variáveis com maior escala (por exemplo, rendimento mensal) dominariam o cálculo das distâncias, distorcendo os resultados e comprometendo a qualidade dos clusters.
+Para garantir rigor metodológico e evitar data leakage, o processo foi conduzido em conformidade com as boas práticas estabelecidas na literatura (Chapman et al., 2000; Géron, 2022):
 
-Para garantir rigor metodológico e evitar data leakage, o processo foi conduzido da seguinte forma:
+•	O `StandardScaler` foi ajustado exclusivamente no conjunto de treino (.fit_transform), aprendendo os parâmetros estatísticos (μ, σ) a partir apenas dessas observações
 
-- O `StandardScaler` foi ajustado (fit) apenas no conjunto de treino;
-- Posteriormente, os parâmetros aprendidos foram aplicados (transform) ao conjunto de teste.
+•	Os parâmetros aprendidos foram posteriormente aplicados ao conjunto de teste (.transform), garantindo que nenhuma informação do teste influenciou a normalização
 
-Após a normalização, verificou-se que:
-
-- Média das variáveis ≈ 0
-- Desvio padrão ≈ 1
-
-Este procedimento assegura que todas as variáveis contribuem de forma equilibrada para a formação dos clusters, aumentando a fiabilidade dos modelos.
+Após a normalização, verificou-se que a média das variáveis ≈ 0 e o desvio padrão ≈ 1, confirmando que todas as variáveis contribuem de forma equilibrada para a formação dos clusters. Este procedimento é particularmente relevante neste dataset, dado que integra simultaneamente variáveis numéricas contínuas (como por exemplo: salário e anos de experiência) e variáveis binárias resultantes de codificação one-hot de variáveis categóricas, cujas escalas nativas seriam incompatíveis sem normalização.
 
 ### 1.3 Métricas de Sucesso
 
-A avaliação dos modelos de clustering foi realizada com base em métricas internas, uma vez que não existem rótulos reais que permitam uma validação supervisionada.
+A avaliação dos modelos de clustering foi realizada com base em métricas internas, uma vez que não existem rótulos reais que permitam uma validação supervisionada. Foram utilizadas três métricas complementares, em conformidade com as boas práticas da literatura especializada (Jain, 2010).
 
-A métrica principal definida foi o Silhouette Score, que mede simultaneamente:
+A métrica principal definida foi o Silhouette Score, que mede simultaneamente a coesão interna dos clusters - quão próximas estão as observações dentro do mesmo grupo - e a separação entre clusters distintos. Os seus valores variam entre -1 e 1, sendo valores mais elevados indicativos de melhor qualidade de agrupamento. Foi definido como objetivo atingir um valor superior a 0,50, correspondente a clusters bem definidos e separados.
 
-- A coesão interna dos clusters
-- A separação entre clusters
+Como métricas complementares, foram consideradas:
 
-Os seus valores variam entre -1 e 1, sendo valores mais elevados indicativos de melhor qualidade de agrupamento. Foi definido como objetivo atingir um valor superior a 0.50, correspondente a clusters bem definidos e separados.
+•	Davies-Bouldin Index (Davies & Bouldin, 1979): avalia a sobreposição média entre clusters, computando o rácio entre a dispersão intra-cluster e a distância inter-cluster. Valores mais baixos indicam melhor separação
 
-Contudo, reconhecendo que o Silhouette Score, isoladamente, pode não captar toda a complexidade dos dados, foram também consideradas métricas complementares:
+•	Calinski-Harabasz Index (Caliński & Harabasz, 1974): mede a razão entre a dispersão inter-cluster e a dispersão intra-cluster. Valores mais elevados indicam clusters mais compactos e bem separados
 
-- Davies-Bouldin Index (DB): avalia a sobreposição entre clusters (quanto menor, melhor)
-- Calinski-Harabasz Index (CH): mede a separação global entre clusters e a sua compacidade (quanto maior, melhor)
+Para além das métricas quantitativas, foi analisada a estabilidade dos modelos através da consistência dos resultados entre treino e teste - um modelo robusto deverá apresentar métricas equiparáveis em ambos os conjuntos, indicando capacidade de generalização. Desta forma, a seleção do modelo final baseou-se numa abordagem multi-critério, combinando desempenho quantitativo, robustez estatística e interpretabilidade dos resultados no contexto do problema de negócio: a identificação de perfis de colaboradores associados ao fenómeno de `Attrition` (Jain, 2010; James et al., 2021).
 
-Para além destas métricas, foi igualmente analisada a estabilidade dos modelos, através da comparação dos resultados obtidos nos conjuntos de treino e teste. Um modelo robusto deverá apresentar métricas consistentes entre ambos, indicando capacidade de generalização.
-
-Desta forma, a seleção do modelo final baseou-se numa abordagem multi-critério, combinando desempenho quantitativo, robustez estatística e interpretabilidade dos resultados no contexto do problema de negócio, nomeadamente a identificação de padrões associados ao `Attrition` de colaboradores.
  
 ## 2. Experiências Realizadas 
 ### 2.1. Modelo Baseline 
@@ -132,5 +113,16 @@ A análise inclui ainda a interpretação dos clusters obtidos, através da cara
    
  ## 7. Referências
 
+Caliński, T., & Harabasz, J. (1974). A dendrite method for cluster analysis. Communications in Statistics, 3(1), 1–27.
+
+Chapman, P., Clinton, J., Kerber, R., Khabaza, T., Reinartz, T., Shearer, C., & Wirth, R. (2000). CRISP-DM 1.0: Step-by-step data mining guide. SPSS Inc.
+
+Davies, D. L., & Bouldin, D. W. (1979). A cluster separation measure. IEEE Transactions on Pattern Analysis and Machine Intelligence, 1(2), 224–227.
+
+Géron, A. (2022). Hands-on machine learning with Scikit-Learn, Keras, and TensorFlow (3rd ed.). O’Reilly Media.
+
+Jain, A. K. (2010). Data clustering: 50 years beyond K-means. Pattern Recognition Letters, 31(8), 651–666.
+
+James, G., Witten, D., Hastie, T., & Tibshirani, R. (2021). An introduction to statistical learning with applications in R (2nd ed.). Springer.
  
-Data de última atualização: 15/04/2026
+Data de última atualização: 21/04/2026
