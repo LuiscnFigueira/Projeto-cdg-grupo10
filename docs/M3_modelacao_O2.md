@@ -92,4 +92,4 @@ Hom, P. W., Lee, T. W., Shaw, J. D., & Hausknecht, J. P. (2017). One hundred yea
 James, G., Witten, D., Hastie, T., & Tibshirani, R. (2021). *An introduction to statistical learning with applications in R* (2nd ed.). Springer.
 
  
-Data de última atualização: 15/04/2026
+Data de última atualização: 20/04/2026
