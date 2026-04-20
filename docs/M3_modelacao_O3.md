@@ -53,7 +53,7 @@ Contudo, reconhecendo que o Silhouette Score, isoladamente, pode não captar tod
 
 Para além destas métricas, foi igualmente analisada a estabilidade dos modelos, através da comparação dos resultados obtidos nos conjuntos de treino e teste. Um modelo robusto deverá apresentar métricas consistentes entre ambos, indicando capacidade de generalização.
 
-Desta forma, a seleção do modelo final baseou-se numa abordagem multi-critério, combinando desempenho quantitativo, robustez estatística e interpretabilidade dos resultados no contexto do problema de negócio, nomeadamente a identificação de padrões associados ao `attrition` de colaboradores.
+Desta forma, a seleção do modelo final baseou-se numa abordagem multi-critério, combinando desempenho quantitativo, robustez estatística e interpretabilidade dos resultados no contexto do problema de negócio, nomeadamente a identificação de padrões associados ao `Attrition` de colaboradores.
  
 ## 2. Experiências Realizadas 
 ### 2.1. Modelo Baseline 
