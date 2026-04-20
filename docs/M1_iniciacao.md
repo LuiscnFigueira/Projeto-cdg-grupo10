@@ -42,9 +42,7 @@ Este projeto demonstra a aplicação prática de técnicas de análise de dados 
 F1-Score mínimo de 0,80 em validação cruzada estratificada (k=5), até ao dia 21/04/2026
 (Milestone 3).
  
-2.  **Objetivo 2:** Construir um índice de risco de atrito (`Attrition`) baseado nas probabilidades previstas pelo modelo,
-classificando os colaboradores em categorias de baixo risco (<30%), médio risco (30–60%) e alto
-risco (>60%), até ao dia 21/04/2026.
+2.  **Objetivo 2:** Construir um índice de risco de atrito (Attrition) baseado nas probabilidades previstas pelo modelo, classificando os colaboradores em quatro categorias de risco: Baixo (prob < 30%), Médio (30% ≤ prob < 50%), Alto (50% ≤ prob < 70%) e Crítico (prob ≥ 70%), até ao dia 23/04/2026.
 
 3. **Objetivo 3:** Aplicar técnicas de agrupamento (clustering) não supervisionado para identificar e caracterizar perfis distintos de
 colaboradores com base nas variáveis relevantes do dataset, determinando o número ótimo de
@@ -302,4 +300,4 @@ Disponível em: https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-a
 James, G., Witten, D., Hastie, T., & Tibshirani, R. (2021). 
 *An Introduction to Statistical Learning: with Applications in R* (2nd ed.). Springer.
 
-*Data de última atualização: 22/03/2026*
+*Data de última atualização: 20/04/2026*
