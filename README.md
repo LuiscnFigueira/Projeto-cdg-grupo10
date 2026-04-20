@@ -69,6 +69,13 @@ De forma geral, o dataset apresenta boa qualidade e consistência, permitindo av
   <img src="reports/figures/CorrelaçãoVariávelAlvo.png" alt="Correlação com Variável Alvo" width="700"/>
 </p>
 
+O gráfico apresenta a correlação entre diversas variáveis e a variável alvo `Attrition` (saída de colaboradores).
+À esquerda, o mapa de calor mostra a intensidade e direção das correlações (valores entre -1 e 1), onde tons azuis indicam correlação negativa e tons vermelhos indicam correlação positiva. À direita, o gráfico de barras destaca as variáveis com maior impacto na rotatividade.
+
+Observa-se que OverTime (horas extra) apresenta a correlação positiva mais forte com o `Attrition`, indicando que colaboradores que fazem mais horas extra têm maior probabilidade de sair da empresa. Variáveis como JobLevel, TotalWorkingYears, MonthlyIncome e Age apresentam correlações negativas, sugerindo que maior experiência, senioridade e rendimento estão associados a menor rotatividade.
+
+Outras variáveis, como JobRole (Sales Representative) e BusinessTravel (Travel Frequently), também demonstram associação positiva com o Attrition, enquanto fatores relacionados com satisfação (ex.: JobSatisfaction e EnvironmentSatisfaction) tendem a reduzir a probabilidade de saída.
+
 * **Ponto-chave 1 - Horas Extraordinárias:** Colaboradores que realizam horas extra apresentam uma taxa de saída de 30.5%, face a 10.4% nos restantes. O teste qui-quadrado confirmou esta associação (χ² = 87.56, p < 0.001, Cramér's V = 0.24).
 * **Ponto-chave 2 - Perfil de risco:** Os colaboradores com maior probabilidade de abandono tendem a ser jovens (20–35 anos), com baixo rendimento mensal e menos de 10 anos de experiência total.
 * **Ponto-chave 3 - Desequilíbrio de classes:** A variável alvo `Attrition` apresenta *class imbalance* significativo: 83.9% (No) vs 16.1% (Yes). A Milestone 3 adotará métricas adequadas (F1-Score, ROC-AUC) e técnicas de balanceamento (SMOTE).
