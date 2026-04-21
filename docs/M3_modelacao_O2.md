@@ -2,7 +2,7 @@
 
 ## 1. Estratégia de Modelação
 
-### 1.1 Divisão do dataset
+### 1.1 Divisão do Dataset
 O dataset foi dividido em 80% para treino (1176 observações)
 e 20% para teste (294 observações), com estratificação pela variável alvo
 `Attrition_bin` (random_state=42), garantindo a mesma proporção de colaboradores
@@ -10,24 +10,31 @@ com atrito (~16%) em ambos os conjuntos e evitando fugas de informação
 (*data leakage*). Esta abordagem é recomendada na literatura como boa prática em
 problemas de classificação com desequilíbrio de classes, assegurando que ambos os
 conjuntos representam fielmente a distribuição real dos dados (Géron, 2022;
-James et al., 2021). As variáveis categóricas originais foram removidas do conjunto
-de *features*, utilizando as respetivas versões já codificadas no *dataset*
-processado. Apenas variáveis numéricas foram consideradas, com normalização via
-`StandardScaler` aplicada ao Baseline (Regressão Logística), KNN e SVM, em linha
-com o CRISP-DM (Chapman et al., 2000).
+James et al., 2021).
 
-### 1.2 Métrica de Sucesso 
-A métrica principal escolhida foi o **F1-Score**, por ser a
-mais adequada para *datasets* desequilibrados como o nosso (~84% Não Saiu vs ~16%
-Saiu). O F1-Score combina Precision e Recall numa única métrica, penalizando tanto
-os falsos positivos como os falsos negativos — característica particularmente
-relevante no contexto de atrito organizacional, onde a falha em identificar
-colaboradores em risco tem custos práticos para as organizações (Hom et al., 2017;
-James et al., 2021). O **Recall** assume especial relevância: em RH, o custo de não
-identificar um colaborador em risco (Falso Negativo) é tipicamente superior ao custo
-de uma intervenção preventiva desnecessária (Falso Positivo). Como métrica
-complementar foi utilizado o **AUC-ROC**, que mede a capacidade discriminativa do
-modelo independentemente do *threshold* de decisão (Géron, 2022; James et al., 2021).
+### 1.2 Normalização dos Dados
+A normalização via `StandardScaler` foi aplicada seletivamente apenas aos modelos
+sensíveis à escala das variáveis: Regressão Logística (Baseline), KNN e SVM. Os
+restantes modelos candidatos (Naive Bayes, LDA, Extra Trees, AdaBoost, LightGBM,
+XGBoost e Random Forest) não requerem normalização pela sua natureza algorítmica,
+nomeadamente por serem baseados em árvores de decisão ou por tratarem as variáveis
+de forma independente. As variáveis categóricas originais foram removidas do conjunto
+de *features*, utilizando as respetivas versões já codificadas no *dataset*
+processado. Apenas variáveis numéricas foram consideradas, em linha com o
+CRISP-DM (Chapman et al., 2000).
+
+### 1.3 Métrica de Sucesso
+A métrica principal escolhida foi o **F1-Score**, por ser a mais adequada para
+*datasets* desequilibrados como o nosso (~84% Não Saiu vs ~16% Saiu). O F1-Score
+combina Precision e Recall numa única métrica, penalizando tanto os falsos positivos
+como os falsos negativos — característica particularmente relevante no contexto de
+atrito organizacional, onde a falha em identificar colaboradores em risco tem custos
+práticos para as organizações (Hom et al., 2017; James et al., 2021). O **Recall**
+assume especial relevância: em RH, o custo de não identificar um colaborador em risco
+(Falso Negativo) é tipicamente superior ao custo de uma intervenção preventiva
+desnecessária (Falso Positivo). Como métrica complementar foi utilizado o **AUC-ROC**,
+que mede a capacidade discriminativa do modelo independentemente do *threshold* de
+decisão (Géron, 2022; James et al., 2021).
 
 Para além das métricas quantitativas, a **interpretabilidade** e a **qualidade das
 probabilidades previstas** foram definidas desde o início como critérios formais de
