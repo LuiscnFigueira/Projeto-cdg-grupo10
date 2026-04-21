@@ -60,13 +60,13 @@ Foram testados seis modelos candidatos, cobrindo diferentes paradigmas de *clust
 
 **Particionamento (Candidatos 1 e 6):** O *K-Means* Otimizado e o *MiniBatch K-Means* foram testados como variantes do baseline. A pesquisa do k ótimo por *Silhouette* no conjunto de treino confirmou k=4 como o valor mais adequado - o mesmo do baseline - o que sugere que a limitação não está no núméro de *clusters* mas na capacidade do *K-Means* em capturar a estrutura real dos dados. Com k=4, o *K-Means* Otimizado apresentou *Silhouette* de 0.0818 (treino) e 0.0768 (teste), uma melhoria marginal face ao *baseline* (0.0745/0.0696). O *MiniBatch K-Means* foi o modelo com pior desempenho geral (*Silhouette* teste de 0.0362), resultante da estocasticidade dos *batches* que, sem `random_state`, introduz instabilidade nas atribuições. Este comportamento é consistente com a literatura: o *K-Means* degrada-se em *datasets* de alta dimensionalidade com distribuições não esféricas (Jäin, 2010; Géron, 2022).
 
-**Modelo Probabilístico (Candidato 3 — GMM):** O *Gaussian Mixture Model* com quatro componentes e covariance_type='full' foi selecionado após pesquisa do núméro ótimo de componentes por *Silhouette* no treino. Atingiu *Silhouette* de 0.0867 (treino) e 0.0874 (teste), ligeiramente superior ao *K-Means*. A vantagem do *GMM* face ao *K-Means* reside na capacidade de modelar *clusters* de formas elípticas e de diferentes dimensões através da matriz de covariância completa; no entanto, o ganho foi inferior ao esperado, sugerindo que a distribuição dos dados não segue uma mistura de Gaussianas bem separada. O *Davies-Bouldin* de 2.69 evidencia ainda sobreposioção considerável entre grupos (James et al., 2021).
+**Modelo Probabilístico (Candidato 3 - GMM):** O *Gaussian Mixture Model* com quatro componentes e covariance_type='full' foi selecionado após pesquisa do núméro ótimo de componentes por *Silhouette* no treino. Atingiu *Silhouette* de 0.0867 (treino) e 0.0874 (teste), ligeiramente superior ao *K-Means*. A vantagem do *GMM* face ao *K-Means* reside na capacidade de modelar *clusters* de formas elípticas e de diferentes dimensões através da matriz de covariância completa; no entanto, o ganho foi inferior ao esperado, sugerindo que a distribuição dos dados não segue uma mistura de Gaussianas bem separada. O *Davies-Bouldin* de 2.69 evidencia ainda sobreposioção considerável entre grupos (James et al., 2021).
 
-**Hierárquico (Candidato 4 — Agglomerative Clustering):** O *Agglomerative Clustering* com linkage='ward' e k=4 produziu resultados muito próximos do *K-Means* Otimizado: *Silhouette* 0.0785/0.0809 e DB de 2.75. O dendrograma confirmou que o corte a quatro *clusters* não corresponde a uma separação natural bem definida. A vantagem da abordagem hierárquica é não requerer k fixo à partida e permitir análise do dendrograma para validação, mas o desempenho métrico ficou aquem do DBSCAN (James et al., 2021; Géron, 2022).
+**Hierárquico (Candidato 4 - Agglomerative Clustering):** O *Agglomerative Clustering* com linkage='ward' e k=4 produziu resultados muito próximos do *K-Means* Otimizado: *Silhouette* 0.0785/0.0809 e DB de 2.75. O dendrograma confirmou que o corte a quatro *clusters* não corresponde a uma separação natural bem definida. A vantagem da abordagem hierárquica é não requerer k fixo à partida e permitir análise do dendrograma para validação, mas o desempenho métrico ficou aquem do DBSCAN (James et al., 2021; Géron, 2022).
 
-**Baseado em Densidade (Candidatos 2 e 5 — DBSCAN e OPTICS):** Os algoritmos baseados em densidade apresentaram comportamentos opostos. O OPTICS com min_samples=3, xi=0.05 e min_cluster_size=0.05 identificou apenas um *cluster* com 1172 observações e 4 pontos de ruído (0.3%), tornando as métricas incalculáveis (núméro de clusters insuficiente). Este resultado sugere que os parâmetros não foram adequados para a densidade do dataset e que o OPTICS, por ser mais sensível ao limiar de *cluster* mínimo, requer afinação mais cuidadosa do que o DBSCAN (Ankerst et al., 1999).
+**Baseado em Densidade (Candidatos 2 e 5 - DBSCAN e OPTICS):** Os algoritmos baseados em densidade apresentaram comportamentos opostos. O OPTICS com min_samples=3, xi=0.05 e min_cluster_size=0.05 identificou apenas um *cluster* com 1172 observações e 4 pontos de ruído (0.3%), tornando as métricas incalculáveis (núméro de clusters insuficiente). Este resultado sugere que os parâmetros não foram adequados para a densidade do dataset e que o OPTICS, por ser mais sensível ao limiar de *cluster* mínimo, requer afinação mais cuidadosa do que o DBSCAN (Ankerst et al., 1999).
 
-O DBSCAN com eps=8.0 e min_samples=5 foi o modelo com melhor desempenho da fase de candidatos: *Silhouette* de 0.1708 (treino) e 0.1709 (teste), *Davies-Bouldin* de 1.5778 — substancialmente inferior a todos os restantes — e apenas 1.1% de ruído (13 pontos). O algoritmo identificou 3 *clusters* naturais a partir da densidade local dos dados, sem necessidade de definir k à partida. A consistência entre treino e teste (diferença de 0.0001) demonstra estabilidade da estrutura aprendida. A aplicação ao conjunto de teste foi realizada via KNN (k=5), *proxy* supervisionado necessário dado que o DBSCAN não possui método .predict() nativo (Géron, 2022; Schubert et al., 2017). O DBSCAN foi, por isso, selecionado como modelo a otimizar.
+O DBSCAN com eps=8.0 e min_samples=5 foi o modelo com melhor desempenho da fase de candidatos: *Silhouette* de 0.1708 (treino) e 0.1709 (teste), *Davies-Bouldin* de 1.5778 - substancialmente inferior a todos os restantes - e apenas 1.1% de ruído (13 pontos). O algoritmo identificou 3 *clusters* naturais a partir da densidade local dos dados, sem necessidade de definir k à partida. A consistência entre treino e teste (diferença de 0.0001) demonstra estabilidade da estrutura aprendida. A aplicação ao conjunto de teste foi realizada via KNN (k=5), *proxy* supervisionado necessário dado que o DBSCAN não possui método .predict() nativo (Géron, 2022; Schubert et al., 2017). O DBSCAN foi, por isso, selecionado como modelo a otimizar.
 
 Em síntese, o intervalo de *Silhouette* nos candidatos válidos situa-se entre 0.0362 (MiniBatch K-Means) e 0.1709 (DBSCAN), todos abaixo do limiar de 0.50 definido como meta na Secção 1. Este resultado reflete a dificuldade inerente à segmentação de dados de Recursos Humanos com elevada dimensionalidade (53 variáveis), onde as distâncias euclidianas tendem a tornar-se uniformes - fenómeno conhecido como *curse of dimensionality* (Bellman, 1957; James et al., 2021). A fase de otimização endereça precisamente este problema através de redução de dimensionalidade por PCA, que permitirá avaliar se a qualidade de *clustering* melhora substancialmente (Jolliffe & Cadima, 2016).
 
@@ -133,7 +133,11 @@ A análise inclui ainda a interpretação dos clusters obtidos, através da cara
    
  ## 7. Referências
 
-Caliński, T., & Harabasz, J. (1974). A dendrite method for cluster analysis. Communications in Statistics, 3(1), 1–27.
+Ankerst, M., Breunig, M. M., Kriegel, H.-P., & Sander, J. (1999). OPTICS: Ordering points to identify the clustering structure. ACM SIGMOD Record, 28(2), 49–60.
+
+Bellman, R. E. (1957). Dynamic programming. Princeton University Press.
+
+Calinski, T., & Harabasz, J. (1974). A dendrite method for cluster analysis. Communications in Statistics, 3(1), 1–27.
 
 Chapman, P., Clinton, J., Kerber, R., Khabaza, T., Reinartz, T., Shearer, C., & Wirth, R. (2000). CRISP-DM 1.0: Step-by-step data mining guide. SPSS Inc.
 
@@ -143,6 +147,12 @@ Géron, A. (2022). Hands-on machine learning with Scikit-Learn, Keras, and Tenso
 
 Jain, A. K. (2010). Data clustering: 50 years beyond K-means. Pattern Recognition Letters, 31(8), 651–666.
 
-James, G., Witten, D., Hastie, T., & Tibshirani, R. (2021). An introduction to statistical learning with applications in R (2nd ed.). Springer.
+James, G., Witten, D., Hastie, T., & Tibshirani, R. (2021). An introduction to statistical learning (2nd ed.). Springer.
+
+Jolliffe, I. T., & Cadima, J. (2016). Principal component analysis: A review and recent developments. Philosophical Transactions of the Royal Society A, 374(2065).
+
+Rousseeuw, P. J. (1987). Silhouettes: A graphical aid to the interpretation and validation of cluster analysis. Journal of Computational and Applied Mathematics, 20, 53–65.
+
+Schubert, E., Sander, J., Ester, M., Kriegel, H.-P., & Xu, X. (2017). DBSCAN revisited, revisited: Why and how you should (still) use DBSCAN. ACM Transactions on Database Systems, 42(3), 1–21.
  
 Data de última atualização: 21/04/2026
