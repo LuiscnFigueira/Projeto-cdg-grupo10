@@ -2,11 +2,41 @@
 
 ## 1. Estratégia de Modelação
 
-**Divisão do dataset:** Para selecionar a divisão de dados mais adequada, foram testados seis rácios distintos (65/35, 70/30, 75/25, 80/20, 85/15 e 90/10), com e sem estratificação pela variável alvo `Attrition_bin`. Os resultados comparativos de todos os *splits* encontram-se disponíveis no repositório do projeto (pasta `/resultados/splits/Objetivo2`). A divisão que produziu os melhores resultados globais foi a de 65% para treino e 35% para teste, com estratificação (random_state=42), garantindo a mesma proporção de colaboradores com atrito (~16%) em ambos os conjuntos. Esta abordagem é recomendada na literatura como boa prática em problemas de classificação com desequilíbrio de classes, assegurando que ambos os conjuntos representam fielmente a distribuição real dos dados (Géron, 2022; James et al., 2021). As variáveis categóricas originais foram removidas do conjunto de *features*, utilizando as respetivas versões já codificadas no *dataset* processado. Apenas variáveis numéricas foram consideradas, com normalização via `StandardScaler` aplicada ao modelo *baseline* (Regressão Logística), KNN e SVM, em linha com o CRISP-DM (Chapman et al., 2000).
+### 1.1 Divisão do dataset
+O dataset foi dividido em 80% para treino (1176 observações)
+e 20% para teste (294 observações), com estratificação pela variável alvo
+`Attrition_bin` (random_state=42), garantindo a mesma proporção de colaboradores
+com atrito (~16%) em ambos os conjuntos e evitando fugas de informação
+(*data leakage*). Esta abordagem é recomendada na literatura como boa prática em
+problemas de classificação com desequilíbrio de classes, assegurando que ambos os
+conjuntos representam fielmente a distribuição real dos dados (Géron, 2022;
+James et al., 2021). As variáveis categóricas originais foram removidas do conjunto
+de *features*, utilizando as respetivas versões já codificadas no *dataset*
+processado. Apenas variáveis numéricas foram consideradas, com normalização via
+`StandardScaler` aplicada ao Baseline (Regressão Logística), KNN e SVM, em linha
+com o CRISP-DM (Chapman et al., 2000).
 
-**Métrica de Sucesso:** A métrica principal escolhida foi o F1-Score, por ser a mais adequada para *datasets* desequilibrados como o nosso (~84% Não Saiu vs ~16% Saiu). O F1-Score combina Precision e Recall numa única métrica, penalizando tanto os falsos positivos como os falsos negativos - característica particularmente relevante no contexto de atrito organizacional, onde a falha em identificar colaboradores em risco tem custos práticos para as organizações (Hom et al., 2017; James et al., 2021). Como métrica complementar foi utilizado o AUC-ROC, que mede a capacidade discriminativa do modelo independentemente do *threshold* de decisão (Géron, 2022; James et al., 2021).
+### 1.2 Métrica de Sucesso 
+A métrica principal escolhida foi o **F1-Score**, por ser a
+mais adequada para *datasets* desequilibrados como o nosso (~84% Não Saiu vs ~16%
+Saiu). O F1-Score combina Precision e Recall numa única métrica, penalizando tanto
+os falsos positivos como os falsos negativos — característica particularmente
+relevante no contexto de atrito organizacional, onde a falha em identificar
+colaboradores em risco tem custos práticos para as organizações (Hom et al., 2017;
+James et al., 2021). O **Recall** assume especial relevância: em RH, o custo de não
+identificar um colaborador em risco (Falso Negativo) é tipicamente superior ao custo
+de uma intervenção preventiva desnecessária (Falso Positivo). Como métrica
+complementar foi utilizado o **AUC-ROC**, que mede a capacidade discriminativa do
+modelo independentemente do *threshold* de decisão (Géron, 2022; James et al., 2021).
 
-Para além das métricas quantitativas, a interpretabilidade e a qualidade das probabilidades previstas foram definidas desde o início como critérios formais de seleção do modelo final. No contexto deste objetivo, as probabilidades geradas pelo modelo são a base do índice de risco - pelo que um modelo com probabilidades bem calibradas é preferível a um modelo de caixa-negra, independentemente do seu F1-Score isolado (Hom et al., 2017). Em caso de desempenho equivalente entre finalistas, seria preferido o modelo com maior capacidade de explicação direta dos coeficientes e com probabilidades interpretáveis.
+Para além das métricas quantitativas, a **interpretabilidade** e a **qualidade das
+probabilidades previstas** foram definidas desde o início como critérios formais de
+seleção do modelo final. No contexto deste objetivo, as probabilidades geradas pelo
+modelo são a base do índice de risco — pelo que um modelo com probabilidades bem
+calibradas é preferível a um modelo de caixa-negra, independentemente do seu
+F1-Score isolado (Hom et al., 2017). Em caso de desempenho equivalente entre
+finalistas, seria preferido o modelo com maior capacidade de explicação direta dos
+coeficientes e com probabilidades interpretáveis.
  
 ## 2. Experiências Realizadas 
 ### 2.1. Modelo Baseline 
