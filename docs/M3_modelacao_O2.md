@@ -45,20 +45,65 @@ F1-Score isolado (Hom et al., 2017). Em caso de desempenho equivalente entre
 finalistas, seria preferido o modelo com maior capacidade de explicação direta dos
 coeficientes e com probabilidades interpretáveis.
  
-## 2. Experiências Realizadas 
-### 2.1. Modelo Baseline 
-*O ponto de partida simples.* 
-* **Algoritmo:** (p/ex.: Regressão Logística) 
-* **Resultado:** (p/ex.: Accuracy: 0.72) 
- 
-### 2.2. Modelos Candidatos 
-*Listagem dos algoritmos testados e a justificação da escolha.* 
- 
-| Algoritmo | Parâmetros Base | Métrica (Treino) | Métrica (Teste) | Notas | 
-| :--- | :--- | :--- | :--- | :--- | 
-| Random Forest | n_estimators=100 | 0.95 | 0.82 | Sinais de overfitting | 
-| XGBoost | default | 0.88 | 0.85 | Melhor generalização | 
-| SVM | kernel='rbf' | 0.80 | 0.79 | Lento no treino | 
+## 2. Experiências Realizadas
+
+### 2.1. Modelo Baseline — Regressão Logística
+
+O modelo de referência escolhido foi a **Regressão Logística** com parâmetros por
+omissão (*default*), por ser um modelo de baixa complexidade, interpretável e
+adequado a problemas de classificação binária (Géron, 2022). Este modelo serve como
+patamar mínimo de desempenho para comparação com todos os modelos candidatos.
+
+| Métrica | Treino | Teste |
+|:---|---:|---:|
+| Accuracy | 0.9065 | 0.8639 |
+| Precision | 0.8175 | 0.6296 |
+| Recall | 0.5421 | 0.3617 |
+| F1-Score | 0.6519 | 0.4595 |
+| AUC-ROC | 0.8819 | 0.8170 |
+
+O modelo baseline apresentou uma diferença de F1 de +0.19 entre treino e teste,
+sinalizando overfitting moderado. O Recall no teste (36.2%) revelou-se o principal
+ponto fraco — mais de metade dos colaboradores que saíram não foram identificados
+pelo modelo com o threshold padrão de 0.50.
+
+### 2.2. Modelos Candidatos
+
+Foram testados 9 algoritmos candidatos de maior complexidade, com o objetivo de
+superar o desempenho do baseline. A tabela seguinte apresenta os resultados
+comparativos de todos os modelos, ordenados por F1-Score no teste:
+
+| Modelo | F1 Treino | F1 Teste | AUC Teste | Overfitting (ΔF1) |
+|:---|---:|---:|---:|:---:|
+| Baseline — Regressão Logística | 0.6519 | **0.4595** | **0.8170** | +0.19 |
+| 1. Naive Bayes | 0.4752 | 0.4354 | 0.7269 | +0.04  |
+| 2. LDA | 0.6454 | 0.4167 | 0.8099 | +0.23 |
+| 6. AdaBoost | 0.6133 | 0.3889 | 0.8022 | +0.22 |
+| 7. LightGBM | 1.0000 | 0.3548 | 0.7820 | +0.65 |
+| 8. XGBoost | 1.0000 | 0.3333 | 0.7617 | +0.67 |
+| 5. SVM | 0.6851 | 0.2712 | 0.8086 | +0.41 |
+| 4. Extra Trees | 1.0000 | 0.2143 | 0.8099 | +0.79 |
+| 3. KNN | 0.4223 | 0.1724 | 0.6464 | +0.25 |
+| 9. Random Forest | 1.0000 | 0.1695 | 0.7956 | +0.83 |
+
+**Análise crítica dos resultados:**
+
+- **Modelos com overfitting severo (ΔF1 > 0.40):** LightGBM, XGBoost, Extra Trees e
+Random Forest atingiram F1 = 1.0 no treino mas colapsaram no teste, evidenciando
+memorização dos dados de treino sem capacidade de generalização. Estes modelos foram
+descartados para efeitos de otimização.
+
+- **Naive Bayes:** Foi o único modelo sem sinais relevantes de overfitting (ΔF1 =
++0.04), mas apresentou o AUC-ROC mais baixo (0.727) e probabilidades pouco calibradas
+para o contexto de construção de um índice de risco, tornando-o menos adequado ao
+objetivo do trabalho.
+
+- **Modelo vencedor — Regressão Logística (Baseline):** Apesar de ser o modelo mais
+simples, apresentou o **melhor F1-Score no teste** (0.4595) entre os modelos com
+overfitting controlado, o **AUC-ROC mais elevado** (0.8170) e **probabilidades bem
+calibradas** — critério essencial para a construção de um índice de risco fiável e
+interpretável (Hom et al., 2017). A sua seleção para otimização foi, portanto,
+sustentada tanto por critérios de desempenho como de adequação ao objetivo de negócio.
  
 ## 3. Otimização (Tuning) 
 *Descrevam como melhoraram o melhor modelo.* 
