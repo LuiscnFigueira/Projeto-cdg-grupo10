@@ -122,7 +122,7 @@ Um resultado particularmente notável é a ausência total de ruído: 0 pontos c
 
 A progressão dos resultados ao longo das abordagens testadas é reveladora. O DBSCAN sem redução de dimensionalidade (*Silhouette* teste: 0.17) demonstra os limites do algoritmo no espaço original de 53 dimensões. O PCA(5) melhora substancialmente (0.33), ao compactar a estrutura em 5 componentes ortogonais. O PCA fino (n=3, adaptativo) melhora ainda mais (0.44), sugerindo que 3 componentes capturam melhor as separações relevantes do que 5. O UMAP, ao preservar a geometria local não-linear, dá o salto mais expressivo (0.70), confirmando que a estrutura latente dos dados de Recursos Humanos é melhor descrita por um manifold curvo do que por um subespacço linear (McInnes et al., 2018; Jain, 2010).
 
-Em síntese, a melhoria total face ao *baseline K-Means* é de +909% no Silhouette Score de teste (0.0696 → 0.7016) e de +312% face ao melhor candidato DBSCAN (0.1709 → 0.7016). O modelo UMAP(5, 15) + DBSCAN foi, por isso, selecionado como modelo final de *clustering* do Objetivo 3.
+Em síntese, a melhoria total face ao *baseline K-Means* é de +909% no *Silhouette Score* de teste (0.0696 → 0.7016) e de +312% face ao melhor candidato DBSCAN (0.1709 → 0.7016). O modelo UMAP(5, 15) + DBSCAN foi, por isso, selecionado como modelo final de *clustering* do Objetivo 3.
 
 
 ## 4. Avaliação do Modelo Final 
@@ -199,8 +199,8 @@ James, G., Witten, D., Hastie, T., & Tibshirani, R. (2021). An introduction to s
 
 Jolliffe, I. T., & Cadima, J. (2016). Principal component analysis: A review and recent developments. Philosophical Transactions of the Royal Society A, 374(2065).
 
+McInnes, L., Healy, J., & Melville, J. (2018). UMAP: Uniform manifold approximation and projection for dimension reduction. arXiv:1802.03426.
+
 Rousseeuw, P. J. (1987). Silhouettes: A graphical aid to the interpretation and validation of cluster analysis. Journal of Computational and Applied Mathematics, 20, 53–65.
 
 Schubert, E., Sander, J., Ester, M., Kriegel, H.-P., & Xu, X. (2017). DBSCAN revisited, revisited: Why and how you should (still) use DBSCAN. ACM Transactions on Database Systems, 42(3), 1–21.
- 
-Data de última atualização: 21/04/2026
