@@ -71,7 +71,7 @@ Foram testados seis modelos candidatos, cobrindo diferentes paradigmas de *clust
 O DBSCAN com eps=8.0 e min_samples=5 foi o modelo com melhor desempenho da fase de candidatos: *Silhouette* de 0.1709 (treino) e 0.1828 (teste), *Davies-Bouldin* de 1.4334 - substancialmente inferior a todos os restantes - e apenas 1% de ruído (12 pontos). O algoritmo identificou 3 *clusters* naturais a partir da densidade local dos dados, sem necessidade de definir k à partida. A consistência entre treino e teste (diferença de 0.0001) demonstra estabilidade da estrutura aprendida. A aplicação ao conjunto de teste foi realizada via KNN (k=5), *proxy* supervisionado necessário dado que o DBSCAN não possui método .predict() nativo (Géron, 2022; Schubert et al., 2017). O DBSCAN foi, por isso, selecionado como modelo a otimizar.
 
 <p align="center">
-  <img src="reports/figures/splits/Objetivo3/PCA_DBSCAN_Objetivo3.png"/>
+  <img src="https://raw.githubusercontent.com/LuiscnFigueira/Projeto-cdg-grupo10/main/reports/figures/splits/Objetivo3/PCA_DBSCAN_Objetivo3.png" width="80%"/>
 </p>
 
 Em síntese, o intervalo de *Silhouette* nos candidatos válidos situa-se entre 0.0428 (MiniBatch K-Means) e 0.1828 (DBSCAN), todos abaixo do limiar de 0.50 definido como meta na Secção 1. Este resultado reflete a dificuldade inerente à segmentação de dados de Recursos Humanos com elevada dimensionalidade (53 variáveis), onde as distâncias euclidianas tendem a tornar-se uniformes - fenómeno conhecido como *curse of dimensionality* (Bellman, 1957; James et al., 2021). A fase de otimização endereça precisamente este problema através de redução de dimensionalidade por PCA, que permitirá avaliar se a qualidade de *clustering* melhora substancialmente (Jolliffe & Cadima, 2016).
