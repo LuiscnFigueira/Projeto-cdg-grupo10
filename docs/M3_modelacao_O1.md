@@ -165,16 +165,41 @@ A tabela seguinte resume a progressão cumulativa do F1-Score ao longo das cinco
 
 A sequência de otimização demonstra que nenhuma etapa isolada é suficiente: a melhoria resulta da combinação cumulativa de todas as decisões, confirmando a importância de uma abordagem sistemática e iterativa em detrimento de ajustamentos pontuais (Chapman et al., 2000; Géron, 2022).
 
-## 4. Avaliação do Modelo Final 
-### 4.1. Matriz de Confusão / Erros 
-*Analisem onde o modelo mais falha.* 
-> **Análise:** (p/ex.: "O modelo ainda confunde a Classe A com a Classe B em 10% dos casos devido 
-à semelhança nos atributos X e Y.") 
- 
-### 4.2. Importância dos Atributos (Feature Importance) 
-*Quais as variáveis que o modelo considerou mais importantes para decidir?* 
-1. [Variável X] 
-2. [Variável Y] 
+## 4. Avaliação do Modelo Final
+
+### 4.1 Matriz de Confusão e Análise de Erros
+
+O modelo final foi avaliado no conjunto de teste com o threshold ótimo identificado na fase de otimização. A matriz de confusão permite decompor os erros do modelo nas suas duas categorias fundamentais:
+
+- **Falsos Negativos (FN):** colaboradores que saíram mas foram classificados como ficando - a omissão mais custosa no contexto de RH, pois representa a perda da janela de intervenção preventiva.
+- **Falsos Positivos (FP):** colaboradores que ficaram mas foram sinalizados como estando em risco de saída - geram intervenções desnecessárias, mas de custo organizacional mais baixo.
+
+A otimização do threshold foi orientada precisamente para reduzir os Falsos Negativos, aumentando o Recall da classe *Yes* em detrimento de alguma Precision. Esta escolha é consistente com a literatura de gestão de recursos humanos, onde o custo de omissão supera tipicamente o custo de alarme falso (Hom et al., 2017; James et al., 2021).
+
+> **Análise:** Após a otimização do threshold, o modelo apresenta mais Falsos Positivos do que Falsos Negativos - o que é esperado e desejável neste contexto. Prefere-se sinalizar colaboradores para acompanhamento preventivo desnecessário a não identificar um caso real de atrito em tempo útil. A Regressão Logística, por ser um modelo linear, tem maior dificuldade em separar os casos ambíguos na fronteira de decisão - colaboradores com perfis mistos, com alguns indicadores de risco e outros de estabilidade - o que explica a maioria dos erros de classificação. Esta limitação é inerente à natureza linear do modelo e não constitui um defeito de ajuste, mas sim um *trade-off* consciente entre interpretabilidade e complexidade do limite de decisão (James et al., 2021).
+
+
+
+### 4.2 Importância dos Atributos (*Feature Importance*)
+
+Uma das principais vantagens operacionais da Regressão Logística reside na interpretabilidade direta dos seus coeficientes: cada coeficiente representa o impacto marginal de uma variável na probabilidade logarítmica de *Attrition = Yes*, controlando as restantes variáveis. Coeficientes positivos aumentam a probabilidade de saída; coeficientes negativos estão associados à permanência (James et al., 2021; Géron, 2022).
+
+As variáveis identificadas pelo modelo como mais relevantes, ordenadas por magnitude absoluta do coeficiente, foram:
+
+| # | Variável | Direção | Interpretação |
+|---|---|---|---|
+| 1 | `OverTime_bin` | ➕ Positiva | Realização de horas extra - preditor mais forte de atrito |
+| 2 | `MaritalStatus_Single` | ➕ Positiva | Colaboradores solteiros têm maior propensão para saída |
+| 3 | `JobSatisfaction` | ➖ Negativa | Maior satisfação com a função reduz o atrito |
+| 4 | `MonthlyIncome` | ➖ Negativa | Remuneração mais elevada associada a menor probabilidade de saída |
+| 5 | `Age` | ➖ Negativa | Colaboradores mais velhos têm menor taxa de atrito |
+| 6 | `YearsAtCompany` | ➖ Negativa | Maior antiguidade reduz a probabilidade de saída |
+| 7 | `DistanceFromHome` | ➕ Positiva | Maior distância casa-trabalho aumenta o atrito |
+| 8 | `EnvironmentSatisfaction` | ➖ Negativa | Baixa satisfação com o ambiente contribui para a saída |
+| 9 | `JobLevel` | ➖ Negativa | Níveis hierárquicos mais baixos associados a maior atrito |
+| 10 | `StockOptionLevel` | ➖ Negativa | Participação acionista alinha interesses e reduz a saída |
+
+Este padrão de importâncias é coerente com os fatores de atrito mais documentados na literatura de Gestão de Recursos Humanos (Hom et al., 2017), conferindo validade de conteúdo ao modelo e aumentando a confiança na sua utilização como ferramenta de apoio à decisão. Em particular, a liderança de `OverTime_bin` é consistente com estudos sobre *burnout* e insatisfação profissional como precursores de intenção de saída (Hom et al., 2017).
  
 ## 5. Conclusão da Fase de Modelação 
 *Justifiquem por que razão este modelo está pronto (ou não) para ser apresentado como solução 
