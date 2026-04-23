@@ -136,7 +136,7 @@ O modelo final UMAP(5, 15) + DBSCAN (`eps=6.0`, `min_samples=3`) foi avaliado co
 | Davies-Bouldin Index         | 2.9943             | 1.4790                     | 0.3991                           | 0.3864                          |
 | Calinski-Harabasz Index      | 14.24              | 8.51                       | 1772.02                          | 301.16                          |
 | Clusters identificados       | 4                  | 4                        | 4                                    | 4                                   |
-| Ruído (%)                    | —                  | 1.1%                       | 0.0%                             | 0.0%                                   |
+| Ruído (%)                    | 15.0%                  | 1.1%                       | 0.0%                             | 0.0%                                   |
 | Meta Silhouette > 0.50       | Não atingida       | Não atingida               | Atingida                         | Atingida                        |
 
 O modelo final atingiu um *Silhouette Score* de 0.7016 no conjunto de teste, superando claramente a meta de 0.50 definida na Secção 1. Rousseeuw (1987) classifica valores superiores a 0.70 como indicativos de estrutura de *clustering* forte, e valores entre 0.50 e 0.70 como razoável. O resultado de 0.7141 no treino e 0.7016 no teste situa o modelo no limiar superior desta classificação. O *Davies-Bouldin* de 0.3864 (teste) é o mais baixo registado em toda a fase de modelação - valores inferiores a 0.5 indicam clusters bem compactos e bem separados entre si (Davies & Bouldin, 1979). O índice de *Calinski-Harabasz* de 301.16 no teste representa uma melhoria de 21x face ao *baseline K-Means* (14.24), refletindo a superioridade da estrutura de *clustering* produzida pelo UMAP (Caliński & Harabasz, 1974).
@@ -191,21 +191,60 @@ O segundo eixo discriminante é a hierarquia profissional e o rendimento. O Clus
 Em síntese, o modelo final UMAP(5, 15) + DBSCAN identifica quatro perfis organizacionalmente coerentes: I&D Operacional (*Cluster* 0, 56% - técnicos e investigadores de nível base-intermédio), Liderança Científica (*Cluster* 1, 5.8% - *Research Directors*, o topo hierárquico de I&D), Equipa de Vendas (*Cluster* 2, 36% - equipa comercial da organização), e Recursos Humanos (*Cluster* 3, 2.1% - departamento de RH isolado). O departamento/função é o principal eixo de diferenciação, seguido pela hierarquia e o rendimento. A capacidade do UMAP de recuperar esta estrutura organizacional a partir de 53 variáveis heterogéneas, sem supervisionamento, demonstra a sua superioridade face a técnicas lineares como o PCA, que não capturaria com a mesma nitidez as fronteiras departamentais enquanto dimensão de coerência local (McInnes et al., 2018; Jain, 2010).
 
 ## 5. Conclusão da Fase de Modelação 
-*Justifiquem por que razão este modelo está pronto (ou não) para ser apresentado como solução 
-final.* 
- --- 
+### 5.1 Síntese do Processo de Modelação
+
+A fase de modelação do Objetivo 3 compreendeu três etapas sequenciais: avaliação de modelos baseline, exploração de modelos candidatos e otimização do modelo selecionado. O ponto de partida foi o K-Means com quatro clusters, que atingiu um Silhouette Score de apenas 0.0705 no conjunto de treino, valor que Rousseeuw (1987) classifica como indicativo de ausência de estrutura de clustering relevante. Este resultado estabeleceu a necessidade de explorar abordagens alternativas, tanto em termos de algoritmo como de representação do espaço de características.
+
+A Tabela 6 sintetiza a progressão das métricas ao longo das três etapas, evidenciando a melhoria acumulada obtida.
+
+| Etapa / Modelo                          | Silhouette (Treino) | Silhouette (Teste) | Davies-Bouldin (Treino) | Davies-Bouldin (Teste) | Calinski-Harabasz (Treino) | Calinski-Harabasz (Teste) | Clusters | Ruído |
+|----------------------------------------|----------------|---------------|--------------|-------------|--------------|-------------|----------|--------|
+| Baseline — K-Means (k=4)               | 0.0748         | 0.0725             | 3.3149       | 3.1517           | 77.6458        | 14.4884           | 4        | 15.0%      |
+| Melhor Candidato — DBSCAN (original)   | 0.1709         | 0.1828             | 1.5723       | 1.4334           | 35.7952         | 7.5962           | 4      | 1.1%   |
+| Modelo Final — UMAP(5,15) + DBSCAN     | 0.7141         | 0.7016        | 0.3991       | 0.3864      | 1772.02      | 301.16      | 4        | 0.0%   |
+| Meta definida                          | > 0.50         | > 0.50        | —            | —           | —            | —           | 4        | ≤ 20%  |
+
+A melhoria mais expressiva ao longo do processo de modelação ocorreu com a introdução do UMAP como etapa de redução de dimensionalidade. A passagem de um *Silhouette* de 0.1709 (melhor candidato no espaço original) para 0.7141 no treino e 0.7016 no teste representa um ganho de +310 pontos percentuais que não seria alcançável por simples substituição de algoritmo ou ajuste de hiperparâmetros no espaço de 53 variáveis. O mesmo padrão confirma-se nas métricas DB e CH: o modelo final reduz o DB de 2.9943 para 0.3991 no treino e multiplica o CH de 14.24 para 1772.02. O UMAP aprendeu um *manifold* de baixa dimensão onde a estrutura departamental latente - até então não recuperada por nenhuma abordagem - emergiu como fronteira de separação nítida (McInnes et al., 2018).
+
+### 5.2. Justificação da Solução Final
+
+O modelo UMAP(5, 15) + DBSCAN (eps=6.0, min_samples=3) está pronto a ser apresentado como solução final com base em quatro critérios complementares: desempenho quantitativo, generalização, interpretabilidade e alinhamento com o objetivo do projeto.
+
+**Desempenho quantitativo acima da meta:** O *Silhouette Score* de 0.7016 no conjunto de teste supera a meta de 0.50 definida na Secção 1 em +40.3 pontos percentuais. Este valor é classificado por Rousseeuw (1987) como indicativo de estrutura de clustering forte, o limiar mais exigente da sua classificação. O *Davies-Bouldin* de 0.3864 no teste confirma *clusters* compactos e bem separados - valores abaixo de 0.5 são considerados excelentes (Davies & Bouldin, 1979). A melhoria face ao *baseline K-Means* é de +895% no Silhouette e de -87% no *Davies-Bouldin*. Todas as métricas apontam na mesma direção, sem compromissos ou contradições entre si.
+
+**Generalização robusta sem sobreajustamento:** A diferença entre treino e teste é mínima: ΔSilhouette=0.0125, ΔDB=0.0127. O modelo foi treinado no conjunto de treino (85%, n=1249) e avaliado num conjunto de teste totalmente separado (15%, n=221), usando um classificador KNN como *proxy* para a função de predição - metodologia que evita *data leakage* e garante a validade da avaliação. A estabilidade das métricas confirma que o UMAP aprendeu a estrutura global dos dados, não padrões específicos do treino.
+
+**Classificação completa sem ruído:** O modelo produz zero pontos classificados como ruído no conjunto de treino (0.0%), o que significa que todos os colaboradores são atribuídos a um *cluster*. Este resultado, que contrasta com os 1.1% de ruído do melhor candidato em espaço original, é consequência da combinação entre o *manifold* UMAP - que comprime a estrutura de vizinhança de 53 dimensões em 5 componentes coerentes - e a calibração do eps via percentil 5 das distâncias KNN no espaço reduzido. Do ponto de vista operacional, um modelo sem ruído é preferível: não deixa colaboradores por classificar e facilita a interpretação e utilização dos resultados.
+
+**Interpretabilidade e coerência organizacional:** Os quatro *clusters* identificados têm correspondiência direta com a estrutura departamental da organização: I&D Operacional (56%), Liderança Científica (5.8%), Equipa de Vendas (36%) e Recursos Humanos (2.1%). Esta coerência não foi imposta ao modelo - resultou da aprendizagem não-supervisionada sobre 53 variáveis escaladas. A correspondência entre os clusters e unidades organizacionais reais é um indicador forte de validade externa: o modelo captura uma estrutura que existe objectivamente na organização, não um artefacto do algoritmo (Jain, 2010). Os perfis são suficientemente distintos para suportar decisões diferenciadas de gestão de pessoas, desenvolvimento de carreira ou política de compensação por segmento.
+
+### 5.3. Limitações e Considerações
+
+Apesar do desempenho quantitativo e da coerência qualitativa, o modelo apresenta três limitações que devem ser consideradas na utilização dos seus resultados.
+
+**Cluster 3 de dimensão reduzida:** O *cluster* de Recursos Humanos conta com apenas 26 membros no treino (2.1% da amostra). Embora a sua separação seja estatísticamente justificada pelo *Silhouette* e *Davies-Bouldin*, a dimensão reduzida impõe cautela na generalização dos seus perfis médios e na tomada de decisões orgânicas baseadas neste grupo. Pequenas alterações na composição do departamento de RH podem alterar significativamente as médias do *cluster*.
+
+**Não-determinismo do UMAP:** O UMAP é um algoritmo estocástico: execuções sem semente fixa produzem *manifolds* ligeiramente distintos, o que pode alterar as fronteiras do DBSCAN e, por consequência, a atribuição de alguns pontos fronteiriços. Este comportamento foi mitigado com o uso de `random_state=42` em todas as execuções, garantindo reprodutibilidade integral dentro do pipeline definido. A validação cruzada K-Fold (K=5) realizada na fase de otimização confirmou a estabilidade média das métricas, com variância reduzida entre *folds*.
+
+**Ausência de métricas de validade externa formal:** A avaliação baseou-se exclusivamente em métricas internas (Silhouette, DB, CH), que medem a qualidade geométrica dos clusters no espaço transformado pelo UMAP. A validade externa — ou seja, a correspondência entre os clusters e variáveis não utilizadas na modelação, como o atrito ou a performance avaliada — não foi testada formalmente nesta fase. A coerência departamental observada é um indicador positivo de validade externa, mas uma validação por supervisionamento parcial (por exemplo, usando a variável Attrition como critério externo) reforçaria a confiança nos perfis identificados.
+
+### 5.4. Conclusão
+
+O modelo UMAP(5, 15) + DBSCAN (`eps=6.0`, `min_samples=3`) cumpre todos os critérios definidos para esta fase de modelação: supera a meta de *Silhouette* > 0.50, generaliza de forma robusta para o conjunto de teste, classifica a totalidade da população sem ruído, e produz *clusters* com significado organizacional direto. O ganho métrico face ao *baseline* é substancial e não é atribuível a *overfitting*. O processo de otimização foi sistemático - explorando seis abordagens de representação e selecionação de variáveis antes de convergir para o UMAP - o que confere robustez metodológica à escolha final.
+
+Os quatro segmentos identificados - I&D Operacional, Liderança Científica, Equipa de Vendas e Recursos Humanos - constituem uma representação coerente e acionável da população da organização. A segmentação por departamento como eixo principal, complementada pelas dimensões de hierarquia e rendimento, oferece uma base sólida para estratégias diferenciadas de gestão de talento. O modelo está pronto a ser apresentado como solução final do Objetivo 3.
 
 ## 6. Metodologia de Gestão (PBL)
 
-O projeto segue uma abordagem baseada no modelo CRISP-DM (Cross-Industry Standard Process for Data Mining), que estrutura o desenvolvimento em seis fases principais: compreensão do problema, compreensão dos dados, preparação dos dados, modelação, avaliação e implementação.
+O projeto segue uma abordagem estruturada com base na metodologia CRISP-DM (Cross-Industry Standard Process for Data Mining), que organiza o desenvolvimento em seis fases principais: compreensão do problema, compreensão dos dados, preparação dos dados, modelação, avaliação e implementação.
 
-Na presente fase - Milestone 3 (Modelação e Avaliação) - o foco incide na aplicação de técnicas de aprendizagem não supervisionada, com o objetivo de identificar padrões e perfis distintos de colaboradores através de métodos de *clustering*.
+Na presente fase - *Milestone 3* (Modelação e Avaliação) - o foco incide na aplicação de técnicas de aprendizagem não supervisionada, com o objetivo de identificar padrões latentes e segmentar os colaboradores em perfis homogéneos, suportando a análise exploratória avançada do fenómeno de Attrition.
 
-São implementados algoritmos de agrupamento, nomeadamente o K-Means, sendo exploradas diferentes configurações para determinar o número ótimo de clusters. Para tal, são utilizadas métricas internas de avaliação, como o *Silhouette Score*, o método do cotovelo (*Elbow Method*) e indicadores adicionais como o índice de Davies-Bouldin e Calinski-Harabasz.
+Foram implementados e comparados diversos algoritmos de *clustering*, nomeadamente *K-Means* (baseline e otimizado), DBSCAN, *Gaussian Mixture Models* (GMM), *Agglomerative Clustering*, *OPTICS* e *MiniBatch K-Means*, explorando diferentes configurações e parametrizações. A determinação do número ótimo de *clusters* foi realizada com base em métodos quantitativos, como o *Silhouette Score*, sendo complementada por métricas adicionais de avaliação interna, incluindo o índice de *Davies-Bouldin* (avaliação de sobreposição entre clusters) e o índice de *Calinski-Harabasz* (compacidade e separação global).
 
-A análise inclui ainda a interpretação dos clusters obtidos, através da caracterização estatística dos grupos e da identificação de padrões relevantes no contexto organizacional.
+Adicionalmente, foi conduzido um processo de otimização de parâmetros (*tuning*), com o objetivo de melhorar a qualidade dos agrupamentos obtidos. A avaliação dos modelos teve em consideração não apenas o desempenho estatístico, mas também a robustez dos resultados (comparação entre treino e teste) e a interpretabilidade dos *clusters*, aspetos fundamentais no contexto de apoio à decisão.
 
-À semelhança das restantes abordagens, o processo é iterativo, permitindo ajustar as variáveis utilizadas, aplicar técnicas de redução de dimensionalidade e testar diferentes algoritmos, com o objetivo de melhorar a qualidade dos agrupamentos e extrair conhecimento útil para a segmentação de colaboradores.
+À semelhança das restantes fases do projeto, o processo seguiu uma abordagem iterativa, permitindo ajustar o conjunto de variáveis, testar diferentes algoritmos e configurações, e refinar os resultados obtidos. Esta estratégia possibilitou a melhoria contínua da qualidade dos agrupamentos e a extração de conhecimento relevante para a segmentação de colaboradores e suporte à tomada de decisão em contexto organizacional.
 
 **Divisão de Tarefas:** 
 
