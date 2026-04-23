@@ -49,6 +49,8 @@ O modelo *baseline* evidencia uma segmentação muito fraca. O *Silhouette Score
 
 Foram testados seis modelos candidatos, cobrindo diferentes paradigmas de *clustering*: particionamento, densidade, modelo probabilístico, hierarquia e variante escalável. A seleção foi orientada pela recomendação CRISP-DM de testar múltiplos algoritmos antes de selecionar o modelo final, sem assumir à partida qual o mais adequado para o problema (Chapman et al., 2000). Em problemas de *clustering* sem supervisão, a diversidade de abordagens é particularmente importante dado que diferentes algoritmos capturam estruturas distintas nos dados (James et al., 2021; Géron, 2022).
 
+*Tabela 1 — Comparação de métricas de clustering entre os modelos candidatos testados (ordenados por Silhouette Score no teste, decrescente).*
+
  | Modelo                    | Silhouette (Treino) | Silhouette (Teste) | Davies-Bouldin (Treino) | Davies-Bouldin (Teste) | Calinski-Harabasz (Treino) | Calinski-Harabasz (Teste) |
 |---------------------------|---------------------|---------------------|--------------------------|-------------------------|-----------------------------|----------------------------|
 | DBSCAN (eps=8.0)         | 0.1709              | 0.1828              | 1.5723                   | 1.4334                  | 35.7952                     | 7.5962                     |
@@ -107,6 +109,8 @@ O espaço UMAP(5, 15) produziu uma estrutura de densidade excepcionalmente favor
 
 A combinação UMAP(5, 15) + DBSCAN produziu o melhor resultado de toda a fase de modelação. A Tabela 2 resume os resultados das cinco abordagens de melhoria comparadas com a referência PCA(5)+DBSCAN.
 
+*Tabela 2 — Resultados das abordagens de otimização testadas, comparadas com a referência PCA(5)+DBSCAN (ordenadas por Silhouette Score no teste, decrescente).*
+
 | Abordagem                              | Silhouette (Treino) | Silhouette (Teste) | Davies-Bouldin (Treino) | Davies-Bouldin (Teste) | Calinski-Harabasz (Treino) | Calinski-Harabasz (Teste) | Ruído (%) |
 |----------------------------------------|---------------------|---------------------|--------------------------|-------------------------|-----------------------------|----------------------------|-----------|
 | UMAP(5, 15) + DBSCAN                  | 0.7141              | 0.7016              | 0.3991                   | 0.3864                  | 1772.02                     | 301.16                     | 0.0       |
@@ -130,6 +134,8 @@ Em síntese, a melhoria total face ao *baseline K-Means* é de +909% no *Silhoue
 
 O modelo final UMAP(5, 15) + DBSCAN (`eps=6.0`, `min_samples=3`) foi avaliado com as três métricas definidas na Secção 1: *Silhouette Score* como critério principal, complementado pelo *Davies-Bouldin Index* e pelo *Calinski-Harabasz Index*. A Tabela 3 apresenta os resultados finais e a comparação com o *baseline K-Means*.
 
+*Tabela 3 — Comparação das métricas de avaliação entre o baseline, o melhor candidato e o modelo final, nos conjuntos de treino e teste.*
+
 | Métrica                      | Baseline (K-Means) | Melhor Candidato (DBSCAN) | Modelo Final (UMAP+DBSCAN) — Treino | Modelo Final (UMAP+DBSCAN) — Teste |
 |------------------------------|--------------------|----------------------------|--------------------------------------|-------------------------------------|
 | Silhouette Score             | 0.0705             | 0.1709                     | 0.7141                           | 0.7016                          |
@@ -147,6 +153,8 @@ A consistência entre treino e teste é notável. A diferença de *Silhouette* �
 
 A caracterização dos *clusters* foi realizada através da análise das médias das 53 variáveis originais por grupo, visualizadas num heatmap de perfil com z-scores para comparabilidade entre escalas distintas. Esta abordagem permite identificar as características que mais distinguem cada cluster da média populacional, independentemente da escala de cada variável (James et al., 2021).
 O modelo identifica quatro perfis de colaboradores com estrutura departamental consistente. A Tabela 4 apresenta as médias das variáveis mais discriminantes por cluster, evidenciando a segmentação por departamento e função como eixo estrutural principal.
+
+*Tabela 4 — Médias das variáveis mais discriminantes por cluster, evidenciando a segmentação departamental como eixo estrutural principal.*
 
  | Variável discriminante        | Cluster 0           | Cluster 1          | Cluster 2           | Cluster 3          | Média Pop. |
 |-------------------------------|---------------------|--------------------|---------------------|--------------------|------------|
@@ -176,6 +184,8 @@ Ao contrário dos modelos supervisionados, o UMAP e o DBSCAN não produzem coefi
 
 Para identificar as variáveis que mais contribuem para a separação entre clusters, recorre-se à análise da variância inter-cluster: as variáveis com maior diferença entre as médias de cada cluster e a média populacional são aquelas que melhor distinguem os grupos, independentemente de qualquer método de seleção formal. Esta abordagem é equivalente ao princípio subjacente ao índice de Calinski-Harabasz, que mede precisamente o rácio entre a variância inter-cluster e intra-cluster (Caliński & Harabasz, 1974; James et al., 2021).
 
+*Tabela 5 — Grupos de variáveis com maior poder discriminante entre clusters, identificados por análise de variância inter-cluster.*
+
 A análise da variância inter-cluster sobre as 53 variáveis originais permite identificar três grupos de variáveis discriminantes, ordenados por capacidade de separação entre clusters:
 
 | Grupo                     | Variáveis                                                                 | Padrão Observado |
@@ -195,7 +205,7 @@ Em síntese, o modelo final UMAP(5, 15) + DBSCAN identifica quatro perfis organi
 
 A fase de modelação do Objetivo 3 compreendeu três etapas sequenciais: avaliação de modelos baseline, exploração de modelos candidatos e otimização do modelo selecionado. O ponto de partida foi o K-Means com quatro clusters, que atingiu um Silhouette Score de apenas 0.0705 no conjunto de treino, valor que Rousseeuw (1987) classifica como indicativo de ausência de estrutura de clustering relevante. Este resultado estabeleceu a necessidade de explorar abordagens alternativas, tanto em termos de algoritmo como de representação do espaço de características.
 
-A Tabela 6 sintetiza a progressão das métricas ao longo das três etapas, evidenciando a melhoria acumulada obtida.
+*Tabela 6 — Síntese da progressão das métricas ao longo das três etapas do processo de modelação.*
 
 | Etapa / Modelo                          | Silhouette (Treino) | Silhouette (Teste) | Davies-Bouldin (Treino) | Davies-Bouldin (Teste) | Calinski-Harabasz (Treino) | Calinski-Harabasz (Teste) | Clusters | Ruído |
 |----------------------------------------|----------------|---------------|--------------|-------------|--------------|-------------|----------|--------|
