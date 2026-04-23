@@ -263,28 +263,27 @@ Adicionalmente, foi conduzido um processo de otimização de parâmetros (*tunin
 **Divisão de Tarefas:** 
 
  **Luís Figueira:** 
-   *  
-   *  
-   *  
-   *  
+   * Definição da estratégia de clustering
+   * Otimização do threshold de decisão 
+   * Definição da estratégia de clustering
     
  **Martim Ferreira:**
-   *  
-   *  
-   *  
-   *  
+   * Implementação dos algoritmos de clustering candidatos (K-Means, GMM, Hierárquico, OPTICS, MiniBatch)
+   * Implementação e otimização do UMAP + DBSCAN (Objetivo 3) Redação da documentação técnica M3_modelacao_O3.md 
+   * Avaliação das métricas de clustering
+   * Implementação dos modelos candidatos (DBSCAN, OPTICS)
 
  **Mateus Afonso:** 
-   *  
-   *  
-   *  
-   * 
+   * Otimização UMAP + DBSCAN 
+   * Avaliação do Modelo Final e Thresholding
+   * Análise e caracterização dos clusters finais
+   * Análise de feature importance
 
   **Tarefas conjuntas**
-   *  
-   *  
-   *  
-   *   
+   * Definição da estratégia de avaliação e métricas de sucesso
+   * Modelo Baseline 
+   * Definição da estratégia de modelação 
+   *  Avaliação e análise de erros do modelo final
    
  ## 7. Referências
  
