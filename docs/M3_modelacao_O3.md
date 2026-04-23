@@ -126,16 +126,70 @@ Em síntese, a melhoria total face ao *baseline K-Means* é de +909% no *Silhoue
 
 
 ## 4. Avaliação do Modelo Final 
-### 4.1. Matriz de Confusão / Erros 
-*Analisem onde o modelo mais falha.* 
-> **Análise:** (p/ex.: "O modelo ainda confunde a Classe A com a Classe B em 10% dos casos devido 
-à semelhança nos atributos X e Y.") 
+### 4.1. Métricas de Avaliação do Modelo Final
+
+O modelo final UMAP(5, 15) + DBSCAN (`eps=6.0`, `min_samples=3`) foi avaliado com as três métricas definidas na Secção 1: *Silhouette Score* como critério principal, complementado pelo *Davies-Bouldin Index* e pelo *Calinski-Harabasz Index*. A Tabela 3 apresenta os resultados finais e a comparação com o *baseline K-Means*.
+
+| Métrica                      | Baseline (K-Means) | Melhor Candidato (DBSCAN) | Modelo Final (UMAP+DBSCAN) — Treino | Modelo Final (UMAP+DBSCAN) — Teste |
+|------------------------------|--------------------|----------------------------|--------------------------------------|-------------------------------------|
+| Silhouette Score             | 0.0705             | 0.1709                     | 0.7141                           | 0.7016                          |
+| Davies-Bouldin Index         | 2.9943             | 1.4790                     | 0.3991                           | 0.3864                          |
+| Calinski-Harabasz Index      | 14.24              | 8.51                       | 1772.02                          | 301.16                          |
+| Clusters identificados       | 4                  | 4                        | 4                                    | 4                                   |
+| Ruído (%)                    | —                  | 1.1%                       | 0.0%                             | 0.0%                                   |
+| Meta Silhouette > 0.50       | Não atingida       | Não atingida               | Atingida                         | Atingida                        |
+
+O modelo final atingiu um *Silhouette Score* de 0.7016 no conjunto de teste, superando claramente a meta de 0.50 definida na Secção 1. Rousseeuw (1987) classifica valores superiores a 0.70 como indicativos de estrutura de *clustering* forte, e valores entre 0.50 e 0.70 como razoável. O resultado de 0.7141 no treino e 0.7016 no teste situa o modelo no limiar superior desta classificação. O *Davies-Bouldin* de 0.3864 (teste) é o mais baixo registado em toda a fase de modelação - valores inferiores a 0.5 indicam clusters bem compactos e bem separados entre si (Davies & Bouldin, 1979). O índice de *Calinski-Harabasz* de 301.16 no teste representa uma melhoria de 21x face ao *baseline K-Means* (14.24), refletindo a superioridade da estrutura de *clustering* produzida pelo UMAP (Caliński & Harabasz, 1974).
  
-### 4.2. Importância dos Atributos (Feature Importance) 
-*Quais as variáveis que o modelo considerou mais importantes para decidir?* 
-1. [Variável X] 
-2. [Variável Y] 
- 
+A consistência entre treino e teste é notável. A diferença de *Silhouette* é de apenas 0.0125, a de DB de 0.0127 e a de CH de 1470 pontos - esta última, embora expressiva em valor absoluto, é esperada dado que o CH depende do tamanho dos conjuntos (treino: 1249 obs., teste: 221 obs.) e escala com o rácio intra/inter-cluster (Caliński & Harabasz, 1974). A ausência de sobreaçustamento é assim confirmada pelas três métricas: o modelo generaliza a estrutura aprendida no treino de forma robusta para o conjunto de teste.
+
+### 4.2. Perfis dos Clusters
+
+A caracterização dos *clusters* foi realizada através da análise das médias das 53 variáveis originais por grupo, visualizadas num heatmap de perfil com z-scores para comparabilidade entre escalas distintas. Esta abordagem permite identificar as características que mais distinguem cada cluster da média populacional, independentemente da escala de cada variável (James et al., 2021).
+O modelo identifica quatro perfis de colaboradores com estrutura departamental consistente. A Tabela 4 apresenta as médias das variáveis mais discriminantes por cluster, evidenciando a segmentação por departamento e função como eixo estrutural principal.
+
+ | Variável discriminante        | Cluster 0           | Cluster 1          | Cluster 2           | Cluster 3          | Média Pop. |
+|-------------------------------|---------------------|--------------------|---------------------|--------------------|------------|
+| n (aprox., % treino)          | 701 (56%)           | 72 (5.8%)          | 450 (36%)           | 26 (2.1%)          | 1 249      |
+| Age                           | 35.8                | 43.9               | 37.4                | 36.9               | ~36.9      |
+| JobLevel                      | 1.60                | 3.97               | 2.45                | 1.42               | ~2.04      |
+| MonthlyIncome                 | 4 526               | 15 955             | 8 001               | 4 103              | ~6 428     |
+| TotalWorkingYears             | —                   | 21.3               | —                   | —                  | —          |
+| Department_R&D                | 1.000               | 1.000              | 0.093               | 0.000              | ~0.653     |
+| Department_Sales              | 0.000               | 0.000              | 0.847               | 0.000              | ~0.305     |
+| Department_HR                 | 0.000               | 0.000              | 0.060               | 1.000              | ~0.042     |
+| JobRole_Research Director     | 0.000               | 1.000              | 0.000               | 0.000              | ~0.058     |
+| JobRole_Sales Executive       | 0.000               | 0.000              | 0.604               | 0.000              | ~0.218     |
+| JobRole_Human Resources       | 0.000               | 0.000              | 0.000               | 1.000              | ~0.021     |
+
+**Cluster 0 - I&D Junior-Mid:** O *cluster* maioritário agrupa a quase totalidade dos colaboradores do departamento de Investigação & Desenvolvimento com funções de nível técnico e intermédio: *Laboratory Technicians* (31.2%), *Research Scientists* (36.7%), *Healthcare Representatives* (15.7%) e *Manufacturing Directors* (16.4%). Todos pertencem ao departamento de I&D (`Department_R&D=1.00`), mas com `JobLevel` baixo-intermédio (média 1.60) e `MonthlyIncome` de 4 526 - o segundo mais baixo. A idade média de 35.8 anos reflete uma população predominantemente jovem e em fase ativa de carreira técnica. Este *cluster* concentra a maior massa de capital científico operacional da organização.
+
+**Cluster 1 - Diretores de Investigação:** Grupo reduzido mas altamente diferenciado. Todos os membros são *Research Directors* (`JobRole_Research Director=1.00`) no departamento de I&D (`Department_R&D=1.00`). O `JobLevel` médio de 3.97 e o `MonthlyIncome` de 15 955 são os mais elevados de todos os clusters - o rendimento é 3.5 vezes superior ao *Cluster* 0. O `TotalWorkingYears` de 21.3 anos e a idade média de 43.9 confirmam um perfil de liderança científica sénior com trajétória longa e especializada. Este *cluster* representa o topo hierárquico da função de investigação, funcionando como a camada de gestão científica da organização.
+
+**Cluster 2 - Equipa de Vendas:** O segundo maior *cluster* agrega a quase totalidade da força comercial da empresa: *Sales Executives* (60.4%), *Managers* (18.9%) e *Sales Representatives* (16.7%), com uma pequena fraccção de Recursos Humanos (6%). O `Department_Sales` de 0.847 confirma a identidade departamental do *cluster*. O `JobLevel` médio de 2.45 e o `MonthlyIncome` de 8 001 refletem uma hierarquia mista - entre representantes de base e gestores comerciais - com rendimento médio superior ao de I&D operacional (*Cluster* 0). A idade média de 37.4 anos e a composição funcional indicam uma equipa comercial em plena maturidade profissional.
+
+**Cluster 3 - Departamento de Recursos Humanos:** O menor cluster é inteiramente composto por colaboradores do departamento de Recursos Humanos (Department_HR=1.00, JobRole_Human Resources=1.00). O `JobLevel` médio de 1.42 e o `MonthlyIncome` de 4 103 - o mais baixo de todos os clusters - posicionam este grupo no nível mais operacional da organização. A idade média de 36.9 anos é próxima da média populacional. Destaca-se o `WorkLifeBalance` médio de 3.0, o mais elevado de todos os clusters, o que pode refletir especificidades da cultura e das condições de trabalho do departamento de RH. A sua separação como cluster independente demonstra a capacidade do UMAP de isolar grupos pequenos mas estruturalmente coerentes no *manifold* aprendido.
+
+### 4.3. Variáveis Discriminantes
+
+Ao contrário dos modelos supervisionados, o UMAP e o DBSCAN não produzem coeficientes de importância de variáveis analógos aos de uma Regressão Logística ou de uma Random Forest. O UMAP aprende uma transformação não-linear do espaço de entrada para um manifold de baixa dimensão, e o DBSCAN opera exclusivamente sobre as distâncias nesse espaço reduzido. A importância das variáveis é, por isso, indireta: todas as 53 variáveis escaladas entram no UMAP, que as pondera implicitamente através da estrutura do grafo de vizinhança que constrói (McInnes et al., 2018).
+
+Para identificar as variáveis que mais contribuem para a separação entre clusters, recorre-se à análise da variância inter-cluster: as variáveis com maior diferença entre as médias de cada cluster e a média populacional são aquelas que melhor distinguem os grupos, independentemente de qualquer método de seleção formal. Esta abordagem é equivalente ao princípio subjacente ao índice de Calinski-Harabasz, que mede precisamente o rácio entre a variância inter-cluster e intra-cluster (Caliński & Harabasz, 1974; James et al., 2021).
+
+A análise da variância inter-cluster sobre as 53 variáveis originais permite identificar três grupos de variáveis discriminantes, ordenados por capacidade de separação entre clusters:
+
+| Grupo                     | Variáveis                                                                 | Padrão Observado |
+|--------------------------|---------------------------------------------------------------------------|------------------|
+| Departamento / Função    | Department_R&D, Department_Sales, Department_HR, JobRole_Research Director, JobRole_Sales Executive, JobRole_Human Resources | Eixo estrutural principal. Cluster 0 e 1: I&D exclusivo (1.00). Cluster 2: Vendas (0.847). Cluster 3: RH exclusivo (1.00). Cada cluster é quase homogéneo no departamento e na função. |
+| Hierarquia / Rendimento  | MonthlyIncome, IncomePerLevel, TotalWorkingYears, JobLevel               | Cluster 1 extremamente elevado (Income=15 955, JL=3.97, TWY=21.3). Cluster 2 intermédio (Income=8 001, JL=2.45). Cluster 0 e 3 no nível mais baixo (Income≈4 300, JL≤1.5). |
+| Experiência / Antiguidade| Age, YearsAtCompany, YearsInCurrentRole, YearsWithCurrManager, NumCompaniesWorked | Cluster 1 claramente mais sénior (Age=43.9). Restantes clusters com idade entre 35–37 anos. Cl. 1 tem a maior antiguidade e experiência acumulada. |
+
+As variáveis de departamento e função são o principal eixo discriminante: cada *cluster* corresponde, de forma quase exclusiva, a um departamento orgânico (I&D, Vendas, RH). Esta separação estrutural é especialmente notável porque o UMAP opera sobre as 53 variáveis escaladas sem qualquer conhecimento prévio da estrutura departamental - e mesmo assim recupera-a como a dimensão de maior coerência local no *manifold* (McInnes et al., 2018). As variáveis binárias de departamento e função têm valores de 0 ou 1 e apresentam médias por *cluster* extremamente afastadas entre si, o que as coloca no topo da variância inter-cluster.
+
+O segundo eixo discriminante é a hierarquia profissional e o rendimento. O Cluster 1 (Diretores de Investigação) distingue-se de forma inequívoca: o `MonthlyIncome` de 15 955 é 3.5 vezes superior ao do *Cluster* 0 e 3.9 vezes superior ao do *Cluster 3*; o `JobLevel` de 3.97 contrasta com 1.42–1.60 dos restantes grupos de I&D e RH. O `TotalWorkingYears` de 21.3 anos confirma que esta separação hierárquica é sustentada por uma trajetória profissional longa. O *Cluster* 2 (Vendas) ocupa uma posição intermédia, refletindo a coexistência de *Sales Executives* e *Sales Representatives* com *Managers* na mesma equipa comercial.
+
+Em síntese, o modelo final UMAP(5, 15) + DBSCAN identifica quatro perfis organizacionalmente coerentes: I&D Operacional (*Cluster* 0, 56% - técnicos e investigadores de nível base-intermédio), Liderança Científica (*Cluster* 1, 5.8% - *Research Directors*, o topo hierárquico de I&D), Equipa de Vendas (*Cluster* 2, 36% - equipa comercial da organização), e Recursos Humanos (*Cluster* 3, 2.1% - departamento de RH isolado). O departamento/função é o principal eixo de diferenciação, seguido pela hierarquia e o rendimento. A capacidade do UMAP de recuperar esta estrutura organizacional a partir de 53 variáveis heterogéneas, sem supervisionamento, demonstra a sua superioridade face a técnicas lineares como o PCA, que não capturaria com a mesma nitidez as fronteiras departamentais enquanto dimensão de coerência local (McInnes et al., 2018; Jain, 2010).
+
 ## 5. Conclusão da Fase de Modelação 
 *Justifiquem por que razão este modelo está pronto (ou não) para ser apresentado como solução 
 final.* 
@@ -180,7 +234,7 @@ A análise inclui ainda a interpretação dos clusters obtidos, através da cara
    *   
    
  ## 7. Referências
-
+ 
 Ankerst, M., Breunig, M. M., Kriegel, H.-P., & Sander, J. (1999). OPTICS: Ordering points to identify the clustering structure. ACM SIGMOD Record, 28(2), 49–60.
 
 Bellman, R. E. (1957). Dynamic programming. Princeton University Press.
