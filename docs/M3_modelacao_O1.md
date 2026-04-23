@@ -152,18 +152,17 @@ O threshold padrão de 0.50 foi substituído pelo threshold ótimo identificado 
 
 A tabela seguinte resume a progressão cumulativa do F1-Score ao longo das cinco etapas de otimização, evidenciando a contribuição marginal de cada componente face à configuração anterior:
 
-| Fase | Configuração | F1 *Yes* (Teste) | AUC-ROC |
-|---|---|---|---|
-| Ponto de partida | Split 80/20 + StandardScaler + SMOTE base + *default* | - | - |
-| + Melhor Split | Split ótimo identificado | ↑ | ↑ |
-| + Melhor Normalizador | Normalizador ótimo | ↑ | ↑ |
-| + Melhor SMOTE | Técnica de resampling ótima | ↑ | ↑ |
-| + GridSearchCV (threshold 0.5) | Hiperparâmetros afinados | ↑ | ↑ |
-| Modelo Final | Threshold ótimo aplicado | máx. | máx. |
-
-> *Os valores exatos de cada fase constam na tabela comparativa completa gerada no notebook (Secção 8 - "Tabela Comparativa Completa - Progressão do Modelo").*
+| Modelo | Split | Normalizador | Resampling | Threshold | F1 *Yes* | AUC-ROC |
+|---|---|---|---|---|---|---|
+| Baseline (Log. Reg. *default*) | 80/20 | StandardScaler | SMOTE base | 0.50 | 0.4677 | 0.8016 |
+| Melhor Split (85/15) | 85/15 | StandardScaler | SMOTE base | 0.50 | 0.5253 | 0.8294 |
+| + Melhor Normalizador (MaxAbsScaler) | 85/15 | MaxAbsScaler | SMOTE base | 0.50 | 0.5600 | 0.8264 |
+| + Melhor SMOTE (SMOTE) | 85/15 | MaxAbsScaler | SMOTE | 0.50 | 0.5600 | 0.8264 |
+| + GridSearchCV (threshold 0.5) | 85/15 | MaxAbsScaler | SMOTE | 0.50 | 0.5455 | 0.8308 |
+| Modelo Final (threshold = 0.52) | 85/15 | MaxAbsScaler | SMOTE | 0.52 | 0.5625 | 0.8308 |
 
 A sequência de otimização demonstra que nenhuma etapa isolada é suficiente: a melhoria resulta da combinação cumulativa de todas as decisões, confirmando a importância de uma abordagem sistemática e iterativa em detrimento de ajustamentos pontuais (Chapman et al., 2000; Géron, 2022).
+
 
 ## 4. Avaliação do Modelo Final
 
