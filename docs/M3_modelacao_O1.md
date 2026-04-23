@@ -233,28 +233,26 @@ O processo mantém uma natureza iterativa, permitindo ajustar variáveis, parâm
 **Divisão de Tarefas:** 
 
  **Luís Figueira:** 
-   *  
-   *  
-   *  
-   *  
+   * Implementação e otimização do modelo de Regressão Logística (pipeline completa — split, normalizador, SMOTE, GridSearchCV, threshold) 
+   * Implementação dos modelos candidatos lineares e probabilísticos (Candidatos 6–11)
+   * Redação da documentação técnica M3_modelacao_O1.md Implementação dos modelos candidatos de ensemble e redes neuronais (Candidatos 1–5 e 12–18) 
+   * Preparação do pipeline de resampling (SMOTE e variantes) 
     
  **Martim Ferreira:**
-   *  
-   *  
-   *  
-   *  
+   * Validação cruzada e análise de resultados finais
+   * Documentação técnica
+   * Avaliação do Modelo Final e Thresholding
 
  **Mateus Afonso:** 
-   *  
-   *  
-   *  
-   *  
+   * Desenvolvimento do Índice de Risco de Attrition e visualizações associadas (Objetivo 2)
+   * Construção do índice de risco de atrito (Objetivo 2)
+   * Implementação e otimização do modelo de Regressão Logística (pipeline completa — split, normalizador, SMOTE, GridSearchCV, threshold)
 
   **Tarefas conjuntas**
-   *  
-   *  
-   *  
-   *
+   * Modelo baseline
+   * Avaliação e análise de erros do modelo final
+   * Interpretação dos perfis organizacionais
+   * Definição da estratégia de modelação
    
  ## 7. Referências
  
