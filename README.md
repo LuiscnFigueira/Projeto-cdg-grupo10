@@ -82,9 +82,25 @@ Outras variáveis, como JobRole (Sales Representative) e BusinessTravel (Travel 
 * **Ponto-chave 4 - Engenharia de atributos:** Criadas 4 novas variáveis - `SatisfactionIndex`, `RatioYearsInRole`, `IncomePerLevel` e `CareerStagnation`.
 
 ## 3. Modelação (Milestone 3)
+
 ### Abordagem Técnica
-* **Modelos:** [Ex: Random Forest e XGBoost]
-* **Métrica Principal:** [Ex: F1-Score ou RMSE]
+
+A fase de modelação cobre dois objetivos: classificação supervisionada do atrito (Objetivo 1 e 2) e segmentação não supervisionada de colaboradores (Objetivo 3).
+
+**Objetivo 1 e 2 - Classificação Supervisionada**
+- **Modelos testados:** 18 algoritmos (ensemble, lineares, redes neuronais) + baseline (Árvore de Decisão)
+- **Modelo final:** Regressão Logística com pipeline `StandardScaler` + SMOTE + `StratifiedKFold` (k=15) + threshold ótimo
+- **Métrica principal:** F1-Score
+- **Resultado:** F1 Teste = 0.56 | AUC-ROC = 0.8308
+
+**Objetivo 3 - Clustering Não Supervisionado**
+- **Modelos testados:** K-Means, DBSCAN, GMM, Agglomerative Clustering, OPTICS, MiniBatch K-Means
+- **Modelo final:** UMAP(`n_components=5`, `n_neighbors=15`) + DBSCAN(`eps=6.0`, `min_samples=3`)
+- **Métrica principal:** Silhouette Score 
+- **Resultado:** Silhouette Teste = 0.702 | 4 clusters identificados (I&D Operacional, Liderança Científica, Equipa de Vendas, Recursos Humanos)
+
+> Detalhes completos em [`docs/M3_modelacao_O1.md`](docs/M3_modelacao_O1.md) e [`docs/M3_modelacao_O3.md`](docs/M3_modelacao_O3.md)
+
 ## 4. Finalização (Milestone 4)
 ### Resposta ao Problema
 [Resumo da solução e como ela gera valor para o negócio.]
