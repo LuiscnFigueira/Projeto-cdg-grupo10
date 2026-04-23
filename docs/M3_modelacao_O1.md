@@ -82,12 +82,89 @@ O modelo vencedor foi a Regressão Logística (Candidato 8), selecionada com bas
 Os modelos de ensemble (Random Forest, XGBoost, LightGBM, CatBoost, entre outros) foram eliminados nesta fase por *overfitting* severo, independentemente da sua natureza interpretável ou não. Entre os modelos com overfitting controlado, o FT-Transformer foi preterido em favor da Regressão Logística por ser um modelo de caixa-negra, sem capacidade de interpretação direta dos coeficientes - critério de desempate definido desde o início para o contexto de Recursos Humanos (Hom et al., 2017). A Regressão Logística é, por isso, o único modelo que combina desempenho preditivo competitivo, overfitting controlado e interpretabilidade dos resultados (James et al., 2021; Géron, 2022).
 
  
-## 3. Otimização (Tuning) 
-*Descrevam como melhoraram o melhor modelo.* 
-* **Técnica Utilizada:** (p/ex.: "Utilizámos GridSearchCV para ajustar os hiperparâmetros 
-`max_depth` e `learning_rate`.") 
-* **Melhoria obtida:** (p/ex.: "O F1-Score subiu de 0.85 para 0.88 após o ajuste.") 
- 
+## 3. Otimização (Tuning)
+
+### 3.1 Estratégia de Otimização
+
+A otimização do modelo de Regressão Logística foi conduzida através de cinco etapas sequenciais e independentes, cada uma fixando as decisões anteriores antes de avançar para a seguinte. Esta abordagem - equivalente a um *ablation study* - permite isolar o efeito marginal de cada componente e garantir que cada escolha é empiricamente fundamentada, em linha com as boas práticas de *machine learning* (Géron, 2022).
+
+
+
+#### Etapa 1 - Pesquisa do Melhor Split
+
+Foram testadas seis proporções de divisão treino/teste - 65/35, 70/30, 75/25, 80/20, 85/15 e 90/10 - mantendo o `StandardScaler` e o `SMOTE` base como constantes, para isolar exclusivamente o efeito da dimensão dos conjuntos. Em todas as divisões foi aplicada estratificação pela variável alvo `Attrition_bin`, garantindo a mesma proporção de colaboradores com atrito (~16%) em ambos os conjuntos - uma prática obrigatória em datasets desequilibrados (Géron, 2022; James et al., 2021). O split com maior F1-Score na classe *Yes* foi selecionado para todas as etapas seguintes.
+
+
+#### Etapa 2 - Pesquisa do Melhor Normalizador
+
+Usando o split ótimo da etapa anterior, foram comparadas quatro estratégias de normalização:
+
+| Normalizador | Descrição |
+|---|---|
+| `StandardScaler` | Média 0, desvio padrão 1 - sensível a outliers |
+| `MinMaxScaler` | Escala [0, 1] - preserva a distribuição original |
+| `RobustScaler` | Baseado em mediana/IQR - robusto a outliers |
+| `MaxAbsScaler` | Escala [−1, 1] sem centrar - preserva esparsidade |
+
+A Regressão Logística é sensível à escala das variáveis: o gradiente descendente converge mais eficientemente quando as *features* têm magnitudes comparáveis, e a regularização (L1/L2) penaliza de forma desigual variáveis em escalas diferentes (LeCun et al., 1998; Géron, 2022). Esta etapa tem, portanto, impacto direto tanto na qualidade do ajuste como na seleção de variáveis por regularização.
+
+
+#### Etapa 3 - Pesquisa da Melhor Técnica de Resampling
+
+Usando o split e normalizador ótimos, foram comparadas sete estratégias de resampling:
+
+| Técnica | Descrição |
+|---|---|
+| Sem SMOTE | Apenas `class_weight='balanced'` - baseline de comparação |
+| `SMOTE` | Síntese por interpolação KNN clássica (Chawla et al., 2002) |
+| `BorderlineSMOTE` | Foca nos exemplos na fronteira de decisão |
+| `SVMSMOTE` | Usa SVM para identificar amostras de suporte |
+| `ADASYN` | Adapta a densidade - mais amostras sintéticas nas zonas difíceis |
+| `SMOTETomek` | SMOTE + remoção de pares Tomek (limpeza suave) |
+| `SMOTEENN` | SMOTE + ENN (limpeza mais agressiva) |
+
+As variantes que focam nas fronteiras de decisão (`BorderlineSMOTE`, `SVMSMOTE`) ou que combinam *oversampling* com limpeza (`SMOTETomek`, `SMOTEENN`) tendem a reduzir o ruído introduzido pela síntese de amostras em zonas densas da distribuição, melhorando a generalização em datasets com sobreposição de classes (Hastie et al., 2009).
+
+
+#### Etapa 4 - GridSearchCV com Cross-Validation Estratificada
+
+Com a combinação ótima das três etapas anteriores, foi aplicado `GridSearchCV` com `StratifiedKFold` (k = 15) para afinar os hiperparâmetros da Regressão Logística. O espaço de pesquisa cobriu três regimes de regularização, totalizando 63 configurações distintas:
+
+| Penalização | Solver | `C` testado | `l1_ratio` | `class_weight` |
+|:---|:---|:---|:---|:---|
+| L1 | `saga` | 0.001, 0.01, 0.1, 0.5, 1, 5, 10, 50, 100 | - | `balanced` |
+| L2 | `saga` | 0.001, 0.01, 0.1, 0.5, 1, 5, 10, 50, 100 | - | `balanced` |
+| ElasticNet | `saga` | 0.001, 0.01, 0.1, 0.5, 1, 5, 10, 50, 100 | 0.1, 0.5, 0.9 | `balanced` |
+
+Em todos os casos, `C` ∈ {0.001, 0.01, 0.1, 0.5, 1, 5, 10, 50, 100} e `class_weight='balanced'`. A métrica de otimização foi o F1-Score da classe *Yes*, coerente com o critério de sucesso definido na Secção 1. O uso de k = 15 folds estratificados garante estimativas de generalização mais estáveis do que a configuração padrão de 5 folds, sendo especialmente relevante em datasets com classes desequilibradas (James et al., 2021).
+
+> Nota metodológica: O `StandardScaler` e o resampling foram sempre ajustados exclusivamente aos dados de treino de cada fold, prevenindo *data leakage* - uma das fontes mais frequentes de otimismo enviesado em pipelines de *machine learning* (Géron, 2022).
+
+
+
+#### Etapa 5 - Otimização do Threshold de Decisão
+
+O threshold padrão de 0.50 foi substituído pelo threshold ótimo identificado através da curva Precision-Recall, varrendo o intervalo [0.10, 0.90] em passos de 0.01 e selecionando o valor que maximiza o F1-Score na classe *Yes*. Esta técnica é amplamente recomendada em problemas com classes desequilibradas: o threshold padrão não é necessariamente ótimo quando a distribuição das classes é assimétrica, dado que privilegia igualmente os erros em ambos os sentidos independentemente do custo relativo de cada tipo de erro (Géron, 2022; James et al., 2021).
+
+
+
+### 3.2 Melhoria Obtida
+
+A tabela seguinte resume a progressão cumulativa do F1-Score ao longo das cinco etapas de otimização, evidenciando a contribuição marginal de cada componente face à configuração anterior:
+
+| Fase | Configuração | F1 *Yes* (Teste) | AUC-ROC |
+|---|---|---|---|
+| Ponto de partida | Split 80/20 + StandardScaler + SMOTE base + *default* | - | - |
+| + Melhor Split | Split ótimo identificado | ↑ | ↑ |
+| + Melhor Normalizador | Normalizador ótimo | ↑ | ↑ |
+| + Melhor SMOTE | Técnica de resampling ótima | ↑ | ↑ |
+| + GridSearchCV (threshold 0.5) | Hiperparâmetros afinados | ↑ | ↑ |
+| Modelo Final | Threshold ótimo aplicado | máx. | máx. |
+
+> *Os valores exatos de cada fase constam na tabela comparativa completa gerada no notebook (Secção 8 - "Tabela Comparativa Completa - Progressão do Modelo").*
+
+A sequência de otimização demonstra que nenhuma etapa isolada é suficiente: a melhoria resulta da combinação cumulativa de todas as decisões, confirmando a importância de uma abordagem sistemática e iterativa em detrimento de ajustamentos pontuais (Chapman et al., 2000; Géron, 2022).
+
 ## 4. Avaliação do Modelo Final 
 ### 4.1. Matriz de Confusão / Erros 
 *Analisem onde o modelo mais falha.* 
