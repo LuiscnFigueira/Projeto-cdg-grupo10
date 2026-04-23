@@ -202,9 +202,22 @@ As variáveis identificadas pelo modelo como mais relevantes, ordenadas por magn
 Este padrão de importâncias é coerente com os fatores de atrito mais documentados na literatura de Gestão de Recursos Humanos (Hom et al., 2017), conferindo validade de conteúdo ao modelo e aumentando a confiança na sua utilização como ferramenta de apoio à decisão. Em particular, a liderança de `OverTime_bin` é consistente com estudos sobre *burnout* e insatisfação profissional como precursores de intenção de saída (Hom et al., 2017).
  
 ## 5. Conclusão da Fase de Modelação 
-*Justifiquem por que razão este modelo está pronto (ou não) para ser apresentado como solução 
-final.* 
- --- 
+
+O modelo final de Regressão Logística, desenvolvido e otimizado ao longo deste relatório, representa a solução mais adequada para o problema de previsão de atrito organizacional no âmbito deste projeto. A decisão assenta em quatro fundamentos formais.
+
+**Desempenho preditivo.** O modelo alcança o F1-Score mais elevado na classe minoritária (*Yes*) de entre todos os 18 candidatos testados na fase exploratória, combinado com um AUC-ROC de 0.8236 - valor que confirma uma boa capacidade discriminativa independentemente do threshold de decisão. Após a otimização das cinco etapas sequenciais (split, normalizador, resampling, hiperparâmetros e threshold), o F1-Score final supera o obtido em qualquer configuração intermédia, demonstrando que a melhoria é cumulativa e robusta (Géron, 2022).
+
+**Controlo de *overfitting*.** O gap entre o F1-Score de treino e de teste (+0.12 na fase de candidatos) é substancialmente inferior ao observado nos modelos de *ensemble* e redes neuronais testados - por exemplo, Random Forest (+0.78), Keras simples (+0.54) e LightGBM (+0.69). A validação com `StratifiedKFold` (k = 15) garante que cada fold mantém a proporção real de classes (~16% *Yes*), produzindo uma estimativa de generalização fidedigna e sem viés de amostragem (James et al., 2021).
+
+**Interpretabilidade.** No contexto de Gestão de Recursos Humanos, a capacidade de explicar as decisões do modelo é um requisito operacional, não apenas académico (Hom et al., 2017). Os coeficientes da Regressão Logística são diretamente interpretáveis como contribuições relativas de cada variável para a probabilidade de saída, permitindo identificar os fatores de risco predominantes - com destaque para `OverTime_bin`, `MaritalStatus_Single` e `JobSatisfaction` - e comunicar as conclusões a *stakeholders* não técnicos de forma clara e auditável. Esta capacidade está ausente nos modelos de caixa-negra com desempenho comparável (FT-Transformer, GANDALF), constituindo o critério de desempate que fundamentou a seleção final, em linha com o requisito definido na Secção 1.4.
+
+**Robustez metodológica.** O conjunto de teste foi reservado exclusivamente para avaliação final, sem qualquer envolvimento nas decisões de otimização - prevenindo *data leakage* e garantindo uma estimativa honesta da capacidade de generalização (Géron, 2022; Chapman et al., 2000). O `StandardScaler` e o resampling foram sempre ajustados exclusivamente aos dados de treino de cada fold, eliminando uma das fontes mais frequentes de otimismo enviesado em pipelines de *machine learning*.
+
+**Limitações reconhecidas.** O modelo apresenta Precision moderada na classe *Yes*, implicando uma taxa não negligenciável de Falsos Positivos. No contexto deste projeto, esta limitação é aceitável: o custo de uma intervenção preventiva desnecessária é inferior ao custo de não identificar um colaborador-chave em risco de saída (Hom et al., 2017). Adicionalmente, o modelo foi treinado num dataset académico (IBM HR Analytics), pelo que a sua aplicação a contextos organizacionais reais requer validação com dados históricos próprios da organização.
+
+O modelo está pronto para ser apresentado como solução final da fase de modelação. Cumpre o critério de sucesso definido (maximização do F1-Score na classe minoritária), apresenta generalização controlada, oferece interpretabilidade total dos resultados e foi construído com uma metodologia sistemática e replicável, alinhada com o CRISP-DM (Chapman et al., 2000) e com a literatura de referência (Géron, 2022; James et al., 2021; Hom et al., 2017).
+
+---
  
 ## 6. Metodologia de Gestão (PBL)
 
@@ -261,5 +274,7 @@ LeCun, Y., Bottou, L., Orr, G. B., & Müller, K.-R. (1998). Efficient BackProp. 
 
 
 Goodfellow, I., Bengio, Y., & Courville, A. (2016). Deep Learning. MIT Press.
+
+Chawla, N. V., Bowyer, K. W., Hall, L. O., & Kegelmeyer, W. P. (2002). SMOTE: Synthetic Minority Over-sampling Technique. *Journal of Artificial Intelligence Research, 16*, 321–357.
  
 Data de última atualização: 23/04/2026
