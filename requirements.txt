@@ -15,3 +15,19 @@ scipy==1.16.3
 
 # Machine learning
 scikit-learn==1.6.1
+
+# Imbalanced learning (SMOTE, SMOTETomek, SMOTEENN)
+imbalanced-learn==0.12.4
+
+# Gradient boosting
+lightgbm==4.6.0
+xgboost==2.1.4
+catboost==1.2.7
+
+# Redução de dimensionalidade
+umap-learn==0.5.7
+
+# Deep learning
+tensorflow==2.19.0
+pytorch-tabnet==4.1.0
+pytorch-tabular==1.1.0
