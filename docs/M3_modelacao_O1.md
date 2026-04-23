@@ -2,11 +2,31 @@
  
 ## 1. Estratégia de Modelação
 
-**Divisão do dataset:** Para selecionar a divisão de dados mais adequada, foram testados seis rácios distintos (65/35, 70/30, 75/25, 80/20, 85/15 e 90/10), com e sem estratificação pela variável alvo Attrition_bin. Os resultados comparativos de todos os splits encontram-se disponíveis no repositório do projeto (pasta `/resultados/splits/Objetivo1`). A divisão que produziu os melhores resultados globais foi a de 65% para treino e 35% para teste, com estratificação (random_state=42), garantindo a mesma proporção de colaboradores com atrito (~16%) em ambos os conjuntos. Esta abordagem de divisão estratificada é recomendada na literatura como boa prática em problemas de classificação com desequilíbrio de classes, assegurando que ambos os conjuntos representam fielmente a distribuição real dos dados (Géron, 2022; James et al., 2021). As variáveis categóricas originais (Attrition, OverTime, Gender, BusinessTravel, Department, EducationField, JobRole, MaritalStatus) foram removidas do conjunto de features, utilizando as respetivas versões já codificadas no dataset processado. Apenas variáveis numéricas foram consideradas, em linha com o processo de preparação de dados definido no âmbito do CRISP-DM (Chapman et al., 2000).
+### 1.1 Divisão do dataset
+Para selecionar a divisão de dados mais adequada, foram testados seis rácios distintos (65/35, 70/30, 75/25, 80/20, 85/15 e 90/10), com e sem estratificação pela variável alvo Attrition_bin. Os resultados comparativos de todos os splits encontram-se disponíveis no repositório do projeto (pasta `/resultados/splits/Objetivo1`).  
 
-**Métrica de Sucesso:** A métrica principal escolhida foi o F1-Score, por ser a mais adequada para datasets desequilibrados como o nosso (~84% Não Saiu vs ~16% Saiu). O F1-Score combina Precision e Recall numa única métrica, penalizando tanto os falsos positivos como os falsos negativos — característica particularmente relevante no contexto de atrito organizacional, onde tanto a falha em identificar colaboradores em risco como a geração de alertas desnecessários têm custos práticos para as organizações (Hom et al., 2017; James et al., 2021). Como métrica complementar foi utilizado o AUC-ROC, que mede a capacidade discriminativa do modelo independentemente do threshold de decisão, permitindo uma avaliação mais abrangente da qualidade de separação entre classes (Géron, 2022; James et al., 2021).
+A divisão que produziu os melhores resultados globais foi a de 65% para treino e 35% para teste, com estratificação (random_state=42), garantindo a mesma proporção de colaboradores com atrito (~16%) em ambos os conjuntos. Esta abordagem de divisão estratificada é recomendada na literatura como boa prática em problemas de classificação com desequilíbrio de classes, assegurando que ambos os conjuntos representam fielmente a distribuição real dos dados (Géron, 2022; James et al., 2021).  
 
-Para além das métricas quantitativas, a interpretabilidade foi definida desde o início como critério formal de seleção do modelo final. No contexto de Recursos Humanos, a capacidade de identificar e comunicar os fatores que contribuem para o atrito é tão importante quanto a precisão preditiva em si - um requisito amplamente reconhecido na literatura (Hom et al., 2017). Em caso de desempenho equivalente entre finalistas, seria preferido o modelo com maior capacidade de explicação direta dos coeficientes.
+As variáveis categóricas originais (Attrition, OverTime, Gender, BusinessTravel, Department, EducationField, JobRole, MaritalStatus) foram removidas do conjunto de features, utilizando as respetivas versões já codificadas no dataset processado. Apenas variáveis numéricas foram consideradas, em linha com o processo de preparação de dados definido no âmbito do CRISP-DM (Chapman et al., 2000).
+
+### 1.2 Padronização dos dados
+Para os algoritmos sensíveis à escala das variáveis, foi aplicada padronização através do StandardScaler, que transforma cada feature para média zero e desvio-padrão unitário. Para modelos lineares e baseados em distâncias, como SVM, Regressão Logística e KNN, a padronização é geralmente necessária, uma vez que estes algoritmos são diretamente afetados pela magnitude das variáveis (Géron, 2022; James et al., 2021).  
+
+Para as redes neuronais (MLP, TabNet, Keras e Keras com Dropout e Batch Normalization), a padronização dos dados de entrada foi igualmente aplicada, por ser uma prática amplamente recomendada para acelerar a convergência e estabilizar o treino (LeCun et al., 1998; Goodfellow et al., 2016).  
+
+Nos modelos baseados em árvores de decisão (Random Forest, Gradient Boosting, XGBoost, LightGBM, CatBoost, Extra Trees) e nos modelos com normalização interna (GANDALF, FT-Transformer), a padronização não foi aplicada, uma vez que estes algoritmos, em geral, não requerem escalonamento das variáveis (Géron, 2022; Hastie et al., 2009).  
+
+Para os modelos implementados via Pipeline do scikit-learn (SVM, Regressão Logística, KNN, MLP), o StandardScaler foi encapsulado diretamente no pipeline, garantindo que o fit é realizado exclusivamente nos dados de treino e o transform aplicado subsequentemente aos dados de teste, prevenindo data leakage (Géron, 2022).
+
+### 1.3 Métrica de Sucesso
+A métrica principal escolhida foi o F1-Score, por ser a mais adequada para datasets desequilibrados como o nosso (~84% Não Saiu vs ~16% Saiu). O F1-Score combina Precision e Recall numa única métrica, penalizando tanto os falsos positivos como os falsos negativos, característica particularmente relevante no contexto de atrito organizacional, onde tanto a falha em identificar colaboradores em risco como a geração de alertas desnecessários têm custos práticos para as organizações (Hom et al., 2017; James et al., 2021).  
+
+Como métrica complementar foi utilizado o AUC-ROC, que mede a capacidade discriminativa do modelo independentemente do threshold de decisão, permitindo uma avaliação mais abrangente da qualidade de separação entre classes (Géron, 2022; James et al., 2021).
+
+### 1.4 Interpretabilidade
+Para além das métricas quantitativas, a interpretabilidade foi definida desde o início como critério formal de seleção do modelo final. No contexto de Recursos Humanos, a capacidade de identificar e comunicar os fatores que contribuem para o atrito é tão importante quanto a precisão preditiva em si, um requisito amplamente reconhecido na literatura (Hom et al., 2017).  
+
+Em caso de desempenho semelhante entre os modelos finalistas, seria preferido o modelo com maior capacidade de explicação direta dos coeficientes.
 
  
 ## 2. Experiências Realizadas 
@@ -132,5 +152,12 @@ Hom, P. W., Lee, T. W., Shaw, J. D., & Hausknecht, J. P. (2017). One hundred yea
 
 James, G., Witten, D., Hastie, T., & Tibshirani, R. (2021). *An Introduction to Statistical Learning: with Applications in R* (2.ª ed.). Springer.
 
+Hastie, T., Tibshirani, R., & Friedman, J. (2009). The Elements of Statistical Learning: Data Mining, Inference, and Prediction (2nd ed.). Springer.
+
+
+LeCun, Y., Bottou, L., Orr, G. B., & Müller, K.-R. (1998). Efficient BackProp. In Neural Networks: Tricks of the Trade. Springer.
+
+
+Goodfellow, I., Bengio, Y., & Courville, A. (2016). Deep Learning. MIT Press.
  
-Data de última atualização: 20/04/2026
+Data de última atualização: 23/04/2026
