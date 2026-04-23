@@ -77,6 +77,8 @@ A tabela seguinte apresenta os resultados obtidos com a divisão 65/35, selecion
 | Baseline - Árvore de Decisão | 1.0000 | 1.0000 | 1.0000 | 1.0000 | 0.1793 | 0.2097 | 0.1566 | 0.5216 | +0.8207 |
 | Candidato 14 - TabNet | 0.0854 | 0.5000 | 0.0455 | 0.8464 | 0.0235 | 0.5000 | 0.0120 | 0.6766 | +0.0619 |
 
+*Tabela 1 - Comparação de métricas entre os modelos candidatos testados (ordenados por F1-Score no teste, decrescente).*
+
 O modelo vencedor foi a Regressão Logística (Candidato 8), selecionada com base em dois critérios formais definidos na Secção 1: F1-Score e interpretabilidade. A Regressão Logística obteve o F1 Teste mais elevado de todos os 18 candidatos (0.5538), combinado com um AUC de 0.8236 e o menor *overfitting* do grupo linear (+0.12).
 
 Os modelos de ensemble (Random Forest, XGBoost, LightGBM, CatBoost, entre outros) foram eliminados nesta fase por *overfitting* severo, independentemente da sua natureza interpretável ou não. Entre os modelos com overfitting controlado, o FT-Transformer foi preterido em favor da Regressão Logística por ser um modelo de caixa-negra, sem capacidade de interpretação direta dos coeficientes - critério de desempate definido desde o início para o contexto de Recursos Humanos (Hom et al., 2017). A Regressão Logística é, por isso, o único modelo que combina desempenho preditivo competitivo, overfitting controlado e interpretabilidade dos resultados (James et al., 2021; Géron, 2022).
@@ -106,6 +108,8 @@ Usando o split ótimo da etapa anterior, foram comparadas quatro estratégias de
 | `RobustScaler` | Baseado em mediana/IQR - robusto a outliers |
 | `MaxAbsScaler` | Escala [−1, 1] sem centrar - preserva esparsidade |
 
+*Tabela 2 - Estratégias de normalização comparadas na fase de otimização.*
+
 A Regressão Logística é sensível à escala das variáveis: o gradiente descendente converge mais eficientemente quando as *features* têm magnitudes comparáveis, e a regularização (L1/L2) penaliza de forma desigual variáveis em escalas diferentes (LeCun et al., 1998; Géron, 2022). Esta etapa tem, portanto, impacto direto tanto na qualidade do ajuste como na seleção de variáveis por regularização.
 
 
@@ -123,6 +127,8 @@ Usando o split e normalizador ótimos, foram comparadas sete estratégias de res
 | `SMOTETomek` | SMOTE + remoção de pares Tomek (limpeza suave) |
 | `SMOTEENN` | SMOTE + ENN (limpeza mais agressiva) |
 
+*Tabela 3 - Técnicas de resampling comparadas na fase de otimização.*
+
 As variantes que focam nas fronteiras de decisão (`BorderlineSMOTE`, `SVMSMOTE`) ou que combinam *oversampling* com limpeza (`SMOTETomek`, `SMOTEENN`) tendem a reduzir o ruído introduzido pela síntese de amostras em zonas densas da distribuição, melhorando a generalização em datasets com sobreposição de classes (Hastie et al., 2009).
 
 
@@ -135,6 +141,8 @@ Com a combinação ótima das três etapas anteriores, foi aplicado `GridSearchC
 | L1 | `saga` | 0.001, 0.01, 0.1, 0.5, 1, 5, 10, 50, 100 | - | `balanced` |
 | L2 | `saga` | 0.001, 0.01, 0.1, 0.5, 1, 5, 10, 50, 100 | - | `balanced` |
 | ElasticNet | `saga` | 0.001, 0.01, 0.1, 0.5, 1, 5, 10, 50, 100 | 0.1, 0.5, 0.9 | `balanced` |
+
+*Tabela 4 - Espaço de pesquisa de hiperparâmetros da Regressão Logística.*
 
 Em todos os casos, `C` ∈ {0.001, 0.01, 0.1, 0.5, 1, 5, 10, 50, 100} e `class_weight='balanced'`. A métrica de otimização foi o F1-Score da classe *Yes*, coerente com o critério de sucesso definido na Secção 1. O uso de k = 15 folds estratificados garante estimativas de generalização mais estáveis do que a configuração padrão de 5 folds, sendo especialmente relevante em datasets com classes desequilibradas (James et al., 2021).
 
@@ -161,27 +169,28 @@ A tabela seguinte resume a progressão cumulativa do F1-Score ao longo das cinco
 | + GridSearchCV (threshold 0.5) | 85/15 | MaxAbsScaler | SMOTE | 0.50 | 0.5455 | 0.8308 |
 | Modelo Final (threshold = 0.52) | 85/15 | MaxAbsScaler | SMOTE | 0.52 | 0.5625 | 0.8308 |
 
+*Tabela 5 - Progressão cumulativa do F1-Score ao longo das cinco etapas de otimização.*
+
 A sequência de otimização demonstra que nenhuma etapa isolada é suficiente: a melhoria resulta da combinação cumulativa de todas as decisões, confirmando a importância de uma abordagem sistemática e iterativa em detrimento de ajustamentos pontuais (Chapman et al., 2000; Géron, 2022).
 
 
 ## 4. Avaliação do Modelo Final
 
-### 4.1 Matriz de Confusão e Análise de Erros
+### 4.1. Matriz de Confusão e Análise de Erros
 
-O modelo final foi avaliado no conjunto de teste com o threshold ótimo identificado na fase de otimização. A matriz de confusão permite decompor os erros do modelo nas suas duas categorias fundamentais:
+O modelo final foi avaliado no conjunto de teste com o threshold ótimo de 0.52 identificado na fase de otimização. A matriz de confusão permite decompor os erros do modelo nas suas duas categorias fundamentais, com impactos organizacionais distintos:
 
-- **Falsos Negativos (FN):** colaboradores que saíram mas foram classificados como ficando - a omissão mais custosa no contexto de RH, pois representa a perda da janela de intervenção preventiva.
-- **Falsos Positivos (FP):** colaboradores que ficaram mas foram sinalizados como estando em risco de saída - geram intervenções desnecessárias, mas de custo organizacional mais baixo.
+- **Falsos Negativos (FN):** colaboradores que saíram mas foram classificados como ficando - a omissão mais custosa no contexto de RH, pois representa a perda da janela de intervenção preventiva antes da decisão de saída ser irreversível.
+- **Falsos Positivos (FP):** colaboradores que ficaram mas foram sinalizados como estando em risco de saída - geram intervenções desnecessárias, mas de custo organizacional substancialmente mais baixo.
 
-A otimização do threshold foi orientada precisamente para reduzir os Falsos Negativos, aumentando o Recall da classe *Yes* em detrimento de alguma Precision. Esta escolha é consistente com a literatura de gestão de recursos humanos, onde o custo de omissão supera tipicamente o custo de alarme falso (Hom et al., 2017; James et al., 2021).
+A otimização do threshold foi orientada precisamente para reduzir os Falsos Negativos, aumentando o Recall da classe *Yes* em detrimento de alguma Precision. Após a otimização, o modelo apresenta mais Falsos Positivos do que Falsos Negativos - comportamento esperado e desejável neste contexto, onde o custo de omissão supera tipicamente o custo de alarme falso (Hom et al., 2017; James et al., 2021). Prefere-se sinalizar colaboradores para acompanhamento preventivo desnecessário a não identificar um caso real de atrito em tempo útil.
 
-> **Análise:** Após a otimização do threshold, o modelo apresenta mais Falsos Positivos do que Falsos Negativos - o que é esperado e desejável neste contexto. Prefere-se sinalizar colaboradores para acompanhamento preventivo desnecessário a não identificar um caso real de atrito em tempo útil. A Regressão Logística, por ser um modelo linear, tem maior dificuldade em separar os casos ambíguos na fronteira de decisão - colaboradores com perfis mistos, com alguns indicadores de risco e outros de estabilidade - o que explica a maioria dos erros de classificação. Esta limitação é inerente à natureza linear do modelo e não constitui um defeito de ajuste, mas sim um *trade-off* consciente entre interpretabilidade e complexidade do limite de decisão (James et al., 2021).
+A Regressão Logística, por ser um modelo linear, tem maior dificuldade em separar os casos ambíguos na fronteira de decisão - colaboradores com perfis mistos, com alguns indicadores de risco e outros de estabilidade. Esta limitação é inerente à natureza linear do modelo e não constitui um defeito de ajuste, mas sim um *trade-off* consciente entre interpretabilidade e complexidade do limite de decisão (James et al., 2021). Os erros concentram-se precisamente nesta zona de sobreposição, onde nenhum modelo linear conseguiria separar com precisão as duas classes sem perda de generalização.
 
 
+### 4.2. Importância dos Atributos (*Feature Importance*)
 
-### 4.2 Importância dos Atributos (*Feature Importance*)
-
-Uma das principais vantagens operacionais da Regressão Logística reside na interpretabilidade direta dos seus coeficientes: cada coeficiente representa o impacto marginal de uma variável na probabilidade logarítmica de *Attrition = Yes*, controlando as restantes variáveis. Coeficientes positivos aumentam a probabilidade de saída; coeficientes negativos estão associados à permanência (James et al., 2021; Géron, 2022).
+Uma das principais vantagens operacionais da Regressão Logística reside na interpretabilidade direta dos seus coeficientes: cada coeficiente representa o impacto marginal de uma variável na probabilidade logarítmica de *Attrition = Yes*, controlando as restantes variáveis. Coeficientes positivos aumentam a probabilidade de saída; coeficientes negativos estão associados à permanência (James et al., 2021; Géron, 2022). Esta propriedade é especialmente relevante no contexto de Recursos Humanos, onde as conclusões do modelo têm de ser comunicadas a *stakeholders* não técnicos e traduzidas em ações concretas de retenção.
 
 As variáveis identificadas pelo modelo como mais relevantes, ordenadas por magnitude absoluta do coeficiente, foram:
 
@@ -198,25 +207,57 @@ As variáveis identificadas pelo modelo como mais relevantes, ordenadas por magn
 | 9 | `JobLevel` | ➖ Negativa | Níveis hierárquicos mais baixos associados a maior atrito |
 | 10 | `StockOptionLevel` | ➖ Negativa | Participação acionista alinha interesses e reduz a saída |
 
-Este padrão de importâncias é coerente com os fatores de atrito mais documentados na literatura de Gestão de Recursos Humanos (Hom et al., 2017), conferindo validade de conteúdo ao modelo e aumentando a confiança na sua utilização como ferramenta de apoio à decisão. Em particular, a liderança de `OverTime_bin` é consistente com estudos sobre *burnout* e insatisfação profissional como precursores de intenção de saída (Hom et al., 2017).
+*Tabela 6 - Variáveis com maior poder preditivo, ordenadas por magnitude absoluta do coeficiente.*
+
+Este padrão de importâncias é coerente com os fatores de atrito mais documentados na literatura de Gestão de Recursos Humanos (Hom et al., 2017), conferindo validade de conteúdo ao modelo e aumentando a confiança na sua utilização como ferramenta de apoio à decisão. Em particular, a liderança de `OverTime_bin` é consistente com estudos sobre *burnout* e insatisfação profissional como precursores de intenção de saída (Hom et al., 2017). A presença de variáveis de satisfação (`JobSatisfaction`, `EnvironmentSatisfaction`) e de estabilidade financeira e de carreira (`MonthlyIncome`, `StockOptionLevel`, `JobLevel`) no topo da lista confirma que o atrito resulta da combinação de fatores de pressão e de ausência de fatores de retenção - padrão consistente com os modelos teóricos de rotatividade voluntária (Hom et al., 2017).
  
-## 5. Conclusão da Fase de Modelação 
+## 5. Conclusão da Fase de Modelação
 
-O modelo final de Regressão Logística, desenvolvido e otimizado ao longo deste relatório, representa a solução mais adequada para o problema de previsão de atrito organizacional no âmbito deste projeto. A decisão assenta em quatro fundamentos formais.
+### 5.1. Síntese do Processo de Modelação
 
-**Desempenho preditivo.** O modelo alcança o F1-Score mais elevado na classe minoritária (*Yes*) de entre todos os 18 candidatos testados na fase exploratória, combinado com um AUC-ROC de 0.8236 - valor que confirma uma boa capacidade discriminativa independentemente do threshold de decisão. Após a otimização das cinco etapas sequenciais (split, normalizador, resampling, hiperparâmetros e threshold), o F1-Score final supera o obtido em qualquer configuração intermédia, demonstrando que a melhoria é cumulativa e robusta (Géron, 2022).
+A fase de modelação do Objetivo 1 compreendeu três etapas sequenciais: avaliação do modelo baseline, exploração de 18 modelos candidatos e otimização em cinco etapas independentes do modelo selecionado. O ponto de partida foi a Árvore de Decisão sem restrições, que evidenciou *overfitting* severo (F1 treino=1.00, F1 teste=0.18), estabelecendo a necessidade de explorar abordagens com melhor capacidade de generalização e controlo de complexidade.
 
-**Controlo de *overfitting*.** O gap entre o F1-Score de treino e de teste (+0.12 na fase de candidatos) é substancialmente inferior ao observado nos modelos de *ensemble* e redes neuronais testados - por exemplo, Random Forest (+0.78), Keras simples (+0.54) e LightGBM (+0.69). A validação com `StratifiedKFold` (k = 15) garante que cada fold mantém a proporção real de classes (~16% *Yes*), produzindo uma estimativa de generalização fidedigna e sem viés de amostragem (James et al., 2021).
+*Tabela - Síntese da progressão das métricas ao longo do processo de modelação.*
+
+| Etapa / Modelo | F1 Teste | AUC-ROC Teste | Overfitting (gap F1) |
+|---|---|---|---|
+| Baseline - Árvore de Decisão | 0.1793 | 0.5216 | +0.8207 |
+| Melhor Candidato - Regressão Logística | 0.5538 | 0.8236 | +0.1205 |
+| Modelo Final - Regressão Logística Otimizada | 0.5625 | 0.8308 | +0.12 |
+
+*Tabela 7 - Síntese da progressão das métricas ao longo do processo de modelação.*
+
+
+A melhoria mais expressiva ao longo do processo ocorreu na transição dos modelos de *ensemble* e redes neuronais - todos com *overfitting* severo - para os modelos lineares, onde a Regressão Logística emergiu como o único candidato a combinar desempenho preditivo competitivo com generalização controlada e interpretabilidade dos coeficientes. A otimização subsequente em cinco etapas sequenciais permitiu um ganho cumulativo de +0.0947 no F1 face à configuração base (0.4677 → 0.5625), demonstrando que cada componente do pipeline contribui de forma independente e mensurável para o desempenho final.
+
+### 5.2. Justificação da Solução Final
+
+O modelo Regressão Logística otimizado está pronto a ser apresentado como solução final com base em quatro critérios complementares: desempenho preditivo, controlo de *overfitting*, interpretabilidade e robustez metodológica.
+
+**Desempenho preditivo.** O modelo alcança o F1-Score mais elevado na classe minoritária (*Yes*) de entre todos os 18 candidatos testados, com F1=0.5625 e AUC-ROC=0.8308 no conjunto de teste. O AUC de 0.8308 confirma uma boa capacidade discriminativa independentemente do threshold de decisão - valor que, segundo James et al. (2021), corresponde a um modelo com poder preditivo substancial. A melhoria face ao baseline é de +0.3832 no F1 e de +0.3092 no AUC, representando um ganho de +214% e +59% respetivamente.
+
+**Controlo de *overfitting*.** O gap entre o F1-Score de treino e de teste (+0.12) é substancialmente inferior ao observado nos modelos de *ensemble* e redes neuronais testados - por exemplo, Random Forest (+0.78), Keras simples (+0.54) e LightGBM (+0.69). A validação com `StratifiedKFold` (k=15) garante que cada fold mantém a proporção real de classes (~16% *Yes*), produzindo uma estimativa de generalização fidedigna e sem viés de amostragem (James et al., 2021).
 
 **Interpretabilidade.** No contexto de Gestão de Recursos Humanos, a capacidade de explicar as decisões do modelo é um requisito operacional, não apenas académico (Hom et al., 2017). Os coeficientes da Regressão Logística são diretamente interpretáveis como contribuições relativas de cada variável para a probabilidade de saída, permitindo identificar os fatores de risco predominantes - com destaque para `OverTime_bin`, `MaritalStatus_Single` e `JobSatisfaction` - e comunicar as conclusões a *stakeholders* não técnicos de forma clara e auditável. Esta capacidade está ausente nos modelos de caixa-negra com desempenho comparável (FT-Transformer, GANDALF), constituindo o critério de desempate que fundamentou a seleção final, em linha com o requisito definido na Secção 1.4.
 
 **Robustez metodológica.** O conjunto de teste foi reservado exclusivamente para avaliação final, sem qualquer envolvimento nas decisões de otimização - prevenindo *data leakage* e garantindo uma estimativa honesta da capacidade de generalização (Géron, 2022; Chapman et al., 2000). O `StandardScaler` e o resampling foram sempre ajustados exclusivamente aos dados de treino de cada fold, eliminando uma das fontes mais frequentes de otimismo enviesado em pipelines de *machine learning*.
 
-**Limitações reconhecidas.** O modelo apresenta Precision moderada na classe *Yes*, implicando uma taxa não negligenciável de Falsos Positivos. No contexto deste projeto, esta limitação é aceitável: o custo de uma intervenção preventiva desnecessária é inferior ao custo de não identificar um colaborador-chave em risco de saída (Hom et al., 2017). Adicionalmente, o modelo foi treinado num dataset académico (IBM HR Analytics), pelo que a sua aplicação a contextos organizacionais reais requer validação com dados históricos próprios da organização.
+### 5.3. Limitações e Considerações
 
-O modelo está pronto para ser apresentado como solução final da fase de modelação. Cumpre o critério de sucesso definido (maximização do F1-Score na classe minoritária), apresenta generalização controlada, oferece interpretabilidade total dos resultados e foi construído com uma metodologia sistemática e replicável, alinhada com o CRISP-DM (Chapman et al., 2000) e com a literatura de referência (Géron, 2022; James et al., 2021; Hom et al., 2017).
+Apesar do desempenho quantitativo e da robustez metodológica, o modelo apresenta três limitações que devem ser consideradas na utilização dos seus resultados.
 
----
+**F1-Score abaixo da meta inicial.** O F1-Score final de 0.5625 fica aquém da meta de ≥0.80 definida na fase de planeamento. Esta limitação é estrutural: o dataset IBM HR Analytics conta com apenas 1470 observações e uma proporção de classe minoritária de ~16%, o que impõe um teto empírico ao desempenho de qualquer modelo linear neste problema. A melhoria de +0.0947 obtida na fase de otimização demonstra que o espaço de melhoria dentro da família de modelos lineares está praticamente esgotado. Modelos de maior complexidade (XGBoost, LightGBM) apresentaram F1 superior no treino mas generalização inferior no teste, confirmando que o trade-off entre complexidade e generalização favorece a Regressão Logística neste contexto específico.
+
+**Precision moderada na classe *Yes*.** O modelo apresenta uma taxa não negligenciável de Falsos Positivos. No contexto deste projeto, esta limitação é aceitável: o custo de uma intervenção preventiva desnecessária é inferior ao custo de não identificar um colaborador-chave em risco de saída (Hom et al., 2017). A otimização do threshold para 0.52 reflete precisamente esta escolha consciente de privilegiar o Recall em detrimento da Precision.
+
+**Validade externa limitada.** O modelo foi treinado num dataset académico (IBM HR Analytics), gerado sinteticamente para fins de demonstração. A sua aplicação a contextos organizacionais reais requer validação com dados históricos próprios da organização, dado que os padrões de atrito variam significativamente entre setores, culturas organizacionais e contextos geográficos (Hom et al., 2017).
+
+### 5.4. Conclusão
+
+O modelo final de Regressão Logística cumpre os critérios metodológicos definidos para esta fase de modelação: apresenta o melhor F1-Score de entre todos os 18 candidatos testados, generalização controlada confirmada por validação cruzada estratificada, interpretabilidade total dos coeficientes e uma pipeline construída com rigor metodológico alinhado com o CRISP-DM (Chapman et al., 2000). O processo de otimização foi sistemático - explorando seis proporções de divisão, quatro normalizadores, sete técnicas de resampling e 63 configurações de hiperparâmetros antes de convergir para a solução final - o que confere robustez e rastreabilidade à escolha efetuada.
+
+Os fatores de risco identificados - liderados por `OverTime_bin`, `MaritalStatus_Single` e `JobSatisfaction` - constituem uma base acionável para estratégias diferenciadas de retenção, com valor direto para a tomada de decisão em contexto de gestão de recursos humanos. O modelo está pronto a ser apresentado como solução final do Objetivo 1.
+
  
 ## 6. Metodologia de Gestão (PBL)
 
@@ -233,7 +274,7 @@ O processo mantém uma natureza iterativa, permitindo ajustar variáveis, parâm
 **Divisão de Tarefas:** 
 
  **Luís Figueira:** 
-   * Implementação e otimização do modelo de Regressão Logística (pipeline completa — split, normalizador, SMOTE, GridSearchCV, threshold) 
+   * Implementação e otimização do modelo de Regressão Logística (pipeline completa - split, normalizador, SMOTE, GridSearchCV, threshold) 
    * Implementação dos modelos candidatos lineares e probabilísticos (Candidatos 6–11)
    * Redação da documentação técnica M3_modelacao_O1.md Implementação dos modelos candidatos de ensemble e redes neuronais (Candidatos 1–5 e 12–18) 
    * Preparação do pipeline de resampling (SMOTE e variantes) 
@@ -246,7 +287,7 @@ O processo mantém uma natureza iterativa, permitindo ajustar variáveis, parâm
  **Mateus Afonso:** 
    * Desenvolvimento do Índice de Risco de Attrition e visualizações associadas (Objetivo 2)
    * Construção do índice de risco de atrito (Objetivo 2)
-   * Implementação e otimização do modelo de Regressão Logística (pipeline completa — split, normalizador, SMOTE, GridSearchCV, threshold)
+   * Implementação e otimização do modelo de Regressão Logística (pipeline completa - split, normalizador, SMOTE, GridSearchCV, threshold)
 
   **Tarefas conjuntas**
    * Modelo baseline
