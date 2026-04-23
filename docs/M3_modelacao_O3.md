@@ -72,11 +72,59 @@ Em síntese, o intervalo de *Silhouette* nos candidatos válidos situa-se entre 
 
  
 ## 3. Otimização (Tuning) 
-*Descrevam como melhoraram o melhor modelo.* 
-* **Técnica Utilizada:** (p/ex.: "Utilizámos GridSearchCV para ajustar os hiperparâmetros 
-`max_depth` e `learning_rate`.") 
-* **Melhoria obtida:** (p/ex.: "O F1-Score subiu de 0.85 para 0.88 após o ajuste.") 
- 
+
+### 3.1. Abordagem de Otimização 
+
+O DBSCAN foi identificado como o melhor modelo candidato (*Silhouette* teste: 0.1828). A fase de otimização teve como objetivo melhorar a qualidade da segmentação de forma sistemática, através de sete estratégias distintas testadas sequencialmente: afinação de hiperparâmetros do DBSCAN por *Grid Search*, redução de dimensionalidade por PCA, seleção de variáveis por correlação, filtragem por variância, granularidade fina do PCA com eps adaptativo, redução não-linear por UMAP e rescaling robusto.
+
+Em todas as abordagens foi mantido o critério de seleção da fase de candidatos: o *Grid Search* DBSCAN foi restringido a combinações que produzissem exatamente quatro *clusters* com ruído inferior a 20%, garantindo comparabilidade dos resultados com o *baseline* (K-Means k=4). O critério principal de avaliação foi o *Silhouette Score*, complementado pelo *Davies-Bouldin Index* e pelo *Calinski-Harabasz Index* (Rousseeuw, 1987; Davies & Bouldin, 1979; Caliński & Harabasz, 1974).
+
+**Grid Search DBSCAN:** A afinação dos hiperparâmetros `eps` e `min_samples` sobre o espaço original (53 variáveis) encontrou a melhor combinação em `eps=8.5`, `min_samples=3` (*Silhouette* treino: 0.1679, ruído: 0.2%). A validação por *K-Fold* (K=5) confirmou estabilidade elevada: 0.1682 ± 0.0009. Esta melhoria face ao DBSCAN candidato (ótima consistência mas *Silhouette* baixo) demonstra que a principal limitação não está nos parâmetros do algoritmo, mas na estrutura do espaço de entrada com 53 dimensões - o que motivou as abordagens subsequentes de redução de dimensionalidade.
+
+**PCA + DBSCAN:** A projeção das 53 variáveis para um espaço de 5 componentes principais (31% da variância explicada) com `eps=2.0`, `min_samples=3` produziu um *Silhouette* de 0.3666 no treino e 0.3318 no teste, correspondendo a uma melhoria de +98% face ao DBSCAN sem PCA. A validação *K-Fold* (K=5) confirmou estabilidade razoável: 0.3318 ± 0.0406. Este resultado consolidou o PCA como abordagem de base para as otimizações seguintes.
+
+**Seleção por Correlação:** A remoção de variáveis altamente correlacionadas (`threshold=0.70`, mantendo 43 das 53 *features*) não melhorou o *clustering* (*Silhouette* teste: 0.1028). A redução de *features* manteve o espaço a 43 dimensões, insuficiente para eliminar o efeito da maldição da dimensionalidade. O PCA, por projetar num espaço ortogonal compacto, revelou-se fundamentalmente superior a esta abordagem.
+
+**VarianceThreshold:** A aplicação de *VarianceThreshold* com limiares {0.01, 0.05, 0.10} não removeu nenhuma *feature* em qualquer dos três cenários, pois todas as 53 variáveis após normalização com `StandardScaler` apresentam variância próxima de 1.0. Os resultados foram idênticos ao DBSCAN otimizado (*Silhouette*: 0.1679), confirmando que esta técnica não acrescenta valor após `StandardScaler`.
+
+**PCA Granularidade Fina com eps Adaptativo:** O refinamento da pesquisa de `n_components` em torno do valor ótimo anterior (testando {2, 3, 4, 5, 6, 7, 8}) com um eps calculado adaptativamente por percentis do *k-distance graph* encontrou o ótimo em n=3 componentes (22.6% da variância): eps=0.6451, `min_samples=7`, *Silhouette* treino 0.4926 e teste 0.4377 (+34% vs. PCA fixo). O ruído foi de 8.1% (101 pontos), superior ao PCA(5) - indicando que o espaço de 3 componentes cria fronteiras de densidade mais nítidas mas menos completas.
+
+**RobustScaler:** A substituição do `StandardScaler` pelo `RobustScaler` (baseado na mediana e IQR) com PCA(5) não produziu nenhuma combinação válida no Grid Search DBSCAN - o algoritmo não encontrou exatamente quatro clusters com ruído inferior a 20% em nenhuma combinação de eps e `min_samples`. Este resultado sugere que o espaço de distâncias com `RobustScaler` e PCA(5) não apresenta estrutura de densidade compatível com os critérios definidos.
+
+**UMAP + DBSCAN:** O UMAP (Uniform Manifold Approximation and Projection) foi testado como alternativa não-linear ao PCA, com um *grid search* sobre `n_components` ∈ {2, 5, 10} e `n_neighbors` ∈ {5, 15, 30}. Das 9 combinações testadas, 7 produziram espaços válidos para o DBSCAN. A melhor combinação, UMAP(5, 15) com eps=6.0, min_samples=3, alcançou *Silhouette* de 0.7141 no treino e 0.7016 no teste, sem nenhum ponto classificado como ruído (0.0%). Este resultado representa uma melhoria de +94.8% face ao PCA(5)+DBSCAN e consolida o UMAP como a abordagem mais eficaz testada nesta fase de otimização.
+
+### 3.2. Técnica Utilizada
+
+O UMAP (Uniform Manifold Approximation and Projection) é uma técnica de redução de dimensionalidade não-linear fundamentada em teoria de variedades *Riemannianas* e geometria hiperbólica (McInnes et al., 2018). Ao contrário do PCA, que maximiza a variância global e produz eixos ortogonais no espaço original, o UMAP constrói um grafo de vizinhança local sobre os dados e otimiza a projeção para preservar simultaneamente a estrutura local e global do *manifold* subjacente. O resultado é um espaço de baixa dimensão onde pontos próximos no espaço original permanecem próximos na projeção, e grupos naturalmente separados mantêm essa separação - propriedade que o PCA linear não garante em dados com estrutura não-linear (McInnes et al., 2018; Géron, 2022).
+
+A aplicação seguiu duas etapas sequenciais. Na primeira, foi realizado um *grid search* sobre `n_components` ∈ {2, 5, 10} e `n_neighbors` ∈ {5, 15, 30}, totalizando 9 combinações. O parâmetro `n_neighbors` controla o equilíbrio entre estrutura local (valores baixos) e global (valores elevados): `n_neighbors=15` foi o valor ótimo, um valor moderado que captura tanto a vizinhança imediata dos pontos como a coerência global dos grupos. Das 9 combinações, 7 produziram espaços válidos para o *Grid Search* DBSCAN (restringido a exatamente 4 clusters com ruído ≤ 20%); as combinações (`n_comp=5`, `n_neigh=5`) e (`n_comp=10`, `n_neigh=15`) não encontraram nenhuma configuração DBSCAN válida. O `random_state=42` foi fixo em todos os casos para garantir reprodutibilidade. Os resultados do *grid search* revelaram que projeções UMAP com 2 e 5 dimensões produziram os melhores *Silhouette Scores* (0.69 e 0.71 respetivamente), enquanto 10 dimensões apresentou resultados inferiores - consistente com o fenómeno de que a eficácia do UMAP diminui ao aumentar o núméro de dimensões de saída (McInnes et al., 2018).
+
+Na segunda etapa, o modelo UMAP ótimo (`n_components=5`, `n_neighbors=15`, `random_state=42`) foi treinado exclusivamente sobre `X_train_scaled` e a transformação do conjunto de teste foi realizada via reducer.transform(`X_test_scaled`), preservando o princípio de ausência de *data leakage*. O DBSCAN foi aplicado no espaço UMAP reduzido com `eps=6.0` e `min_samples=3`. O valor de `eps=6.0` no espaço UMAP(5D) é substancialmente diferente do `eps=2.0` usado no espaço PCA(5D), refletindo as diferentes escalas de distância produzidas pelas duas técnicas de redução. A atribuição ao teste foi realizada via KNN (k=5), consistente com o procedimento adotado em toda a fase de modelação (Géron, 2022; Schubert et al., 2017).
+
+O espaço UMAP(5, 15) produziu uma estrutura de densidade excepcionalmente favorável para o DBSCAN: com `eps=6.0` e `min_samples=3`, o algoritmo formou 4 clusters sem classificar nenhum dos 1249 pontos de treino como ruído (0.0%). Este comportamento contrasta com o PCA(5)+DBSCAN, onde 16 pontos (1.3%) foram excluídos como outliers, e com o PCA fino n=3, com 101 pontos excluídos (8.1%). A geometria do manifold aprendida pelo UMAP é, portanto, suficientemente coesa para que o DBSCAN consiga capturar todos os pontos em regiões de densidade definida - algo que os espaços lineares não conseguem assegurar (McInnes et al., 2018; Jain, 2010).
+
+### 3.3. Melhoria Obtida
+
+A combinação UMAP(5, 15) + DBSCAN produziu o melhor resultado de toda a fase de modelação. A Tabela 2 resume os resultados das cinco abordagens de melhoria comparadas com a referência PCA(5)+DBSCAN.
+
+| Abordagem                              | Silhouette (Treino) | Silhouette (Teste) | Davies-Bouldin (Treino) | Davies-Bouldin (Teste) | Calinski-Harabasz (Treino) | Calinski-Harabasz (Teste) | Ruído (%) |
+|----------------------------------------|---------------------|---------------------|--------------------------|-------------------------|-----------------------------|----------------------------|-----------|
+| UMAP(5, 15) + DBSCAN                  | 0.7141              | 0.7016              | 0.3991                   | 0.3864                  | 1772.02                     | 301.16                     | 0.0       |
+| PCA fino n=3 + DBSCAN                 | 0.4926              | 0.4377              | 0.5850                   | 0.8341                  | 354.73                      | 58.73                      | 8.1       |
+| PCA(5) + DBSCAN                       | 0.3666              | 0.3318              | 0.7099                   | 0.7602                  | 72.82                       | 13.35                      | 1.3       |
+| DBSCAN otimizado                      | 0.1679              | 0.1737              | 1.4578                   | 1.1885                  | 27.05                       | 5.58                       | 0.2       |
+| VarThreshold(0.01) + DBSCAN           | 0.1679              | 0.1737              | 1.4578                   | 1.1885                  | 27.05                       | 5.58                       | 0.2       |
+| RobustScaler + PCA(5) + DBSCAN        | N/A                 | N/A                 | N/A                      | N/A                     | N/A                         | N/A                        | N/A       |
+
+O modelo UMAP(5, 15) + DBSCAN (`eps=6.0`, `min_samples=3`) alcançou um *Silhouette Score* de 0.7141 no treino e 0.7016 no teste, situando-se claramente acima do limiar de 0.50 definido como objetivo. Rousseeuw (1987) classifica valores superiores a 0.70 como indicativos de estrutura de *clustering* forte - o que é alcançado no treino e praticamente atingido no teste. O *Davies-Bouldin* de 0.3991 é o mais baixo de todas as abordagens testadas, confirmando que os *clusters* são simultaneamente compactos e bem separados. O índice de *Calinski-Harabasz* de 1772 no treino representa uma melhoria de 24x face ao *baseline K-Means* (73.49) e de 24x face ao PCA(5)+DBSCAN (72.82), refletindo a diferência estrutural do espaço UMAP face aos espaços lineares.
+
+Um resultado particularmente notável é a ausência total de ruído: 0 pontos classificados como outliers (0.0%), em contraste com os 1.3% do PCA(5)+DBSCAN e os 8.1% do PCA fino. Isto significa que o UMAP produziu um espaço de densidade suficientemente estruturado para que o DBSCAN atribua todos os 1249 pontos de treino a um dos quatro *clusters*, sem necessidade de excluir observações. A diferença de *Silhouette* entre treino e teste é de apenas 0.0125, indicando consistência elevada da estrutura aprendida e ausência de sobreajustamento ao conjunto de treino.
+
+A progressão dos resultados ao longo das abordagens testadas é reveladora. O DBSCAN sem redução de dimensionalidade (*Silhouette* teste: 0.17) demonstra os limites do algoritmo no espaço original de 53 dimensões. O PCA(5) melhora substancialmente (0.33), ao compactar a estrutura em 5 componentes ortogonais. O PCA fino (n=3, adaptativo) melhora ainda mais (0.44), sugerindo que 3 componentes capturam melhor as separações relevantes do que 5. O UMAP, ao preservar a geometria local não-linear, dá o salto mais expressivo (0.70), confirmando que a estrutura latente dos dados de Recursos Humanos é melhor descrita por um manifold curvo do que por um subespacço linear (McInnes et al., 2018; Jain, 2010).
+
+Em síntese, a melhoria total face ao *baseline K-Means* é de +909% no Silhouette Score de teste (0.0696 → 0.7016) e de +312% face ao melhor candidato DBSCAN (0.1709 → 0.7016). O modelo UMAP(5, 15) + DBSCAN foi, por isso, selecionado como modelo final de *clustering* do Objetivo 3.
+
+
 ## 4. Avaliação do Modelo Final 
 ### 4.1. Matriz de Confusão / Erros 
 *Analisem onde o modelo mais falha.* 
