@@ -8,7 +8,7 @@
 ## Organização do Repositório
 A estrutura deste projeto segue as boas práticas de Ciência de Dados e Engenharia de Software:
 * **`data/`**: Armazenamento de dados (dados brutos em `raw/` e processados em `processed/`).
-* **`docs/`**: Documentação técnica detalhada dividida por Milestones (M1, M2 e M3).
+* **`docs/`**: Documentação técnica detalhada dividida por Milestones (M1, M2, M3 e M4).
 * **`notebooks/`**: Jupyter Notebooks para experimentação, limpeza e modelação.
 * **`reports/`**: Relatórios finais, apresentações e exportação de figuras (`figures/`).
 * **`src/`**: Código-fonte modular (scripts `.py`) para funções reutilizáveis.
@@ -98,7 +98,7 @@ A fase de modelação cobre dois objetivos: classificação supervisionada do at
 - **Métrica principal:** Silhouette Score 
 - **Resultado:** Silhouette Teste = 0.702 | 4 clusters identificados (I&D Operacional, Liderança Científica, Equipa de Vendas, Recursos Humanos)
 
-> Detalhes completos em [`docs/M3_modelacao_O1.md`](docs/M3_modelacao_O1.md) e [`docs/M3_modelacao_O3.md`](docs/M3_modelacao_O3.md)
+> Detalhes completos em [`docs/M3_modelacao_O1.md`](docs/M3_modelacao_O1.md) e [`docs/M3_modelacao_O2.md`](docs/M3_modelacao_O2.md)
 
 ## 4. Finalização (Milestone 4)
 ### Resposta ao Problema
@@ -123,7 +123,7 @@ A fase de modelação cobre dois objetivos: classificação supervisionada do at
 
 * **Dataset:** https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset  
 * **Dimensão:** 1470 linhas, 35 colunas  
-* **Fonte do Código:** https://www.kaggle.com/code/lusfigueira/m1-inicia-o  
+* **Fonte do Código:** https://www.kaggle.com/work/collections/17936409  
 
 
 ## Referências
