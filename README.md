@@ -23,8 +23,7 @@ O projeto segue a metodologia CRISP-DM e encontra-se estruturado em quatro miles
 
 ### Objetivos do Projeto (SMART)
 * **Objetivo 1:** Desenvolver um modelo de classificação supervisionado para prever o atrito (`Attrition`), alcançando um F1-Score mínimo de 0,80 em validação cruzada estratificada (k=5), até ao dia 23/04/2026 (Milestone 3).
-* **Objetivo 2:** Construir um índice de risco de atrito (Attrition) baseado nas probabilidades previstas pelo modelo, classificando os colaboradores em quatro categorias de risco: Baixo (prob < 30%), Médio (30% ≤ prob < 50%), Alto (50% ≤ prob < 70%) e Crítico (prob ≥ 70%), até ao dia 23/04/2026.
-* **Objetivo 3:** Aplicar técnicas de clustering não supervisionado para identificar e caracterizar perfis distintos de colaboradores com base nas variáveis relevantes do dataset, determinando o número ótimo de agrupamentos (clusters) através do método do cotovelo e do Silhouette Score, garantindo um valor médio de Silhouette superior a 0,50, e descrevendo estatisticamente cada perfil identificado, até ao dia 23/04/2026.
+* **Objetivo 2:** Aplicar técnicas de clustering não supervisionado para identificar e caracterizar perfis distintos de colaboradores com base nas variáveis relevantes do dataset, determinando o número ótimo de agrupamentos (clusters) através do método do cotovelo e do Silhouette Score, garantindo um valor médio de Silhouette superior a 0,50, e descrevendo estatisticamente cada perfil identificado, até ao dia 23/04/2026.
 ### Perguntas de Investigação
 
 As perguntas de investigação estruturam o enquadramento científico do estudo, orientando a análise empírica dos dados com o objetivo de identificar os principais determinantes do atrito (`Attrition`), avaliar a sua relevância estatística e preditiva e verificar a viabilidade de desenvolver modelos capazes de prever este fenómeno de forma fiável.
@@ -41,7 +40,7 @@ As perguntas de investigação estruturam o enquadramento científico do estudo,
 
 **6.** O desequilíbrio da variável alvo influencia o desempenho dos modelos preditivos e pode ser mitigado através da aplicação da técnica SMOTE?
 
-**7.** É possível construir um índice de risco de atrito (`Attrition`) interpretável e fiável que permita classificar os colaboradores de acordo com o seu nível de risco?
+**7.** É possível construir um índice de risco de atrito (`Attrition`) interpretável e fiável, baseado nas probabilidades previstas pelo modelo, que permita classificar os colaboradores em quatro categorias de risco (Baixo: prob < 30%, Médio: 30% ≤ prob < 50%, Alto: 50% ≤ prob < 70% e Crítico: prob ≥ 70%) e apoiar a tomada de decisão em contexto organizacional?
 
 **8.** Que fatores distinguem os colaboradores com maior risco de atrito (`Attrition`) dos restantes, e como podem ser utilizados para apoiar estratégias de retenção?
 
@@ -87,13 +86,13 @@ Outras variáveis, como JobRole (Sales Representative) e BusinessTravel (Travel 
 
 A fase de modelação cobre dois objetivos: classificação supervisionada do atrito (Objetivo 1 e 2) e segmentação não supervisionada de colaboradores (Objetivo 3).
 
-**Objetivo 1 e 2 - Classificação Supervisionada**
+**Objetivo 1 - Classificação Supervisionada**
 - **Modelos testados:** 18 algoritmos (ensemble, lineares, redes neuronais) + baseline (Árvore de Decisão)
 - **Modelo final:** Regressão Logística com pipeline `StandardScaler` + SMOTE + `StratifiedKFold` (k=15) + threshold ótimo
 - **Métrica principal:** F1-Score
 - **Resultado:** F1 Teste = 0.56 | AUC-ROC = 0.8308
 
-**Objetivo 3 - Clustering Não Supervisionado**
+**Objetivo 2 - Clustering Não Supervisionado**
 - **Modelos testados:** K-Means, DBSCAN, GMM, Agglomerative Clustering, OPTICS, MiniBatch K-Means
 - **Modelo final:** UMAP(`n_components=5`, `n_neighbors=15`) + DBSCAN(`eps=6.0`, `min_samples=3`)
 - **Métrica principal:** Silhouette Score 
