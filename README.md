@@ -84,7 +84,7 @@ Outras variáveis, como JobRole (Sales Representative) e BusinessTravel (Travel 
 
 ### Abordagem Técnica
 
-A fase de modelação cobre dois objetivos: classificação supervisionada do atrito (Objetivo 1 e 2) e segmentação não supervisionada de colaboradores (Objetivo 3).
+A fase de modelação cobre dois objetivos: classificação supervisionada do atrito (Objetivo 1) e segmentação não supervisionada de colaboradores (Objetivo 2).
 
 **Objetivo 1 - Classificação Supervisionada**
 - **Modelos testados:** 18 algoritmos (ensemble, lineares, redes neuronais) + baseline (Árvore de Decisão)
