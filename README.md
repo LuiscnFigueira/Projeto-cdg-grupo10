@@ -123,7 +123,7 @@ A fase de modelação cobre dois objetivos: classificação supervisionada do at
 
 * **Dataset:** https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset  
 * **Dimensão:** 1470 linhas, 35 colunas  
-* **Fonte do Código:** https://www.kaggle.com/work/collections/17936409  
+* **Fonte do Código:** https://www.kaggle.com/lusfigueira/code 
 
 
 ## Referências
