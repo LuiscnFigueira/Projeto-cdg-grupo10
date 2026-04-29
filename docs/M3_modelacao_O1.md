@@ -3,25 +3,25 @@
 ## 1. Estratégia de Modelação
 
 ### 1.1 Divisão do dataset
-Para selecionar a divisão de dados mais adequada, foram testados seis rácios distintos (65/35, 70/30, 75/25, 80/20, 85/15 e 90/10), com e sem estratificação pela variável alvo Attrition_bin. Os resultados comparativos de todos os splits encontram-se disponíveis no repositório do projeto (pasta `/resultados/splits/Objetivo1`).  
+Para selecionar a divisão de dados mais adequada, foram testados seis rácios distintos (65/35, 70/30, 75/25, 80/20, 85/15 e 90/10), com e sem estratificação pela variável alvo `Attrition_bin`. Os resultados comparativos de todas as divisões (_splits_) encontram-se disponíveis no repositório do projeto (pasta `/resultados/splits/Objetivo1`).  
 
 A divisão que produziu os melhores resultados globais foi a de 65% para treino e 35% para teste, com estratificação (random_state=42), garantindo a mesma proporção de colaboradores com atrito (~16%) em ambos os conjuntos. Esta abordagem de divisão estratificada é recomendada na literatura como boa prática em problemas de classificação com desequilíbrio de classes, assegurando que ambos os conjuntos representam fielmente a distribuição real dos dados (Géron, 2022; James et al., 2021).  
 
-As variáveis categóricas originais (Attrition, OverTime, Gender, BusinessTravel, Department, EducationField, JobRole, MaritalStatus) foram removidas do conjunto de features, utilizando as respetivas versões já codificadas no dataset processado. Apenas variáveis numéricas foram consideradas, em linha com o processo de preparação de dados definido no âmbito do CRISP-DM (Chapman et al., 2000).
+As variáveis categóricas originais (`Attrition`, `OverTime`, `Gender`, `BusinessTravel`, `Department`, `EducationField`, `JobRole`, `MaritalStatus`) foram removidas do conjunto de atributos (_features_), utilizando as respetivas versões já codificadas no dataset processado. Apenas variáveis numéricas foram consideradas, em linha com o processo de preparação de dados definido no âmbito do CRISP-DM (Chapman et al., 2000).
 
 ### 1.2 Padronização dos dados
-Para os algoritmos sensíveis à escala das variáveis, foi aplicada padronização através do StandardScaler, que transforma cada feature para média zero e desvio-padrão unitário. Para modelos lineares e baseados em distâncias, como SVM, Regressão Logística e KNN, a padronização é geralmente necessária, uma vez que estes algoritmos são diretamente afetados pela magnitude das variáveis (Géron, 2022; James et al., 2021).  
+Para os algoritmos sensíveis à escala das variáveis, foi aplicada padronização através do escalonador padrão (_StandardScaler_), que transforma cada _features_ para média zero e desvio-padrão unitário. Para modelos lineares e baseados em distâncias, como SVM, Regressão Logística e KNN, a padronização é geralmente necessária, uma vez que estes algoritmos são diretamente afetados pela magnitude das variáveis (Géron, 2022; James et al., 2021).  
 
-Para as redes neuronais (MLP, TabNet, Keras e Keras com Dropout e Batch Normalization), a padronização dos dados de entrada foi igualmente aplicada, por ser uma prática amplamente recomendada para acelerar a convergência e estabilizar o treino (LeCun et al., 1998; Goodfellow et al., 2016).  
+- Redes Neuronais (MLP, TabNet, Keras e Keras com Dropout e Batch Normalization): a padronização dos dados de entrada foi igualmente aplicada, por ser uma prática amplamente recomendada para acelerar a convergência e estabilizar o treino (LeCun et al., 1998; Goodfellow et al., 2016).  
 
-Nos modelos baseados em árvores de decisão (Random Forest, Gradient Boosting, XGBoost, LightGBM, CatBoost, Extra Trees) e nos modelos com normalização interna (GANDALF, FT-Transformer), a padronização não foi aplicada, uma vez que estes algoritmos, em geral, não requerem escalonamento das variáveis (Géron, 2022; Hastie et al., 2009).  
+- Árvores de Decisão (Random Forest, Gradient Boosting, XGBoost, LightGBM, CatBoost, Extra Trees) e Modelos com Normalização Interna (GANDALF, FT-Transformer): a padronização não foi aplicada, uma vez que estes algoritmos, em geral, não requerem escalonamento das variáveis (Géron, 2022; Hastie et al., 2009).  
 
-Para os modelos implementados via Pipeline do scikit-learn (SVM, Regressão Logística, KNN, MLP), o StandardScaler foi encapsulado diretamente no pipeline, garantindo que o fit é realizado exclusivamente nos dados de treino e o transform aplicado subsequentemente aos dados de teste, prevenindo data leakage (Géron, 2022).
+- Modelos Implementados via _Pipeline_ do _scikit-learn_ (SVM, Regressão Logística, KNN, MLP): o _StandardScaler_ foi encapsulado diretamente no pipeline, garantindo que o fit é realizado exclusivamente nos dados de treino e o transform aplicado subsequentemente aos dados de teste, prevenindo data leakage (Géron, 2022).
 
 ### 1.3 Métrica de Sucesso
-A métrica principal escolhida foi o F1-Score, por ser a mais adequada para datasets desequilibrados como o nosso (~84% Não Saiu vs ~16% Saiu). O F1-Score combina Precision e Recall numa única métrica, penalizando tanto os falsos positivos como os falsos negativos, característica particularmente relevante no contexto de atrito organizacional, onde tanto a falha em identificar colaboradores em risco como a geração de alertas desnecessários têm custos práticos para as organizações (Hom et al., 2017; James et al., 2021).  
+A métrica principal escolhida foi o _F1-Score_, por ser a mais adequada para datasets desequilibrados como o nosso (~84% Não Saiu vs ~16% Saiu). O _F1-Score_ combina _Precision_ e _Recall_ numa única métrica, penalizando tanto os falsos positivos como os falsos negativos, característica particularmente relevante no contexto de atrito organizacional, onde tanto a falha em identificar colaboradores em risco como a geração de alertas desnecessários têm custos práticos para as organizações (Hom et al., 2017; James et al., 2021).  
 
-Como métrica complementar foi utilizado o AUC-ROC, que mede a capacidade discriminativa do modelo independentemente do threshold de decisão, permitindo uma avaliação mais abrangente da qualidade de separação entre classes (Géron, 2022; James et al., 2021).
+Como métrica complementar foi utilizado o AUC-ROC, que mede a capacidade discriminativa do modelo independentemente do limiar (_threshold_) de decisão, permitindo uma avaliação mais abrangente da qualidade de separação entre classes (Géron, 2022; James et al., 2021).
 
 ### 1.4 Interpretabilidade
 Para além das métricas quantitativas, a interpretabilidade foi definida desde o início como critério formal de seleção do modelo final. No contexto de Recursos Humanos, a capacidade de identificar e comunicar os fatores que contribuem para o atrito é tão importante quanto a precisão preditiva em si, um requisito amplamente reconhecido na literatura (Hom et al., 2017).  
@@ -30,13 +30,13 @@ Em caso de desempenho semelhante entre os modelos finalistas, seria preferido o 
 
  
 ## 2. Experiências Realizadas 
-### 2.1. Modelo Baseline 
+### 2.1. Modelo _Baseline_ 
 
 **Algoritmo:** Árvore de Decisão (`DecisionTreeClassifier`) com todos os parâmetros *default*, sem normalização nem balanceamento dos dados.
 
-**Resultados:** F1 Treino: 1.0000 | F1 Teste: 0.1793 | Precision: 0.2097 | Recall: 0.1566 | AUC Teste: 0.5216
+**Resultados:** _F1 Treino_: 1.0000 | _F1 Teste_: 0.1793 | _Precision_: 0.2097 | _Recall_: 0.1566 | AUC Teste: 0.5216
 
-O modelo baseline evidencia *overfitting* severo: a árvore de decisão sem restrições de profundidade memorizou completamente os dados de treino (F1 = 1.0000), não generalizando para dados não vistos (F1 = 0.1793). O gap de 0.8207 entre o F1 de treino e de teste confirma este comportamento - esperado e documentado na literatura, dado que árvores de decisão sem regularização tendem a crescer até memorizar o conjunto de treino, resultando em fraca capacidade de generalização (James et al., 2021). A Precision (0.2097) e o Recall (0.1566) igualmente baixos indicam que o modelo falha tanto na identificação correta dos colaboradores em risco como na cobertura dos casos reais de atrito. O valor de AUC = 0.5216 confirma uma capacidade discriminativa próxima do aleatório (0.50), reforçando a necessidade de aplicar técnicas de controlo de complexidade e balanceamento de classes nas experiências subsequentes (Géron, 2022).
+O modelo _baseline_ evidencia *overfitting* severo: a árvore de decisão sem restrições de profundidade memorizou completamente os dados de treino (F1 = 100%), não generalizando para dados não vistos (F1 = 17.93%). A diferença de 82.07% entre o F1 de treino e de teste confirma este comportamento - esperado e documentado na literatura, dado que árvores de decisão sem regularização tendem a crescer até memorizar o conjunto de treino, resultando em fraca capacidade de generalização (James et al., 2021). A _Precision_ (20.97%) e o _Recall_ (15.66%) igualmente baixos indicam que o modelo falha tanto na identificação correta dos colaboradores em risco como na cobertura dos casos reais de atrito. O valor de AUC = 52.16% confirma uma capacidade discriminativa próxima do aleatório (0.50), reforçando a necessidade de aplicar técnicas de controlo de complexidade e balanceamento de classes nas experiências subsequentes (Géron, 2022).
 
  
 ### 2.2. Modelos Candidatos 
