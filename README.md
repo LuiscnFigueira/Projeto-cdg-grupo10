@@ -102,9 +102,23 @@ A fase de modelação cobre dois objetivos: classificação supervisionada do at
 
 ## 4. Finalização (Milestone 4)
 ### Resposta ao Problema
-[Resumo da solução e como ela gera valor para o negócio.]
+
+Este projeto demonstrou que é possível transformar dados de Recursos Humanos numa ferramenta concreta de apoio à decisão, respondendo diretamente ao problema da rotatividade de colaboradores.
+
+**Objetivo 1 — Previsão de Atrito:** O modelo final de Regressão Logística alcança uma capacidade discriminativa de 83% (AUC-ROC = 0.8308) na distinção entre colaboradores em risco de saída e os restantes. Com base nas probabilidades previstas, cada colaborador é classificado num de quatro níveis de risco — Baixo (prob < 30%), Médio (30–50%), Alto (50–70%) e Crítico (≥ 70%) — permitindo que as equipas de RH priorizem intervenções de retenção de forma direcionada. Os três fatores com maior peso preditivo são a realização de horas extraordinárias, o estado civil (solteiro) e a satisfação com a função, em linha com a literatura de gestão de recursos humanos.
+
+**Objetivo 2 — Segmentação de Colaboradores:** O modelo UMAP + DBSCAN identificou quatro perfis organizacionais distintos com uma qualidade de segmentação de 0.70 (Silhouette Score), superando a meta de 0.50 definida no início do projeto. Os perfis — I&D Operacional (56%), Equipa de Vendas (36%), Liderança Científica (5.8%) e Recursos Humanos (2.1%) — emergiram de forma não supervisionada e correspondem à estrutura departamental real da organização, confirmando a validade externa do modelo.
+
+Em conjunto, os dois modelos oferecem às organizações uma visão dupla: quem está em risco de sair e a que grupo pertence, permitindo desenhar estratégias de retenção simultaneamente individualizadas e segmentadas.
+
 ### Recomendações de Inovação
-1. [Sugestão prática baseada nos resultados]
+
+**1. Dashboard de Risco em Tempo Real —** Integrar o modelo preditivo com os sistemas de RH existentes (HRIS) para calcular automaticamente o índice de risco de cada colaborador com periodicidade mensal. Um painel interativo permitiria às equipas de RH monitorizar a evolução do risco e acionar planos de retenção de forma proativa, sem depender de análises manuais ou retrospetivas.
+
+**2. Políticas Diferenciadas por Perfil de Colaborador —** Os quatro segmentos identificados têm realidades e necessidades distintas. A organização deveria desenhar políticas de benefícios, desenvolvimento de carreira e gestão de desempenho adaptadas a cada perfil, em vez de aplicar políticas uniformes que ignoram estas diferenças estruturais.
+
+**3. Sistema de Alerta Precoce para Horas Extraordinárias —** O fator com maior peso preditivo é a realização de horas extra. Um sistema simples de monitorização — que identifique colaboradores com padrão sistemático de horas extra durante mais de quatro semanas consecutivas e acione automaticamente uma conversa de check-in com o gestor — poderia reduzir significativamente a taxa de saída no segmento de maior risco, com custo de implementação residual.
+
 ## Como Reproduzir este Projeto
 1. Clone o repositório: `git clone https://github.com/LuiscnFigueira/Projeto-cdg-grupo10`
 2. Instale as dependências: `pip install -r requirements.txt`
