@@ -45,13 +45,13 @@ Para além das métricas quantitativas, foi analisada a estabilidade dos modelos
 
 O modelo *baseline* evidencia uma segmentação muito fraca. O *Silhouette Score* de 0.0705 no teste está muito próximo de zero, o que indica que as observações não estão bem separadas nos *clusters* atribuídos - valor que Rousseeuw (1987) associa a estrutura praticamente inexistente. O *Davies-Bouldin* de 2.99 é também elevado, sinalizando *clusters* sobrepostos e pouco compactos (Davies & Bouldin, 1979). A distribuição dos *clusters* no treino é assimétrica (Cluster 1 com 449 observações, Cluster 2 com apenas 202), o que revela que o *K-Means default* não consegue encontrar agrupamentos equilibrados nem coerentes. Este comportamento é consistente com as limitações conhecidas do algoritmo: o *K-Means* assume *clusters* esféricos e de dimensões semelhantes, e degrada-se em *datasets* de alta dimensionalidade com distribuições heterogéneas (Jäin, 2010; Géron, 2022). Os resultados treino e teste são consistentes (diferença de 0.0049), o que confirma ausência de *overfitting*, mas também ausência de estrutura real nos dados quando abordados com este método sem otimização.
 
-### 2.2. Modelos Candidatos 
+### 2.2. Algoritmos Candidatos 
 
-Foram testados seis modelos candidatos, cobrindo diferentes paradigmas de *clustering*: particionamento, densidade, modelo probabilístico, hierarquia e variante escalável. A seleção foi orientada pela recomendação CRISP-DM de testar múltiplos algoritmos antes de selecionar o modelo final, sem assumir à partida qual o mais adequado para o problema (Chapman et al., 2000). Em problemas de *clustering* sem supervisão, a diversidade de abordagens é particularmente importante dado que diferentes algoritmos capturam estruturas distintas nos dados (James et al., 2021; Géron, 2022).
+Foram testados seis algoritmos candidatos - *DBSCAN*, *GMM*, *K-Means Baseline*, *K-Means Otimizado*, *Agglomerative Clustering*, *Mini-batch K-means* - cobrindo diferentes paradigmas de *clustering*: particionamento, densidade, modelo probabilístico, hierarquia e variante escalável. A seleção foi orientada pela recomendação CRISP-DM de testar múltiplos algoritmos antes de selecionar o modelo final, sem assumir à partida qual o mais adequado para o problema (Chapman et al., 2000). Em problemas de *clustering* sem supervisão, a diversidade de abordagens é particularmente importante dado que diferentes algoritmos capturam estruturas distintas nos dados (James et al., 2021; Géron, 2022).
 
-*Tabela 1 — Comparação de métricas de clustering entre os modelos candidatos testados (ordenados por Silhouette Score no teste, decrescente).*
+*Tabela 1 — Comparação de métricas de clustering entre os algoritmos candidatos testados (ordenados por Silhouette Score no teste, decrescente).*
 
- | Modelo                    | Silhouette (Treino) | Silhouette (Teste) | Davies-Bouldin (Treino) | Davies-Bouldin (Teste) | Calinski-Harabasz (Treino) | Calinski-Harabasz (Teste) |
+ | Algoritmo                    | Silhouette (Treino) | Silhouette (Teste) | Davies-Bouldin (Treino) | Davies-Bouldin (Teste) | Calinski-Harabasz (Treino) | Calinski-Harabasz (Teste) |
 |---------------------------|---------------------|---------------------|--------------------------|-------------------------|-----------------------------|----------------------------|
 | DBSCAN (eps=8.0)         | 0.1709              | 0.1828              | 1.5723                   | 1.4334                  | 35.7952                     | 7.5962                     |
 | GMM (n=4)                | 0.0836              | 0.0775              | 2.6034                   | 2.5225                  | 75.2250                     | 12.7125                    |
@@ -81,7 +81,7 @@ Em síntese, o intervalo de *Silhouette* nos candidatos válidos situa-se entre 
 
 ### 3.1. Abordagem de Otimização 
 
-O DBSCAN foi identificado como o melhor modelo candidato (*Silhouette* teste: 0.1828). A fase de otimização teve como objetivo melhorar a qualidade da segmentação de forma sistemática, através de sete estratégias distintas testadas sequencialmente: afinação de hiperparâmetros do DBSCAN por *Grid Search*, redução de dimensionalidade por PCA, seleção de variáveis por correlação, filtragem por variância, granularidade fina do PCA com eps adaptativo, redução não-linear por UMAP e rescaling robusto.
+O DBSCAN foi identificado como o melhor algoritmo candidato (*Silhouette* teste: 0.1828). A fase de otimização teve como objetivo melhorar a qualidade da segmentação de forma sistemática, através de sete estratégias distintas testadas sequencialmente: afinação de hiperparâmetros do DBSCAN por *Grid Search*, redução de dimensionalidade por PCA, seleção de variáveis por correlação, filtragem por variância, granularidade fina do PCA com eps adaptativo, redução não-linear por UMAP e rescaling robusto.
 
 Em todas as abordagens foi mantido o critério de seleção da fase de candidatos: o *Grid Search* DBSCAN foi restringido a combinações que produzissem exatamente quatro *clusters* com ruído inferior a 20%, garantindo comparabilidade dos resultados com o *baseline* (K-Means k=4). O critério principal de avaliação foi o *Silhouette Score*, complementado pelo *Davies-Bouldin Index* e pelo *Calinski-Harabasz Index* (Rousseeuw, 1987; Davies & Bouldin, 1979; Caliński & Harabasz, 1974).
 
