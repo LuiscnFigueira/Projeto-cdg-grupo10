@@ -38,17 +38,9 @@ Este projeto demonstra a aplicação prática de técnicas de análise de dados 
 
 ## 2. Objetivos SMART
  
-1.  **Objetivo 1:** Desenvolver um modelo de classificação supervisionado para prever o atrito (`Attrition`), alcançando um
-F1-Score mínimo de 0,80 em validação cruzada estratificada (k=5), até ao dia 21/04/2026
-(Milestone 3).
+1.  **Objetivo 1:** Desenvolver um modelo de classificação supervisionado para prever o atrito (`Attrition`), alcançando um F1-Score mínimo de 0,80 em validação cruzada estratificada (k=5), até ao dia 23/04/2026 (Milestone 3).
  
-2.  **Objetivo 2:** Construir um índice de risco de atrito (Attrition) baseado nas probabilidades previstas pelo modelo, classificando os colaboradores em quatro categorias de risco: Baixo (prob < 30%), Médio (30% ≤ prob < 50%), Alto (50% ≤ prob < 70%) e Crítico (prob ≥ 70%), até ao dia 23/04/2026.
-
-3. **Objetivo 3:** Aplicar técnicas de agrupamento (clustering) não supervisionado para identificar e caracterizar perfis distintos de
-colaboradores com base nas variáveis relevantes do dataset, determinando o número ótimo de
-(clusters) através do método do cotovelo e do Silhouette Score, garantindo um valor médio de
-Silhouette superior a 0,50, e descrevendo estatisticamente cada perfil identificado, até ao dia
-21/04/2026.
+2.  **Objetivo 2:** Aplicar técnicas de clustering não supervisionado para identificar e caracterizar perfis distintos de colaboradores com base nas variáveis relevantes do dataset, determinando o número ótimo de agrupamentos (clusters) através do método do cotovelo e do Silhouette Score, garantindo um valor médio de Silhouette superior a 0,50, e descrevendo estatisticamente cada perfil identificado, até ao dia 23/04/2026.
 
 ### 2.1 Perguntas de Investigação
 
