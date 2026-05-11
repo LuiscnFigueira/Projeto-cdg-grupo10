@@ -113,9 +113,12 @@ A avaliação baseou-se exclusivamente em métricas internas (Silhouette, Davies
 4. Testar outros algoritmos de clustering além do K-Means.
 
 ### 4.2 Novas Variáveis
-1. Integrar dados reais de engagement, absentismo e avaliações de desempenho.
-2. Adicionar variáveis temporais para acompanhar a evolução do risco ao longo do tempo.
-3. Incluir fatores externos, como mercado de trabalho, políticas internas de retenção e clima organizacional.
+
+1. Dados longitudinais: Integrar séries temporais de avaliações de desempenho, promoções e movimentos internos para capturar a trajetória de cada colaborador ao longo do tempo, transformando o problema de classificação transversal num problema de análise de sobrevivência (Hom et al., 2017).
+
+2. Variáveis de engagement: Incorporar dados de pulse surveys, Net Promoter Score interno, absentismo ou participação em programas de formação, variáveis identificadas na literatura como preditores independentes do atrito (Hom et al., 2017).
+
+3. Fatores externos: Incluir indicadores de mercado de trabalho (taxa de desemprego sectorial, volume de ofertas de emprego concorrentes) e clima organizacional, que representam determinantes contextuais do atrito não captados pelo dataset atual.
 
 ### 4.3 Escalabilidade e Deployment
 1. Criar uma interface em Streamlit para consulta dos resultados.
