@@ -94,7 +94,7 @@ Será realizada uma análise exploratória e estatística com o objetivo de iden
 
 2. **Avaliação da associação entre horas extras (`OverTime`) e atrito (`Attrition`)**
 
-A relação entre a variável horas extras (`OverTime`) e a variável alvo será analisada através de testes estatísticos de independência, nomeadamente o teste do qui-quadrado, bem como através da comparação das proporções de atrito (`attrition`) entre grupos. Esta análise permitirá avaliar se a realização de horas extraordinárias está estatisticamente associada a um aumento da probabilidade de saída.
+A relação entre a variável horas extras (`OverTime`) e a variável alvo será analisada através de testes estatísticos de independência, nomeadamente o teste do _qui-quadrado_, bem como através da comparação das proporções de atrito (`attrition`) entre grupos. Esta análise permitirá avaliar se a realização de horas extraordinárias está estatisticamente associada a um aumento da probabilidade de saída.
 
 3. **Análise do impacto de variáveis psicométricas ordinais**
 
@@ -106,7 +106,7 @@ Será investigada a relação entre a variável renda mensal (`MonthlyIncome`) e
 
 5. **Comparação do desempenho de diferentes algoritmos de classificação**
 
-Serão treinados e avaliados múltiplos algoritmos de classificação supervisionada, incluindo Regressão Logística, Random Forest e Gradient Boosting. O desempenho será avaliado através de validação cruzada estratificada, com base em métricas como F1-score, Precision, Recall e AUC-ROC, permitindo identificar o modelo com melhor capacidade de generalização.
+Serão treinados e avaliados múltiplos algoritmos de classificação supervisionada, incluindo Regressão Logística, _Random Forest_ e _Gradient Boosting_. O desempenho será avaliado através de validação cruzada estratificada (_cross-validation_), com base em métricas como _F1-Score_, _Precision_, _Recall_ e _AUC-ROC_, permitindo identificar o modelo com melhor capacidade de generalização.
 
 6. **Avaliação do impacto do desequilíbrio de classes e aplicação de SMOTE**
 
@@ -114,15 +114,15 @@ Será analisado o impacto do desequilíbrio da variável alvo no desempenho dos 
 
 7. **Construção e validação de um índice de risco de atrito (`Attrition`)**
 
-Será desenvolvido um índice de risco baseado nas probabilidades previstas pelo modelo de classificação. As observações serão segmentadas em categorias de risco, e será avaliada a capacidade deste índice para discriminar diferentes níveis de probabilidade de attrition, garantindo a sua interpretabilidade e utilidade analítica.
+Será desenvolvido um índice de risco baseado nas probabilidades previstas pelo modelo de classificação. As observações serão segmentadas em categorias de risco, e será avaliada a capacidade deste índice para discriminar diferentes níveis de probabilidade de atrito (`attrition`), garantindo a sua interpretabilidade e utilidade analítica.
 
 8. **Identificação de perfis distintos através de agrupamento (clustering)**
 
-Serão aplicadas técnicas de agrupamento (clustering), nomeadamente o algoritmo K-Means, com o objetivo de identificar perfis distintos de colaboradores com base nas suas características. Os agrupamentos (clusters) obtidos serão caracterizados estatisticamente, permitindo identificar segmentos com diferentes padrões estruturais e níveis de risco associados ao (`attrition`).
+Serão aplicadas técnicas de agrupamento (_clustering_), nomeadamente o algoritmo _K-Means_, com o objetivo de identificar perfis distintos de colaboradores com base nas suas características. Os agrupamentos (_clusters_) obtidos serão caracterizados estatisticamente, permitindo identificar segmentos com diferentes padrões estruturais e níveis de risco associados ao (`attrition`).
 
  
 ## 3. Metodologia de Gestão (PBL) 
-O projeto segue uma abordagem baseada no modelo CRISP-DM (Cross-Industry Standard Process for Data Mining), amplamente utilizado em projetos de Ciência de Dados, que organiza o desenvolvimento em seis fases principais: compreensão do problema, compreensão dos dados, preparação dos dados, modelação, avaliação e implementação. Apesar de apresentarem uma sequência lógica, estas fases são iterativas, permitindo revisitar etapas anteriores sempre que necessário. Esta metodologia proporciona uma abordagem estruturada, sistemática e rigorosa ao desenvolvimento de projetos de Ciência de Dados (Chapman et al., 2000).
+O projeto segue uma abordagem baseada no modelo _CRISP-DM_ (_Cross-Industry Standard Process for Data Mining_), amplamente utilizado em projetos de Ciência de Dados, que organiza o desenvolvimento em seis fases principais: compreensão do problema, compreensão dos dados, preparação dos dados, modelação, avaliação e implementação. Apesar de apresentarem uma sequência lógica, estas fases são iterativas, permitindo revisitar etapas anteriores sempre que necessário. Esta metodologia proporciona uma abordagem estruturada, sistemática e rigorosa ao desenvolvimento de projetos de Ciência de Dados (Chapman et al., 2000).
 
 **Divisão de Tarefas:** 
 
