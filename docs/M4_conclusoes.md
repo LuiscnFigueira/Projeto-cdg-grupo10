@@ -66,22 +66,26 @@ A segmentação permite à organização desenvolver estratégias de Recursos Hu
 ## 2. Análise Crítica e Limitações
 
 ### 2.1 Limitações dos Dados
-* O dataset é sintético, tendo sido criado pela IBM para fins demonstrativos.
-* A variável `Attrition` apresenta desequilíbrio de classes.
-* Algumas variáveis apresentam pouca variabilidade ou reduzido valor preditivo.
-* O dataset não inclui fatores externos, como mercado de trabalho, clima organizacional real ou histórico detalhado de desempenho.
+
+O dataset IBM HR Analytics é sintético, tendo sido criado pela IBM para fins demonstrativos, o que limita a transferibilidade direta dos resultados para contextos organizacionais reais. A variável `Attrition` apresenta desequilíbrio de classes significativo (~84% "Não Saiu" vs ~16% "Saiu"), o que penaliza métricas como o F1-Score mesmo em modelos com boa capacidade discriminativa (Chawla et al., 2002). 
+
+A variável `PerformanceRating` apresenta variância praticamente nula, com a quase totalidade das observações concentradas nos valores 3 e 4, limitando o seu poder preditivo e justificando a sua exclusão na fase de preparação dos dados. Por fim, o dataset não inclui variáveis potencialmente relevantes como indicadores de engagement, absentismo, clima organizacional real ou dados externos sobre o mercado de trabalho, o que condiciona o poder preditivo máximo dos modelos (Hom et al., 2017).
+
 
 ### 2.2 Limitações do Modelo Preditivo
-* O modelo pode apresentar maior dificuldade em identificar corretamente colaboradores da classe minoritária.
-* As previsões indicam probabilidade de risco, mas não provam causalidade.
-* O índice de risco deve ser interpretado como ferramenta de apoio à decisão, não como decisão automática.
+
+O objetivo mínimo de F1-Score >= 0,80 não foi alcançado (F1 Teste = 0,5625), apesar de terem sido testados 18 algoritmos distintos e aplicadas técnicas de balanceamento (SMOTE) e otimização de threshold. O modelo apresenta um gap entre treino e teste de +0,12 no F1-Score, indicativo de overfitting leve, embora substancialmente inferior ao observado nos modelos de ensemble e redes neuronais testados - por exemplo, Random Forest com gap de +0,78 e Keras simples com gap de +0,54. 
+
+As previsões indicam probabilidade de risco, mas não provam causalidade entre as variáveis e o atrito - uma limitação inerente a qualquer modelo preditivo correlacional (James et al., 2021). 
+
+O índice de risco deve ser interpretado como ferramenta de apoio à decisão humana, não como mecanismo de decisão automática.
+
 
 ### 2.3 Limitações do Clustering
-* Os clusters identificam grupos com características semelhantes, mas não demonstram causalidade.
-* O resultado depende das variáveis selecionadas, da escala dos dados e do número de clusters escolhido.
-* Caso o Silhouette Score seja inferior ao esperado, a separação entre perfis pode ser considerada limitada.
 
+O Cluster 3 (Recursos Humanos) conta com apenas ~26 membros no treino (2,1% da amostra). A dimensão reduzida impõe cautela na generalização dos seus perfis médios e na tomada de decisões organizacionais baseadas neste grupo, uma vez que pequenas alterações na composição do departamento de RH podem alterar significativamente as médias do cluster. O UMAP é um algoritmo estocástico: sem semente fixa (`random_state=42`), execuções distintas produzem *manifolds* ligeiramente diferentes, alterando potencialmente a atribuição de pontos fronteiriços (McInnes et al., 2018). 
 
+A avaliação baseou-se exclusivamente em métricas internas (Silhouette, Davies-Bouldin, Calinski-Harabasz): a validade externa - correspondência com variáveis não utilizadas na modelação, como o atrito - não foi testada formalmente, constituindo uma limitação metodológica a colmatar em trabalhos futuros (Rousseeuw, 1987).
 
 ## 3. Considerações Éticas e de Viés
 
