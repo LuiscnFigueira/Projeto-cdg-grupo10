@@ -98,10 +98,8 @@ A avaliação baseou-se exclusivamente em métricas internas (Silhouette, Davies
 * O índice de risco deve ser apresentado como uma ferramenta de apoio à decisão humana.
 
 ### 3.3 Viés
-* O desequilíbrio da variável `Attrition` pode influenciar o desempenho do modelo.
-* Variáveis como idade, género, estado civil ou rendimento devem ser interpretadas com cautela.
-* A classificação de colaboradores como “de risco” não deve ser usada para penalização, mas sim para apoiar estratégias justas de retenção.
 
+O desequilíbrio da variável `Attrition` pode levar o modelo a subvalorizar casos reais de atrito (classe minoritária), com impacto direto no Recall. Variáveis como `Age`, `Gender`, `MaritalStatus`, `MonthlyIncome` ou `JobLevel` devem ser interpretadas com cautela: a sua correlação com o atrito pode refletir padrões históricos de desigualdade organizacional, não necessariamente causalidade. A classificação de colaboradores como "de risco" não deve ser utilizada para penalização, restrição de oportunidades ou decisões de despedimento. O índice de risco deve suportar estratégias proativas e justas de retenção e desenvolvimento, em linha com os princípios de uso responsável de sistemas de apoio à decisão em Recursos Humanos (Hom et al., 2017).
 
 
 ## 4. Roadmap e Trabalhos Futuros
