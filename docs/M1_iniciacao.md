@@ -2,9 +2,9 @@
  
 ## 1. Descrição Detalhada do Problema
 
-### Contexto do Setor: Gestão de Capital Humano e HR Analytics 
+### Contexto do Setor: Gestão de Capital Humano e HR _Analytics_ 
 
-O capital humano constitui um dos ativos mais críticos para o desempenho, inovação e sustentabilidade das organizações modernas, particularmente em setores intensivos em conhecimento, como o setor tecnológico e de serviços. Neste contexto, a área de HR Analytics (People Analytics) tem emergido como uma disciplina estratégica que utiliza dados e técnicas de análise quantitativa para apoiar a tomada de decisão na gestão de recursos humanos.
+O capital humano constitui um dos ativos mais críticos para o desempenho, inovação e sustentabilidade das organizações modernas, particularmente em setores intensivos em conhecimento, como o setor tecnológico e de serviços. Neste contexto, a área de HR _Analytics_ (People Analytics) tem emergido como uma disciplina estratégica que utiliza dados e técnicas de análise quantitativa para apoiar a tomada de decisão na gestão de recursos humanos.
 
 Tradicionalmente, a gestão de recursos humanos baseava-se em abordagens maioritariamente reativas e qualitativas. No entanto, com o aumento da disponibilidade de dados organizacionais e o desenvolvimento de técnicas de Ciência de Dados e Aprendizagem Automática (_Machine Learning_), tornou-se possível adotar uma abordagem orientada por dados, permitindo analisar padrões comportamentais, identificar fatores de risco e antecipar fenómenos relevantes. Esta evolução permite transformar os Recursos Humanos numa função estratégica e preditiva, contribuindo para uma gestão mais eficiente e fundamentada do capital humano.
 
@@ -20,11 +20,11 @@ A saída de colaboradores é influenciada por múltiplos fatores, incluindo cara
 
 ### Formulação do Problema no Contexto da Ciência de Dados
 
-Para analisar este problema, será utilizado o dataset IBM HR Analytics Employee Attrition & Performance (IBM Watson Analytics, 2016), disponibilizado na plataforma Kaggle, que contém dados estruturados relativos a 1470 colaboradores e 35 variáveis que descrevem características demográficas, profissionais, salariais e níveis de satisfação.
+Para analisar este problema, será utilizado o dataset IBM HR _Analytics_ _Employee_ _Attrition_ & _Performance_ (IBM Watson Analytics, 2016), disponibilizado na plataforma Kaggle, que contém dados estruturados relativos a 1470 colaboradores e 35 variáveis que descrevem características demográficas, profissionais, salariais e níveis de satisfação.
 
-A variável central deste estudo é Attrition, uma variável categórica binária que indica se um colaborador abandonou a organização ("Yes") ou permaneceu na empresa ("No"). Esta variável constitui a variável alvo do projeto.
+A variável central deste estudo é (`Attrition`), uma variável categórica binária que indica se um colaborador abandonou a organização ("Yes") ou permaneceu na empresa ("No"). Esta variável constitui a variável alvo do projeto.
 
-O problema pode ser formalizado como um problema de análise preditiva, suportado por técnicas de aprendizagem supervisionada, uma vez que existe uma variável alvo previamente definida (`Attrition`). Mais concretamente, trata-se de um problema de classificação binária, cujo objetivo é prever se um colaborador abandonará a organização (Yes) ou permanecerá na empresa (No), com base num conjunto de variáveis explicativas (James et al., 2021). Numa fase inicial, será também realizada análise exploratória de dados, com o objetivo de compreender a estrutura do dataset, identificar padrões relevantes e apoiar a preparação dos dados para a modelação.
+O problema pode ser formalizado como um problema de análise preditiva, suportado por técnicas de aprendizagem supervisionada, uma vez que existe uma variável alvo previamente definida (`Attrition`). Mais concretamente, trata-se de um problema de classificação binária, cujo objetivo é prever se um colaborador abandonará a organização ("Yes") ou permanecerá na empresa ("No"), com base num conjunto de variáveis explicativas (James et al., 2021). Numa fase inicial, será também realizada análise exploratória de dados, com o objetivo de compreender a estrutura do dataset, identificar padrões relevantes e apoiar a preparação dos dados para a modelação.
 
 Através da aplicação de técnicas de análise exploratória de dados e de aprendizagem automática supervisionada, será possível transformar dados organizacionais em conhecimento relevante, permitindo compreender melhor os determinantes da rotatividade e apoiar futuras abordagens preditivas.
 
