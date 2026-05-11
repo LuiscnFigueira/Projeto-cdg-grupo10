@@ -4,11 +4,11 @@
 
 ### Contexto do Setor: Gestão de Capital Humano e _HR Analytics_ 
 
-O capital humano constitui um dos ativos mais críticos para o desempenho, inovação e sustentabilidade das organizações modernas, particularmente em setores intensivos em conhecimento, como o setor tecnológico e de serviços. Neste contexto, a área de HR _Analytics_ (People Analytics) tem emergido como uma disciplina estratégica que utiliza dados e técnicas de análise quantitativa para apoiar a tomada de decisão na gestão de recursos humanos.
+O capital humano constitui um dos ativos mais críticos para o desempenho, inovação e sustentabilidade das organizações modernas, particularmente em setores intensivos em conhecimento, como o setor tecnológico e de serviços. Neste contexto, a área de _HR Analytics_ (_People Analytics_) tem emergido como uma disciplina estratégica que utiliza dados e técnicas de análise quantitativa para apoiar a tomada de decisão na gestão de recursos humanos.
 
 Tradicionalmente, a gestão de recursos humanos baseava-se em abordagens maioritariamente reativas e qualitativas. No entanto, com o aumento da disponibilidade de dados organizacionais e o desenvolvimento de técnicas de Ciência de Dados e Aprendizagem Automática (_Machine Learning_), tornou-se possível adotar uma abordagem orientada por dados, permitindo analisar padrões comportamentais, identificar fatores de risco e antecipar fenómenos relevantes. Esta evolução permite transformar os Recursos Humanos numa função estratégica e preditiva, contribuindo para uma gestão mais eficiente e fundamentada do capital humano.
 
-Uma das aplicações mais relevantes neste domínio é a análise da rotatividade de colaboradores (Employee Attrition), que corresponde à saída de colaboradores de uma organização e constitui um indicador crítico da estabilidade e eficiência organizacional.
+Uma das aplicações mais relevantes neste domínio é a análise da rotatividade de colaboradores (_Employee Attrition_), que corresponde à saída de colaboradores de uma organização e constitui um indicador crítico da estabilidade e eficiência organizacional.
 
 ### Relevância do Problema no Contexto Atual
 
@@ -114,11 +114,11 @@ Será analisado o impacto do desequilíbrio da variável alvo no desempenho dos 
 
 7. **Construção e validação de um índice de risco de atrito (`Attrition`)**
 
-Será desenvolvido um índice de risco baseado nas probabilidades previstas pelo modelo de classificação. As observações serão segmentadas em categorias de risco, e será avaliada a capacidade deste índice para discriminar diferentes níveis de probabilidade de atrito (`attrition`), garantindo a sua interpretabilidade e utilidade analítica.
+Será desenvolvido um índice de risco baseado nas probabilidades previstas pelo modelo de classificação. As observações serão segmentadas em categorias de risco, e será avaliada a capacidade deste índice para discriminar diferentes níveis de probabilidade de atrito (`Attrition`), garantindo a sua interpretabilidade e utilidade analítica.
 
 8. **Identificação de perfis distintos através de agrupamento (clustering)**
 
-Serão aplicadas técnicas de agrupamento (_clustering_), nomeadamente o algoritmo _K-Means_, com o objetivo de identificar perfis distintos de colaboradores com base nas suas características. Os agrupamentos (_clusters_) obtidos serão caracterizados estatisticamente, permitindo identificar segmentos com diferentes padrões estruturais e níveis de risco associados ao (`attrition`).
+Serão aplicadas técnicas de agrupamento (_clustering_), nomeadamente o algoritmo _K-Means_, com o objetivo de identificar perfis distintos de colaboradores com base nas suas características. Os agrupamentos (_clusters_) obtidos serão caracterizados estatisticamente, permitindo identificar segmentos com diferentes padrões estruturais e níveis de risco associados ao (`Attrition`).
 
  
 ## 3. Metodologia de Gestão (PBL) 
@@ -142,7 +142,7 @@ O projeto segue uma abordagem baseada no modelo _CRISP-DM_ (_Cross-Industry Stan
   *  Preparação de entregáveis de _Milestone_ 1 (relatório e estrutura de projeto)
 
   **Tarefas conjuntas**
-   *  Análise do dataset _IBM HR_Analytics Employee Attrition & Performance_
+   *  Análise do dataset _IBM HR Analytics Employee Attrition & Performance_
    *  Definição clara do problema e objetivos SMART
    *  Identificação de limitações e riscos do dataset
    *  Discussão da abordagem metodológica (CRISP-DM)
@@ -151,7 +151,7 @@ O projeto segue uma abordagem baseada no modelo _CRISP-DM_ (_Cross-Industry Stan
  
 ## 4. Análise de Viabilidade dos Dados 
 * **Disponibilidade:** O dataset _IBM HR Analytics Employee Attrition & Performance_ encontra-se disponível publicamente na plataforma _Kaggle_ em formato CSV, sob licença de utilização para fins académicos. Os dados foram já importados para o ambiente _Kaggle Notebook_ e encontram-se organizados numa estrutura tabular com 1470 observações e 35 variáveis, o que facilita a aplicação de técnicas de análise estatística e de modelação supervisionada, sem necessidade de integração adicional com bases de dados relacionais nesta fase.
-* **Qualidade Inicial:** A análise exploratória preliminar (EDA) revela uma qualidade estrutural elevada, evidenciada pela ausência de valores nulos em todas as variáveis. Ainda assim, foi identificada a necessidade de limpeza de dados, uma vez que o dataset inclui variáveis sem valor preditivo relevante (variância zero ou meros identificadores únicos). Estas variáveis - (`EmployeeNumber`), (`EmployeeCount`), (`Over18`) e (`StandardHours`) - foram marcadas para remoção e não serão consideradas a partir da _Milestone_ 2. Adicionalmente, o dataset apresenta uma combinação de variáveis categóricas, numéricas e ordinais, o que exigirá a aplicação de estratégias específicas de codificação (_encoding_) e transformação durante a fase de preparação dos dados.
+* **Qualidade Inicial:** A análise exploratória preliminar (EDA) revela uma qualidade estrutural elevada, evidenciada pela ausência de valores nulos em todas as variáveis. Ainda assim, foi identificada a necessidade de limpeza de dados, uma vez que o dataset inclui variáveis sem valor preditivo relevante (variância zero ou meros identificadores únicos). Estas variáveis - (`EmployeeNumber`), (`EmployeeCount`), (`Over18`) e (`StandardHours`) - foram marcadas para remoção e não serão consideradas a partir da _Milestone 2_. Adicionalmente, o dataset apresenta uma combinação de variáveis categóricas, numéricas e ordinais, o que exigirá a aplicação de estratégias específicas de codificação (_encoding_) e transformação durante a fase de preparação dos dados.
 * **Ética:** O dataset encontra-se totalmente anonimizado, não contendo identificadores pessoais diretos (como nomes, contactos ou identificadores reais de colaboradores). A utilização dos dados neste projeto é estritamente académica e cumpre os princípios fundamentais do RGPD, nomeadamente a minimização de dados, a limitação da finalidade e a licitude do tratamento. Atendendo à natureza sintética e agregada da informação, o risco de reidentificação individual é negligenciável, garantindo a conformidade ética e a proteção dos participantes.
 
 ### Unidade de Análise
