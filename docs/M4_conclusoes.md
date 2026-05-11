@@ -5,11 +5,12 @@
 ### 1.1 Objetivo 1 - Modelo Preditivo de Attrition
 
 #### O Problema Resolvido
-* O objetivo consistia em desenvolver um modelo de classificação supervisionado capaz de prever o atrito (`Attrition`) dos colaboradores.
+O primeiro objetivo do projeto consistia em desenvolver um modelo de classificação supervisionado capaz de prever o atrito (`Attrition`) dos colaboradores, alcançando um F1-Score mínimo de 0,80 em validação cruzada estratificada (k=5), até ao dia 21/04/2026. O problema foi formalizado como uma tarefa de classificação binária sobre o dataset IBM HR Analytics Employee Attrition & Performance, composto por 1470 colaboradores e 35 variáveis originais, com uma taxa de atrito de 16,1% (Chapman et al., 2000; IBM Watson Analytics, 2016).
 
 #### Interpretação dos Resultados
-* [Inserir F1-Score, Precision, Recall, AUC-ROC e explicar por palavras simples.]
-* [Explicar se o objetivo mínimo de F1-Score ≥ 0,80 foi alcançado.]
+O modelo final selecionado foi a Regressão Logística com pipeline `MaxAbsScaler` + SMOTE + `StratifiedKFold` (k=15) e threshold ótimo de 0,52, obtido após um processo de otimização em cinco etapas sequenciais: pesquisa do melhor split (85/15), do melhor normalizador (`MaxAbsScaler`), da melhor técnica de resampling (SMOTE), de hiperparâmetros via `GridSearchCV` e do threshold de decisão. Foram testados 18 algoritmos distintos antes de convergir para esta solução, cobrindo modelos de ensemble, lineares, probabilísticos e redes neuronais, em linha com a recomendação do CRISP-DM de explorar múltiplos algoritmos antes de selecionar o modelo final (Chapman et al., 2000).
+
+[Por acabar]
 
 #### Índice de Risco de Attrition
 * A partir das probabilidades previstas pelo modelo, foi construído um índice de risco.
@@ -24,7 +25,8 @@
 ### 1.2 Objetivo 2 - Identificação de Perfis de Colaboradores através de Clustering
 
 #### O Problema Resolvido
-* O objetivo consistia em aplicar técnicas de clustering para identificar perfis distintos de colaboradores com base nas suas características.
+
+O segundo objetivo consistia em aplicar técnicas de clustering não supervisionado para identificar e caracterizar perfis distintos de colaboradores, determinando o número ótimo de clusters com um Silhouette Score médio superior a 0,50, até ao dia 21/04/2026. O problema foi abordado como uma tarefa de aprendizagem não supervisionada, sem recurso a qualquer informação sobre a variável alvo `Attrition` durante o processo de agrupamento (Chapman et al., 2000).
 
 #### Interpretação dos Resultados
 * [Inserir número de clusters identificados.]
