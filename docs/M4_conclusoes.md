@@ -29,13 +29,37 @@ O modelo final selecionado foi a Regressão Logística com pipeline `MaxAbsScale
 O segundo objetivo consistia em aplicar técnicas de clustering não supervisionado para identificar e caracterizar perfis distintos de colaboradores, determinando o número ótimo de clusters com um Silhouette Score médio superior a 0,50, até ao dia 21/04/2026. O problema foi abordado como uma tarefa de aprendizagem não supervisionada, sem recurso a qualquer informação sobre a variável alvo `Attrition` durante o processo de agrupamento (Chapman et al., 2000).
 
 #### Interpretação dos Resultados
-* [Inserir número de clusters identificados.]
-* [Inserir Silhouette Score.]
-* [Explicar por palavras simples os perfis encontrados.]
+
+O modelo final selecionado foi UMAP(`n_components=5`, `n_neighbors=15`) + DBSCAN(`eps=6.0`, `min_samples=3`). Foram testadas seis abordagens distintas de redução de dimensionalidade e seleção de variáveis antes de convergir para esta solução, incluindo DBSCAN no espaço original, DBSCAN otimizado, PCA + DBSCAN, seleção por correlação, GMM e K-Means (McInnes et al., 2018; Schubert et al., 2017).
+
+Os resultados obtidos são os seguintes:
+
+| Métrica                 | Treino  | Teste  | Meta       | Resultado    |
+|-------------------------|---------|--------|------------|--------------|
+| Silhouette Score        | 0,7141  | 0,7016 | > 0,50     | Atingida     |
+| Davies-Bouldin Index    | 0,3991  | 0,3864 | Minimizar  | Excelente    |
+| Calinski-Harabasz Index | 1772,02 | 301,16 | Maximizar  | 21x baseline |
+| Clusters identificados  | 4       | 4      | -          | -            |
+| Ruído (%)               | 0,0%    | 0,0%   | Minimizar  | Nenhum       |
+
+O Silhouette Score de 0,7016 no conjunto de teste supera a meta em +40,3 pontos percentuais. Rousseeuw (1987) classifica valores superiores a 0,70 como indicativos de estrutura de clustering forte, o limiar mais exigente da sua escala. O Davies-Bouldin de 0,3864 confirma clusters compactos e bem separados - valores abaixo de 0,5 são considerados excelentes (Davies & Bouldin, 1979). A diferença entre treino e teste é mínima (Delta Silhouette = 0,0125), confirmando que o modelo generaliza a estrutura aprendida sem sobreajustamento.
+
+Os quatro perfis de colaboradores identificados apresentam correspondência direta com a estrutura departamental da organização:
+
+| Cluster | Designação           | Peso  | Características Principais                                                         |
+|---------|----------------------|-------|------------------------------------------------------------------------------------|
+| 0       | I&D Operacional      | 56%   | Técnicos de I&D de nível médio, rendimento moderado, longa permanência na empresa  |
+| 1       | Liderança Científica | 5,8%  | Quadros seniores de I&D, rendimento elevado, alta escolaridade, cargos de liderança|
+| 2       | Equipa de Vendas     | 36%   | Colaboradores de Vendas, perfil mais jovem, maior mobilidade entre empresas        |
+| 3       | Recursos Humanos     | 2,1%  | Pequeno grupo de RH, perfil distinto em termos de função e compensação             |
+
+Esta coerência não foi imposta ao modelo - resultou da aprendizagem não supervisionada sobre 53 variáveis escaladas. A correspondência entre os clusters e unidades organizacionais reais é um indicador forte de validade externa: o modelo captura uma estrutura que existe objetivamente na organização, não um artefacto do algoritmo (Jain, 2010).
+
+Por palavras simples, o modelo consegue identificar automaticamente os diferentes perfis de colaboradores sem ter sido informado sobre departamentos ou funções. O facto de os grupos encontrados coincidirem com a realidade organizacional confirma que as variáveis do dataset captam diferenças reais entre os colaboradores, e não apenas ruído estatístico.
 
 #### Valor para o Utilizador/Negócio
-* A segmentação permite compreender melhor diferentes grupos de colaboradores.
-* Os perfis identificados podem apoiar estratégias de gestão, retenção e acompanhamento mais direcionadas.
+
+A segmentação permite à organização desenvolver estratégias de Recursos Humanos diferenciadas por perfil. A Equipa de Vendas (36%), com maior mobilidade entre empresas, pode beneficiar de políticas de retenção específicas baseadas em incentivos de progressão e reconhecimento. A Liderança Científica (5,8%), apesar de reduzida em número, representa um capital humano de elevado valor estratégico que justifica abordagens de retenção personalizadas. Os colaboradores de I&D Operacional (56%), sendo o maior grupo, são os que mais influenciam os indicadores agregados da organização (Hom et al., 2017).
 
 
 
