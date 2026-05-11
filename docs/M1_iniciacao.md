@@ -2,7 +2,7 @@
  
 ## 1. Descrição Detalhada do Problema
 
-### Contexto do Setor: Gestão de Capital Humano e HR _Analytics_ 
+### Contexto do Setor: Gestão de Capital Humano e _HR Analytics_ 
 
 O capital humano constitui um dos ativos mais críticos para o desempenho, inovação e sustentabilidade das organizações modernas, particularmente em setores intensivos em conhecimento, como o setor tecnológico e de serviços. Neste contexto, a área de HR _Analytics_ (People Analytics) tem emergido como uma disciplina estratégica que utiliza dados e técnicas de análise quantitativa para apoiar a tomada de decisão na gestão de recursos humanos.
 
@@ -20,7 +20,7 @@ A saída de colaboradores é influenciada por múltiplos fatores, incluindo cara
 
 ### Formulação do Problema no Contexto da Ciência de Dados
 
-Para analisar este problema, será utilizado o dataset IBM HR _Analytics_ _Employee_ _Attrition_ & _Performance_ (IBM Watson Analytics, 2016), disponibilizado na plataforma Kaggle, que contém dados estruturados relativos a 1470 colaboradores e 35 variáveis que descrevem características demográficas, profissionais, salariais e níveis de satisfação.
+Para analisar este problema, será utilizado o dataset _IBM HR Analytics_ _Employee_ _Attrition_ & _Performance_ (IBM Watson Analytics, 2016), disponibilizado na plataforma Kaggle, que contém dados estruturados relativos a 1470 colaboradores e 35 variáveis que descrevem características demográficas, profissionais, salariais e níveis de satisfação.
 
 A variável central deste estudo é (`Attrition`), uma variável categórica binária que indica se um colaborador abandonou a organização ("Yes") ou permaneceu na empresa ("No"). Esta variável constitui a variável alvo do projeto.
 
@@ -30,15 +30,15 @@ Através da aplicação de técnicas de análise exploratória de dados e de apr
 
 ### Objetivo Analítico do Projeto
 
-O objetivo analítico principal deste projeto consiste em analisar o fenómeno de rotatividade de colaboradores com recurso a técnicas de análise exploratória de dados, estatística descritiva e aprendizagem automática supervisionada, aplicadas ao dataset IBM HR _Analytics_ _Employee_ _Attrition_ & _Performance_. Pretende-se identificar os fatores mais associados ao abandono da organização e criar uma base analítica sólida para o desenvolvimento de modelos preditivos de atrito (`Attrition`).
+O objetivo analítico principal deste projeto consiste em analisar o fenómeno de rotatividade de colaboradores com recurso a técnicas de análise exploratória de dados, estatística descritiva e aprendizagem automática supervisionada, aplicadas ao dataset _IBM HR Analytics Employee Attrition & Performance_. Pretende-se identificar os fatores mais associados ao abandono da organização e criar uma base analítica sólida para o desenvolvimento de modelos preditivos de atrito (`Attrition`).
 
-Especificamente, pretende-se realizar uma análise exploratória detalhada do dataset, avaliar a relação entre as variáveis explicativas e a variável alvo `Attrition`, e estabelecer uma base analítica robusta que suporte o desenvolvimento e validação de modelos preditivos em fases posteriores do projeto.
+Especificamente, pretende-se realizar uma análise exploratória detalhada do dataset, avaliar a relação entre as variáveis explicativas e a variável alvo (`Attrition`,) e estabelecer uma base analítica robusta que suporte o desenvolvimento e validação de modelos preditivos em fases posteriores do projeto.
 
 Este projeto demonstra a aplicação prática de técnicas de análise de dados ao domínio da gestão de recursos humanos, evidenciando o potencial da Ciência de Dados como ferramenta de suporte à tomada de decisão estratégica e à otimização da gestão do capital humano.
 
 ## 2. Objetivos SMART
  
-1.  **Objetivo 1:** Desenvolver um modelo de classificação supervisionado para prever o atrito (`Attrition`), alcançando um _F1-Score_ mínimo de 0,80 em validação cruzada estratificada (k=5), até ao dia 23/04/2026 (Milestone 3).
+1.  **Objetivo 1:** Desenvolver um modelo de classificação supervisionado para prever o atrito (`Attrition`), alcançando um _F1-Score_ mínimo de 0,80 em validação cruzada estratificada (k=5), até ao dia 23/04/2026 (_Milestone 3_).
  
 2.  **Objetivo 2:** Aplicar técnicas de _clustering_ não supervisionado para identificar e caracterizar perfis distintos de colaboradores com base nas variáveis relevantes do dataset, determinando o número ótimo de agrupamentos (_clusters_) através do método do cotovelo e do _Silhouette Score_, garantindo um valor médio de _Silhouette_ superior a 0,50, e descrevendo estatisticamente cada perfil identificado, até ao dia 23/04/2026.
 
@@ -142,7 +142,7 @@ O projeto segue uma abordagem baseada no modelo _CRISP-DM_ (_Cross-Industry Stan
   *  Preparação de entregáveis de _Milestone_ 1 (relatório e estrutura de projeto)
 
   **Tarefas conjuntas**
-   *  Análise do dataset IBM HR _Analytics Employee Attrition & Performance_
+   *  Análise do dataset _IBM HR_Analytics Employee Attrition & Performance_
    *  Definição clara do problema e objetivos SMART
    *  Identificação de limitações e riscos do dataset
    *  Discussão da abordagem metodológica (CRISP-DM)
@@ -150,7 +150,7 @@ O projeto segue uma abordagem baseada no modelo _CRISP-DM_ (_Cross-Industry Stan
 **Ferramentas de Colaboração:** _Kaggle Notebooks_ (ambiente de desenvolvimento), _GitHub_ (controlo de versões e partilha de código), _GitHub Projects_ (gestão de tarefas), _Whatsapp_ (mensagens diárias), _Notion_ (distribuição de tarefas) e _Google Meet_ (reuniões de dois em dois dias).
  
 ## 4. Análise de Viabilidade dos Dados 
-* **Disponibilidade:** O dataset IBM HR _Analytics Employee Attrition & Performance_ encontra-se disponível publicamente na plataforma _Kaggle_ em formato CSV, sob licença de utilização para fins académicos. Os dados foram já importados para o ambiente _Kaggle Notebook_ e encontram-se organizados numa estrutura tabular com 1470 observações e 35 variáveis, o que facilita a aplicação de técnicas de análise estatística e de modelação supervisionada, sem necessidade de integração adicional com bases de dados relacionais nesta fase.
+* **Disponibilidade:** O dataset _IBM HR Analytics Employee Attrition & Performance_ encontra-se disponível publicamente na plataforma _Kaggle_ em formato CSV, sob licença de utilização para fins académicos. Os dados foram já importados para o ambiente _Kaggle Notebook_ e encontram-se organizados numa estrutura tabular com 1470 observações e 35 variáveis, o que facilita a aplicação de técnicas de análise estatística e de modelação supervisionada, sem necessidade de integração adicional com bases de dados relacionais nesta fase.
 * **Qualidade Inicial:** A análise exploratória preliminar (EDA) revela uma qualidade estrutural elevada, evidenciada pela ausência de valores nulos em todas as variáveis. Ainda assim, foi identificada a necessidade de limpeza de dados, uma vez que o dataset inclui variáveis sem valor preditivo relevante (variância zero ou meros identificadores únicos). Estas variáveis - (`EmployeeNumber`), (`EmployeeCount`), (`Over18`) e (`StandardHours`) - foram marcadas para remoção e não serão consideradas a partir da _Milestone_ 2. Adicionalmente, o dataset apresenta uma combinação de variáveis categóricas, numéricas e ordinais, o que exigirá a aplicação de estratégias específicas de codificação (_encoding_) e transformação durante a fase de preparação dos dados.
 * **Ética:** O dataset encontra-se totalmente anonimizado, não contendo identificadores pessoais diretos (como nomes, contactos ou identificadores reais de colaboradores). A utilização dos dados neste projeto é estritamente académica e cumpre os princípios fundamentais do RGPD, nomeadamente a minimização de dados, a limitação da finalidade e a licitude do tratamento. Atendendo à natureza sintética e agregada da informação, o risco de reidentificação individual é negligenciável, garantindo a conformidade ética e a proteção dos participantes.
 
@@ -160,7 +160,7 @@ Cada observação corresponde a uma instância independente no espaço de caract
 
 O dataset é composto por 1470 observações, correspondendo cada linha a um registo distinto. A variável Attrition está associada a cada observação e indica o estado de permanência ou saída da entidade observada no contexto organizacional.
 
-Importa referir que o dataset é de natureza sintética, tendo sido gerado pela IBM para fins de demonstração do IBM Watson _Analytics_, não correspondendo a dados reais de colaboradores.
+Importa referir que o dataset é de natureza sintética, tendo sido gerado pela IBM para fins de demonstração do _IBM Watson Analytics_, não correspondendo a dados reais de colaboradores.
 
 ### Dicionário das variáveis
 | Variável                 | Tipo Estatístico      | Domínio                     | Classes / Escala Semântica                                                                                                                                                                       | Definição Operacional                                | Papel Analítico       |
@@ -204,9 +204,9 @@ Importa referir que o dataset é de natureza sintética, tendo sido gerado pela 
 
 ### 4.1.1 Estrutura e Composição do Dataset
 
-No âmbito da fase de Data Understanding do modelo CRISP-DM, foi realizada uma análise sistemática da estrutura do dataset com o objetivo de caracterizar formalmente o espaço de características, avaliar a sua adequação ao problema de classificação supervisionada e identificar propriedades com implicações nas fases subsequentes de preparação e modelação.
+No âmbito da fase de _Data Understanding_ do modelo CRISP-DM, foi realizada uma análise sistemática da estrutura do dataset com o objetivo de caracterizar formalmente o espaço de características, avaliar a sua adequação ao problema de classificação supervisionada e identificar propriedades com implicações nas fases subsequentes de preparação e modelação.
 
-O dataset foi carregado na sua forma bruta e convertido numa estrutura do tipo DataFrame, permitindo a inspeção programática da sua composição e propriedades estatísticas. A análise estrutural confirmou que o dataset é composto por 1470 observações e 35 variáveis, em conformidade com a documentação original. Cada observação corresponde a um registo independente no espaço de características, descrito por um conjunto de variáveis demográficas, organizacionais, profissionais e psicométricas, bem como pelo respetivo valor da variável alvo `Attrition`.
+O dataset foi carregado na sua forma bruta e convertido numa estrutura do tipo DataFrame, permitindo a inspeção programática da sua composição e propriedades estatísticas. A análise estrutural confirmou que o dataset é composto por 1470 observações e 35 variáveis, em conformidade com a documentação original. Cada observação corresponde a um registo independente no espaço de características, descrito por um conjunto de variáveis demográficas, organizacionais, profissionais e psicométricas, bem como pelo respetivo valor da variável alvo (`Attrition`).
 
 A inspeção dos tipos de dados revelou a presença de variáveis numéricas inteiras e variáveis categóricas codificadas como texto, refletindo a natureza discreta e categórica das dimensões representadas. Esta estrutura é consistente com um problema de classificação supervisionada, em que cada observação constitui uma instância independente caracterizada por um vetor de atributos e uma variável alvo associada.
 
@@ -222,7 +222,7 @@ Adicionalmente, verificou-se a inexistência de registos duplicados, garantindo 
 
 ### 4.1.3 Identificação e Remoção de Variáveis Não Informativas
 
-A análise da cardinalidade e variabilidade das variáveis permitiu identificar a presença de variáveis sem capacidade discriminativa ou relevância preditiva para o problema em estudo. Em particular, verificou-se que as variáveis `EmployeeCount`, `Over18` e `StandardHours` apresentam valores constantes em todas as observações, não contribuindo para a explicação da variabilidade da variável alvo. Adicionalmente, a variável `EmployeeNumber` constitui um identificador único atribuído a cada observação, não possuindo qualquer significado estatístico ou relação causal com o fenómeno em análise.
+A análise da cardinalidade e variabilidade das variáveis permitiu identificar a presença de variáveis sem capacidade discriminativa ou relevância preditiva para o problema em estudo. Em particular, verificou-se que as variáveis (`EmployeeCount`), (`Over18`) e (`StandardHours`) apresentam valores constantes em todas as observações, não contribuindo para a explicação da variabilidade da variável alvo. Adicionalmente, a variável (`EmployeeNumber`) constitui um identificador único atribuído a cada observação, não possuindo qualquer significado estatístico ou relação causal com o fenómeno em análise.
 
 Do ponto de vista da teoria da informação, estas variáveis apresentam entropia nula ou irrelevante, sendo incapazes de fornecer informação útil ao processo de aprendizagem. A sua inclusão aumentaria artificialmente a dimensionalidade do espaço de características, podendo introduzir ruído e reduzir a eficiência dos algoritmos de modelação. Por este motivo, estas variáveis foram removidas programaticamente, reduzindo o número de variáveis de 35 para 31 e melhorando a qualidade analítica do dataset.
 
@@ -237,9 +237,9 @@ A análise confirmou ainda que as variáveis apresentam variabilidade suficiente
 
 ### 4.1.5 Distribuição da Variável Alvo
 
-Foi analisada a distribuição da variável alvo `Attrition`, que representa o estado de permanência ou saída de cada colaborador. A análise revelou um cenário de desequilíbrio de classes (*class imbalance*), com aproximadamente 83.9% das observações correspondentes à classe negativa (permanência) e 16.1% à classe positiva (saída).
+Foi analisada a distribuição da variável alvo (`Attrition`), que representa o estado de permanência ou saída de cada colaborador. A análise revelou um cenário de desequilíbrio de classes (_class imbalance_), com aproximadamente 83.9% das observações correspondentes à classe negativa (permanência) e 16.1% à classe positiva (saída).
 
-Este desequilíbrio constitui um fator crítico no contexto da modelação supervisionada, uma vez que algoritmos treinados diretamente sobre dados desequilibrados tendem a favorecer a classe maioritária, podendo apresentar desempenho aparentemente elevado em termos de acurácia, mas reduzida capacidade de identificação da classe minoritária. Este aspeto será considerado nas fases subsequentes do processo CRISP-DM, nomeadamente na seleção de métricas de avaliação apropriadas, como Precision, Recall, F1-score e Precision-Recall AUC, e na eventual aplicação de técnicas de balanceamento de classes.
+Este desequilíbrio constitui um fator crítico no contexto da modelação supervisionada, uma vez que algoritmos treinados diretamente sobre dados desequilibrados tendem a favorecer a classe maioritária, podendo apresentar desempenho aparentemente elevado em termos de acurácia, mas reduzida capacidade de identificação da classe minoritária. Este aspeto será considerado nas fases subsequentes do processo CRISP-DM, nomeadamente na seleção de métricas de avaliação apropriadas, como _Precision_, _Recall_, _F1-score_ e _Precision-Recall AUC_, e na eventual aplicação de técnicas de balanceamento de classes.
 
 
 ### 4.1.6 Síntese da Compreensão dos Dados
@@ -254,11 +254,11 @@ Esta fase estabelece uma base metodológica sólida para as etapas subsequentes 
 
 Apesar da elevada qualidade estrutural do dataset, existem limitações metodológicas que devem ser consideradas na interpretação dos resultados e no desenvolvimento dos modelos preditivos.
 
-Em primeiro lugar, o dataset é de natureza sintética, tendo sido gerado pela IBM para fins de demonstração do IBM Watson Analytics. Consequentemente, as relações entre variáveis podem não refletir integralmente os padrões observados em contextos organizacionais reais, o que, aliado à estrutura transversal do dataset, limita simultaneamente a generalização externa dos resultados e a inferência de relações causais dinâmicas.
+Em primeiro lugar, o dataset é de natureza sintética, tendo sido gerado pela IBM para fins de demonstração do _IBM Watson Analytics_. Consequentemente, as relações entre variáveis podem não refletir integralmente os padrões observados em contextos organizacionais reais, o que, aliado à estrutura transversal do dataset, limita simultaneamente a generalização externa dos resultados e a inferência de relações causais dinâmicas.
 
-Em segundo lugar, a variável `PerformanceRating` apresenta variância praticamente nula, com a quase totalidade das observações concentradas nos valores 3 e 4, o que limita o seu poder discriminativo e poderá justificar a sua exclusão ou tratamento específico na fase de preparação dos dados.
+Em segundo lugar, a variável (`PerformanceRating`) apresenta variância praticamente nula, com a quase totalidade das observações concentradas nos valores 3 e 4, o que limita o seu poder discriminativo e poderá justificar a sua exclusão ou tratamento específico na fase de preparação dos dados.
 
-Adicionalmente, o dataset não inclui determinadas variáveis potencialmente relevantes, como indicadores de desempenho histórico detalhado, métricas de engagement ou fatores externos ao contexto organizacional, o que pode condicionar o poder preditivo máximo dos modelos.
+Adicionalmente, o dataset não inclui determinadas variáveis potencialmente relevantes, como indicadores de desempenho histórico detalhado, métricas de engajamento (_engagement_) ou fatores externos ao contexto organizacional, o que pode condicionar o poder preditivo máximo dos modelos.
 
 Estas limitações serão consideradas na interpretação dos resultados e na avaliação da capacidade de generalização dos modelos desenvolvidos.
 
