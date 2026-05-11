@@ -30,7 +30,7 @@ Através da aplicação de técnicas de análise exploratória de dados e de apr
 
 ### Objetivo Analítico do Projeto
 
-O objetivo analítico principal deste projeto consiste em analisar o fenómeno de rotatividade de colaboradores com recurso a técnicas de análise exploratória de dados, estatística descritiva e aprendizagem automática supervisionada, aplicadas ao dataset IBM HR Analytics Employee Attrition & Performance. Pretende-se identificar os fatores mais associados ao abandono da organização e criar uma base analítica sólida para o desenvolvimento de modelos preditivos de atrito (`Attrition`).
+O objetivo analítico principal deste projeto consiste em analisar o fenómeno de rotatividade de colaboradores com recurso a técnicas de análise exploratória de dados, estatística descritiva e aprendizagem automática supervisionada, aplicadas ao dataset IBM HR _Analytics_ _Employee_ _Attrition_ & _Performance_. Pretende-se identificar os fatores mais associados ao abandono da organização e criar uma base analítica sólida para o desenvolvimento de modelos preditivos de atrito (`Attrition`).
 
 Especificamente, pretende-se realizar uma análise exploratória detalhada do dataset, avaliar a relação entre as variáveis explicativas e a variável alvo `Attrition`, e estabelecer uma base analítica robusta que suporte o desenvolvimento e validação de modelos preditivos em fases posteriores do projeto.
 
@@ -38,9 +38,9 @@ Este projeto demonstra a aplicação prática de técnicas de análise de dados 
 
 ## 2. Objetivos SMART
  
-1.  **Objetivo 1:** Desenvolver um modelo de classificação supervisionado para prever o atrito (`Attrition`), alcançando um F1-Score mínimo de 0,80 em validação cruzada estratificada (k=5), até ao dia 23/04/2026 (Milestone 3).
+1.  **Objetivo 1:** Desenvolver um modelo de classificação supervisionado para prever o atrito (`Attrition`), alcançando um _F1-Score_ mínimo de 0,80 em validação cruzada estratificada (k=5), até ao dia 23/04/2026 (Milestone 3).
  
-2.  **Objetivo 2:** Aplicar técnicas de clustering não supervisionado para identificar e caracterizar perfis distintos de colaboradores com base nas variáveis relevantes do dataset, determinando o número ótimo de agrupamentos (clusters) através do método do cotovelo e do Silhouette Score, garantindo um valor médio de Silhouette superior a 0,50, e descrevendo estatisticamente cada perfil identificado, até ao dia 23/04/2026.
+2.  **Objetivo 2:** Aplicar técnicas de _clustering_ não supervisionado para identificar e caracterizar perfis distintos de colaboradores com base nas variáveis relevantes do dataset, determinando o número ótimo de agrupamentos (_clusters_) através do método do cotovelo e do _Silhouette Score_, garantindo um valor médio de _Silhouette_ superior a 0,50, e descrevendo estatisticamente cada perfil identificado, até ao dia 23/04/2026.
 
 ### 2.1 Perguntas de Investigação
 
@@ -48,11 +48,11 @@ As perguntas de investigação estruturam o enquadramento científico do estudo,
 
 **1.** Quais são as variáveis com maior poder explicativo e preditivo do atrito (`Attrition`) dos colaboradores?
 
-**2.** Existe uma associação estatisticamente significativa entre a realização de horas extraordinárias (OverTime) e a probabilidade de atrito (`Attrition`)?
+**2.** Existe uma associação estatisticamente significativa entre a realização de horas extraordinárias (`OverTime`) e a probabilidade de atrito (`Attrition`)?
 
-**3.** O nível de satisfação no trabalho (JobSatisfaction) e o equilíbrio entre vida pessoal e profissional (WorkLifeBalance) influenciam significativamente o risco de atrito (`Attrition`)?
+**3.** O nível de satisfação no trabalho (`JobSatisfaction`) e o equilíbrio entre vida pessoal e profissional (`WorkLifeBalance`) influenciam significativamente o risco de atrito (`Attrition`)?
 
-**4.** O rendimento mensal (MonthlyIncome) tem impacto significativo na probabilidade de atrito (`Attrition`), mesmo após controlo multivariável?
+**4.** O rendimento mensal (`MonthlyIncome`) tem impacto significativo na probabilidade de atrito (`Attrition`), mesmo após controlo multivariável?
 
 **5.** Qual dos algoritmos de classificação testados apresenta melhor desempenho e maior estabilidade na previsão do atrito (`Attrition`)?
 
@@ -70,7 +70,7 @@ Os objetivos definidos para este projeto foram operacionalizados em termos técn
 
 O primeiro objetivo consiste no desenvolvimento e validação de um modelo de classificação supervisionado capaz de prever a variável alvo (`Attrition`), utilizando as variáveis explicativas disponíveis no dataset. O problema é formalizado como um problema de classificação binária, no qual cada observação é representada por um conjunto de atributos e uma variável alvo que indica o estado de permanência ou saída.
 
-Serão avaliados diferentes algoritmos de Aprendizagem Automática (_Machine Learning_), incluindo métodos lineares e baseados em árvores de decisão, sendo o desempenho avaliado através de validação cruzada estratificada com k = 5 folds. A métrica principal de avaliação será o F1-Score, devido à sua adequação em contextos de desequilíbrio de classes, sendo definido como objetivo atingir um valor mínimo de 0,80. Adicionalmente, serão consideradas métricas complementares, como Precision, Recall e AUC-ROC, de forma a garantir uma avaliação robusta e abrangente do desempenho dos modelos.
+Serão avaliados diferentes algoritmos de Aprendizagem Automática (_Machine Learning_), incluindo métodos lineares e baseados em árvores de decisão, sendo o desempenho avaliado através de validação cruzada estratificada com k = 5 folds. A métrica principal de avaliação será o _F1-Score_, devido à sua adequação em contextos de desequilíbrio de classes, sendo definido como objetivo atingir um valor mínimo de 0,80. Adicionalmente, serão consideradas métricas complementares, como _Precision_, _Recall_ e AUC-ROC, de forma a garantir uma avaliação robusta e abrangente do desempenho dos modelos.
 
 ### Objetivo 2 — Construção de um Índice de Risco de atrito (`Attrition`)
 
@@ -78,11 +78,11 @@ O segundo objetivo consiste na construção de um índice de risco de attrition 
 
 Com base nesta probabilidade, os colaboradores serão classificados em três categorias de risco: baixo risco (probabilidade inferior a 30%), risco intermédio (probabilidade entre 30% e 60%) e alto risco (probabilidade superior a 60%). Esta segmentação permitirá identificar diferentes níveis de vulnerabilidade e suportar a análise diferenciada dos perfis de risco presentes no dataset.
 
-### Objetivo 3 — Identificação de Perfis de Colaboradores através de agrupamento (Clustering)
+### Objetivo 3 — Identificação de Perfis de Colaboradores através de agrupamento (_Clustering_)
 
-O terceiro objetivo consiste na aplicação de técnicas de aprendizagem não supervisionada com o propósito de identificar perfis distintos de colaboradores com base nas suas características. Será utilizado o algoritmo K-Means como método principal de agrupamento (clustering), sendo o número ótimo de agrupamentos (clusters) determinado com recurso ao método do cotovelo e ao coeficiente de Silhouette.
+O terceiro objetivo consiste na aplicação de técnicas de aprendizagem não supervisionada com o propósito de identificar perfis distintos de colaboradores com base nas suas características. Será utilizado o algoritmo _K-Means_ como método principal de agrupamento (_clustering_), sendo o número ótimo de agrupamentos (_clusters_) determinado com recurso ao método do cotovelo e ao coeficiente de _Silhouette_.
 
-O coeficiente de Silhouette será utilizado como critério quantitativo de validação, sendo definido como objetivo alcançar um valor médio superior a 0,50, indicando uma estrutura de agrupamentos (clusters) bem definida. Após a identificação dos agrupamentos (clusters), será realizada uma caracterização estatística detalhada de cada perfil, permitindo identificar diferenças estruturais entre segmentos e compreender melhor a heterogeneidade presente no dataset.
+O coeficiente de _Silhouette_ será utilizado como critério quantitativo de validação, sendo definido como objetivo alcançar um valor médio superior a 0,50, indicando uma estrutura de agrupamentos (_clusters_) bem definida. Após a identificação dos agrupamentos (_clusters_), será realizada uma caracterização estatística detalhada de cada perfil, permitindo identificar diferenças estruturais entre segmentos e compreender melhor a heterogeneidade presente no dataset.
 
 Esta operacionalização assegura que os objetivos do projeto são implementados de forma rigorosa e mensurável, estabelecendo uma base metodológica sólida para as fases subsequentes de preparação dos dados, modelação e avaliação.
 
