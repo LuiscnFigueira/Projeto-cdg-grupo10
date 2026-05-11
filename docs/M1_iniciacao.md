@@ -137,30 +137,30 @@ O projeto segue uma abordagem baseada no modelo _CRISP-DM_ (_Cross-Industry Stan
    *  Análise da existência de valores nulos
   
  **Mateus Afonso:** 
-  *  Análise preliminar da distribuição da variável alvo Attrition
+  *  Análise preliminar da distribuição da variável alvo (`Attrition`)
   *  Compreensão inicial das variáveis e tipos de dados
-  *  Preparação de entregáveis de Milestone 1 (relatório e estrutura de projeto)
+  *  Preparação de entregáveis de _Milestone_ 1 (relatório e estrutura de projeto)
 
   **Tarefas conjuntas**
-   *  Análise do dataset IBM HR Analytics Employee Attrition & Performance
+   *  Análise do dataset IBM HR _Analytics Employee Attrition & Performance_
    *  Definição clara do problema e objetivos SMART
    *  Identificação de limitações e riscos do dataset
    *  Discussão da abordagem metodológica (CRISP-DM)
      
-**Ferramentas de Colaboração:** Kaggle Notebooks (ambiente de desenvolvimento), GitHub (controlo de versões e partilha de código), GitHub Projects (gestão de tarefas), Whatsapp (mensagens diárias), Notion (distribuição de tarefas) e Google Meet (reuniões de dois em dois dias).
+**Ferramentas de Colaboração:** _Kaggle Notebooks_ (ambiente de desenvolvimento), _GitHub_ (controlo de versões e partilha de código), _GitHub Projects_ (gestão de tarefas), _Whatsapp_ (mensagens diárias), _Notion_ (distribuição de tarefas) e _Google Meet_ (reuniões de dois em dois dias).
  
 ## 4. Análise de Viabilidade dos Dados 
-* **Disponibilidade:** O dataset IBM HR Analytics Employee Attrition & Performance encontra-se disponível publicamente na plataforma Kaggle em formato CSV, sob licença de utilização para fins académicos. Os dados foram já importados para o ambiente Kaggle Notebook e encontram-se organizados numa estrutura tabular com 1470 observações e 35 variáveis, o que facilita a aplicação de técnicas de análise estatística e de modelação supervisionada, sem necessidade de integração adicional com bases de dados relacionais nesta fase.
-* **Qualidade Inicial:** A análise exploratória preliminar (EDA) revela uma qualidade estrutural elevada, evidenciada pela ausência de valores nulos em todas as variáveis. Ainda assim, foi identificada a necessidade de limpeza de dados, uma vez que o dataset inclui variáveis sem valor preditivo relevante (variância zero ou meros identificadores únicos). Estas variáveis - EmployeeNumber, EmployeeCount, Over18 e StandardHours - foram marcadas para remoção e não serão consideradas a partir da Milestone 2. Adicionalmente, o dataset apresenta uma combinação de variáveis categóricas, numéricas e ordinais, o que exigirá a aplicação de estratégias específicas de codificação (encoding) e transformação durante a fase de preparação dos dados.
+* **Disponibilidade:** O dataset IBM HR _Analytics Employee Attrition & Performance_ encontra-se disponível publicamente na plataforma _Kaggle_ em formato CSV, sob licença de utilização para fins académicos. Os dados foram já importados para o ambiente _Kaggle Notebook_ e encontram-se organizados numa estrutura tabular com 1470 observações e 35 variáveis, o que facilita a aplicação de técnicas de análise estatística e de modelação supervisionada, sem necessidade de integração adicional com bases de dados relacionais nesta fase.
+* **Qualidade Inicial:** A análise exploratória preliminar (EDA) revela uma qualidade estrutural elevada, evidenciada pela ausência de valores nulos em todas as variáveis. Ainda assim, foi identificada a necessidade de limpeza de dados, uma vez que o dataset inclui variáveis sem valor preditivo relevante (variância zero ou meros identificadores únicos). Estas variáveis - (`EmployeeNumber`), (`EmployeeCount`), (`Over18`) e (`StandardHours`) - foram marcadas para remoção e não serão consideradas a partir da _Milestone_ 2. Adicionalmente, o dataset apresenta uma combinação de variáveis categóricas, numéricas e ordinais, o que exigirá a aplicação de estratégias específicas de codificação (_encoding_) e transformação durante a fase de preparação dos dados.
 * **Ética:** O dataset encontra-se totalmente anonimizado, não contendo identificadores pessoais diretos (como nomes, contactos ou identificadores reais de colaboradores). A utilização dos dados neste projeto é estritamente académica e cumpre os princípios fundamentais do RGPD, nomeadamente a minimização de dados, a limitação da finalidade e a licitude do tratamento. Atendendo à natureza sintética e agregada da informação, o risco de reidentificação individual é negligenciável, garantindo a conformidade ética e a proteção dos participantes.
 
 ### Unidade de Análise
 
-Cada observação corresponde a uma instância independente no espaço de características, identificada unicamente pela variável EmployeeNumber, que funciona como identificador técnico sem significado analítico. Cada registo contém os valores observados para as variáveis que caracterizam a entidade observada, incluindo atributos demográficos, profissionais, salariais, organizacionais e níveis de satisfação, bem como o respetivo valor da variável Attrition.
+Cada observação corresponde a uma instância independente no espaço de características, identificada unicamente pela variável (`EmployeeNumber`), que funciona como identificador técnico sem significado analítico. Cada registo contém os valores observados para as variáveis que caracterizam a entidade observada, incluindo atributos demográficos, profissionais, salariais, organizacionais e níveis de satisfação, bem como o respetivo valor da variável (`Attrition`).
 
 O dataset é composto por 1470 observações, correspondendo cada linha a um registo distinto. A variável Attrition está associada a cada observação e indica o estado de permanência ou saída da entidade observada no contexto organizacional.
 
-Importa referir que o dataset é de natureza sintética, tendo sido gerado pela IBM para fins de demonstração do IBM Watson Analytics, não correspondendo a dados reais de colaboradores.
+Importa referir que o dataset é de natureza sintética, tendo sido gerado pela IBM para fins de demonstração do IBM Watson _Analytics_, não correspondendo a dados reais de colaboradores.
 
 ### Dicionário das variáveis
 | Variável                 | Tipo Estatístico      | Domínio                     | Classes / Escala Semântica                                                                                                                                                                       | Definição Operacional                                | Papel Analítico       |
