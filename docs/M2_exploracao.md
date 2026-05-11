@@ -3,39 +3,39 @@
 ## 1. Análise Exploratória de Dados (EDA) 
 ### 1.1. Distribuição da Variável Alvo 
 
-A variável alvo do presente projeto, `Attrition`, indica se o colaborador abandonou a organização (Yes) ou permaneceu na empresa (No). Trata-se de uma variável categórica binária que representa o fenómeno de rotatividade de colaboradores e constitui o principal objeto de análise deste estudo.
+A variável alvo do presente projeto, (`Attrition`), indica se o colaborador abandonou a organização (Yes) ou permaneceu na empresa (No). Trata-se de uma variável categórica binária que representa o fenómeno de rotatividade de colaboradores e constitui o principal objeto de análise deste estudo.
 
 Foi realizada uma análise da distribuição desta variável com o objetivo de compreender a proporção de colaboradores que permanecem na organização face aos que a abandonam. Dado tratar-se de uma variável categórica binária, o conceito estatístico de distribuição normal não é aplicável, sendo a análise baseada na proporção de frequências entre as duas categorias.
 
-A análise revelou que 83.9% dos colaboradores permaneceram na empresa, correspondendo à classe (No), enquanto 16.1% abandonaram a organização, correspondendo à classe (Yes). Estes resultados evidenciam um desequilíbrio significativo entre classes (*class imbalance*), sendo a classe positiva claramente minoritária. Este desequilíbrio constitui um fator crítico no contexto da modelação preditiva supervisionada, uma vez que algoritmos treinados sem estratégias de compensação tendem a favorecer a classe maioritária, podendo atingir valores de acurácia aparentemente elevados sem, contudo, identificar corretamente os casos de abandono (Géron, 2022; James et al., 2021).
+A análise revelou que 83.9% dos colaboradores permaneceram na empresa, correspondendo à classe (No), enquanto 16.1% abandonaram a organização, correspondendo à classe (Yes). Estes resultados evidenciam um desequilíbrio significativo entre classes (_class imbalance_), sendo a classe positiva claramente minoritária. Este desequilíbrio constitui um fator crítico no contexto da modelação preditiva supervisionada, uma vez que algoritmos treinados sem estratégias de compensação tendem a favorecer a classe maioritária, podendo atingir valores de acurácia aparentemente elevados sem, contudo, identificar corretamente os casos de abandono (Géron, 2022; James et al., 2021).
 
 ### Desafios Técnicos Resultantes do Desequilíbrio de Classes
 
-O desequilíbrio entre classes constitui um desafio relevante no contexto da modelação preditiva supervisionada. Em datasets desequilibrados, algoritmos de classificação podem tender a favorecer a classe maioritária, conduzindo a modelos que apresentam valores elevados de *accuracy*, mas com reduzida capacidade de identificar corretamente a classe minoritária (Géron, 2022; James et al., 2021).
+O desequilíbrio entre classes constitui um desafio relevante no contexto da modelação preditiva supervisionada. Em datasets desequilibrados, algoritmos de classificação podem tender a favorecer a classe maioritária, conduzindo a modelos que apresentam valores elevados de acurácia (_accuracy_), mas com reduzida capacidade de identificar corretamente a classe minoritária (Géron, 2022; James et al., 2021).
 
 A título ilustrativo, um modelo que classificasse todos os colaboradores como (No) obteria uma precisão aparente de aproximadamente 84%, apesar de não conseguir identificar corretamente os casos de abandono. Do ponto de vista organizacional, esta limitação é particularmente crítica, uma vez que o abandono de colaboradores representa custos significativos associados ao recrutamento, integração e perda de conhecimento organizacional (Hom et al., 2017).
 
-Deste modo, nas fases subsequentes do projeto serão adotadas estratégias adequadas para lidar com o desequilíbrio de classes, nomeadamente a utilização de métricas de avaliação apropriadas, como *Precision*, *Recall*, *F1-score* e *ROC-AUC*, a eventual aplicação de técnicas de balanceamento de classes, como SMOTE, e uma análise detalhada da matriz de confusão para avaliar o desempenho do modelo na identificação da classe minoritária (Géron, 2022).
+Deste modo, nas fases subsequentes do projeto serão adotadas estratégias adequadas para lidar com o desequilíbrio de classes, nomeadamente a utilização de métricas de avaliação apropriadas, como _Precision_, _Recall_, _F1-score_ e _ROC-AUC_, a eventual aplicação de técnicas de balanceamento de classes, como SMOTE, e uma análise detalhada da matriz de confusão para avaliar o desempenho do modelo na identificação da classe minoritária (Géron, 2022).
  
 ### 1.2. Correlações Relevantes
 
-Nesta fase de análise bivariada, utilizámos gráficos de dispersão (*scatter plots*) para cruzar os atributos do *dataset* diretamente com a variável alvo `Attrition`, com o objetivo de identificar os principais preditores de rotatividade. Estas observações visuais são suportadas pelos valores matemáticos retirados do nosso gráfico de Correlação das Variáveis com Attrition (`CorrelaçãoVariávelAlvo.png`). Aplicámos um nível de transparência aos pontos do gráfico para revelar a densidade de colaboradores em cada eixo categórico ((Yes) / (No)).
+Nesta fase de análise bivariada, utilizámos gráficos de dispersão (_scatter plots_) para cruzar os atributos do _dataset_ diretamente com a variável alvo (`Attrition`), com o objetivo de identificar os principais preditores de rotatividade. Estas observações visuais são suportadas pelos valores matemáticos retirados do nosso gráfico de Correlação das Variáveis com (`Attrition`) (`CorrelaçãoVariávelAlvo.png`). Aplicámos um nível de transparência aos pontos do gráfico para revelar a densidade de colaboradores em cada eixo categórico ((Yes) / (No)).
 
 **Atributo Idade (`Age`) vs. Variável Alvo (`Attrition`)**
 
-Notámos que a idade apresenta uma forte relação com a probabilidade de saída (com uma correlação de -0.16). Observando os *scatter plots*, especialmente quando cruzamos a idade com o salário (ver `ScatterPlotsAgevsMonthlyIncome.png`) ou com a experiência (ver `ScatterPlotsAgevsTotalWorkingYears.png`), a densidade de pontos vermelhos na classe (Yes) (abandono) está claramente concentrada na faixa etária mais jovem (entre os 20 e os 35 anos). Por outro lado, a área correspondente aos colaboradores que permanecem (No) apresenta uma distribuição muito mais vasta e contínua ao longo de todas as idades, indicando que a retenção é superior em faixas etárias mais maduras.
+Notámos que a idade apresenta uma forte relação com a probabilidade de saída (com uma correlação de -0.16). Observando os _scatter plots_, especialmente quando cruzamos a idade com o salário (ver `ScatterPlotsAgevsMonthlyIncome.png`) ou com a experiência (ver `ScatterPlotsAgevsTotalWorkingYears.png`), a densidade de pontos vermelhos na classe (Yes) (abandono) está claramente concentrada na faixa etária mais jovem (entre os 20 e os 35 anos). Por outro lado, a área correspondente aos colaboradores que permanecem (No) apresenta uma distribuição muito mais vasta e contínua ao longo de todas as idades, indicando que a retenção é superior em faixas etárias mais maduras.
 
 **Atributo Rendimento Mensal (`MonthlyIncome`) vs. Variável Alvo (`Attrition`)** 
 
-O fator financeiro está fortemente ligado à saída de colaboradores, apresentando igualmente uma correlação de -0.16. Nos gráficos de dispersão (ver `ScatterPlotsAgevsMonthlyIncome.png` e `ScatterPlotsTotalWorkingYearsvsMonthlyIncome.png`), a esmagadora maioria dos pontos de `Attrition` (Yes) aglomera-se de forma densa no limite inferior do eixo dos salários mais baixos. À medida que o rendimento mensal aumenta, a presença de pontos na classe (Yes) torna-se cada vez mais rara, confirmando que pacotes salariais superiores atuam como um forte mecanismo de retenção.
+O fator financeiro está fortemente ligado à saída de colaboradores, apresentando igualmente uma correlação de -0.16. Nos gráficos de dispersão (ver `ScatterPlotsAgevsMonthlyIncome.png` e `ScatterPlotsTotalWorkingYearsvsMonthlyIncome.png`), a esmagadora maioria dos pontos de (`Attrition`) (Yes) aglomera-se de forma densa no limite inferior do eixo dos salários mais baixos. À medida que o rendimento mensal aumenta, a presença de pontos na classe (Yes) torna-se cada vez mais rara, confirmando que pacotes salariais superiores atuam como um forte mecanismo de retenção.
 
 **Atributo Experiência Total (`TotalWorkingYears`) vs. Variável Alvo (`Attrition`)** 
 
 Notámos que a senioridade e o tempo de carreira estão intimamente ligados à retenção, sendo a variável numérica com a correlação negativa mais forte (-0.17). Observando a intersecção da experiência com o rendimento (ver `ScatterPlotsTotalWorkingYearsvsMonthlyIncome.png`), a grande mancha de densidade de abandonos ((Yes)) concentra-se nos colaboradores com menos de 10 anos de experiência total. Em contrapartida, profissionais com carreiras mais longas (especialmente acima dos 15-20 anos) apresentam uma dispersão residual na linha de saída, provando que a consolidação da carreira reduz drasticamente a rotatividade.
 
-### 1.3 Matriz de Correlação (Heatmap)
+### 1.3 Matriz de Correlação (_Heatmap_)
 
-Foi gerada uma matriz de correlação para as variáveis numéricas, com o objetivo de identificar relações lineares relevantes e potenciais situações de multicolinearidade. A análise visual do *heatmap* (ver `HeatmapVariaveisNumeric.png`) evidenciou três padrões principais:
+Foi gerada uma matriz de correlação para as variáveis numéricas, com o objetivo de identificar relações lineares relevantes e potenciais situações de multicolinearidade. A análise visual do _heatmap_ (ver `HeatmapVariaveisNumeric.png`) evidenciou três padrões principais:
 
 Observou-se uma correlação muito elevada entre `JobLevel` e `MonthlyIncome` (≈ 0.95), sugerindo redundância informacional entre progressão hierárquica e remuneração.
 
@@ -59,7 +59,7 @@ Importa salientar que correlação mede apenas associações lineares e não imp
 
 ### 1.5 Conclusões Visuais da Análise Bivariada
 
-A análise dos gráficos de dispersão permitiu identificar alguns padrões visuais relevantes entre as variáveis numéricas do *dataset*. Estes padrões ajudam a compreender melhor a estrutura dos dados e possíveis relações entre características dos colaboradores e o fenómeno de saída da organização.
+A análise dos gráficos de dispersão permitiu identificar alguns padrões visuais relevantes entre as variáveis numéricas do dataset. Estes padrões ajudam a compreender melhor a estrutura dos dados e possíveis relações entre características dos colaboradores e o fenómeno de saída da organização.
 
 **Relação Linear entre Idade e Experiência**
 
@@ -77,13 +77,13 @@ Os cruzamentos visuais (ver `ScatterPlotsYearsAtCompanyvsYearsWithCurrManager.pn
 
 A análise das variáveis numéricas através de histogramas, boxplots e estatística descritiva revelou diferentes padrões de distribuição no *dataset*. Dado que várias variáveis apresentam comportamentos semelhantes, optou-se por agrupá-las por tipo de distribuição, o que permite uma interpretação mais clara e evita descrições redundantes.
 
-As variáveis `DailyRate`, `HourlyRate` e `MonthlyRate` apresentam distribuições relativamente uniformes ao longo do intervalo de valores observados, sem concentrações muito acentuadas em regiões específicas (ver `HistogramaDailyRate.png`). Este comportamento sugere uma dispersão mais equilibrada das taxas administrativas associadas aos colaboradores.
+As variáveis (`DailyRate`), (`HourlyRate`) e (`MonthlyRate`) apresentam distribuições relativamente uniformes ao longo do intervalo de valores observados, sem concentrações muito acentuadas em regiões específicas (ver `HistogramaDailyRate.png`). Este comportamento sugere uma dispersão mais equilibrada das taxas administrativas associadas aos colaboradores.
 
-As variáveis `Age`, `DistanceFromHome`, `PercentSalaryHike`, `TrainingTimesLastYear` e `YearsInCurrentRole` apresentam uma assimetria positiva ligeira ou moderada (ver `HistogramaAge.png`). Isto significa que a maioria das observações se concentra em valores baixos ou intermédios, enquanto valores mais elevados ocorrem com menor frequência.
+As variáveis (`Age`), (`DistanceFromHome`), (`PercentSalaryHike`), (`TrainingTimesLastYear`) e (`YearsInCurrentRole`) apresentam uma assimetria positiva ligeira ou moderada (ver `HistogramaAge.png`). Isto significa que a maioria das observações se concentra em valores baixos ou intermédios, enquanto valores mais elevados ocorrem com menor frequência.
 
-Por outro lado, as variáveis `MonthlyIncome`, `TotalWorkingYears`, `YearsAtCompany`, `YearsSinceLastPromotion`, `YearsWithCurrManager` e `NumCompaniesWorked` apresentam uma assimetria positiva mais pronunciada, caracterizada por uma forte concentração de observações nos valores mais baixos e uma cauda longa à direita (ver `HistogramaMonthlyIncome.png`). Este padrão indica que apenas uma pequena fração de colaboradores apresenta salários elevados, muitos anos de experiência ou níveis elevados de antiguidade organizacional.
+Por outro lado, as variáveis (`MonthlyIncome`), (`TotalWorkingYears`), (`YearsAtCompany`), (`YearsSinceLastPromotion`), (`YearsWithCurrManager`) e (`NumCompaniesWorked`) apresentam uma assimetria positiva mais pronunciada, caracterizada por uma forte concentração de observações nos valores mais baixos e uma cauda longa à direita (ver `HistogramaMonthlyIncome.png`). Este padrão indica que apenas uma pequena fração de colaboradores apresenta salários elevados, muitos anos de experiência ou níveis elevados de antiguidade organizacional.
 
-No conjunto, verifica-se que as variáveis relacionadas com remuneração, progressão de carreira e antiguidade são aquelas que apresentam maior grau de assimetria positiva, enquanto `DailyRate`, `HourlyRate` e `MonthlyRate` evidenciam distribuições mais homogéneas. Estes resultados são consistentes com estruturas organizacionais hierarquizadas, onde a maioria dos colaboradores se concentra em níveis intermédios de carreira, enquanto apenas uma pequena proporção ocupa posições mais seniores ou de maior remuneração.
+No conjunto, verifica-se que as variáveis relacionadas com remuneração, progressão de carreira e antiguidade são aquelas que apresentam maior grau de assimetria positiva, enquanto (`DailyRate`), (`HourlyRate`) e (`MonthlyRate`) evidenciam distribuições mais homogéneas. Estes resultados são consistentes com estruturas organizacionais hierarquizadas, onde a maioria dos colaboradores se concentra em níveis intermédios de carreira, enquanto apenas uma pequena proporção ocupa posições mais seniores ou de maior remuneração.
 
 ### 1.7 Distribuição das Variáveis Categóricas
 
@@ -91,21 +91,21 @@ A análise das variáveis categóricas foi realizada através de gráficos de fr
 
 **Variável Alvo e Desequilíbrio de Classes** 
 
-Relativamente à variável alvo `Attrition`, observa-se um claro desequilíbrio entre classes, com predominância de colaboradores que permanecem na organização ("No") face aos que abandonam a empresa ("Yes") (ver `Frequencia_Attrition.png`). Este padrão confirma a presença de desbalanceamento de classes (*class imbalance*), um fator relevante que deverá ser rigorosamente tratado na fase de modelação.
+Relativamente à variável alvo (`Attrition`), observa-se um claro desequilíbrio entre classes, com predominância de colaboradores que permanecem na organização ("No") face aos que abandonam a empresa ("Yes") (ver `Frequencia_Attrition.png`). Este padrão confirma a presença de desbalanceamento de classes (_class imbalance_), um fator relevante que deverá ser rigorosamente tratado na fase de modelação.
 
 **Mobilidade e Estrutura Organizacional**
 
-No que diz respeito à mobilidade profissional, a variável `BusinessTravel` apresenta uma forte concentração na categoria "Travel_Rarely" (ver `Frequencia_BusinessTravel.png`), indicando que a maioria dos colaboradores realiza deslocações profissionais apenas ocasionalmente. A distribuição da variável `Department` evidencia uma clara predominância do departamento de Investigação e Desenvolvimento ("Research & Development"), seguido pelo departamento de Vendas ("Sales"), enquanto os Recursos Humanos ("Human Resources") apresentam uma representação significativamente menor. Este padrão sugere uma estrutura organizacional fortemente orientada para atividades técnicas e de investigação.
+No que diz respeito à mobilidade profissional, a variável (`BusinessTravel`) apresenta uma forte concentração na categoria "Travel_Rarely" (ver `Frequencia_BusinessTravel.png`), indicando que a maioria dos colaboradores realiza deslocações profissionais apenas ocasionalmente. A distribuição da variável (`Department`) evidencia uma clara predominância do departamento de Investigação e Desenvolvimento ("Research & Development"), seguido pelo departamento de Vendas ("Sales"), enquanto os Recursos Humanos ("Human Resources") apresentam uma representação significativamente menor. Este padrão sugere uma estrutura organizacional fortemente orientada para atividades técnicas e de investigação.
 
 **Perfil Académico e Demográfico**
 
-Relativamente à formação académica, a variável `EducationField` mostra maior concentração nas áreas "Life Sciences" e "Medical" (ver `Frequencia_EducationField.png`), indicando que a maioria dos colaboradores possui formação em áreas científicas ou técnicas. No plano demográfico, a variável `Gender` apresenta uma distribuição relativamente equilibrada, embora com ligeira predominância de colaboradores do género masculino. Já a variável `MaritalStatus` revela maior presença de colaboradores "Married", seguida das categorias "Single" e "Divorced".
+Relativamente à formação académica, a variável (`EducationField`) mostra maior concentração nas áreas "Life Sciences" e "Medical" (ver `Frequencia_EducationField.png`), indicando que a maioria dos colaboradores possui formação em áreas científicas ou técnicas. No plano demográfico, a variável (`Gender`) apresenta uma distribuição relativamente equilibrada, embora com ligeira predominância de colaboradores do género masculino. Já a variável (`MaritalStatus`) revela maior presença de colaboradores "Married", seguida das categorias "Single" e "Divorced".
 
 **Condições de Trabalho**
 
-Por fim, a variável `OverTime` indica que a maioria dos colaboradores não realiza horas extraordinárias, embora exista uma proporção relevante que reporta trabalho extra (ver `Frequencia_OverTime.png`). Este fator assume particular interesse para a análise da rotatividade, uma vez que poderá estar associado a níveis mais elevados de desgaste profissional.
+Por fim, a variável (`OverTime`) indica que a maioria dos colaboradores não realiza horas extraordinárias, embora exista uma proporção relevante que reporta trabalho extra (ver `Frequencia_OverTime.png`). Este fator assume particular interesse para a análise da rotatividade, uma vez que poderá estar associado a níveis mais elevados de desgaste profissional.
 
-No conjunto, as variáveis categóricas apresentam distribuições plausíveis e coerentes com a estrutura organizacional representada no *dataset*, não sendo identificadas categorias com frequências anómalas ou inconsistentes.
+No conjunto, as variáveis categóricas apresentam distribuições plausíveis e coerentes com a estrutura organizacional representada no dataset, não sendo identificadas categorias com frequências anómalas ou inconsistentes.
 
 ### 1.8 Resposta à 2ª Pergunta de Investigação
 
