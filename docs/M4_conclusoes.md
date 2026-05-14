@@ -94,8 +94,10 @@ A avaliação baseou-se exclusivamente em métricas internas (Silhouette, Davies
 * A utilização dos dados é exclusivamente académica.
 
 ### 3.2 Transparência
-* As decisões do modelo devem ser explicadas através da análise da importância das variáveis.
-* O índice de risco deve ser apresentado como uma ferramenta de apoio à decisão humana.
+
+A Regressão Logística foi selecionada em parte pela sua interpretabilidade intrínseca: os coeficientes do modelo são diretamente legíveis e permitem explicar, para cada colaborador, quais as variáveis que mais contribuíram para o nível de risco atribuído. Esta propriedade é essencial num contexto de Recursos Humanos, onde as decisões de intervenção têm de ser justificáveis perante os próprios colaboradores e a gestão de topo.
+
+O índice de risco é apresentado com categorias claras e limiares explícitos, permitindo auditabilidade das decisões de intervenção. Todos os passos metodológicos estão documentados e são reprodutíveis, sendo o notebook executável do início ao fim sem interrupções, em linha com os princípios de reprodutibilidade da ciência aberta (Chapman et al., 2000).
 
 ### 3.3 Viés
 
