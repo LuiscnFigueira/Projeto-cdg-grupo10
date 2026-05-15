@@ -91,7 +91,7 @@ A análise das variáveis categóricas foi realizada através de gráficos de fr
 
 **Variável Alvo e Desequilíbrio de Classes** 
 
-Relativamente à variável alvo (`Attrition`), observa-se um claro desequilíbrio entre classes, com predominância de colaboradores que permanecem na organização ("No") face aos que abandonam a empresa ("Yes") (ver `Frequencia_Attrition.png`). Este padrão confirma a presença de desbalanceamento de classes (_class imbalance_), um fator relevante que deverá ser rigorosamente tratado na fase de modelação.
+Relativamente à variável alvo (`Attrition`), observa-se um claro desequilíbrio entre classes, com predominância de colaboradores que permanecem na organização ("No") face aos que abandonam a empresa ("Yes") (ver `Frequencia_Attrition.png`). Este padrão confirma a presença de desequilíbrio de classes (_class imbalance_), um fator relevante que deverá ser rigorosamente tratado na fase de modelação.
 
 **Mobilidade e Estrutura Organizacional**
 
@@ -155,7 +155,7 @@ Em sentido contrário, `RelationshipSatisfaction` e `Education` não mostraram d
 
 Os testes realizados permitiram identificar quais as variáveis com maior relevância para prever a saída de colaboradores. As que apresentam uma associação mais forte e consistente com `Attrition` são `TotalWorkingYears`, `MonthlyIncome`, `YearsInCurrentRole`, `Age`, `YearsWithCurrManager`, `OverTime` e `JobRole`, que deverão ter um papel central nos modelos a desenvolver na fase seguinte.
 
-As variáveis que não apresentaram associação significativa com a saída em nenhum dos testes - `Gender`, `PerformanceRating`, `PercentSalaryHike`, `MonthlyRate`, `HourlyRate`, `RelationshipSatisfaction` e `Education` - serão avaliadas com maior cuidado na fase de modelação. A sua relevância não deve ser descartada com base apenas nos testes de associação bivariada, uma vez que uma variável pode não mostrar relação direta com a variável alvo mas ainda assim contribuir em combinação com outras variáveis dentro de um modelo (Géron, 2022). A decisão sobre quais variáveis incluir será tomada com base na importância que os próprios modelos atribuírem a cada variável durante o treino, na Milestone 3.
+As variáveis que não apresentaram associação significativa com a saída em nenhum dos testes, `Gender`, `PerformanceRating`, `PercentSalaryHike`, `MonthlyRate`, `HourlyRate`, `RelationshipSatisfaction` e `Education`, serão avaliadas com maior cuidado na fase de modelação. A sua relevância não deve ser descartada com base apenas nos testes de associação bivariada, uma vez que uma variável pode não mostrar relação direta com a variável alvo, mas ainda assim contribuir em combinação com outras variáveis dentro de um modelo (Géron, 2022). A decisão sobre quais variáveis incluir será tomada com base na importância que os próprios modelos atribuírem a cada variável durante o treino, na Milestone 3.
 
 Para além da seleção de variáveis, há outros desafios a resolver na fase de modelação: o desequilíbrio entre classes da variável alvo, que pode enviesar os modelos para a classe maioritária, e a multicolinearidade elevada entre algumas variáveis, que pode afetar o desempenho de certos algoritmos. Ambos serão tratados com estratégias adequadas ao tipo de modelo utilizado.
 
@@ -285,7 +285,7 @@ Relativamente à variável `IncomePerLevel`, observa-se também uma associação
 
 Por outro lado, a variável `CareerStagnation` apresenta uma correlação praticamente nula com a variável alvo (≈ -0.01), não evidenciando qualquer relação estatisticamente relevante com o atrito. Este resultado sugere que a forma como a variável foi definida poderá não capturar adequadamente o fenómeno de estagnação na carreira, ou que este fator, isoladamente, não tem um impacto significativo na decisão de abandono no contexto do dataset analisado.
 
-De forma geral, as novas variáveis -  em particular `SatisfactionIndex`, `RatioYearsInRole` e `IncomePerLevel` - demonstram capacidade para captar dimensões relevantes do comportamento organizacional, contribuindo para enriquecer o conjunto de atributos disponíveis. Estas variáveis apresentam potencial para melhorar a capacidade preditiva dos modelos a desenvolver nas fases subsequentes do projeto.
+De forma geral, as novas variáveis, em particular `SatisfactionIndex`, `RatioYearsInRole` e `IncomePerLevel`, demonstram capacidade para captar dimensões relevantes do comportamento organizacional, contribuindo para enriquecer o conjunto de atributos disponíveis. Estas variáveis apresentam potencial para melhorar a capacidade preditiva dos modelos a desenvolver nas fases subsequentes do projeto.
 
 ### 3.4 Seleção de Atributos - Multicolinearidade
 
@@ -350,7 +350,7 @@ A análise exploratória realizada nesta segunda fase do projeto permitiu aprofu
 
 Em primeiro lugar, a análise da variável alvo revelou um desequilíbrio significativo entre classes, com apenas 16.1% dos colaboradores a abandonar a organização. Este dado, que não havia sido explorado em detalhe anteriormente, tem implicações diretas na estratégia de modelação a adotar, exigindo a utilização de métricas adequadas e eventuais técnicas de balanceamento de classes para garantir que os modelos consigam identificar eficazmente os casos de saída.
 
-A análise bivariada e os testes de hipótese permitiram identificar com evidência estatística os principais fatores associados ao abandono. Variáveis como `OverTime`, `Age`, `MonthlyIncome`, `TotalWorkingYears`, `YearsInCurrentRole` e `YearsWithCurrManager` apresentaram associações estatisticamente significativas com a variável alvo, confirmando que a carga de trabalho, a maturidade profissional e a remuneração desempenham um papel relevante na decisão de permanência. Em particular, a realização de horas extraordinárias destacou-se como o preditor com maior correlação positiva com o `Attrition`, tendo o teste do qui-quadrado confirmado a significância desta relação com um Cramér's V de 0.24. Com isto, a 2ª Pergunta de Investigação - *"Existe uma associação estatisticamente significativa entre a realização de horas extraordinárias (`OverTime`) e a probabilidade de atrito (`Attrition`)?"* - ficou respondida com evidência empírica robusta.
+A análise bivariada e os testes de hipótese permitiram identificar com evidência estatística os principais fatores associados ao abandono. Variáveis como `OverTime`, `Age`, `MonthlyIncome`, `TotalWorkingYears`, `YearsInCurrentRole` e `YearsWithCurrManager` apresentaram associações estatisticamente significativas com a variável alvo, confirmando que a carga de trabalho, a maturidade profissional e a remuneração desempenham um papel relevante na decisão de permanência. Em particular, a realização de horas extraordinárias destacou-se como o preditor com maior correlação positiva com o `Attrition`, tendo o teste do qui-quadrado confirmado a significância desta relação com um Cramér's V de 0.24. Com isto, a 2.ª Pergunta de Investigação, *"Existe uma associação estatisticamente significativa entre a realização de horas extraordinárias (`OverTime`) e a probabilidade de atrito (`Attrition`)?"*, ficou respondida com evidência empírica robusta.
 
 Por outro lado, variáveis como `PerformanceRating`, `HourlyRate` e `PercentSalaryHike` revelaram correlações praticamente nulas com a variável alvo, sugerindo que a avaliação de desempenho e os pequenos incrementos salariais não exercem influência direta na retenção de colaboradores neste contexto organizacional. Este resultado constitui uma descoberta relevante, na medida em que contraria pressupostos intuitivos sobre a relação entre desempenho avaliado e permanência na empresa.
 
@@ -365,7 +365,7 @@ Em síntese, o dataset encontra-se limpo, consistente e enriquecido com atributo
  ## 6. Metodologia de Gestão (PBL) 
 O projeto segue uma abordagem baseada no modelo CRISP-DM (_Cross-Industry Standard Process for Data Mining_), que estrutura o desenvolvimento em seis fases principais: compreensão do problema, compreensão dos dados, preparação dos dados, modelação, avaliação e implementação.
 
-Na presente fase - _Milestone 2_ (Exploração dos Dados) - o foco incidiu essencialmente nas etapas de _Data Understanding_ e _Data Preparation_, com o objetivo de analisar a qualidade dos dados, identificar padrões relevantes e preparar o dataset para fases posteriores de modelação.
+Na presente fase, _Milestone 2_ (Exploração dos Dados), o foco incidiu essencialmente nas etapas de _Data Understanding_ e _Data Preparation_, com o objetivo de analisar a qualidade dos dados, identificar padrões relevantes e preparar o dataset para fases posteriores de modelação.
 
 Embora o processo siga uma lógica sequencial, manteve-se uma abordagem iterativa, permitindo revisitar etapas anteriores sempre que necessário, nomeadamente na validação de variáveis e interpretação de resultados.
 
@@ -422,4 +422,4 @@ Tett, R. P., & Meyer, J. P. (1993).
 Hom, P. W., Lee, T. W., Shaw, J. D., & Hausknecht, J. P. (2017).  
 *One hundred years of employee turnover theory and research*. *Journal of Applied Psychology*.
  
-*Data de última atualização: 12/05/2026*
+*Data de última atualização: 15/05/2026*
