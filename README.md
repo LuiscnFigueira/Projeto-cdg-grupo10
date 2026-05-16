@@ -22,8 +22,8 @@ Com base no dataset IBM HR Analytics Employee Attrition & Performance (1470 cola
 O projeto segue a metodologia CRISP-DM e encontra-se estruturado em quatro milestones: iniciação, exploração, modelação e finalização.
 
 ### Objetivos do Projeto (SMART)
-* **Objetivo 1:** Desenvolver um modelo de classificação supervisionado para prever o atrito (`Attrition`), alcançando um F1-Score mínimo de 0,80 em validação cruzada estratificada (k=5), até ao dia 23/04/2026 (Milestone 3).
-* **Objetivo 2:** Aplicar técnicas de clustering não supervisionado para identificar e caracterizar perfis distintos de colaboradores com base nas variáveis relevantes do dataset, determinando o número ótimo de agrupamentos (clusters) através do método do cotovelo e do Silhouette Score, garantindo um valor médio de Silhouette superior a 0,50, e descrevendo estatisticamente cada perfil identificado, até ao dia 23/04/2026.
+* **Objetivo 1:** Desenvolver um modelo de classificação para prever o atrito (`Attrition`), alcançando um F1-Score mínimo de 0,80 em validação cruzada estratificada (k=5), até ao dia 23/04/2026 (Milestone 3).
+* **Objetivo 2:** Aplicar técnicas de clustering para identificar e caracterizar perfis distintos de colaboradores com base nas variáveis relevantes do dataset, determinando o número ótimo de agrupamentos (clusters) através do método do cotovelo e do Silhouette Score, garantindo um valor médio de Silhouette superior a 0,50, e descrevendo estatisticamente cada perfil identificado, até ao dia 23/04/2026.
 ### Perguntas de Investigação
 
 As perguntas de investigação estruturam o enquadramento científico do estudo, orientando a análise empírica dos dados com o objetivo de identificar os principais determinantes do atrito (`Attrition`), avaliar a sua relevância estatística e preditiva e verificar a viabilidade de desenvolver modelos capazes de prever este fenómeno de forma fiável.
@@ -92,7 +92,7 @@ A fase de modelação cobre dois objetivos: classificação supervisionada do at
 - **Métrica principal:** F1-Score
 - **Resultado:** F1 Teste = 0.56 | AUC-ROC = 0.8308
 
-**Objetivo 2 - Clustering Não Supervisionado**
+**Objetivo 2 - Clustering**
 - **Modelos testados:** K-Means, DBSCAN, GMM, Agglomerative Clustering, OPTICS, MiniBatch K-Means
 - **Modelo final:** UMAP(`n_components=5`, `n_neighbors=15`) + DBSCAN(`eps=6.0`, `min_samples=3`)
 - **Métrica principal:** Silhouette Score 
