@@ -38,9 +38,9 @@ Este projeto demonstra a aplicação prática de técnicas de análise de dados 
 
 ## 2. Objetivos SMART
  
-1.  **Objetivo 1:** Desenvolver um modelo de classificação supervisionado para prever o atrito (`Attrition`), alcançando um _F1-Score_ mínimo de 0,80 em validação cruzada estratificada (k=5), até ao dia 23/04/2026 (_Milestone 3_).
+1.  **Objetivo 1:** Desenvolver um modelo de classificação para prever o atrito (`Attrition`), alcançando um _F1-Score_ mínimo de 0,80 em validação cruzada estratificada (k=5), até ao dia 23/04/2026 (_Milestone 3_).
  
-2.  **Objetivo 2:** Aplicar técnicas de _clustering_ não supervisionado para identificar e caracterizar perfis distintos de colaboradores com base nas variáveis relevantes do dataset, determinando o número ótimo de agrupamentos (_clusters_) através do método do cotovelo e do _Silhouette Score_, garantindo um valor médio de _Silhouette_ superior a 0,50, e descrevendo estatisticamente cada perfil identificado, até ao dia 23/04/2026.
+2.  **Objetivo 2:** Aplicar técnicas de _clustering_ para identificar e caracterizar perfis distintos de colaboradores com base nas variáveis relevantes do dataset, determinando o número ótimo de agrupamentos (_clusters_) através do método do cotovelo e do _Silhouette Score_, garantindo um valor médio de _Silhouette_ superior a 0,50, e descrevendo estatisticamente cada perfil identificado, até ao dia 23/04/2026.
 
 ### 2.1 Perguntas de Investigação
 
@@ -68,7 +68,7 @@ Os objetivos definidos para este projeto foram operacionalizados em termos técn
 
 ### Objetivo 1 — Desenvolvimento de um Modelo Preditivo de atrito (`Attrition`)
 
-O primeiro objetivo consiste no desenvolvimento e validação de um modelo de classificação supervisionado capaz de prever a variável alvo (`Attrition`), utilizando as variáveis explicativas disponíveis no dataset. O problema é formalizado como um problema de classificação binária, no qual cada observação é representada por um conjunto de atributos e uma variável alvo que indica o estado de permanência ou saída.
+O primeiro objetivo consiste no desenvolvimento e validação de um modelo de classificação capaz de prever a variável alvo (`Attrition`), utilizando as variáveis explicativas disponíveis no dataset. O problema é formalizado como um problema de classificação binária, no qual cada observação é representada por um conjunto de atributos e uma variável alvo que indica o estado de permanência ou saída.
 
 Serão avaliados diferentes algoritmos de Aprendizagem Automática (_Machine Learning_), incluindo métodos lineares e baseados em árvores de decisão, sendo o desempenho avaliado através de validação cruzada estratificada com k = 5 folds. A métrica principal de avaliação será o _F1-Score_, devido à sua adequação em contextos de desequilíbrio de classes, sendo definido como objetivo atingir um valor mínimo de 0,80. Adicionalmente, serão consideradas métricas complementares, como _Precision_, _Recall_ e AUC-ROC, de forma a garantir uma avaliação robusta e abrangente do desempenho dos modelos.
 
@@ -110,7 +110,7 @@ Serão treinados e avaliados múltiplos algoritmos de classificação supervisio
 
 6. **Avaliação do impacto do desequilíbrio de classes e aplicação de SMOTE**
 
-Será analisado o impacto do desequilíbrio da variável alvo no desempenho dos modelos, comparando os resultados obtidos antes e após a aplicação da técnica SMOTE. Esta análise permitirá avaliar se o balanceamento das classes melhora a capacidade do modelo de identificar corretamente observações pertencentes à classe minoritária.
+Será analisado o impacto do desequilíbrio da variável alvo no desempenho dos modelos, comparando os resultados obtidos antes e após a aplicação da técnica SMOTE. Esta análise permitirá avaliar se o equilíbrio das classes melhora a capacidade do modelo de identificar corretamente observações pertencentes à classe minoritária.
 
 7. **Construção e validação de um índice de risco de atrito (`Attrition`)**
 
@@ -239,7 +239,7 @@ A análise confirmou ainda que as variáveis apresentam variabilidade suficiente
 
 Foi analisada a distribuição da variável alvo (`Attrition`), que representa o estado de permanência ou saída de cada colaborador. A análise revelou um cenário de desequilíbrio de classes (_class imbalance_), com aproximadamente 83.9% das observações correspondentes à classe negativa (permanência) e 16.1% à classe positiva (saída).
 
-Este desequilíbrio constitui um fator crítico no contexto da modelação supervisionada, uma vez que algoritmos treinados diretamente sobre dados desequilibrados tendem a favorecer a classe maioritária, podendo apresentar desempenho aparentemente elevado em termos de acurácia, mas reduzida capacidade de identificação da classe minoritária. Este aspeto será considerado nas fases subsequentes do processo CRISP-DM, nomeadamente na seleção de métricas de avaliação apropriadas, como _Precision_, _Recall_, _F1-score_ e _Precision-Recall AUC_, e na eventual aplicação de técnicas de balanceamento de classes.
+Este desequilíbrio constitui um fator crítico no contexto da modelação supervisionada, uma vez que algoritmos treinados diretamente sobre dados desequilibrados tendem a favorecer a classe maioritária, podendo apresentar desempenho aparentemente elevado em termos de acurácia, mas reduzida capacidade de identificação da classe minoritária. Este aspeto será considerado nas fases subsequentes do processo CRISP-DM, nomeadamente na seleção de métricas de avaliação apropriadas, como _Precision_, _Recall_, _F1-score_ e _Precision-Recall AUC_, e na eventual aplicação de técnicas de equilíbrio de classes.
 
 
 ### 4.1.6 Síntese da Compreensão dos Dados
