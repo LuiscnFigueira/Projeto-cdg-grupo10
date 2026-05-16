@@ -74,7 +74,7 @@ A variável `PerformanceRating` apresenta variância praticamente nula, com a qu
 
 ### 2.2 Limitações do Modelo Preditivo
 
-O objetivo mínimo de _F1-Score_ >= 0,80 não foi alcançado (_F1 Teste_ = 0,5625), apesar de terem sido testados 18 algoritmos distintos e aplicadas técnicas de balanceamento (SMOTE) e otimização de _threshold_. O modelo apresenta um _gap_ entre treino e teste de +0,12 no _F1-Score_, indicativo de _overfitting_ leve, embora substancialmente inferior ao observado nos modelos de ensemble e redes neuronais testados - por exemplo, _Random Forest_ com _gap_ de +0,78 e Keras simples com _gap_ de +0,54. 
+O objetivo mínimo de _F1-Score_ >= 0,80 não foi alcançado (_F1 Teste_ = 0,5625), apesar de terem sido testados 18 algoritmos distintos e aplicadas técnicas de equilíbrio (SMOTE) e otimização de _threshold_. O modelo apresenta um _gap_ entre treino e teste de +0,12 no _F1-Score_, indicativo de _overfitting_ leve, embora substancialmente inferior ao observado nos modelos de ensemble e redes neuronais testados - por exemplo, _Random Forest_ com _gap_ de +0,78 e Keras simples com _gap_ de +0,54. 
 
 As previsões indicam probabilidade de risco, mas não provam causalidade entre as variáveis e o atrito - uma limitação inerente a qualquer modelo preditivo correlacional (James et al., 2021). 
 
@@ -108,7 +108,7 @@ O desequilíbrio da variável `Attrition` pode levar o modelo a subvalorizar cas
 
 ### 4.1 Melhorias Técnicas
 1. Testar modelos adicionais e técnicas de otimização de hiperparâmetros.
-2. Avaliar técnicas de balanceamento, como SMOTE.
+2. Avaliar técnicas de equilíbrio, como SMOTE.
 3. Melhorar a calibração das probabilidades do modelo preditivo.
 4. Testar outros algoritmos de _clustering_ além do _K-Means_.
 
