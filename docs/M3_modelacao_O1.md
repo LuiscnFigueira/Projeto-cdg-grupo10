@@ -32,11 +32,11 @@ Em caso de desempenho semelhante entre os modelos finalistas, seria preferido o 
 ## 2. Experiências Realizadas 
 ### 2.1. Modelo _Baseline_ 
 
-**Algoritmo:** Árvore de Decisão (`DecisionTreeClassifier`) com todos os parâmetros *default*, sem normalização nem balanceamento dos dados.
+**Algoritmo:** Árvore de Decisão (`DecisionTreeClassifier`) com todos os parâmetros *default*, sem normalização nem equilíbrio dos dados.
 
 **Resultados:** _F1 Treino_: 1.0000 | _F1 Teste_: 0.1793 | _Precision_: 0.2097 | _Recall_: 0.1566 | AUC Teste: 0.5216
 
-O modelo _baseline_ evidencia *overfitting* severo: a árvore de decisão sem restrições de profundidade memorizou completamente os dados de treino (F1 = 100%), não generalizando para dados não vistos (F1 = 17.93%). A diferença de 82.07% entre o F1 de treino e de teste confirma este comportamento, esperado e documentado na literatura, dado que árvores de decisão sem regularização tendem a crescer até memorizar o conjunto de treino, resultando em fraca capacidade de generalização (James et al., 2021). A _Precision_ (20.97%) e o _Recall_ (15.66%) igualmente baixos indicam que o modelo falha tanto na identificação correta dos colaboradores em risco como na cobertura dos casos reais de atrito. O valor de AUC = 52.16% confirma uma capacidade discriminativa próxima do aleatório (0.50), reforçando a necessidade de aplicar técnicas de controlo de complexidade e balanceamento de classes nas experiências subsequentes (Géron, 2022).
+O modelo _baseline_ evidencia *overfitting* severo: a árvore de decisão sem restrições de profundidade memorizou completamente os dados de treino (F1 = 100%), não generalizando para dados não vistos (F1 = 17.93%). A diferença de 82.07% entre o F1 de treino e de teste confirma este comportamento, esperado e documentado na literatura, dado que árvores de decisão sem regularização tendem a crescer até memorizar o conjunto de treino, resultando em fraca capacidade de generalização (James et al., 2021). A _Precision_ (20.97%) e o _Recall_ (15.66%) igualmente baixos indicam que o modelo falha tanto na identificação correta dos colaboradores em risco como na cobertura dos casos reais de atrito. O valor de AUC = 52.16% confirma uma capacidade discriminativa próxima do aleatório (0.50), reforçando a necessidade de aplicar técnicas de controlo de complexidade e equilíbrio de classes nas experiências subsequentes (Géron, 2022).
 
  
 ### 2.2. Modelos Candidatos 
