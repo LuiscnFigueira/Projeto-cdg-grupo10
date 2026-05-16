@@ -265,7 +265,7 @@ Os fatores de risco identificados, liderados por `OverTime_bin`, `MaritalStatus_
 
 O projeto segue uma abordagem baseada no modelo CRISP-DM (_Cross-Industry Standard Process for Data Mining_), que estrutura o desenvolvimento em seis fases principais: compreensão do problema, compreensão dos dados, preparação dos dados, modelação, avaliação e implementação.
 
-Na presente fase, _Milestone 3_ (Modelação e Avaliação), o foco incide nas etapas de *Modelling* e *Evaluation*, com o objetivo de desenvolver um modelo de classificação supervisionado capaz de prever o fenómeno de *Attrition*.
+Na presente fase, _Milestone 3_ (Modelação e Avaliação), o foco incide nas etapas de *Modelling* e *Evaluation*, com o objetivo de desenvolver um modelo de classificação capaz de prever o fenómeno de *Attrition*.
 
 Nesta fase, são implementados e comparados diferentes algoritmos de classificação, incluindo um modelo _baseline_ e modelos mais avançados, com vista à maximização do desempenho preditivo. É definida uma estratégia de validação robusta, recorrendo a *train-test split* e *cross-validation estratificada*, garantindo a capacidade de generalização dos modelos.
 
