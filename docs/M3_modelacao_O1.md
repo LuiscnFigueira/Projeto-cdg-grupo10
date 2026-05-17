@@ -32,7 +32,7 @@ Em caso de desempenho semelhante entre os modelos finalistas, seria preferido o 
 ## 2. Experiências Realizadas 
 ### 2.1. Modelo _Baseline_ 
 
-**Algoritmo:** Árvore de Decisão (`DecisionTreeClassifier`) com todos os parâmetros *default*, sem normalização nem equilíbrio dos dados.
+**Algoritmo:** Árvore de Decisão (`DecisionTreeClassifier`) com todos os parâmetros *default*, sem padronização nem equilíbrio dos dados.
 
 **Resultados:**
 
@@ -52,7 +52,7 @@ A seleção contemplou ainda algoritmos com diferentes sensibilidades ao desequi
 
 Por fim, a seleção cobriu deliberadamente o espectro entre modelos totalmente interpretáveis, como a Regressão Logística e o LDA, e modelos de caixa-negra, como as redes neuronais e os métodos de *ensemble*, refletindo o *trade-off* relevante no contexto de Recursos Humanos entre desempenho preditivo e explicabilidade das decisões (Hom et al., 2017).
 
-- Modelos de Ensemble (Candidatos 1–5 e 12): Random Forest, Gradient Boosting, XGBoost, LightGBM, CatBoost e Extra Trees, todos com parâmetros *default* e sem normalização. Apesar de apresentarem métricas elevadas no treino, estes modelos evidenciaram *overfitting* generalizado no teste, com gaps de F1 superiores a 0.10 em todos os casos, sendo o Random Forest (+0.78) e o Extra Trees (+0.73) os mais afetados. Este comportamento é consistente com a literatura: métodos de *ensemble* baseados em árvores tendem a memorizar os dados de treino quando não são aplicadas restrições de complexidade (James et al., 2021; Géron, 2022).
+- Modelos de Ensemble (Candidatos 1–5 e 12): Random Forest, Gradient Boosting, XGBoost, LightGBM, CatBoost e Extra Trees, todos com parâmetros *default* e sem padronização. Apesar de apresentarem métricas elevadas no treino, estes modelos evidenciaram *overfitting* generalizado no teste, com gaps de F1 superiores a 0.10 em todos os casos, sendo o Random Forest (+0.78) e o Extra Trees (+0.73) os mais afetados. Este comportamento é consistente com a literatura: métodos de *ensemble* baseados em árvores tendem a memorizar os dados de treino quando não são aplicadas restrições de complexidade (James et al., 2021; Géron, 2022).
 
 - Modelos Lineares e Probabilísticos (Candidatos 6-11): SVM (com pipeline `_StandardScaler_`), Árvore com Pruning (`ccp_alpha=0.005`), Regressão Logística (com pipeline `_StandardScaler_`), LDA, Naive Bayes e KNN (com pipeline `_StandardScaler_`). Neste grupo o *overfitting* foi consideravelmente menor e os resultados no teste mais consistentes, com destaque para a Regressão Logística (F1 Teste: 0.5538 | AUC: 0.8236 | *gap*: +0.12) e o LDA (F1 Teste: 0.4651 | AUC: 0.8179 | *gap*: +0.19). A superioridade dos modelos lineares neste contexto é esperada: em conjuntos de dados de dimensão moderada e com classes desequilibradas, modelos de menor complexidade tendem a generalizar melhor (James et al., 2021).
 
