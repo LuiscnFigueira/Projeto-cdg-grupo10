@@ -83,7 +83,7 @@ A segmentação permite à organização desenvolver estratégias de Recursos Hu
 A análise inferencial realizada na _Milestone 2_ identificou as variáveis com maior relevância estatística para o atrito, combinando testes qui-quadrado, Kruskal-Wallis e o efeito medido por Cramér's V e Cohen's d. As variáveis com maior poder
 discriminativo foram `OverTime` (Cramér's V = 0.24), `JobLevel`, `TotalWorkingYears`, `MonthlyIncome` e `Age`, todas com associação estatisticamente significativa (p < 0.05).
 
-O modelo final de Regressão Logística confirmou e quantificou estas relações através dos coeficientes estimados. A expressão do modelo revelou que as variáveis com maior peso preditivo positivo, isto é, que aumentam a probabilidade de saída — são `OverTime_bin` (coef. = +0.944), `YearsSinceLastPromotion` (coef. = +0.569) e `JobRole_Sales Representative` (coef. = +0.518), enquanto variáveis como `JobLevel`, `TotalWorkingYears` e `MonthlyIncome` apresentam coeficientes negativos, confirmando o efeito protetor da senioridade e da compensação.
+O modelo final de Regressão Logística confirmou e quantificou estas relações através dos coeficientes estimados. A expressão do modelo revelou que as variáveis com maior peso preditivo positivo, isto é, que aumentam a probabilidade de saída, são `OverTime_bin` (coef. = +0.944), `YearsSinceLastPromotion` (coef. = +0.569) e `JobRole_Sales Representative` (coef. = +0.518), enquanto variáveis como `JobLevel`, `TotalWorkingYears` e `MonthlyIncome` apresentam coeficientes negativos, confirmando o efeito protetor da senioridade e da compensação.
 
 ---
 
