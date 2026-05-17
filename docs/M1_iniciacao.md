@@ -26,11 +26,11 @@ A variável central deste estudo é (`Attrition`), uma variável categórica bin
 
 O problema pode ser formalizado como um problema de análise preditiva, suportado por técnicas de aprendizagem supervisionada, uma vez que existe uma variável alvo previamente definida (`Attrition`). Mais concretamente, trata-se de um problema de classificação binária, cujo objetivo é prever se um colaborador abandonará a organização ("Yes") ou permanecerá na empresa ("No"), com base num conjunto de variáveis explicativas (James et al., 2021). Numa fase inicial, será também realizada análise exploratória de dados, com o objetivo de compreender a estrutura do dataset, identificar padrões relevantes e apoiar a preparação dos dados para a modelação.
 
-Através da aplicação de técnicas de análise exploratória de dados e de aprendizagem automática supervisionada, será possível transformar dados organizacionais em conhecimento relevante, permitindo compreender melhor os determinantes da rotatividade e apoiar futuras abordagens preditivas.
+Através da aplicação de técnicas de análise exploratória de dados e de aprendizagem automática, será possível transformar dados organizacionais em conhecimento relevante, permitindo compreender melhor os determinantes da rotatividade e apoiar futuras abordagens preditivas.
 
 ### Objetivo Analítico do Projeto
 
-O objetivo analítico principal deste projeto consiste em analisar o fenómeno de rotatividade de colaboradores com recurso a técnicas de análise exploratória de dados, estatística descritiva e aprendizagem automática supervisionada, aplicadas ao dataset _IBM HR Analytics Employee Attrition & Performance_. Pretende-se identificar os fatores mais associados ao abandono da organização e criar uma base analítica sólida para o desenvolvimento de modelos preditivos de atrito (`Attrition`).
+O objetivo analítico principal deste projeto consiste em analisar o fenómeno de rotatividade de colaboradores com recurso a técnicas de análise exploratória de dados, estatística descritiva e aprendizagem automática, aplicadas ao dataset _IBM HR Analytics Employee Attrition & Performance_. Pretende-se identificar os fatores mais associados ao abandono da organização e criar uma base analítica sólida para o desenvolvimento de modelos preditivos de atrito (`Attrition`).
 
 Especificamente, pretende-se realizar uma análise exploratória detalhada do dataset, avaliar a relação entre as variáveis explicativas e a variável alvo (`Attrition`,) e estabelecer uma base analítica robusta que suporte o desenvolvimento e validação de modelos preditivos em fases posteriores do projeto.
 
@@ -72,15 +72,9 @@ O primeiro objetivo consiste no desenvolvimento e validação de um modelo de cl
 
 Serão avaliados diferentes algoritmos de Aprendizagem Automática (_Machine Learning_), incluindo métodos lineares e baseados em árvores de decisão, sendo o desempenho avaliado através de validação cruzada estratificada com k = 5 folds. A métrica principal de avaliação será o _F1-Score_, devido à sua adequação em contextos de desequilíbrio de classes, sendo definido como objetivo atingir um valor mínimo de 0,80. Adicionalmente, serão consideradas métricas complementares, como _Precision_, _Recall_ e AUC-ROC, de forma a garantir uma avaliação robusta e abrangente do desempenho dos modelos.
 
-### Objetivo 2 — Construção de um Índice de Risco de atrito (`Attrition`)
+### Objetivo 2 — Identificação de Perfis de Colaboradores através de agrupamento (_Clustering_)
 
-O segundo objetivo consiste na construção de um índice de risco de attrition baseado nas probabilidades previstas pelo modelo desenvolvido. A probabilidade estimada de saída será utilizada como medida quantitativa de risco individual, permitindo transformar a previsão do modelo numa métrica interpretável e operacional.
-
-Com base nesta probabilidade, os colaboradores serão classificados em três categorias de risco: baixo risco (probabilidade inferior a 30%), risco intermédio (probabilidade entre 30% e 60%) e alto risco (probabilidade superior a 60%). Esta segmentação permitirá identificar diferentes níveis de vulnerabilidade e suportar a análise diferenciada dos perfis de risco presentes no dataset.
-
-### Objetivo 3 — Identificação de Perfis de Colaboradores através de agrupamento (_Clustering_)
-
-O terceiro objetivo consiste na aplicação de técnicas de aprendizagem não supervisionada com o propósito de identificar perfis distintos de colaboradores com base nas suas características. Será utilizado o algoritmo _K-Means_ como método principal de agrupamento (_clustering_), sendo o número ótimo de agrupamentos (_clusters_) determinado com recurso ao método do cotovelo e ao coeficiente de _Silhouette_.
+O segundo objetivo consiste na aplicação de técnicas de aprendizagem não supervisionada com o propósito de identificar perfis distintos de colaboradores com base nas suas características. Será utilizado o algoritmo _K-Means_ como método principal de agrupamento (_clustering_), sendo o número ótimo de agrupamentos (_clusters_) determinado com recurso ao método do cotovelo e ao coeficiente de _Silhouette_.
 
 O coeficiente de _Silhouette_ será utilizado como critério quantitativo de validação, sendo definido como objetivo alcançar um valor médio superior a 0,50, indicando uma estrutura de agrupamentos (_clusters_) bem definida. Após a identificação dos agrupamentos (_clusters_), será realizada uma caracterização estatística detalhada de cada perfil, permitindo identificar diferenças estruturais entre segmentos e compreender melhor a heterogeneidade presente no dataset.
 
@@ -90,7 +84,7 @@ Esta operacionalização assegura que os objetivos do projeto são implementados
 
 1. **Identificação das variáveis com maior poder explicativo e preditivo**
 
-Será realizada uma análise exploratória e estatística com o objetivo de identificar as variáveis com maior associação à variável alvo `Attrition`. Esta análise incluirá o cálculo de medidas de associação estatística, análise comparativa entre classes e avaliação da importância das variáveis em modelos de classificação supervisionada, permitindo identificar os principais fatores associados à saída dos colaboradores.
+Será realizada uma análise exploratória e estatística com o objetivo de identificar as variáveis com maior associação à variável alvo `Attrition`. Esta análise incluirá o cálculo de medidas de associação estatística, análise comparativa entre classes e avaliação da importância das variáveis em modelos de classificação, permitindo identificar os principais fatores associados à saída dos colaboradores.
 
 2. **Avaliação da associação entre horas extras (`OverTime`) e atrito (`Attrition`)**
 
@@ -106,7 +100,7 @@ Será investigada a relação entre a variável renda mensal (`MonthlyIncome`) e
 
 5. **Comparação do desempenho de diferentes algoritmos de classificação**
 
-Serão treinados e avaliados múltiplos algoritmos de classificação supervisionada, incluindo Regressão Logística, _Random Forest_ e _Gradient Boosting_. O desempenho será avaliado através de validação cruzada estratificada (_cross-validation_), com base em métricas como _F1-Score_, _Precision_, _Recall_ e _AUC-ROC_, permitindo identificar o modelo com melhor capacidade de generalização.
+Serão treinados e avaliados múltiplos algoritmos de classificação, incluindo Regressão Logística, _Random Forest_ e _Gradient Boosting_. O desempenho será avaliado através de validação cruzada estratificada (_cross-validation_), com base em métricas como _F1-Score_, _Precision_, _Recall_ e _AUC-ROC_, permitindo identificar o modelo com melhor capacidade de generalização.
 
 6. **Avaliação do impacto do desequilíbrio de classes e aplicação de SMOTE**
 
@@ -204,11 +198,11 @@ Importa referir que o dataset é de natureza sintética, tendo sido gerado pela 
 
 ### 4.1.1 Estrutura e Composição do Dataset
 
-No âmbito da fase de _Data Understanding_ do modelo CRISP-DM, foi realizada uma análise sistemática da estrutura do dataset com o objetivo de caracterizar formalmente o espaço de características, avaliar a sua adequação ao problema de classificação supervisionada e identificar propriedades com implicações nas fases subsequentes de preparação e modelação.
+No âmbito da fase de _Data Understanding_ do modelo CRISP-DM, foi realizada uma análise sistemática da estrutura do dataset com o objetivo de caracterizar formalmente o espaço de características, avaliar a sua adequação ao problema de classificação e identificar propriedades com implicações nas fases subsequentes de preparação e modelação.
 
 O dataset foi carregado na sua forma bruta e convertido numa estrutura do tipo DataFrame, permitindo a inspeção programática da sua composição e propriedades estatísticas. A análise estrutural confirmou que o dataset é composto por 1470 observações e 35 variáveis, em conformidade com a documentação original. Cada observação corresponde a um registo independente no espaço de características, descrito por um conjunto de variáveis demográficas, organizacionais, profissionais e psicométricas, bem como pelo respetivo valor da variável alvo (`Attrition`).
 
-A inspeção dos tipos de dados revelou a presença de variáveis numéricas inteiras e variáveis categóricas codificadas como texto, refletindo a natureza discreta e categórica das dimensões representadas. Esta estrutura é consistente com um problema de classificação supervisionada, em que cada observação constitui uma instância independente caracterizada por um vetor de atributos e uma variável alvo associada.
+A inspeção dos tipos de dados revelou a presença de variáveis numéricas inteiras e variáveis categóricas codificadas como texto, refletindo a natureza discreta e categórica das dimensões representadas. Esta estrutura é consistente com um problema de classificação, em que cada observação constitui uma instância independente caracterizada por um vetor de atributos e uma variável alvo associada.
 
 
 
@@ -248,7 +242,7 @@ A análise realizada permitiu confirmar que o dataset apresenta elevada qualidad
 
 Adicionalmente, a caracterização estatística das variáveis e a análise da distribuição da variável alvo permitiram identificar propriedades relevantes, incluindo diferenças na escala das variáveis e a presença de desequilíbrio entre classes, fatores com implicações diretas na preparação dos dados e no desenvolvimento de modelos preditivos.
 
-Esta fase estabelece uma base metodológica sólida para as etapas subsequentes do processo CRISP-DM, nomeadamente a preparação dos dados, transformação das variáveis e desenvolvimento de modelos de classificação supervisionada robustos e generalizáveis.
+Esta fase estabelece uma base metodológica sólida para as etapas subsequentes do processo CRISP-DM, nomeadamente a preparação dos dados, transformação das variáveis e desenvolvimento de modelos de classificação robustos e generalizáveis.
 
 ## 4.2 Limitações do Dataset
 
