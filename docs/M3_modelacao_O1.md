@@ -3,7 +3,7 @@
 ## 1. Estratégia de Modelação
 
 ### 1.1 Divisão do dataset
-Para selecionar a divisão de dados mais adequada, foram testados seis rácios distintos (65/35, 70/30, 75/25, 80/20, 85/15 e 90/10), com e sem estratificação pela variável alvo `Attrition_bin`. Os resultados comparativos de todas as divisões (_splits_) encontram-se disponíveis no repositório do projeto (pasta `/resultados/splits/Objetivo1`).  
+Para selecionar a divisão de dados mais adequada, foram testados seis rácios distintos (65/35, 70/30, 75/25, 80/20, 85/15 e 90/10), com e sem estratificação pela variável alvo `Attrition_bin`. Os resultados comparativos de todas as divisões (_splits_) encontram-se disponíveis no repositório do projeto (pasta `/reports/splits/Objetivo1`).  
 
 A divisão que produziu os melhores resultados globais foi a de 65% para treino e 35% para teste, com estratificação (random_state=42), garantindo a mesma proporção de colaboradores com atrito (~16%) em ambos os conjuntos. Esta abordagem de divisão estratificada é recomendada na literatura como boa prática em problemas de classificação com desequilíbrio de classes, assegurando que ambos os conjuntos representam fielmente a distribuição real dos dados (Géron, 2022; James et al., 2021).  
 
@@ -195,24 +195,87 @@ A Regressão Logística, por ser um modelo linear, tem maior dificuldade em sepa
 
 Uma das principais vantagens operacionais da Regressão Logística reside na interpretabilidade direta dos seus coeficientes: cada coeficiente representa o impacto marginal de uma variável na probabilidade logarítmica de *Attrition = Yes*, controlando as restantes variáveis. Coeficientes positivos aumentam a probabilidade de saída; coeficientes negativos estão associados à permanência (James et al., 2021; Géron, 2022). Esta propriedade é especialmente relevante no contexto de Recursos Humanos, onde as conclusões do modelo têm de ser comunicadas a *stakeholders* não técnicos e traduzidas em ações concretas de retenção.
 
+A expressão completa do modelo final é a seguinte:
+
+```
+logit(p) = -1.871
+           + 0.944 × OverTime_bin
+           + 0.569 × YearsSinceLastPromotion
+           + 0.518 × JobRole_Sales Representative
+           + 0.450 × JobRole_Laboratory Technician
+           + 0.426 × DistanceFromHome
+           + 0.420 × NumCompaniesWorked
+           + 0.337 × BusinessTravel_Travel_Frequently
+           + 0.279 × MonthlyIncome
+           + 0.230 × Gender_bin
+           + 0.226 × MaritalStatus_Single
+           + 0.210 × JobRole_Sales Executive
+           + 0.183 × JobRole_Human Resources
+           + 0.162 × EducationField_Human Resources
+           + 0.160 × EducationField_Marketing
+           + 0.124 × EducationField_Technical Degree
+           + 0.109 × PercentSalaryHike
+           + 0.102 × MonthlyRate
+           + 0.050 × Department_Research & Development
+           + 0.020 × CareerStagnation
+           + 0.018 × JobLevel
+           + 0.015 × EducationField_Medical
+           + 0.001 × Department_Sales
+           + 0.000 × JobRole_Manager
+           - 0.002 × Education
+           - 0.043 × BusinessTravel_Travel_Rarely
+           - 0.055 × YearsInCurrentRole
+           - 0.101 × MaritalStatus_Married
+           - 0.107 × EducationField_Life Sciences
+           - 0.114 × YearsAtCompany
+           - 0.126 × Department_Human Resources
+           - 0.129 × MaritalStatus_Divorced
+           - 0.140 × Age
+           - 0.155 × DailyRate
+           - 0.167 × HourlyRate
+           - 0.175 × JobRole_Research Scientist
+           - 0.184 × TrainingTimesLastYear
+           - 0.197 × EnvironmentSatisfaction
+           - 0.208 × WorkLifeBalance
+           - 0.221 × JobSatisfaction
+           - 0.247 × PerformanceRating
+           - 0.280 × YearsWithCurrManager
+           - 0.291 × EducationField_Other
+           - 0.297 × JobRole_Manufacturing Director
+           - 0.313 × RelationshipSatisfaction
+           - 0.317 × RatioYearsInRole
+           - 0.349 × BusinessTravel_Non-Travel
+           - 0.359 × IncomePerLevel
+           - 0.381 × SatisfactionIndex
+           - 0.435 × JobRole_Research Director
+           - 0.532 × JobRole_Healthcare Representative
+           - 0.578 × StockOptionLevel
+           - 0.668 × JobInvolvement
+           - 0.728 × TotalWorkingYears
+
+p = 1 / (1 + exp(-logit(p)))
+```
+
+Regra de decisão: se p ≥ 0.79, prevê *Attrition = Yes*; se p < 0.79, prevê *Attrition = No*.
+
 As variáveis identificadas pelo modelo como mais relevantes, ordenadas por magnitude absoluta do coeficiente, foram:
 
 | # | Variável | Direção | Interpretação |
 |---|---|---|---|
 | 1 | `OverTime_bin` | ➕ Positiva | Realização de horas extra - preditor mais forte de atrito |
-| 2 | `MaritalStatus_Single` | ➕ Positiva | Colaboradores solteiros têm maior propensão para saída |
-| 3 | `JobSatisfaction` | ➖ Negativa | Maior satisfação com a função reduz o atrito |
-| 4 | `MonthlyIncome` | ➖ Negativa | Remuneração mais elevada associada a menor probabilidade de saída |
-| 5 | `Age` | ➖ Negativa | Colaboradores mais velhos têm menor taxa de atrito |
-| 6 | `YearsAtCompany` | ➖ Negativa | Maior antiguidade reduz a probabilidade de saída |
-| 7 | `DistanceFromHome` | ➕ Positiva | Maior distância casa-trabalho aumenta o atrito |
-| 8 | `EnvironmentSatisfaction` | ➖ Negativa | Baixa satisfação com o ambiente contribui para a saída |
-| 9 | `JobLevel` | ➖ Negativa | Níveis hierárquicos mais baixos associados a maior atrito |
-| 10 | `StockOptionLevel` | ➖ Negativa | Participação acionista alinha interesses e reduz a saída |
+| 2 | `TotalWorkingYears` | ➖ Negativa | Mais anos de experiência total associados a maior estabilidade |
+| 3 | `JobInvolvement` | ➖ Negativa | Maior envolvimento no trabalho reduz a probabilidade de saída |
+| 4 | `StockOptionLevel` | ➖ Negativa | Participação acionista alinha interesses e reduz a saída |
+| 5 | `JobRole_Healthcare Representative` | ➖ Negativa | Função associada a menor propensão para saída |
+| 6 | `JobRole_Research Director` | ➖ Negativa | Função de liderança associada a maior retenção |
+| 7 | `SatisfactionIndex` | ➖ Negativa | Índice agregado de satisfação reduz o atrito |
+| 8 | `IncomePerLevel` | ➖ Negativa | Remuneração ajustada ao nível hierárquico associada a menor saída |
+| 9 | `YearsSinceLastPromotion` | ➕ Positiva | Mais tempo sem promoção aumenta a propensão para sair |
+| 10 | `BusinessTravel_Non-Travel` | ➖ Negativa | Ausência de viagens associada a maior estabilidade |
 
 *Tabela 6 - Variáveis com maior poder preditivo, ordenadas por magnitude absoluta do coeficiente.*
 
-Este padrão de importâncias é coerente com os fatores de atrito mais documentados na literatura de Gestão de Recursos Humanos (Hom et al., 2017), conferindo validade de conteúdo ao modelo e aumentando a confiança na sua utilização como ferramenta de apoio à decisão. Em particular, a liderança de `OverTime_bin` é consistente com estudos sobre *burnout* e insatisfação profissional como precursores de intenção de saída (Hom et al., 2017). A presença de variáveis de satisfação (`JobSatisfaction`, `EnvironmentSatisfaction`) e de estabilidade financeira e de carreira (`MonthlyIncome`, `StockOptionLevel`, `JobLevel`) no topo da lista confirma que o atrito resulta da combinação de fatores de pressão e de ausência de fatores de retenção, padrão consistente com os modelos teóricos de rotatividade voluntária (Hom et al., 2017).
+Este padrão de importâncias é coerente com os fatores de atrito mais documentados na literatura de Gestão de Recursos Humanos (Hom et al., 2017), conferindo validade de conteúdo ao modelo e aumentando a confiança na sua utilização como ferramenta de apoio à decisão. Os preditores de saída mais fortes são `OverTime_bin` e `YearsSinceLastPromotion`, consistentes com estudos sobre *burnout* e estagnação de carreira como precursores de intenção de saída (Hom et al., 2017). No sentido oposto, `TotalWorkingYears`, `JobInvolvement` e `StockOptionLevel` emergem como os fatores de retenção mais expressivos, refletindo que colaboradores com maior experiência, envolvimento e alinhamento financeiro com a organização têm menor propensão para sair. A presença de variáveis de satisfação agregada (`SatisfactionIndex`) e de remuneração relativa (`IncomePerLevel`) confirma que o atrito resulta da combinação de fatores de pressão e de ausência de fatores de retenção, padrão consistente com os modelos teóricos de rotatividade voluntária (Hom et al., 2017).
  
 ## 5. Conclusão da Fase de Modelação
 
