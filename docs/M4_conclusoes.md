@@ -102,7 +102,7 @@ em todas as variáveis). A variável composta `SatisfactionIndex`, criada na fas
 
 ### Pergunta de Investigação 4 — O rendimento mensal tem impacto significativo no atrito após controlo multivariável?
 
-Sim, mas com efeito inverso — rendimentos mais elevados reduzem a probabilidade de saída. A análise exploratória mostrou que colaboradores que saem têm rendimento mensal médio substancialmente inferior aos que permanecem. O modelo multivariável confirmou
+Sim, mas com efeito inverso rendimentos mais elevados reduzem a probabilidade de saída. A análise exploratória mostrou que colaboradores que saem têm rendimento mensal médio substancialmente inferior aos que permanecem. O modelo multivariável confirmou
 este efeito: o coeficiente de `MonthlyIncome` é positivo na expressão do modelo, o que, conjugado com a escala da variável, indica que aumentos no rendimento reduzem a probabilidade de atrito, mesmo após controlo das restantes variáveis. A variável `IncomePerLevel`, criada como rácio entre rendimento e nível hierárquico, revelou adicionalmente que colaboradores sub-remunerados face ao seu nível de cargo apresentam maior risco de saída.
 
 ---
