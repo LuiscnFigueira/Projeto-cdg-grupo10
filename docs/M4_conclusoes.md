@@ -5,7 +5,7 @@
 ### 1.1 Objetivo 1 - Modelo Preditivo de `Attrition`
 
 #### O Problema Resolvido
-O primeiro objetivo do projeto consistia em desenvolver um modelo de classificação capaz de prever o atrito (`Attrition`) dos colaboradores, alcançando um F1-Score mínimo de 0,80 em validação cruzada estratificada (k=5), até ao dia 21/04/2026. O problema foi formalizado como uma tarefa de classificação binária sobre o dataset _IBM HR Analytics Employee Attrition & Performance_, composto por 1470 colaboradores e 35 variáveis originais, com uma taxa de atrito de 16,1% (Chapman et al., 2000; IBM Watson Analytics, 2016).
+O primeiro objetivo do projeto consistia em desenvolver um modelo de classificação capaz de prever o atrito (`Attrition`) dos colaboradores, alcançando um F1-Score mínimo de 0,80 em validação cruzada estratificada (k=5), até ao dia 21/04/2026. O problema foi formalizado como uma tarefa de classificação binária sobre o conjunto de dados _IBM HR Analytics Employee Attrition & Performance_, composto por 1470 colaboradores e 35 variáveis originais, com uma taxa de atrito de 16,1% (Chapman et al., 2000; IBM Watson Analytics, 2016).
 
 #### Interpretação dos Resultados
 
@@ -17,7 +17,7 @@ Os resultados obtidos no conjunto de teste são os seguintes:
 |---|---|---|---|---|---|---|---|
 | 65/35 | StandardScaler | SVMSMOTE | 0,79 | 0,5147 | 0,6604 | 0,4217 | 0,8017 |
 
-A meta de F1-Score ≥ 80% não foi alcançada, reflexo das limitações estruturais do dataset: 1470 observações, desequilíbrio de classes de ~16% e ausência de variáveis de engajamento direto. Ainda assim, o AUC-ROC de 80,17% confirma uma boa capacidade discriminativa global, e a Precision de 66,04% garante que, dos colaboradores sinalizados como em risco, dois em cada três correspondem a casos reais de atrito. O threshold de 0,79 foi selecionado para maximizar o F1-Score na classe minoritária, equilibrando a identificação de casos reais de saída com a contenção de falsos positivos (Géron, 2022; James et al., 2021).
+A meta de F1-Score ≥ 80% não foi alcançada, reflexo das limitações estruturais do conjunto de dados: 1470 observações, desequilíbrio de classes de ~16% e ausência de variáveis de engajamento direto. Ainda assim, o AUC-ROC de 80,17% confirma uma boa capacidade discriminativa global, e a Precision de 66,04% garante que, dos colaboradores sinalizados como em risco, dois em cada três correspondem a casos reais de atrito. O threshold de 0,79 foi selecionado para maximizar o F1-Score na classe minoritária, equilibrando a identificação de casos reais de saída com a contenção de falsos positivos (Géron, 2022; James et al., 2021).
 
 #### Índice de Risco de `Attrition`
 
@@ -70,7 +70,7 @@ Os quatro perfis de colaboradores identificados apresentam correspondência dire
 
 Esta coerência não foi imposta ao modelo - resultou da aprendizagem sobre 53 variáveis escaladas. A correspondência entre os _clusters_ e unidades organizacionais reais é um indicador forte de validade externa: o modelo captura uma estrutura que existe objetivamente na organização, não um artefacto do algoritmo (Jain, 2010).
 
-Por palavras simples, o modelo consegue identificar automaticamente os diferentes perfis de colaboradores sem ter sido informado sobre departamentos ou funções. O facto de os grupos encontrados coincidirem com a realidade organizacional confirma que as variáveis do dataset captam diferenças reais entre os colaboradores, e não apenas ruído estatístico.
+Por palavras simples, o modelo consegue identificar automaticamente os diferentes perfis de colaboradores sem ter sido informado sobre departamentos ou funções. O facto de os grupos encontrados coincidirem com a realidade organizacional confirma que as variáveis do conjunto de dados captam diferenças reais entre os colaboradores, e não apenas ruído estatístico.
 
 #### Valor para o Utilizador/Negócio
 
@@ -163,9 +163,9 @@ baixo risco de saída, justifica abordagens de retenção personalizadas dado o 
 
 ### 2.1 Limitações dos Dados
 
-O dataset _IBM HR Analytics_ é sintético, tendo sido criado pela IBM para fins demonstrativos, o que limita a transferibilidade direta dos resultados para contextos organizacionais reais. A variável `Attrition` apresenta desequilíbrio de classes significativo (~84% "Não Saiu" vs ~16% "Saiu"), o que penaliza métricas como o _F1-Score_ mesmo em modelos com boa capacidade discriminativa (Chawla et al., 2002). 
+O conjunto de dados _IBM HR Analytics_ é sintético, tendo sido criado pela IBM para fins demonstrativos, o que limita a transferibilidade direta dos resultados para contextos organizacionais reais. A variável `Attrition` apresenta desequilíbrio de classes significativo (~84% "Não Saiu" vs ~16% "Saiu"), o que penaliza métricas como o _F1-Score_ mesmo em modelos com boa capacidade discriminativa (Chawla et al., 2002). 
 
-A variável `PerformanceRating` apresenta variância praticamente nula, com a quase totalidade das observações concentradas nos valores 3 e 4, limitando o seu poder preditivo e justificando a sua exclusão na fase de preparação dos dados. Por fim, o dataset não inclui variáveis potencialmente relevantes como indicadores de engajamento (_engagement_), absentismo, clima organizacional real ou dados externos sobre o mercado de trabalho, o que condiciona o poder preditivo máximo dos modelos (Hom et al., 2017).
+A variável `PerformanceRating` apresenta variância praticamente nula, com a quase totalidade das observações concentradas nos valores 3 e 4, limitando o seu poder preditivo e justificando a sua exclusão na fase de preparação dos dados. Por fim, o conjunto de dados não inclui variáveis potencialmente relevantes como indicadores de engajamento (_engagement_), absentismo, clima organizacional real ou dados externos sobre o mercado de trabalho, o que condiciona o poder preditivo máximo dos modelos (Hom et al., 2017).
 
 
 ### 2.2 Limitações do Modelo Preditivo
@@ -186,7 +186,7 @@ A avaliação baseou-se exclusivamente em métricas internas (Silhouette, Davies
 ## 3. Considerações Éticas e de Viés
 
 ### 3.1 Privacidade
-O _dataset_ encontra-se totalmente anonimizado, não contendo identificadores pessoais diretos como nomes, contactos ou identificadores reais de colaboradores. A utilização dos dados neste projeto é estritamente académica e cumpre os princípios fundamentais do RGPD, nomeadamente a minimização de dados, a limitação da finalidade e a licitude do tratamento. Atendendo à natureza sintética e agregada da informação, o risco de reidentificação individual é negligenciável.
+O _conjunto de dados_ encontra-se totalmente anonimizado, não contendo identificadores pessoais diretos como nomes, contactos ou identificadores reais de colaboradores. A utilização dos dados neste projeto é estritamente académica e cumpre os princípios fundamentais do RGPD, nomeadamente a minimização de dados, a limitação da finalidade e a licitude do tratamento. Atendendo à natureza sintética e agregada da informação, o risco de reidentificação individual é negligenciável.
 
 ### 3.2 Transparência
 
@@ -221,7 +221,7 @@ A capacidade preditiva dos modelos está diretamente condicionada pela qualidade
 
 * **Dados longitudinais:** Integrar séries temporais de avaliações de desempenho, promoções e movimentos internos para capturar a trajetória de cada colaborador ao longo do tempo, transformando o problema de classificação transversal num problema de análise de sobrevivência, metodologia mais adequada para modelar o tempo até à ocorrência de um evento (Hom et al., 2017).
 
-* **Variáveis de _engagement_:** Incorporar dados de _pulse surveys_, Net Promoter Score interno, absentismo ou participação em programas de formação, variáveis identificadas na literatura como preditores independentes do atrito não capturadas pelo dataset atual (Hom et al., 2017).
+* **Variáveis de _engagement_:** Incorporar dados de _pulse surveys_, Net Promoter Score interno, absentismo ou participação em programas de formação, variáveis identificadas na literatura como preditores independentes do atrito não capturadas pelo conjunto de dados atual (Hom et al., 2017).
 
 * **Fatores externos de mercado:** Incluir indicadores como a taxa de desemprego sectorial, o volume de ofertas de emprego concorrentes e índices de satisfação do mercado de trabalho, que representam determinantes contextuais do atrito frequentemente ignorados em modelos baseados exclusivamente em dados internos (Hom et al., 2017).
 
@@ -243,7 +243,7 @@ ste projeto demonstrou a aplicabilidade de técnicas de Ciência de Dados ao pro
 Foram desenvolvidas duas soluções complementares. A primeira, um modelo preditivo de classificação baseado em Regressão Logística, permite estimar a probabilidade de saída de cada colaborador e classificá-lo num índice de risco de quatro categorias: Baixo, Médio, Alto e Crítico, transformando uma previsão probabilística em informação acionável para a gestão de Recursos Humanos. A segunda, um modelo de _clustering_ baseado em UMAP + DBSCAN, identificou quatro perfis distintos de colaboradores com correspondência direta à estrutura departamental real da organização, sem que essa informação tivesse sido fornecida ao modelo.
 
 Os resultados ficaram aquém da meta quantitativa de _F1-Score_ ≥ 0,80, fixando-se em 0,56 no conjunto de teste. Esta limitação, honestamente reconhecida, não invalida o valor da solução: o modelo identifica corretamente 3 em cada 4 colaboradores que
-efetivamente saem (_Recall_ de 75%), e o _clustering_ atingiu um _Silhouette Score_ de 0,70, acima da meta de 0,50 e classificado como estrutura forte na escala de Rousseeuw. A diferença entre a meta e o resultado alcançado reflete as limitações inerentes ao dataset sintético e não uma falha metodológica.
+efetivamente saem (_Recall_ de 75%), e o _clustering_ atingiu um _Silhouette Score_ de 0,70, acima da meta de 0,50 e classificado como estrutura forte na escala de Rousseeuw. A diferença entre a meta e o resultado alcançado reflete as limitações inerentes ao conjunto de dados sintético e não uma falha metodológica.
 
 Do ponto de vista do impacto prático, a solução permite à organização passar de uma postura reativa para uma postura preventiva e estratégica: identificar quem está em risco, em que perfil se insere e com que prioridade intervir. Esta capacidade tem valor direto na redução de custos de rotatividade e na preservação do capital humano organizacional (Hom et al., 2017).
 
