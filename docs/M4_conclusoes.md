@@ -17,16 +17,24 @@ Os resultados obtidos no conjunto de teste são os seguintes:
 |---|---|---|---|---|---|---|---|
 | 65/35 | StandardScaler | SVMSMOTE | 0,79 | 0,5147 | 0,6604 | 0,4217 | 0,8017 |
 
-A meta de F1-Score ≥ 80% não foi alcançada, reflexo das limitações estruturais do dataset: 1470 observações, desequilíbrio de classes de ~16% e ausência de variáveis de engajamento direto. Ainda assim, o AUC-ROC de 80,17% confirma uma boa capacidade discriminativa global, e a Precision de 66,04% garante que, dos colaboradores sinalizados como em risco, dois em cada três correspondem a casos reais de atrito. O threshold de 0,79 foi selecionado para maximizar o F1-Score na classe minoritária, equilibrando a identificação de casos reais de saída com a contenção de falsos positivos (Géron, 2022; James et al., 2021).Você disse: agora faz #### Índice de Risco de Attrition
+A meta de F1-Score ≥ 80% não foi alcançada, reflexo das limitações estruturais do dataset: 1470 observações, desequilíbrio de classes de ~16% e ausência de variáveis de engajamento direto. Ainda assim, o AUC-ROC de 80,17% confirma uma boa capacidade discriminativa global, e a Precision de 66,04% garante que, dos colaboradores sinalizados como em risco, dois em cada três correspondem a casos reais de atrito. O threshold de 0,79 foi selecionado para maximizar o F1-Score na classe minoritária, equilibrando a identificação de casos reais de saída com a contenção de falsos positivos (Géron, 2022; James et al., 2021).
 
 #### Índice de Risco de `Attrition`
-* A partir das probabilidades previstas pelo modelo, foi construído um índice de risco.
-* Os colaboradores foram classificados em categorias de risco, facilitando a interpretação dos resultados.
+
+Com base nas probabilidades previstas pelo modelo final, foi construído um índice de risco que classifica cada colaborador em quatro categorias, permitindo traduzir uma previsão probabilística em informação diretamente acionável para a gestão de Recursos Humanos:
+
+| Categoria | Limiar | Interpretação |
+|---|---|---|
+| Baixo | prob < 30% | Colaborador estável, permanência muito provável |
+| Médio | 30% ≤ prob < 50% | Sinais de alerta; modelo prevê permanência |
+| Alto | 50% ≤ prob < 70% | Modelo prevê saída; acompanhamento ativo recomendado |
+| Crítico | prob ≥ 70% | Saída muito provável; intervenção prioritária |
+
+Os limiares foram definidos respeitando o limiar natural da Regressão Logística (50%), garantindo que colaboradores com probabilidade abaixo e acima desse valor nunca são agrupados na mesma categoria.
 
 #### Valor para o Utilizador/Negócio
-* A solução permite identificar colaboradores com maior probabilidade de saída.
-* Este resultado pode apoiar estratégias preventivas de retenção e tomada de decisão em Recursos Humanos.
 
+A solução permite identificar, de forma sistemática e interpretável, os colaboradores com maior probabilidade de saída, classificando-os por nível de urgência de intervenção. Os fatores de risco predominantes, liderados por `OverTime_bin`, `YearsSinceLastPromotion` e `TotalWorkingYears`, são diretamente comunicáveis a gestores não técnicos e traduzíveis em ações concretas de retenção. Este resultado apoia estratégias preventivas diferenciadas por perfil, reduzindo o custo de rotatividade e preservando o capital humano organizacional (Hom et al., 2017).
 
 
 ### 1.2 Objetivo 2 - Identificação de Perfis de Colaboradores através de _Clustering_
