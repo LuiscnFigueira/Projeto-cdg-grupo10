@@ -2,12 +2,12 @@
  
 ## 1. Estratégia de Modelação
 
-### 1.1 Divisão do dataset
+### 1.1 Divisão do conjunto de dados
 Para selecionar a divisão de dados mais adequada, foram testados seis rácios distintos (65/35, 70/30, 75/25, 80/20, 85/15 e 90/10), com e sem estratificação pela variável alvo `Attrition_bin`. Os resultados comparativos de todas as divisões (_splits_) encontram-se disponíveis no repositório do projeto (pasta `/reports/splits/Objetivo1`).  
 
 A divisão que produziu os melhores resultados globais foi a de 65% para treino e 35% para teste, com estratificação (random_state=42), garantindo a mesma proporção de colaboradores com atrito (~16%) em ambos os conjuntos. Esta abordagem de divisão estratificada é recomendada na literatura como boa prática em problemas de classificação com desequilíbrio de classes, assegurando que ambos os conjuntos representam fielmente a distribuição real dos dados (Géron, 2022; James et al., 2021).  
 
-As variáveis categóricas originais (`Attrition`, `OverTime`, `Gender`, `BusinessTravel`, `Department`, `EducationField`, `JobRole`, `MaritalStatus`) foram removidas do conjunto de atributos (_features_), utilizando as respetivas versões já codificadas no dataset processado. Apenas variáveis numéricas foram consideradas, em linha com o processo de preparação de dados definido no âmbito do CRISP-DM (Chapman et al., 2000).
+As variáveis categóricas originais (`Attrition`, `OverTime`, `Gender`, `BusinessTravel`, `Department`, `EducationField`, `JobRole`, `MaritalStatus`) foram removidas do conjunto de atributos (_features_), utilizando as respetivas versões já codificadas no conjunto de dados processado. Apenas variáveis numéricas foram consideradas, em linha com o processo de preparação de dados definido no âmbito do CRISP-DM (Chapman et al., 2000).
 
 ### 1.2 Padronização dos dados
 Para os algoritmos sensíveis à escala das variáveis, foi aplicada padronização através do escalonador padrão (_StandardScaler_), que transforma cada _features_ para média zero e desvio-padrão unitário. Para modelos lineares e baseados em distâncias, como SVM, Regressão Logística e KNN, a padronização é geralmente necessária, uma vez que estes algoritmos são diretamente afetados pela magnitude das variáveis (Géron, 2022; James et al., 2021).  
@@ -19,7 +19,7 @@ Para os algoritmos sensíveis à escala das variáveis, foi aplicada padronizaç
 - Modelos Implementados via _Pipeline_ do _scikit-learn_ (SVM, Regressão Logística, KNN, MLP): o _StandardScaler_ foi encapsulado diretamente no _pipeline_, garantindo que o _fit_ é realizado exclusivamente nos dados de treino e o _transform_ aplicado subsequentemente aos dados de teste, prevenindo _data leakage_ (Géron, 2022).
 
 ### 1.3 Métrica de Sucesso
-A métrica principal escolhida foi o _F1-Score_, por ser a mais adequada para datasets desequilibrados como o nosso (~84% Não Saiu vs ~16% Saiu). O _F1-Score_ combina _Precision_ e _Recall_ numa única métrica, penalizando tanto os falsos positivos como os falsos negativos, característica particularmente relevante no contexto de atrito organizacional, onde tanto a falha em identificar colaboradores em risco como a geração de alertas desnecessários têm custos práticos para as organizações (Hom et al., 2017; James et al., 2021).  
+A métrica principal escolhida foi o _F1-Score_, por ser a mais adequada para conjuntos de dados desequilibrados como o nosso (~84% Não Saiu vs ~16% Saiu). O _F1-Score_ combina _Precision_ e _Recall_ numa única métrica, penalizando tanto os falsos positivos como os falsos negativos, característica particularmente relevante no contexto de atrito organizacional, onde tanto a falha em identificar colaboradores em risco como a geração de alertas desnecessários têm custos práticos para as organizações (Hom et al., 2017; James et al., 2021).  
 
 Como métrica complementar foi utilizado o AUC-ROC, que mede a capacidade discriminativa do modelo independentemente do limiar (_threshold_) de decisão, permitindo uma avaliação mais abrangente da qualidade de separação entre classes (Géron, 2022; James et al., 2021).
 
@@ -54,11 +54,11 @@ Por fim, a seleção cobriu deliberadamente o espectro entre modelos totalmente 
 
 - Modelos de Ensemble (Candidatos 1–5 e 12): Random Forest, Gradient Boosting, XGBoost, LightGBM, CatBoost e Extra Trees, todos com parâmetros *default* e sem normalização. Apesar de apresentarem métricas elevadas no treino, estes modelos evidenciaram *overfitting* generalizado no teste, com gaps de F1 superiores a 0.10 em todos os casos, sendo o Random Forest (+0.78) e o Extra Trees (+0.73) os mais afetados. Este comportamento é consistente com a literatura: métodos de *ensemble* baseados em árvores tendem a memorizar os dados de treino quando não são aplicadas restrições de complexidade (James et al., 2021; Géron, 2022).
 
-- Modelos Lineares e Probabilísticos (Candidatos 6-11): SVM (com pipeline `_StandardScaler_`), Árvore com Pruning (`ccp_alpha=0.005`), Regressão Logística (com pipeline `_StandardScaler_`), LDA, Naive Bayes e KNN (com pipeline `_StandardScaler_`). Neste grupo o *overfitting* foi consideravelmente menor e os resultados no teste mais consistentes, com destaque para a Regressão Logística (F1 Teste: 0.5538 | AUC: 0.8236 | *gap*: +0.12) e o LDA (F1 Teste: 0.4651 | AUC: 0.8179 | *gap*: +0.19). A superioridade dos modelos lineares neste contexto é esperada: em datasets de dimensão moderada e com classes desequilibradas, modelos de menor complexidade tendem a generalizar melhor (James et al., 2021).
+- Modelos Lineares e Probabilísticos (Candidatos 6-11): SVM (com pipeline `_StandardScaler_`), Árvore com Pruning (`ccp_alpha=0.005`), Regressão Logística (com pipeline `_StandardScaler_`), LDA, Naive Bayes e KNN (com pipeline `_StandardScaler_`). Neste grupo o *overfitting* foi consideravelmente menor e os resultados no teste mais consistentes, com destaque para a Regressão Logística (F1 Teste: 0.5538 | AUC: 0.8236 | *gap*: +0.12) e o LDA (F1 Teste: 0.4651 | AUC: 0.8179 | *gap*: +0.19). A superioridade dos modelos lineares neste contexto é esperada: em conjuntos de dados de dimensão moderada e com classes desequilibradas, modelos de menor complexidade tendem a generalizar melhor (James et al., 2021).
 
-- Redes Neuronais (Candidatos 13-18): MLP sklearn, TabNet (pytorch-tabnet), Keras simples (Dense 64→32→1), Keras com Dropout e BatchNormalization (128→64→32→1), GANDALF e FT-Transformer (pytorch-tabular). Todas com parâmetros *default* ou arquiteturas base. As redes Keras foram treinadas com 100 épocas, *batch size* 32, otimizador Adam e *binary crossentropy*. GANDALF e _FT-Transformer_ foram treinados com *early stopping* (patience=10). Apesar da sofisticação arquitetural, a maioria das redes neuronais apresentou *overfitting* elevado (e.g., Keras simples: +0.54; MLP: +0.52), o que é consistente com a tendência de modelos de alta capacidade para memorizar dados de treino em datasets de pequena e média dimensão (Géron, 2022).
+- Redes Neuronais (Candidatos 13-18): MLP sklearn, TabNet (pytorch-tabnet), Keras simples (Dense 64→32→1), Keras com Dropout e BatchNormalization (128→64→32→1), GANDALF e FT-Transformer (pytorch-tabular). Todas com parâmetros *default* ou arquiteturas base. As redes Keras foram treinadas com 100 épocas, *batch size* 32, otimizador Adam e *binary crossentropy*. GANDALF e _FT-Transformer_ foram treinados com *early stopping* (patience=10). Apesar da sofisticação arquitetural, a maioria das redes neuronais apresentou *overfitting* elevado (e.g., Keras simples: +0.54; MLP: +0.52), o que é consistente com a tendência de modelos de alta capacidade para memorizar dados de treino em conjuntos de dados de pequena e média dimensão (Géron, 2022).
 
-A tabela seguinte apresenta os resultados obtidos com a divisão 65/35, selecionada conforme descrito na Secção 1. A estratificação garante a mesma proporção de colaboradores com atrito (~16%) em ambos os conjuntos, sendo uma prática obrigatória em datasets desequilibrados (Géron, 2022; James et al., 2021).
+A tabela seguinte apresenta os resultados obtidos com a divisão 65/35, selecionada conforme descrito na Secção 1. A estratificação garante a mesma proporção de colaboradores com atrito (~16%) em ambos os conjuntos, sendo uma prática obrigatória em conjuntos de dados desequilibrados (Géron, 2022; James et al., 2021).
 
 | Modelo | F1 Treino | Precision Treino | Recall Treino | AUC Treino | F1 Teste | Precision Teste | Recall Teste | AUC Teste | Overfitting (F1) |
 |--------|-----------|-----------------|---------------|------------|----------|-----------------|--------------|-----------|------------------|
@@ -101,7 +101,7 @@ A otimização do modelo de Regressão Logística foi conduzida através de cinc
 
 #### Etapa 1 - Pesquisa do Melhor _Split_
 
-Foram testadas seis proporções de divisão treino/teste, 65/35, 70/30, 75/25, 80/20, 85/15 e 90/10, mantendo o `StandardScaler` e o `SMOTE` base como constantes, para isolar exclusivamente o efeito da dimensão dos conjuntos. Em todas as divisões foi aplicada estratificação pela variável alvo `Attrition_bin`, garantindo a mesma proporção de colaboradores com atrito (~16%) em ambos os conjuntos, uma prática obrigatória em datasets desequilibrados (Géron, 2022; James et al., 2021). O _split_ com maior _F1-Score_ na classe *Yes* foi selecionado para todas as etapas seguintes.
+Foram testadas seis proporções de divisão treino/teste, 65/35, 70/30, 75/25, 80/20, 85/15 e 90/10, mantendo o `StandardScaler` e o `SMOTE` base como constantes, para isolar exclusivamente o efeito da dimensão dos conjuntos. Em todas as divisões foi aplicada estratificação pela variável alvo `Attrition_bin`, garantindo a mesma proporção de colaboradores com atrito (~16%) em ambos os conjuntos, uma prática obrigatória em conjuntos de dados desequilibrados (Géron, 2022; James et al., 2021). O _split_ com maior _F1-Score_ na classe *Yes* foi selecionado para todas as etapas seguintes.
 
 
 #### Etapa 2 - Pesquisa do Melhor Normalizador
@@ -136,7 +136,7 @@ Usando o _split_ e normalizador ótimos, foram comparadas sete estratégias de _
 
 *Tabela 3 - Técnicas de resampling comparadas na fase de otimização.*
 
-As variantes que focam nas fronteiras de decisão (`BorderlineSMOTE`, `SVMSMOTE`) ou que combinam *oversampling* com limpeza (`SMOTETomek`, `SMOTEENN`) tendem a reduzir o ruído introduzido pela síntese de amostras em zonas densas da distribuição, melhorando a generalização em datasets com sobreposição de classes (Hastie et al., 2009).
+As variantes que focam nas fronteiras de decisão (`BorderlineSMOTE`, `SVMSMOTE`) ou que combinam *oversampling* com limpeza (`SMOTETomek`, `SMOTEENN`) tendem a reduzir o ruído introduzido pela síntese de amostras em zonas densas da distribuição, melhorando a generalização em conjuntos de dados com sobreposição de classes (Hastie et al., 2009).
 
 
 #### Etapa 4 - GridSearchCV com _Cross-Validation_ Estratificada
@@ -151,7 +151,7 @@ Com a combinação ótima das três etapas anteriores, foi aplicado `GridSearchC
 
 *Tabela 4 - Espaço de pesquisa de hiperparâmetros da Regressão Logística.*
 
-Em todos os casos, `C` ∈ {0.001, 0.01, 0.1, 0.5, 1, 5, 10, 50, 100} e `class_weight='balanced'`. A métrica de otimização foi o F1-Score da classe *Yes*, coerente com o critério de sucesso definido na Secção 1. O uso de k = 15 folds estratificados garante estimativas de generalização mais estáveis do que a configuração padrão de 5 folds, sendo especialmente relevante em datasets com classes desequilibradas (James et al., 2021).
+Em todos os casos, `C` ∈ {0.001, 0.01, 0.1, 0.5, 1, 5, 10, 50, 100} e `class_weight='balanced'`. A métrica de otimização foi o F1-Score da classe *Yes*, coerente com o critério de sucesso definido na Secção 1. O uso de k = 15 folds estratificados garante estimativas de generalização mais estáveis do que a configuração padrão de 5 folds, sendo especialmente relevante em conjuntos de dados com classes desequilibradas (James et al., 2021).
 
 > Nota metodológica: O `StandardScaler` e o _resampling_ foram sempre ajustados exclusivamente aos dados de treino de cada fold, prevenindo *data leakage*, uma das fontes mais frequentes de otimismo enviesado em pipelines de *machine learning* (Géron, 2022).
 
@@ -318,11 +318,11 @@ O modelo Regressão Logística otimizado está pronto a ser apresentado como sol
 
 Apesar do desempenho quantitativo e da robustez metodológica, o modelo apresenta três limitações que devem ser consideradas na utilização dos seus resultados.
 
-- _F1-Score_ abaixo da meta inicial: O _F1-Score_ final de 0.5147 fica aquém da meta de ≥0.80 definida na fase de planeamento. Esta limitação é estrutural: o dataset _IBM HR Analytics_ conta com apenas 1470 observações e uma proporção de classe minoritária de ~16%, o que impõe um teto empírico ao desempenho de qualquer modelo linear neste problema. A melhoria de +0.0169 obtida na fase de otimização demonstra que o espaço de melhoria dentro da família de modelos lineares está praticamente esgotado. Modelos de maior complexidade (XGBoost, LightGBM) apresentaram F1 superior no treino mas generalização inferior no teste, confirmando que o _trade-off_ entre complexidade e generalização favorece a Regressão Logística neste contexto específico.
+- _F1-Score_ abaixo da meta inicial: O _F1-Score_ final de 0.5147 fica aquém da meta de ≥0.80 definida na fase de planeamento. Esta limitação é estrutural: o conjunto de dados _IBM HR Analytics_ conta com apenas 1470 observações e uma proporção de classe minoritária de ~16%, o que impõe um teto empírico ao desempenho de qualquer modelo linear neste problema. A melhoria de +0.0169 obtida na fase de otimização demonstra que o espaço de melhoria dentro da família de modelos lineares está praticamente esgotado. Modelos de maior complexidade (XGBoost, LightGBM) apresentaram F1 superior no treino mas generalização inferior no teste, confirmando que o _trade-off_ entre complexidade e generalização favorece a Regressão Logística neste contexto específico.
 
 - _Precision_ moderada na classe *Yes*: O modelo apresenta uma taxa não negligenciável de Falsos Positivos. No contexto deste projeto, esta limitação é aceitável: o custo de uma intervenção preventiva desnecessária é inferior ao custo de não identificar um colaborador-chave em risco de saída (Hom et al., 2017). A otimização do _threshold_ para 0.79 reflete precisamente esta escolha consciente de privilegiar o _Recall_ em detrimento da _Precision_.
 
-- Validade externa limitada: O modelo foi treinado num dataset académico (_IBM HR Analytics_), gerado sinteticamente para fins de demonstração. A sua aplicação a contextos organizacionais reais requer validação com dados históricos próprios da organização, dado que os padrões de atrito variam significativamente entre setores, culturas organizacionais e contextos geográficos (Hom et al., 2017).
+- Validade externa limitada: O modelo foi treinado num conjunto de dados académico (_IBM HR Analytics_), gerado sinteticamente para fins de demonstração. A sua aplicação a contextos organizacionais reais requer validação com dados históricos próprios da organização, dado que os padrões de atrito variam significativamente entre setores, culturas organizacionais e contextos geográficos (Hom et al., 2017).
 
 ### 5.4. Conclusão
 
