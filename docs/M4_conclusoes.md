@@ -111,33 +111,33 @@ Variáveis como `Age`, `Gender`, `MaritalStatus`, `MonthlyIncome` ou `JobLevel` 
 
 As principais limitações identificadas neste projeto sugerem as seguintes melhorias técnicas para trabalhos futuros:
 
-1. **Explorar técnicas de calibração de probabilidades** como _Platt Scaling_ ou _Isotonic Regression_, com o objetivo de melhorar a fiabilidade do índice de risco, garantindo que uma probabilidade prevista de 70% corresponda efetivamente a 70% de casos reais de saída (Géron, 2022).
+* **Explorar técnicas de calibração de probabilidades** como _Platt Scaling_ ou _Isotonic Regression_, com o objetivo de melhorar a fiabilidade do índice de risco, garantindo que uma probabilidade prevista de 70% corresponda efetivamente a 70% de casos reais de saída (Géron, 2022).
 
-2. **Testar abordagens de ensemble heterogéneo**, combinando a Regressão Logística com modelos de maior capacidade preditiva como LightGBM ou XGBoost através de _stacking_, procurando superar o teto de desempenho imposto pelo desequilíbrio de classes sem sacrificar interpretabilidade (James et al., 2021).
+* **Testar abordagens de ensemble heterogéneo**, combinando a Regressão Logística com modelos de maior capacidade preditiva como LightGBM ou XGBoost através de _stacking_, procurando superar o teto de desempenho imposto pelo desequilíbrio de classes sem sacrificar interpretabilidade (James et al., 2021).
 
-3. **Explorar técnicas de seleção de variáveis** como _Recursive Feature Elimination_ (RFE) ou _SHAP values_, com o objetivo de identificar o subconjunto mínimo de variáveis com maior poder preditivo, reduzindo a dimensionalidade e melhorando a generalização dos modelos (Géron, 2022).
+* **Explorar técnicas de seleção de variáveis** como _Recursive Feature Elimination_ (RFE) ou _SHAP values_, com o objetivo de identificar o subconjunto mínimo de variáveis com maior poder preditivo, reduzindo a dimensionalidade e melhorando a generalização dos modelos (Géron, 2022).
 
-4. **Validar o _clustering_ com métricas externas**, cruzando os _clusters_ identificados com variáveis não utilizadas na modelação como `Attrition`, `PerformanceRating` ou dados de progressão na carreira, para avaliar a validade externa dos perfis encontrados (Rousseeuw, 1987).
+* **Validar o _clustering_ com métricas externas**, cruzando os _clusters_ identificados com variáveis não utilizadas na modelação como `Attrition`, `PerformanceRating` ou dados de progressão na carreira, para avaliar a validade externa dos perfis encontrados (Rousseeuw, 1987).
 
 ### 4.2 Novas Variáveis
 
 A capacidade preditiva dos modelos está diretamente condicionada pela qualidade e abrangência das variáveis disponíveis. As seguintes fontes de dados adicionais representam oportunidades relevantes de enriquecimento do modelo:
 
-1. **Dados longitudinais:** Integrar séries temporais de avaliações de desempenho, promoções e movimentos internos para capturar a trajetória de cada colaborador ao longo do tempo, transformando o problema de classificação transversal num problema de análise de sobrevivência, metodologia mais adequada para modelar o tempo até à ocorrência de um evento (Hom et al., 2017).
+* **Dados longitudinais:** Integrar séries temporais de avaliações de desempenho, promoções e movimentos internos para capturar a trajetória de cada colaborador ao longo do tempo, transformando o problema de classificação transversal num problema de análise de sobrevivência, metodologia mais adequada para modelar o tempo até à ocorrência de um evento (Hom et al., 2017).
 
-2. **Variáveis de _engagement_:** Incorporar dados de _pulse surveys_, Net Promoter Score interno, absentismo ou participação em programas de formação, variáveis identificadas na literatura como preditores independentes do atrito não capturadas pelo dataset atual (Hom et al., 2017).
+* **Variáveis de _engagement_:** Incorporar dados de _pulse surveys_, Net Promoter Score interno, absentismo ou participação em programas de formação, variáveis identificadas na literatura como preditores independentes do atrito não capturadas pelo dataset atual (Hom et al., 2017).
 
-3. **Fatores externos de mercado:** Incluir indicadores como a taxa de desemprego sectorial, o volume de ofertas de emprego concorrentes e índices de satisfação do mercado de trabalho, que representam determinantes contextuais do atrito frequentemente ignorados em modelos baseados exclusivamente em dados internos (Hom et al., 2017).
+* **Fatores externos de mercado:** Incluir indicadores como a taxa de desemprego sectorial, o volume de ofertas de emprego concorrentes e índices de satisfação do mercado de trabalho, que representam determinantes contextuais do atrito frequentemente ignorados em modelos baseados exclusivamente em dados internos (Hom et al., 2017).
 
 ### 4.3 Escalabilidade e _Deployment_
 
 Assumindo a disponibilidade de dados reais de uma organização, a solução desenvolvida poderia evoluir para um sistema de apoio à decisão operacional através das seguintes etapas:
 
-1. **Interface de consulta em _Streamlit_:** Desenvolver uma aplicação _web_ que permita à equipa de RH consultar o índice de risco de cada colaborador, visualizar os perfis de _clustering_ e simular o impacto de intervenções de retenção.
+* **Interface de consulta em _Streamlit_:** Desenvolver uma aplicação _web_ que permita à equipa de RH consultar o índice de risco de cada colaborador, visualizar os perfis de _clustering_ e simular o impacto de intervenções de retenção.
 
-2. **_Dashboard_ de monitorização:** Criar painéis de controlo interativos com métricas agregadas por departamento, nível de risco e _cluster_, permitindo à gestão de topo acompanhar a evolução do risco de atrito ao longo do tempo.
+* **_Dashboard_ de monitorização:** Criar painéis de controlo interativos com métricas agregadas por departamento, nível de risco e _cluster_, permitindo à gestão de topo acompanhar a evolução do risco de atrito ao longo do tempo.
 
-3. **_Pipeline_ de atualização contínua:** Implementar um processo automatizado de re-treino periódico do modelo com novos dados, garantindo que as previsões se mantêm calibradas face a mudanças organizacionais ou de mercado, com monitorização de _data drift_ para detetar degradação do desempenho (Géron, 2022).
+* **_Pipeline_ de atualização contínua:** Implementar um processo automatizado de re-treino periódico do modelo com novos dados, garantindo que as previsões se mantêm calibradas face a mudanças organizacionais ou de mercado, com monitorização de _data drift_ para detetar degradação do desempenho (Géron, 2022).
 
 
 ## 5. Conclusão Final
