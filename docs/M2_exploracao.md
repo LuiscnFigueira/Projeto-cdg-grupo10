@@ -11,7 +11,7 @@ A análise revelou que 83.9% dos colaboradores permaneceram na empresa, correspo
 
 ### Desafios Técnicos Resultantes do Desequilíbrio de Classes
 
-O desequilíbrio entre classes constitui um desafio relevante no contexto da modelação preditiva. Em datasets desequilibrados, algoritmos de classificação podem tender a favorecer a classe maioritária, conduzindo a modelos que apresentam valores elevados de acurácia (_accuracy_), mas com reduzida capacidade de identificar corretamente a classe minoritária (Géron, 2022; James et al., 2021).
+O desequilíbrio entre classes constitui um desafio relevante no contexto da modelação preditiva. Em conjuntos de dados desequilibrados, algoritmos de classificação podem tender a favorecer a classe maioritária, conduzindo a modelos que apresentam valores elevados de acurácia (_accuracy_), mas com reduzida capacidade de identificar corretamente a classe minoritária (Géron, 2022; James et al., 2021).
 
 A título ilustrativo, um modelo que classificasse todos os colaboradores como (No) obteria uma precisão aparente de aproximadamente 84%, apesar de não conseguir identificar corretamente os casos de abandono. Do ponto de vista organizacional, esta limitação é particularmente crítica, uma vez que o abandono de colaboradores representa custos significativos associados ao recrutamento, integração e perda de conhecimento organizacional (Hom et al., 2017).
 
@@ -19,7 +19,7 @@ Deste modo, nas fases subsequentes do projeto serão adotadas estratégias adequ
  
 ### 1.2. Correlações Relevantes
 
-Nesta fase de análise bivariada, utilizámos gráficos de dispersão (_scatter plots_) para cruzar os atributos do _dataset_ diretamente com a variável alvo (`Attrition`), com o objetivo de identificar os principais preditores de rotatividade. Estas observações visuais são suportadas pelos valores matemáticos retirados do nosso gráfico de Correlação das Variáveis com (`Attrition`) (`CorrelaçãoVariávelAlvo.png`). Aplicámos um nível de transparência aos pontos do gráfico para revelar a densidade de colaboradores em cada eixo categórico ((Yes) / (No)).
+Nesta fase de análise bivariada, utilizámos gráficos de dispersão (_scatter plots_) para cruzar os atributos do conjunto de dados diretamente com a variável alvo (`Attrition`), com o objetivo de identificar os principais preditores de rotatividade. Estas observações visuais são suportadas pelos valores matemáticos retirados do nosso gráfico de Correlação das Variáveis com (`Attrition`) (`CorrelaçãoVariávelAlvo.png`). Aplicámos um nível de transparência aos pontos do gráfico para revelar a densidade de colaboradores em cada eixo categórico ((Yes) / (No)).
 
 **Atributo Idade (`Age`) vs. Variável Alvo (`Attrition`)**
 
@@ -59,7 +59,7 @@ Importa salientar que correlação mede apenas associações lineares e não imp
 
 ### 1.5 Conclusões Visuais da Análise Bivariada
 
-A análise dos gráficos de dispersão permitiu identificar alguns padrões visuais relevantes entre as variáveis numéricas do dataset. Estes padrões ajudam a compreender melhor a estrutura dos dados e possíveis relações entre características dos colaboradores e o fenómeno de saída da organização.
+A análise dos gráficos de dispersão permitiu identificar alguns padrões visuais relevantes entre as variáveis numéricas do conjunto de dados. Estes padrões ajudam a compreender melhor a estrutura dos dados e possíveis relações entre características dos colaboradores e o fenómeno de saída da organização.
 
 **Relação Linear entre Idade e Experiência**
 
@@ -75,7 +75,7 @@ Os cruzamentos visuais (ver `ScatterPlotsYearsAtCompanyvsYearsWithCurrManager.pn
 
 ### 1.6 Distribuição das Variáveis Numéricas
 
-A análise das variáveis numéricas através de histogramas, boxplots e estatística descritiva revelou diferentes padrões de distribuição no *dataset*. Dado que várias variáveis apresentam comportamentos semelhantes, optou-se por agrupá-las por tipo de distribuição, o que permite uma interpretação mais clara e evita descrições redundantes.
+A análise das variáveis numéricas através de histogramas, boxplots e estatística descritiva revelou diferentes padrões de distribuição no conjunto de dados. Dado que várias variáveis apresentam comportamentos semelhantes, optou-se por agrupá-las por tipo de distribuição, o que permite uma interpretação mais clara e evita descrições redundantes.
 
 As variáveis (`DailyRate`), (`HourlyRate`) e (`MonthlyRate`) apresentam distribuições relativamente uniformes ao longo do intervalo de valores observados, sem concentrações muito acentuadas em regiões específicas (ver `HistogramaDailyRate.png`). Este comportamento sugere uma dispersão mais equilibrada das taxas administrativas associadas aos colaboradores.
 
@@ -87,7 +87,7 @@ No conjunto, verifica-se que as variáveis relacionadas com remuneração, progr
 
 ### 1.7 Distribuição das Variáveis Categóricas
 
-A análise das variáveis categóricas foi realizada através de gráficos de frequência, permitindo compreender a composição estrutural da força de trabalho representada no *dataset*. Tal como na análise das variáveis numéricas, optou-se por interpretar os padrões de forma agregada, agrupando variáveis com comportamentos semelhantes para facilitar a leitura e evitar descrições repetitivas.
+A análise das variáveis categóricas foi realizada através de gráficos de frequência, permitindo compreender a composição estrutural da força de trabalho representada no conjunto de dados. Tal como na análise das variáveis numéricas, optou-se por interpretar os padrões de forma agregada, agrupando variáveis com comportamentos semelhantes para facilitar a leitura e evitar descrições repetitivas.
 
 **Variável Alvo e Desequilíbrio de Classes** 
 
@@ -105,7 +105,7 @@ Relativamente à formação académica, a variável (`EducationField`) mostra ma
 
 Por fim, a variável (`OverTime`) indica que a maioria dos colaboradores não realiza horas extraordinárias, embora exista uma proporção relevante que reporta trabalho extra (ver `Frequencia_OverTime.png`). Este fator assume particular interesse para a análise da rotatividade, uma vez que poderá estar associado a níveis mais elevados de desgaste profissional.
 
-No conjunto, as variáveis categóricas apresentam distribuições plausíveis e coerentes com a estrutura organizacional representada no dataset, não sendo identificadas categorias com frequências anómalas ou inconsistentes.
+No conjunto, as variáveis categóricas apresentam distribuições plausíveis e coerentes com a estrutura organizacional representada no conjunto de dados, não sendo identificadas categorias com frequências anómalas ou inconsistentes.
 
 ### 1.8 Resposta à 2ª Pergunta de Investigação
 
@@ -115,7 +115,7 @@ A análise da tabela de contingência revelou diferenças relevantes na proporç
 
 Para verificar se esta diferença é estatisticamente significativa, foi aplicado o teste do qui-quadrado de independência, que produziu os seguintes resultados: χ² = 87.56, p-value < 0.001, graus de liberdade = 1. Dado que o p-value é inferior ao nível de significância de 0.05, rejeita-se a hipótese nula de independência entre as variáveis. Assim, conclui-se que existe uma associação estatisticamente significativa entre a realização de horas extraordinárias (`OverTime`) e a variável alvo (`Attrition`).
 
-Adicionalmente, foi calculado o tamanho do efeito através da medida Cramér's V, que apresentou um valor de 0.24, indicando uma associação de intensidade fraca a moderada entre as duas variáveis. Isto significa que, embora a realização de horas extraordinárias esteja relacionada com o abandono da organização, este fenómeno é provavelmente influenciado também por outros fatores presentes no dataset.
+Adicionalmente, foi calculado o tamanho do efeito através da medida Cramér's V, que apresentou um valor de 0.24, indicando uma associação de intensidade fraca a moderada entre as duas variáveis. Isto significa que, embora a realização de horas extraordinárias esteja relacionada com o abandono da organização, este fenómeno é provavelmente influenciado também por outros fatores presentes no conjunto de dados.
 
 Do ponto de vista organizacional, estes resultados sugerem que a realização frequente de horas extraordinárias pode estar associada a níveis mais elevados de desgaste profissional, carga de trabalho ou insatisfação laboral, fatores que podem contribuir para o aumento da rotatividade de colaboradores (Hom et al., 2017).
 
@@ -135,7 +135,7 @@ Os resultados mostraram que nenhuma variável numérica segue uma distribuição
 
 Uma vez que os dados não seguem uma distribuição normal, foi aplicado o teste de _Mann-Whitney U_ para comparar cada variável numérica entre os colaboradores que saíram e os que ficaram. Este teste verifica se os dois grupos apresentam distribuições diferentes de forma estatisticamente significativa, sem exigir que os dados sigam uma distribuição normal (James et al., 2021). Para medir a importância prática das diferenças encontradas, foi calculado o d de Cohen, uma medida que indica se a diferença entre os dois grupos é grande ou pequena em termos reais.
 
-As variáveis que melhor distinguem os colaboradores que saem dos que ficam são `TotalWorkingYears`, `YearsInCurrentRole`, `MonthlyIncome`, `Age`, `YearsWithCurrManager` e `YearsAtCompany`, todas com diferenças estatisticamente significativas e com um tamanho de efeito considerado pequeno. A variável `DistanceFromHome` apresentou também uma diferença significativa, com os colaboradores que saem a residir em média mais longe do local de trabalho. As variáveis `DailyRate`, `YearsSinceLastPromotion` e `TrainingTimesLastYear` mostraram diferenças estatisticamente significativas mas com um tamanho de efeito muito pequeno, o que limita a sua relevância do ponto de vista prático. Por fim, as variáveis `NumCompaniesWorked`, `PercentSalaryHike`, `MonthlyRate` e `HourlyRate` não apresentaram diferenças significativas entre os dois grupos, pelo que não parecem contribuir para explicar o fenómeno de attrition neste dataset.
+As variáveis que melhor distinguem os colaboradores que saem dos que ficam são `TotalWorkingYears`, `YearsInCurrentRole`, `MonthlyIncome`, `Age`, `YearsWithCurrManager` e `YearsAtCompany`, todas com diferenças estatisticamente significativas e com um tamanho de efeito considerado pequeno. A variável `DistanceFromHome` apresentou também uma diferença significativa, com os colaboradores que saem a residir em média mais longe do local de trabalho. As variáveis `DailyRate`, `YearsSinceLastPromotion` e `TrainingTimesLastYear` mostraram diferenças estatisticamente significativas mas com um tamanho de efeito muito pequeno, o que limita a sua relevância do ponto de vista prático. Por fim, as variáveis `NumCompaniesWorked`, `PercentSalaryHike`, `MonthlyRate` e `HourlyRate` não apresentaram diferenças significativas entre os dois grupos, pelo que não parecem contribuir para explicar o fenómeno de attrition neste conjunto de dados.
 
 #### 1.9.3 Variáveis Categóricas - Teste do _Qui-Quadrado_ e _Cramér's V_
 
@@ -162,17 +162,17 @@ Para além da seleção de variáveis, há outros desafios a resolver na fase de
 ## 2. Qualidade dos Dados e Limpeza 
 ### 2.1. Tratamento de Dados em Falta 
 
-Com o objetivo de avaliar a qualidade do dataset, foi realizada uma análise à presença de valores em falta em todas as variáveis consideradas.
+Com o objetivo de avaliar a qualidade do conjunto de dados, foi realizada uma análise à presença de valores em falta em todas as variáveis consideradas.
 
-Os resultados obtidos indicaram que não existem valores em falta no dataset, não sendo, portanto, necessária a aplicação de técnicas de imputação ou a eliminação de observações.
+Os resultados obtidos indicaram que não existem valores em falta no conjunto de dados, não sendo, portanto, necessária a aplicação de técnicas de imputação ou a eliminação de observações.
 
-Esta ausência constitui uma vantagem para o processo de preparação e modelação dos dados, uma vez que reduz a necessidade de intervenções artificiais no dataset e minimiza o risco de introdução de enviesamento associado a estratégias de imputação. Em contextos de aprendizagem automática, a presença de valores em falta pode comprometer a qualidade das inferências e afetar o desempenho dos modelos preditivos, exigindo a aplicação de técnicas específicas de tratamento e pré-processamento dos dados (Géron, 2022; James et al., 2021).
+Esta ausência constitui uma vantagem para o processo de preparação e modelação dos dados, uma vez que reduz a necessidade de intervenções artificiais no conjunto de dados e minimiza o risco de introdução de enviesamento associado a estratégias de imputação. Em contextos de aprendizagem automática, a presença de valores em falta pode comprometer a qualidade das inferências e afetar o desempenho dos modelos preditivos, exigindo a aplicação de técnicas específicas de tratamento e pré-processamento dos dados (Géron, 2022; James et al., 2021).
 
 Assim, foi possível prosseguir diretamente para as etapas subsequentes de análise de outliers e verificação da consistência dos dados.
 
 ### 2.2 _Outliers_
 
-Com o objetivo de identificar possíveis valores atípicos nas variáveis numéricas do dataset, foi aplicado o método do Intervalo Interquartil (_Interquartile Range_ – IQR). Este método permite detetar observações que se encontram significativamente afastadas da distribuição central dos dados, sendo amplamente utilizado em análise exploratória para a identificação de valores extremos (Rousseeuw & Hubert, 2011).
+Com o objetivo de identificar possíveis valores atípicos nas variáveis numéricas do conjunto de dados, foi aplicado o método do Intervalo Interquartil (_Interquartile Range_ – IQR). Este método permite detetar observações que se encontram significativamente afastadas da distribuição central dos dados, sendo amplamente utilizado em análise exploratória para a identificação de valores extremos (Rousseeuw & Hubert, 2011).
 
 A aplicação do método sinalizou potenciais _outliers_ em várias variáveis, nomeadamente: `TrainingTimesLastYear`, `PerformanceRating`, `MonthlyIncome`, `YearsSinceLastPromotion`, `YearsAtCompany`, `TotalWorkingYears`, `NumCompaniesWorked`, `YearsInCurrentRole` e `YearsWithCurrManager`.
 
@@ -180,30 +180,30 @@ Contudo, uma análise mais detalhada revelou que estes valores não correspondem
 
 Adicionalmente, valores elevados em variáveis como `MonthlyIncome` (ver `BoxplotMonthlyIncome.png`) ou `TotalWorkingYears` (ver `BoxplotTotalWorkingYears.png`) são plenamente plausíveis no contexto organizacional. Como ilustram os respetivos gráficos, estes pontos além dos limites interquartis correspondem a uma franja reduzida de colaboradores com maior experiência profissional ou posições hierárquicas de topo (executivos e diretores). Em contextos organizacionais, a presença destes valores extremos reflete a heterogeneidade natural da população analisada e não erros nos dados (Rousseeuw & Hubert, 2011).
 
-Deste modo, concluiu-se que os valores identificados refletem a variabilidade natural da população organizacional representada no _dataset_. Assim, optou-se por não remover estas observações, preservando a integridade e a representatividade dos dados para as etapas subsequentes de análise e modelação.
+Deste modo, concluiu-se que os valores identificados refletem a variabilidade natural da população organizacional representada no conjunto de dados. Assim, optou-se por não remover estas observações, preservando a integridade e a representatividade dos dados para as etapas subsequentes de análise e modelação.
 
 ### 2.3 Verificação da Qualidade e Consistência dos Dados
 
-Antes de proceder às etapas de transformação das variáveis e de criação de novos atributos, foi realizada uma verificação preliminar da qualidade e consistência dos dados presentes no dataset. Esta etapa tem como objetivo identificar possíveis valores inválidos, inconsistências lógicas entre variáveis ou padrões anómalos que possam comprometer a fiabilidade das análises subsequentes. A verificação da qualidade dos dados constitui uma fase essencial no processo de preparação de dados, uma vez que modelos de aprendizagem automática são particularmente sensíveis a erros ou incoerências presentes no conjunto de dados (Géron, 2022).
+Antes de proceder às etapas de transformação das variáveis e de criação de novos atributos, foi realizada uma verificação preliminar da qualidade e consistência dos dados presentes no conjunto de dados. Esta etapa tem como objetivo identificar possíveis valores inválidos, inconsistências lógicas entre variáveis ou padrões anómalos que possam comprometer a fiabilidade das análises subsequentes. A verificação da qualidade dos dados constitui uma fase essencial no processo de preparação de dados, uma vez que modelos de aprendizagem automática são particularmente sensíveis a erros ou incoerências presentes no conjunto de dados (Géron, 2022).
 
 Numa primeira fase, foi analisada a presença de valores iguais a zero em variáveis associadas à experiência profissional dos colaboradores. Foram consideradas as variáveis de experiência profissional `TotalWorkingYears`, `YearsAtCompany`, `YearsInCurrentRole`, `YearsSinceLastPromotion` e `YearsWithCurrManager`. A análise revelou a existência de algumas observações com valor zero nestas variáveis. Em particular, foram identificadas 11 ocorrências em `TotalWorkingYears`, 44 em `YearsAtCompany`, 244 em `YearsInCurrentRole`, 581 em `YearsSinceLastPromotion` e 263 em `YearsWithCurrManager`. Estes valores não representam necessariamente erros nos dados, podendo corresponder a situações plausíveis, como colaboradores recentemente contratados, colaboradores que iniciaram recentemente uma nova função ou casos em que ocorreu uma promoção recente.
 
 De seguida, foi analisada a variável `Age`, com o objetivo de identificar possíveis idades inválidas. Em particular, verificou-se a existência de colaboradores com idade inferior a 18 anos, uma vez que tal situação seria inconsistente com o contexto laboral considerado. Não foram identificadas observações com idade inferior a este limiar, indicando que os valores registados para a idade se encontram dentro de intervalos plausíveis.
 
-Foi também analisada a coerência entre a idade dos colaboradores e a sua experiência profissional total. Para tal, verificaram-se situações em que `TotalWorkingYears` seria superior ao valor registado em `Age`, o que representaria uma inconsistência lógica. Os resultados obtidos indicam que não existem ocorrências deste tipo no dataset, sugerindo que os valores relativos à experiência profissional são compatíveis com a idade dos colaboradores.
+Foi também analisada a coerência entre a idade dos colaboradores e a sua experiência profissional total. Para tal, verificaram-se situações em que `TotalWorkingYears` seria superior ao valor registado em `Age`, o que representaria uma inconsistência lógica. Os resultados obtidos indicam que não existem ocorrências deste tipo no conjunto de dados, sugerindo que os valores relativos à experiência profissional são compatíveis com a idade dos colaboradores.
 
-Adicionalmente, foram avaliadas possíveis inconsistências entre variáveis temporais relacionadas com o percurso profissional dos colaboradores. Em particular, verificou-se se o número de anos na função atual `YearsInCurrentRole`, o número de anos desde a última promoção `YearsSinceLastPromotion` ou o número de anos com o gestor atual `YearsWithCurrManager` excediam o número total de anos na empresa `YearsAtCompany`. Foi igualmente analisada a relação entre estas variáveis e a experiência profissional total `TotalWorkingYears`, dado que o tempo em funções específicas ou na própria organização não pode exceder a experiência profissional total de um colaborador. Não foram identificadas observações que violem estas relações lógicas, indicando consistência global entre as variáveis de experiência presentes no dataset.
+Adicionalmente, foram avaliadas possíveis inconsistências entre variáveis temporais relacionadas com o percurso profissional dos colaboradores. Em particular, verificou-se se o número de anos na função atual `YearsInCurrentRole`, o número de anos desde a última promoção `YearsSinceLastPromotion` ou o número de anos com o gestor atual `YearsWithCurrManager` excediam o número total de anos na empresa `YearsAtCompany`. Foi igualmente analisada a relação entre estas variáveis e a experiência profissional total `TotalWorkingYears`, dado que o tempo em funções específicas ou na própria organização não pode exceder a experiência profissional total de um colaborador. Não foram identificadas observações que violem estas relações lógicas, indicando consistência global entre as variáveis de experiência presentes no conjunto de dados.
 
-Por fim, foi realizada uma análise descritiva da variável `MonthlyIncome` em função do nível hierárquico `JobLevel`. Esta análise teve como objetivo avaliar a coerência da estrutura salarial presente no dataset. Os resultados mostram uma progressão consistente da remuneração média à medida que aumenta o nível hierárquico. O nível 1 apresenta um rendimento médio mensal de aproximadamente 2786.92, enquanto os níveis superiores apresentam valores progressivamente mais elevados, atingindo cerca de 19191.83 no nível 5. Esta distribuição confirma a existência de uma estrutura salarial coerente com a hierarquia organizacional representada nos dados.
+Por fim, foi realizada uma análise descritiva da variável `MonthlyIncome` em função do nível hierárquico `JobLevel`. Esta análise teve como objetivo avaliar a coerência da estrutura salarial presente no conjunto de dados. Os resultados mostram uma progressão consistente da remuneração média à medida que aumenta o nível hierárquico. O nível 1 apresenta um rendimento médio mensal de aproximadamente 2786.92, enquanto os níveis superiores apresentam valores progressivamente mais elevados, atingindo cerca de 19191.83 no nível 5. Esta distribuição confirma a existência de uma estrutura salarial coerente com a hierarquia organizacional representada nos dados.
 
 Em síntese, a verificação realizada não revelou inconsistências críticas ou valores inválidos que comprometam a análise subsequente. As variáveis temporais apresentam relações lógicas coerentes e a distribuição salarial mostra-se consistente com a estrutura hierárquica da organização. Deste modo, foi possível avançar para a etapa seguinte de preparação dos dados, nomeadamente a transformação e codificação das variáveis categóricas.
 
 ## 3. Engenharia de Atributos (_Feature Engineering_) 
 ### 3.1 Transformação e Codificação das Variáveis Categóricas
 
-No âmbito da fase de preparação dos dados, foi necessário proceder à transformação das variáveis categóricas presentes no dataset para representações numéricas. Esta transformação é essencial no contexto da modelação preditiva, uma vez que a maioria dos algoritmos de aprendizagem automática opera exclusivamente sobre variáveis quantitativas e não consegue processar diretamente valores de natureza textual (Géron, 2022).
+No âmbito da fase de preparação dos dados, foi necessário proceder à transformação das variáveis categóricas presentes no conjunto de dados para representações numéricas. Esta transformação é essencial no contexto da modelação preditiva, uma vez que a maioria dos algoritmos de aprendizagem automática opera exclusivamente sobre variáveis quantitativas e não consegue processar diretamente valores de natureza textual (Géron, 2022).
 
-A estratégia adotada teve em consideração a natureza das variáveis categóricas existentes no dataset, distinguindo entre variáveis binárias e variáveis nominais com múltiplas categorias.
+A estratégia adotada teve em consideração a natureza das variáveis categóricas existentes no conjunto de dados, distinguindo entre variáveis binárias e variáveis nominais com múltiplas categorias.
 
 No caso das variáveis categóricas binárias, foi aplicada uma codificação numérica simples baseada em variáveis indicadoras. Este procedimento consistiu na conversão das categorias de texto em valores binários (0 e 1), permitindo representar cada variável de forma compacta e interpretável. Foram transformadas três variáveis deste tipo: `Attrition`, `OverTime` e `Gender`.
 
@@ -217,11 +217,11 @@ Para as restantes variáveis categóricas, que apresentam mais de duas categoria
 
 A aplicação desta técnica foi realizada nas variáveis `BusinessTravel`, `Department`, `EducationField`, `JobRole` e `MaritalStatus`. Neste processo, cada categoria passou a ser representada por uma nova variável indicadora que assume o valor 1 quando a observação pertence à categoria correspondente e 0 caso contrário.
 
-Por exemplo, a variável `MaritalStatus`, originalmente composta pelas categorias `Single`, `Married` e `Divorced`, foi transformada em três variáveis binárias distintas que indicam explicitamente se o colaborador pertence a cada uma destas categorias. De forma análoga, as restantes variáveis categóricas foram expandidas em múltiplas variáveis indicadoras, permitindo representar adequadamente as diferentes categorias presentes no dataset.
+Por exemplo, a variável `MaritalStatus`, originalmente composta pelas categorias `Single`, `Married` e `Divorced`, foi transformada em três variáveis binárias distintas que indicam explicitamente se o colaborador pertence a cada uma destas categorias. De forma análoga, as restantes variáveis categóricas foram expandidas em múltiplas variáveis indicadoras, permitindo representar adequadamente as diferentes categorias presentes no conjunto de dados.
 
 A utilização do _One-Hot Encoding_ evita a introdução de relações ordinais artificiais entre categorias, assegurando que os modelos de aprendizagem automática tratam cada categoria como uma entidade independente (Géron, 2022).
 
-Como consequência deste processo de codificação, o número total de variáveis do dataset aumentou, uma vez que cada categoria passou a ser representada por uma variável binária própria. Apesar deste aumento na dimensionalidade do espaço de características, esta abordagem permite preservar integralmente a informação contida nas variáveis categóricas e garante que o dataset se encontra preparado para a aplicação de técnicas estatísticas, análise de correlação e algoritmos de aprendizagem automática nas fases subsequentes do projeto.
+Como consequência deste processo de codificação, o número total de variáveis do conjunto de dados aumentou, uma vez que cada categoria passou a ser representada por uma variável binária própria. Apesar deste aumento na dimensionalidade do espaço de características, esta abordagem permite preservar integralmente a informação contida nas variáveis categóricas e garante que o conjunto de dados se encontra preparado para a aplicação de técnicas estatísticas, análise de correlação e algoritmos de aprendizagem automática nas fases subsequentes do projeto.
 
 **Escalonamento**
 
@@ -231,7 +231,7 @@ Em particular, alguns algoritmos (como modelos baseados em árvores de decisão)
  
 ### 3.2 Criação de Novos Atributos 
 
-No âmbito da fase de preparação dos dados, foi realizada uma etapa de engenharia de atributos (_feature engineering_) com o objetivo de enriquecer o espaço de características do dataset. Esta abordagem consiste na criação de novas variáveis derivadas a partir de variáveis já existentes, permitindo representar de forma mais direta determinadas dimensões organizacionais e comportamentais potencialmente associadas ao fenómeno de `Attrition`.
+No âmbito da fase de preparação dos dados, foi realizada uma etapa de engenharia de atributos (_feature engineering_) com o objetivo de enriquecer o espaço de características do conjunto de dados. Esta abordagem consiste na criação de novas variáveis derivadas a partir de variáveis já existentes, permitindo representar de forma mais direta determinadas dimensões organizacionais e comportamentais potencialmente associadas ao fenómeno de `Attrition`.
 
 A criação de atributos derivados constitui uma prática comum em projetos de ciência de dados, uma vez que a transformação e combinação de variáveis existentes pode aumentar a capacidade explicativa dos modelos e facilitar a identificação de padrões relevantes nos dados (Géron, 2022; James et al., 2021).
 
@@ -247,7 +247,7 @@ A operacionalização específica deste rácio foi desenvolvida para este projet
 
 **SatisfactionIndex**
 
-Foi construído um índice composto designado `SatisfactionIndex`, com o objetivo de sintetizar o nível global de satisfação profissional do colaborador. A literatura demonstra que a satisfação no trabalho está negativamente associada à intenção de saída, sendo relevante considerar múltiplas dimensões de satisfação de forma integrada (Tett & Meyer, 1993). Com base neste fundamento, o índice combina as quatro variáveis presentes no dataset que captam estas dimensões: `JobSatisfaction`, `EnvironmentSatisfaction`, `RelationshipSatisfaction` e `WorkLifeBalance`.
+Foi construído um índice composto designado `SatisfactionIndex`, com o objetivo de sintetizar o nível global de satisfação profissional do colaborador. A literatura demonstra que a satisfação no trabalho está negativamente associada à intenção de saída, sendo relevante considerar múltiplas dimensões de satisfação de forma integrada (Tett & Meyer, 1993). Com base neste fundamento, o índice combina as quatro variáveis presentes no conjunto de dados que captam estas dimensões: `JobSatisfaction`, `EnvironmentSatisfaction`, `RelationshipSatisfaction` e `WorkLifeBalance`.
 
 Estas variáveis utilizam uma escala ordinal de quatro níveis, em que valores mais elevados correspondem a níveis superiores de satisfação. A construção do índice baseou-se na contagem da frequência de cada nível de satisfação nas quatro variáveis e na aplicação de regras de decisão que permitem classificar o nível global de satisfação do colaborador. As regras de agregação foram definidas com base na lógica ordinal das variáveis originais.
 
@@ -269,7 +269,7 @@ Por fim, foi criada a variável `IncomePerLevel`, com o objetivo de identificar 
 
 A operacionalização através deste rácio foi desenvolvida como uma aproximação quantitativa à relação entre remuneração e posição hierárquica.
 
-Em síntese, a introdução destas variáveis derivadas permite enriquecer o espaço de características do dataset, captando de forma mais direta dimensões relacionadas com mobilidade profissional, satisfação no trabalho, progressão na carreira e estrutura salarial. Estes indicadores adicionais contribuem para aprofundar a análise exploratória dos dados e poderão reforçar o poder explicativo dos modelos de aprendizagem automática a desenvolver nas fases subsequentes do projeto.
+Em síntese, a introdução destas variáveis derivadas permite enriquecer o espaço de características do conjunto de dados, captando de forma mais direta dimensões relacionadas com mobilidade profissional, satisfação no trabalho, progressão na carreira e estrutura salarial. Estes indicadores adicionais contribuem para aprofundar a análise exploratória dos dados e poderão reforçar o poder explicativo dos modelos de aprendizagem automática a desenvolver nas fases subsequentes do projeto.
 
 ### 3.3 Relação das Novas Variáveis com Variável Alvo
 
@@ -283,13 +283,13 @@ A variável `RatioYearsInRole` apresenta igualmente uma associação negativa mo
 
 Relativamente à variável `IncomePerLevel`, observa-se também uma associação negativa (≈ -0.11), evidenciando que colaboradores com menor rendimento relativo ao nível hierárquico apresentam maior propensão para abandonar a empresa. Este resultado sugere que a perceção de desajuste entre remuneração e responsabilidade poderá influenciar a decisão de saída, reforçando a relevância de políticas salariais ajustadas à estrutura organizacional.
 
-Por outro lado, a variável `CareerStagnation` apresenta uma correlação praticamente nula com a variável alvo (≈ -0.01), não evidenciando qualquer relação estatisticamente relevante com o atrito. Este resultado sugere que a forma como a variável foi definida poderá não capturar adequadamente o fenómeno de estagnação na carreira, ou que este fator, isoladamente, não tem um impacto significativo na decisão de abandono no contexto do dataset analisado.
+Por outro lado, a variável `CareerStagnation` apresenta uma correlação praticamente nula com a variável alvo (≈ -0.01), não evidenciando qualquer relação estatisticamente relevante com o atrito. Este resultado sugere que a forma como a variável foi definida poderá não capturar adequadamente o fenómeno de estagnação na carreira, ou que este fator, isoladamente, não tem um impacto significativo na decisão de abandono no contexto do conjunto de dados analisado.
 
 De forma geral, as novas variáveis, em particular `SatisfactionIndex`, `RatioYearsInRole` e `IncomePerLevel`, demonstram capacidade para captar dimensões relevantes do comportamento organizacional, contribuindo para enriquecer o conjunto de atributos disponíveis. Estas variáveis apresentam potencial para melhorar a capacidade preditiva dos modelos a desenvolver nas fases subsequentes do projeto.
 
 ### 3.4 Seleção de Atributos - Multicolinearidade
 
-Com base na análise da matriz de correlação, foram identificadas situações de multicolinearidade entre variáveis do dataset. A correlação muito elevada entre `JobLevel` e `MonthlyIncome` (≈ 0.95) indica redundância informacional entre progressão hierárquica e remuneração, uma vez que ambas medem essencialmente a mesma dimensão organizacional. De forma análoga, as variáveis `YearsAtCompany`, `YearsInCurrentRole` e `YearsWithCurrManager` apresentam correlações elevadas entre si (≈ 0.76–0.77), refletindo sobreposição na medição de estabilidade e permanência na organização.
+Com base na análise da matriz de correlação, foram identificadas situações de multicolinearidade entre variáveis do conjunto de dados. A correlação muito elevada entre `JobLevel` e `MonthlyIncome` (≈ 0.95) indica redundância informacional entre progressão hierárquica e remuneração, uma vez que ambas medem essencialmente a mesma dimensão organizacional. De forma análoga, as variáveis `YearsAtCompany`, `YearsInCurrentRole` e `YearsWithCurrManager` apresentam correlações elevadas entre si (≈ 0.76–0.77), refletindo sobreposição na medição de estabilidade e permanência na organização.
 
 Adicionalmente, as variáveis `JobSatisfaction`, `EnvironmentSatisfaction`, `RelationshipSatisfaction` e `WorkLifeBalance` foram consolidadas num único índice composto (`SatisfactionIndex`) durante a fase de engenharia de atributos, pelo que a sua manutenção individual introduziria redundância direta com a variável derivada.
 
@@ -297,7 +297,7 @@ Estas situações foram documentadas e serão tidas em consideração na fase de
 
 ## 4. Dicionário de Dados Final (Pós-Processamento) 
 
-Para consolidar todas as modificações realizadas durante a fase de preparação de dados, apresentamos o Dicionário de Dados atualizado. Este documento funciona como o mapa oficial do nosso dataset modificado, refletindo a transição de dados brutos para um formato otimizado e pronto para a modelação preditiva.
+Para consolidar todas as modificações realizadas durante a fase de preparação de dados, apresentamos o Dicionário de Dados atualizado. Este documento funciona como o mapa oficial do nosso conjunto de dados modificado, refletindo a transição de dados brutos para um formato otimizado e pronto para a modelação preditiva.
 
 O conjunto de dados original foi expandido e enriquecido através de três abordagens metodológicas distintas:
 
@@ -346,7 +346,7 @@ A tabela seguinte detalha o perfil estatístico, o domínio matemático e a defi
  
 ## 5. Conclusões da Fase de Exploração 
 
-A análise exploratória realizada nesta segunda fase do projeto permitiu aprofundar substancialmente o conhecimento sobre o dataset e sobre os fatores associados à rotatividade de colaboradores, indo muito além da caracterização descritiva efetuada na _Milestone 1_.
+A análise exploratória realizada nesta segunda fase do projeto permitiu aprofundar substancialmente o conhecimento sobre o conjunto de dados e sobre os fatores associados à rotatividade de colaboradores, indo muito além da caracterização descritiva efetuada na _Milestone 1_.
 
 Em primeiro lugar, a análise da variável alvo revelou um desequilíbrio significativo entre classes, com apenas 16.1% dos colaboradores a abandonar a organização. Este dado, que não havia sido explorado em detalhe anteriormente, tem implicações diretas na estratégia de modelação a adotar, exigindo a utilização de métricas adequadas e eventuais técnicas de equilíbrio de classes para garantir que os modelos consigam identificar eficazmente os casos de saída.
 
@@ -356,16 +356,16 @@ Por outro lado, variáveis como `PerformanceRating`, `HourlyRate` e `PercentSala
 
 A matriz de correlação evidenciou ainda situações de multicolinearidade entre variáveis, nomeadamente entre `JobLevel` e `MonthlyIncome` e entre as variáveis de antiguidade na organização. Estas relações deverão ser consideradas na fase de seleção de atributos para evitar redundância informacional e instabilidade nos modelos.
 
-No plano da qualidade dos dados, a verificação realizada confirmou a ausência de valores em falta, de idades inválidas e de inconsistências lógicas entre variáveis temporais. A estrutura salarial revelou-se coerente com a hierarquia organizacional e os outliers identificados pelo método IQR foram considerados observações legítimas, correspondendo à variabilidade natural da população representada no dataset. Esta robustez dos dados constitui uma vantagem importante para a fase de modelação, dispensando intervenções artificiais que poderiam introduzir enviesamento.
+No plano da qualidade dos dados, a verificação realizada confirmou a ausência de valores em falta, de idades inválidas e de inconsistências lógicas entre variáveis temporais. A estrutura salarial revelou-se coerente com a hierarquia organizacional e os outliers identificados pelo método IQR foram considerados observações legítimas, correspondendo à variabilidade natural da população representada no conjunto de dados. Esta robustez dos dados constitui uma vantagem importante para a fase de modelação, dispensando intervenções artificiais que poderiam introduzir enviesamento.
 
-A engenharia de atributos permitiu enriquecer o espaço de características com quatro novas variáveis derivadas. Destas, `SatisfactionIndex`, `RatioYearsInRole` e `IncomePerLevel` demonstraram capacidade discriminativa relevante em relação à variável alvo, captando dimensões que as variáveis originais não representavam de forma direta. A variável `CareerStagnation` não evidenciou associação significativa com o (`Attrition`) na forma como foi definida; ainda assim, optou-se por mantê-la no dataset processado, uma vez que uma variável pode não mostrar relação direta com a variável alvo em análise bivariada mas ainda assim contribuir em combinação com outras variáveis dentro de um modelo (Géron, 2022). A sua relevância preditiva será avaliada pela importância que os modelos lhe atribuírem durante o treino na _Milestone 3_.
+A engenharia de atributos permitiu enriquecer o espaço de características com quatro novas variáveis derivadas. Destas, `SatisfactionIndex`, `RatioYearsInRole` e `IncomePerLevel` demonstraram capacidade discriminativa relevante em relação à variável alvo, captando dimensões que as variáveis originais não representavam de forma direta. A variável `CareerStagnation` não evidenciou associação significativa com o (`Attrition`) na forma como foi definida; ainda assim, optou-se por mantê-la no conjunto de dados processado, uma vez que uma variável pode não mostrar relação direta com a variável alvo em análise bivariada mas ainda assim contribuir em combinação com outras variáveis dentro de um modelo (Géron, 2022). A sua relevância preditiva será avaliada pela importância que os modelos lhe atribuírem durante o treino na _Milestone 3_.
 
-Em síntese, o dataset encontra-se limpo, consistente e enriquecido com atributos derivados que captam dimensões organizacionais relevantes. A análise estatística identificou um conjunto robusto de preditores com associação significativa ao fenómeno de rotatividade, fornecendo uma base sólida para a construção de modelos preditivos. Considera-se, portanto, que os dados são suficientes e adequados para avançar para a fase de modelação na _Milestone 3_, devendo esta fase contemplar estratégias específicas para lidar com o desequilíbrio de classes, a multicolinearidade identificada e o escalonamento das variáveis de acordo com os requisitos de cada algoritmo.
+Em síntese, o conjunto de dados encontra-se limpo, consistente e enriquecido com atributos derivados que captam dimensões organizacionais relevantes. A análise estatística identificou um conjunto robusto de preditores com associação significativa ao fenómeno de rotatividade, fornecendo uma base sólida para a construção de modelos preditivos. Considera-se, portanto, que os dados são suficientes e adequados para avançar para a fase de modelação na _Milestone 3_, devendo esta fase contemplar estratégias específicas para lidar com o desequilíbrio de classes, a multicolinearidade identificada e o escalonamento das variáveis de acordo com os requisitos de cada algoritmo.
 
  ## 6. Metodologia de Gestão (PBL) 
 O projeto segue uma abordagem baseada no modelo CRISP-DM (_Cross-Industry Standard Process for Data Mining_), que estrutura o desenvolvimento em seis fases principais: compreensão do problema, compreensão dos dados, preparação dos dados, modelação, avaliação e implementação.
 
-Na presente fase, _Milestone 2_ (Exploração dos Dados), o foco incidiu essencialmente nas etapas de _Data Understanding_ e _Data Preparation_, com o objetivo de analisar a qualidade dos dados, identificar padrões relevantes e preparar o dataset para fases posteriores de modelação.
+Na presente fase, _Milestone 2_ (Exploração dos Dados), o foco incidiu essencialmente nas etapas de _Data Understanding_ e _Data Preparation_, com o objetivo de analisar a qualidade dos dados, identificar padrões relevantes e preparar o conjunto de dados para fases posteriores de modelação.
 
 Embora o processo siga uma lógica sequencial, manteve-se uma abordagem iterativa, permitindo revisitar etapas anteriores sempre que necessário, nomeadamente na validação de variáveis e interpretação de resultados.
 
