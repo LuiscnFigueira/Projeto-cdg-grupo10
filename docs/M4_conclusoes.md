@@ -10,7 +10,13 @@ O primeiro objetivo do projeto consistia em desenvolver um modelo de classifica�
 #### Interpretação dos Resultados
 O modelo final selecionado foi a Regressão Logística com _pipeline_ `MaxAbsScaler` + SMOTE + `StratifiedKFold` (k=15) e threshold ótimo de 0,52, obtido após um processo de otimização em cinco etapas sequenciais: pesquisa do melhor _split_ (85/15), do melhor normalizador (`MaxAbsScaler`), da melhor técnica de _resampling_ (SMOTE), de hiperparâmetros via `GridSearchCV` e do threshold de decisão. Foram testados 18 algoritmos distintos antes de convergir para esta solução, cobrindo modelos de ensemble, lineares, probabilísticos e redes neuronais, em linha com a recomendação do CRISP-DM de explorar múltiplos algoritmos antes de selecionar o modelo final (Chapman et al., 2000).
 
-[Por acabar]
+Os resultados obtidos no conjunto de teste são os seguintes:
+
+| Split | Normalizador | Resampling | Threshold | F1 | Precision | Recall | AUC-ROC |
+|---|---|---|---|---|---|---|---|
+| 65/35 | StandardScaler | SVMSMOTE | 0,79 | 0,5147 | 0,6604 | 0,4217 | 0,8017 |
+
+A meta de F1-Score ≥ 80% não foi alcançada, reflexo das limitações estruturais do dataset: 1470 observações, desequilíbrio de classes de ~16% e ausência de variáveis de engajamento direto. Ainda assim, o AUC-ROC de 80,17% confirma uma boa capacidade discriminativa global, e a Precision de 66,04% garante que, dos colaboradores sinalizados como em risco, dois em cada três correspondem a casos reais de atrito. O threshold de 0,79 foi selecionado para maximizar o F1-Score na classe minoritária, equilibrando a identificação de casos reais de saída com a contenção de falsos positivos (Géron, 2022; James et al., 2021).Você disse: agora faz #### Índice de Risco de Attrition
 
 #### Índice de Risco de `Attrition`
 * A partir das probabilidades previstas pelo modelo, foi construído um índice de risco.
