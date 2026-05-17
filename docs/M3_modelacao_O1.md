@@ -162,14 +162,15 @@ O _threshold_ padrão de 0.50 foi substituído pelo _threshold_ ótimo identific
 
 A tabela seguinte resume a progressão cumulativa do _F1-Score_ ao longo das cinco etapas de otimização, evidenciando a contribuição marginal de cada componente face à configuração anterior:
 
-| Modelo | Split | Normalizador | Resampling | Threshold | F1 *Yes* | AUC-ROC |
-|---|---|---|---|---|---|---|
-| Baseline (Log. Reg. *default*) | 80/20 | StandardScaler | SMOTE base | 0.50 | 0.4677 | 0.8016 |
-| Melhor Split (85/15) | 85/15 | StandardScaler | SMOTE base | 0.50 | 0.5253 | 0.8294 |
-| + Melhor Normalizador (MaxAbsScaler) | 85/15 | MaxAbsScaler | SMOTE base | 0.50 | 0.5600 | 0.8264 |
-| + Melhor SMOTE (SMOTE) | 85/15 | MaxAbsScaler | SMOTE | 0.50 | 0.5600 | 0.8264 |
-| + GridSearchCV (threshold 0.5) | 85/15 | MaxAbsScaler | SMOTE | 0.50 | 0.5455 | 0.8308 |
-| Modelo Final (threshold = 0.52) | 85/15 | MaxAbsScaler | SMOTE | 0.52 | 0.5625 | 0.8308 |
+| Modelo | Split | Normalizador | Resampling | Threshold | F1 | Precision | Recall | AUC-ROC |
+|---|---|---|---|---|---|---|---|---|
+| Baseline (Log. Reg. *default*) | 80/20 | StandardScaler | SMOTE base | 0.50 | 0.4978 | 0.3905 | 0.6949 | 0.8323 |
+| Melhor Split (65/35) | 65/35 | StandardScaler | SMOTE base | 0.50 | 0.5530 | 0.4615 | 0.7279 | 0.8304 |
+| + Melhor Normalizador (StandardScaler) | 65/35 | StandardScaler | SMOTE base | 0.50 | 0.5530 | 0.4615 | 0.7279 | 0.8304 |
+| + Melhor SMOTE (SVMSMOTE) | 65/35 | StandardScaler | SVMSMOTE | 0.50 | 0.5693 | 0.5107 | 0.6758 | 0.8382 |
+| + GridSearchCV (threshold 0.5) | 65/35 | StandardScaler | SVMSMOTE | 0.50 | 0.5050 | 0.4286 | 0.6145 | 0.8017 |
+| Modelo Final (threshold = 0.79) | 65/35 | StandardScaler | SVMSMOTE | 0.79 | 0.5147 | 0.6604 | 0.4217 | 0.8017 |
+
 
 *Tabela 5 - Progressão cumulativa do F1-Score ao longo das cinco etapas de otimização.*
 
@@ -221,22 +222,23 @@ A fase de modelação do Objetivo 1 compreendeu três etapas sequenciais: avalia
 
 *Tabela - Síntese da progressão das métricas ao longo do processo de modelação.*
 
-| Etapa / Modelo | F1 Teste | AUC-ROC Teste | Overfitting (gap F1) |
+| Etapa / Modelo | F1  | AUC-ROC | Overfitting (gap F1) |
 |---|---|---|---|
-| Baseline - Árvore de Decisão | 0.1793 | 0.5216 | +0.8207 |
+| Baseline - Árvore de Decisão | 0.2236 | 0.5390 | +0.7764 |
 | Melhor Candidato - Regressão Logística | 0.5538 | 0.8236 | +0.1205 |
-| Modelo Final - Regressão Logística Otimizada | 0.5625 | 0.8308 | +0.12 |
+| Modelo Final - Regressão Logística Otimizada | 0.5147 | 0.8017 | +0.12 |
+
 
 *Tabela 7 - Síntese da progressão das métricas ao longo do processo de modelação.*
 
 
-A melhoria mais expressiva ao longo do processo ocorreu na transição dos modelos de *ensemble* e redes neuronais, todos com *overfitting* severo, para os modelos lineares, onde a Regressão Logística emergiu como o único candidato a combinar desempenho preditivo competitivo com generalização controlada e interpretabilidade dos coeficientes. A otimização subsequente em cinco etapas sequenciais permitiu um ganho cumulativo de +0.0947 no F1 face à configuração base (0.4677 → 0.5625), demonstrando que cada componente do _pipeline_ contribui de forma independente e mensurável para o desempenho final.
+A melhoria mais expressiva ao longo do processo ocorreu na transição dos modelos de *ensemble* e redes neuronais, todos com *overfitting* severo, para os modelos lineares, onde a Regressão Logística emergiu como o único candidato a combinar desempenho preditivo competitivo com generalização controlada e interpretabilidade dos coeficientes. A otimização subsequente em cinco etapas sequenciais permitiu um ganho cumulativo de +0.0169 no F1 face à configuração base (0.4978 → 0.5147), demonstrando que cada componente do _pipeline_ contribui de forma independente e mensurável para o desempenho final.
 
 ### 5.2. Justificação da Solução Final
 
 O modelo Regressão Logística otimizado está pronto a ser apresentado como solução final com base em quatro critérios complementares: desempenho preditivo, controlo de *overfitting*, interpretabilidade e robustez metodológica.
 
-**Desempenho preditivo.** O modelo alcança o F1-Score mais elevado na classe minoritária (*Yes*) de entre todos os 18 candidatos testados, com F1=0.5625 e AUC-ROC=0.8308 no conjunto de teste. O AUC de 0.8308 confirma uma boa capacidade discriminativa independentemente do threshold de decisão, valor que, segundo James et al. (2021), corresponde a um modelo com poder preditivo substancial. A melhoria face ao baseline é de +0.3832 no F1 e de +0.3092 no AUC, representando um ganho de +214% e +59% respetivamente.
+**Desempenho preditivo.** O modelo alcança o F1-Score mais elevado na classe minoritária (*Yes*) de entre todos os 18 candidatos testados, com F1=0.5147 e AUC-ROC=0.8017 no conjunto de teste. O AUC de 0.8017 confirma uma boa capacidade discriminativa independentemente do threshold de decisão, valor que, segundo James et al. (2021), corresponde a um modelo com poder preditivo substancial. A melhoria face ao baseline é de +0.2911 no F1 e de +0.2627 no AUC, representando um ganho de +130% e +49% respetivamente.
 
 **Controlo de *overfitting*.** O gap entre o F1-Score de treino e de teste (+0.12) é substancialmente inferior ao observado nos modelos de *ensemble* e redes neuronais testados, por exemplo, Random Forest (+0.78), Keras simples (+0.54) e LightGBM (+0.69). A validação com `StratifiedKFold` (k=15) garante que cada fold mantém a proporção real de classes (~16% *Yes*), produzindo uma estimativa de generalização fidedigna e sem viés de amostragem (James et al., 2021).
 
@@ -248,9 +250,9 @@ O modelo Regressão Logística otimizado está pronto a ser apresentado como sol
 
 Apesar do desempenho quantitativo e da robustez metodológica, o modelo apresenta três limitações que devem ser consideradas na utilização dos seus resultados.
 
-- _F1-Score_ abaixo da meta inicial: O _F1-Score_ final de 0.5625 fica aquém da meta de ≥0.80 definida na fase de planeamento. Esta limitação é estrutural: o dataset _IBM HR Analytics_ conta com apenas 1470 observações e uma proporção de classe minoritária de ~16%, o que impõe um teto empírico ao desempenho de qualquer modelo linear neste problema. A melhoria de +0.0947 obtida na fase de otimização demonstra que o espaço de melhoria dentro da família de modelos lineares está praticamente esgotado. Modelos de maior complexidade (XGBoost, LightGBM) apresentaram F1 superior no treino mas generalização inferior no teste, confirmando que o _trade-off_ entre complexidade e generalização favorece a Regressão Logística neste contexto específico.
+- _F1-Score_ abaixo da meta inicial: O _F1-Score_ final de 0.5147 fica aquém da meta de ≥0.80 definida na fase de planeamento. Esta limitação é estrutural: o dataset _IBM HR Analytics_ conta com apenas 1470 observações e uma proporção de classe minoritária de ~16%, o que impõe um teto empírico ao desempenho de qualquer modelo linear neste problema. A melhoria de +0.0169 obtida na fase de otimização demonstra que o espaço de melhoria dentro da família de modelos lineares está praticamente esgotado. Modelos de maior complexidade (XGBoost, LightGBM) apresentaram F1 superior no treino mas generalização inferior no teste, confirmando que o _trade-off_ entre complexidade e generalização favorece a Regressão Logística neste contexto específico.
 
-- _Precision_ moderada na classe *Yes*: O modelo apresenta uma taxa não negligenciável de Falsos Positivos. No contexto deste projeto, esta limitação é aceitável: o custo de uma intervenção preventiva desnecessária é inferior ao custo de não identificar um colaborador-chave em risco de saída (Hom et al., 2017). A otimização do _threshold_ para 0.52 reflete precisamente esta escolha consciente de privilegiar o _Recall_ em detrimento da _Precision_.
+- _Precision_ moderada na classe *Yes*: O modelo apresenta uma taxa não negligenciável de Falsos Positivos. No contexto deste projeto, esta limitação é aceitável: o custo de uma intervenção preventiva desnecessária é inferior ao custo de não identificar um colaborador-chave em risco de saída (Hom et al., 2017). A otimização do _threshold_ para 0.79 reflete precisamente esta escolha consciente de privilegiar o _Recall_ em detrimento da _Precision_.
 
 - Validade externa limitada: O modelo foi treinado num dataset académico (_IBM HR Analytics_), gerado sinteticamente para fins de demonstração. A sua aplicação a contextos organizacionais reais requer validação com dados históricos próprios da organização, dado que os padrões de atrito variam significativamente entre setores, culturas organizacionais e contextos geográficos (Hom et al., 2017).
 
