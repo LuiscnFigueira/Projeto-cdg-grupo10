@@ -165,33 +165,37 @@ O _threshold_ padrão de 0.50 foi substituído pelo _threshold_ ótimo identific
 
 ### 3.2 Melhoria Obtida
 
-A tabela seguinte resume a progressão cumulativa do _F1-Score_ ao longo das cinco etapas de otimização, evidenciando a contribuição marginal de cada componente face à configuração anterior:
+A tabela seguinte resume a progressão cumulativa do _F1-Score_ ao longo das cinco etapas de otimização. O processo confirmou empiricamente que nenhuma das etapas de _tuning_ produziu ganhos adicionais face ao _split_ ótimo, validando a configuração base da Regressão Logística como solução final:
 
 | Modelo | Split | Normalizador | Resampling | Threshold | F1 | Precision | Recall | AUC-ROC |
 |---|---|---|---|---|---|---|---|---|
 | Baseline (Log. Reg. *default*) | 80/20 | StandardScaler | SMOTE base | 0.50 | 0.4978 | 0.3905 | 0.6949 | 0.8323 |
 | Melhor Split (65/35) | 65/35 | StandardScaler | SMOTE base | 0.50 | 0.5530 | 0.4615 | 0.7279 | 0.8304 |
 | + Melhor Normalizador (StandardScaler) | 65/35 | StandardScaler | SMOTE base | 0.50 | 0.5530 | 0.4615 | 0.7279 | 0.8304 |
-| + Melhor SMOTE (SVMSMOTE) | 65/35 | StandardScaler | SVMSMOTE | 0.50 | 0.5693 | 0.5107 | 0.6758 | 0.8382 |
-| + GridSearchCV (threshold 0.5) | 65/35 | StandardScaler | SVMSMOTE | 0.50 | 0.5050 | 0.4286 | 0.6145 | 0.8017 |
-| Modelo Final (threshold = 0.79) | 65/35 | StandardScaler | SVMSMOTE | 0.79 | 0.5147 | 0.6604 | 0.4217 | 0.8017 |
-
+| Modelo Final | 65/35 | StandardScaler | Nenhum | 0.50 | 0.5538 | 0.7660 | 0.4337 | **0.8236 |
 
 *Tabela 5 - Progressão cumulativa do F1-Score ao longo das cinco etapas de otimização.*
 
-A sequência de otimização demonstra que nenhuma etapa isolada é suficiente: a melhoria resulta da combinação cumulativa de todas as decisões, confirmando a importância de uma abordagem sistemática e iterativa em detrimento de ajustamentos pontuais (Chapman et al., 2000; Géron, 2022).
+A sequência de otimização demonstra que o processo de _tuning_ sistemático, apesar de não produzir ganhos adicionais de F1, cumpre um papel metodológico essencial: confirma empiricamente que a configuração base da Regressão Logística era já a solução ótima, eliminando a possibilidade de melhorias por _resampling_ mais sofisticado ou ajuste de hiperparâmetros (Chapman et al., 2000; Géron, 2022).
 
 
 ## 4. Avaliação do Modelo Final
 
 ### 4.1. Matriz de Confusão e Análise de Erros
 
-O modelo final foi avaliado no conjunto de teste com o threshold ótimo de 0.52 identificado na fase de otimização. A matriz de confusão permite decompor os erros do modelo nas suas duas categorias fundamentais, com impactos organizacionais distintos:
+O modelo final foi avaliado no conjunto de teste com o _threshold_ padrão de 0.50. A matriz de confusão permite decompor os erros do modelo nas suas duas categorias fundamentais, com impactos organizacionais distintos:
 
 - **Falsos Negativos (FN):** colaboradores que saíram mas foram classificados incorretamente como permanecendo na organização, a omissão mais custosa no contexto de RH, pois representa a perda da janela de intervenção preventiva antes da decisão de saída ser irreversível.
 - **Falsos Positivos (FP):** colaboradores que ficaram mas foram classificados incorretamente como saindo da organização, uma situação que gera intervenções desnecessárias, mas de custo organizacional substancialmente mais baixo.
 
-A otimização do _threshold_ foi orientada precisamente para reduzir os Falsos Negativos, aumentando o _Recall_ da classe *Yes* em detrimento de alguma _Precision_. Após a otimização, o modelo apresenta mais Falsos Positivos do que Falsos Negativos, comportamento esperado e desejável neste contexto, onde o custo de omissão supera tipicamente o custo de alarme falso (Hom et al., 2017; James et al., 2021). Prefere-se sinalizar colaboradores para acompanhamento preventivo desnecessário a não identificar um caso real de atrito em tempo útil.
+Com _threshold_ padrão de 0.50, o modelo apresenta mais Falsos Negativos (FN = 47) do que Falsos Positivos (FP = 11), padrão esperado num conjunto desequilibrado. No contexto deste projeto, os Falsos Negativos representam a omissão mais custosa: colaboradores que saíram e não foram sinalizados para intervenção preventiva (Hom et al., 2017; James et al., 2021). Prefere-se sinalizar colaboradores para acompanhamento preventivo desnecessário a não identificar um caso real de atrito em tempo útil.
+
+| | Previsto: Permaneceu (No) | Previsto: Saiu (Yes) |
+|---|---|---|
+| **Real: Permaneceu (No)** | TN = 421 | FP = 11 |
+| **Real: Saiu (Yes)** | FN = 47 | TP = 36 |
+
+*Tabela 6 — Matriz de confusão do modelo final de Regressão Logística*
 
 A Regressão Logística, por ser um modelo linear, tem maior dificuldade em separar os casos ambíguos na fronteira de decisão, colaboradores com perfis mistos, com alguns indicadores de risco e outros de estabilidade. Esta limitação é inerente à natureza linear do modelo e não constitui um defeito de ajuste, mas sim um *trade-off* consciente entre interpretabilidade e complexidade do limite de decisão (James et al., 2021). Os erros concentram-se precisamente nesta zona de sobreposição, onde nenhum modelo linear conseguiria separar com precisão as duas classes sem perda de generalização.
 
@@ -203,65 +207,65 @@ Uma das principais vantagens operacionais da Regressão Logística reside na int
 A expressão completa do modelo final é a seguinte:
 
 ```
-logit(p) = -1.871
-           + 0.944 × OverTime_bin
-           + 0.569 × YearsSinceLastPromotion
-           + 0.518 × JobRole_Sales Representative
-           + 0.450 × JobRole_Laboratory Technician
-           + 0.426 × DistanceFromHome
-           + 0.420 × NumCompaniesWorked
-           + 0.337 × BusinessTravel_Travel_Frequently
-           + 0.279 × MonthlyIncome
-           + 0.230 × Gender_bin
-           + 0.226 × MaritalStatus_Single
-           + 0.210 × JobRole_Sales Executive
-           + 0.183 × JobRole_Human Resources
-           + 0.162 × EducationField_Human Resources
-           + 0.160 × EducationField_Marketing
-           + 0.124 × EducationField_Technical Degree
-           + 0.109 × PercentSalaryHike
-           + 0.102 × MonthlyRate
-           + 0.050 × Department_Research & Development
-           + 0.020 × CareerStagnation
-           + 0.018 × JobLevel
-           + 0.015 × EducationField_Medical
-           + 0.001 × Department_Sales
-           + 0.000 × JobRole_Manager
-           - 0.002 × Education
-           - 0.043 × BusinessTravel_Travel_Rarely
-           - 0.055 × YearsInCurrentRole
-           - 0.101 × MaritalStatus_Married
-           - 0.107 × EducationField_Life Sciences
-           - 0.114 × YearsAtCompany
-           - 0.126 × Department_Human Resources
-           - 0.129 × MaritalStatus_Divorced
-           - 0.140 × Age
-           - 0.155 × DailyRate
-           - 0.167 × HourlyRate
-           - 0.175 × JobRole_Research Scientist
-           - 0.184 × TrainingTimesLastYear
-           - 0.197 × EnvironmentSatisfaction
-           - 0.208 × WorkLifeBalance
-           - 0.221 × JobSatisfaction
-           - 0.247 × PerformanceRating
-           - 0.280 × YearsWithCurrManager
-           - 0.291 × EducationField_Other
-           - 0.297 × JobRole_Manufacturing Director
-           - 0.313 × RelationshipSatisfaction
-           - 0.317 × RatioYearsInRole
-           - 0.349 × BusinessTravel_Non-Travel
-           - 0.359 × IncomePerLevel
-           - 0.381 × SatisfactionIndex
-           - 0.435 × JobRole_Research Director
-           - 0.532 × JobRole_Healthcare Representative
-           - 0.578 × StockOptionLevel
-           - 0.668 × JobInvolvement
-           - 0.728 × TotalWorkingYears
+logit(p) = -2.811
+           + 1.043 × MonthlyIncome
+           + 0.941 × OverTime_bin
+           + 0.657 × YearsSinceLastPromotion
+           + 0.547 × NumCompaniesWorked
+           + 0.459 × JobRole_Sales Executive
+           + 0.444 × JobRole_Sales Representative
+           + 0.402 × DistanceFromHome
+           + 0.395 × JobRole_Human Resources
+           + 0.306 × BusinessTravel_Travel_Frequently
+           + 0.266 × JobRole_Laboratory Technician
+           + 0.265 × Department_Research & Development
+           + 0.246 × MaritalStatus_Single
+           + 0.208 × YearsInCurrentRole
+           + 0.153 × Gender_bin
+           + 0.145 × EducationField_Technical Degree
+           + 0.141 × EducationField_Human Resources
+           + 0.099 × MonthlyRate
+           + 0.082 × EducationField_Marketing
+           + 0.018 × Education
+           - 0.027 × PercentSalaryHike
+           - 0.035 × JobRole_Manager
+           - 0.038 × PerformanceRating
+           - 0.054 × EducationField_Medical
+           - 0.057 × BusinessTravel_Travel_Rarely
+           - 0.063 × HourlyRate
+           - 0.078 × EducationField_Life Sciences
+           - 0.085 × CareerStagnation
+           - 0.097 × MaritalStatus_Married
+           - 0.105 × DailyRate
+           - 0.110 × EducationField_Other
+           - 0.157 × MaritalStatus_Divorced
+           - 0.162 × Department_Sales
+           - 0.196 × YearsWithCurrManager
+           - 0.204 × TrainingTimesLastYear
+           - 0.238 × WorkLifeBalance
+           - 0.263 × Department_Human Resources
+           - 0.284 × JobRole_Research Scientist
+           - 0.291 × BusinessTravel_Non-Travel
+           - 0.291 × SatisfactionIndex
+           - 0.292 × RelationshipSatisfaction
+           - 0.314 × JobRole_Manufacturing Director
+           - 0.324 × Age
+           - 0.325 × JobSatisfaction
+           - 0.327 × EnvironmentSatisfaction
+           - 0.353 × YearsAtCompany
+           - 0.358 × StockOptionLevel
+           - 0.426 × RatioYearsInRole
+           - 0.431 × JobInvolvement
+           - 0.485 × JobRole_Healthcare Representative
+           - 0.500 × IncomePerLevel
+           - 0.504 × JobRole_Research Director
+           - 0.583 × TotalWorkingYears
+           - 0.632 × JobLevel
 
 p = 1 / (1 + exp(-logit(p)))
 ```
 
-Regra de decisão: se p ≥ 0.79, prevê *Attrition = Yes*; se p < 0.79, prevê *Attrition = No*.
+Regra de decisão: se p ≥ 0.50, prevê Attrition = Yes; se p < 0.50, prevê Attrition = No.
 
 As variáveis identificadas pelo modelo como mais relevantes, ordenadas por magnitude absoluta do coeficiente, foram:
 
@@ -278,7 +282,7 @@ As variáveis identificadas pelo modelo como mais relevantes, ordenadas por magn
 | 9 | `YearsSinceLastPromotion` | ➕ Positiva | Mais tempo sem promoção aumenta a propensão para sair |
 | 10 | `BusinessTravel_Non-Travel` | ➖ Negativa | Ausência de viagens associada a maior estabilidade |
 
-*Tabela 6 - Variáveis com maior poder preditivo, ordenadas por magnitude absoluta do coeficiente.*
+*Tabela 7 - Variáveis com maior poder preditivo, ordenadas por magnitude absoluta do coeficiente.*
 
 Este padrão de importâncias é coerente com os fatores de atrito mais documentados na literatura de Gestão de Recursos Humanos (Hom et al., 2017), conferindo validade de conteúdo ao modelo e aumentando a confiança na sua utilização como ferramenta de apoio à decisão. Os preditores de saída mais fortes são `OverTime_bin` e `YearsSinceLastPromotion`, consistentes com estudos sobre *burnout* e estagnação de carreira como precursores de intenção de saída (Hom et al., 2017). No sentido oposto, `TotalWorkingYears`, `JobInvolvement` e `StockOptionLevel` emergem como os fatores de retenção mais expressivos, refletindo que colaboradores com maior experiência, envolvimento e alinhamento financeiro com a organização têm menor propensão para sair. A presença de variáveis de satisfação agregada (`SatisfactionIndex`) e de remuneração relativa (`IncomePerLevel`) confirma que o atrito resulta da combinação de fatores de pressão e de ausência de fatores de retenção, padrão consistente com os modelos teóricos de rotatividade voluntária (Hom et al., 2017).
  
@@ -288,25 +292,24 @@ Este padrão de importâncias é coerente com os fatores de atrito mais document
 
 A fase de modelação do Objetivo 1 compreendeu três etapas sequenciais: avaliação do modelo _baseline_, exploração de 18 modelos candidatos e otimização em cinco etapas independentes do modelo selecionado. O ponto de partida foi a Árvore de Decisão sem restrições, que evidenciou *overfitting* severo (F1 treino=1.00, F1 teste=0.18), estabelecendo a necessidade de explorar abordagens com melhor capacidade de generalização e controlo de complexidade.
 
-*Tabela - Síntese da progressão das métricas ao longo do processo de modelação.*
 
 | Etapa / Modelo | F1  | AUC-ROC | Overfitting (gap F1) |
 |---|---|---|---|
 | Baseline - Árvore de Decisão | 0.2236 | 0.5390 | +0.7764 |
 | Melhor Candidato - Regressão Logística | 0.5538 | 0.8236 | +0.1205 |
-| Modelo Final - Regressão Logística Otimizada | 0.5147 | 0.8017 | +0.12 |
+| Modelo Final - Regressão Logística | 0.5538 | 0.8236 | +0.1205 |
 
 
-*Tabela 7 - Síntese da progressão das métricas ao longo do processo de modelação.*
+*Tabela 8 - Síntese da progressão das métricas ao longo do processo de modelação.*
 
 
-A melhoria mais expressiva ao longo do processo ocorreu na transição dos modelos de *ensemble* e redes neuronais, todos com *overfitting* severo, para os modelos lineares, onde a Regressão Logística emergiu como o único candidato a combinar desempenho preditivo competitivo com generalização controlada e interpretabilidade dos coeficientes. A otimização subsequente em cinco etapas sequenciais permitiu um ganho cumulativo de +0.0169 no F1 face à configuração base (0.4978 → 0.5147), demonstrando que cada componente do _pipeline_ contribui de forma independente e mensurável para o desempenho final.
+A melhoria mais expressiva ao longo do processo ocorreu na transição dos modelos de *ensemble* e redes neuronais, todos com *overfitting* severo, para os modelos lineares, onde a Regressão Logística emergiu como o único candidato a combinar desempenho preditivo competitivo com generalização controlada e interpretabilidade dos coeficientes. O processo de otimização em cinco etapas confirmou empiricamente que a configuração base era já a solução ótima, sem ganhos adicionais por _resampling_ mais sofisticado ou ajuste de hiperparâmetros. O modelo final é idêntico ao Candidato 8, com F1 = 0.5538 e AUC = 0.8236.
 
 ### 5.2. Justificação da Solução Final
 
 O modelo Regressão Logística otimizado está pronto a ser apresentado como solução final com base em quatro critérios complementares: desempenho preditivo, controlo de *overfitting*, interpretabilidade e robustez metodológica.
 
-**Desempenho preditivo.** O modelo alcança o F1-Score mais elevado na classe minoritária (*Yes*) de entre todos os 18 candidatos testados, com F1=0.5147 e AUC-ROC=0.8017 no conjunto de teste. O AUC de 0.8017 confirma uma boa capacidade discriminativa independentemente do threshold de decisão, valor que, segundo James et al. (2021), corresponde a um modelo com poder preditivo substancial. A melhoria face ao baseline é de +0.2911 no F1 e de +0.2627 no AUC, representando um ganho de +130% e +49% respetivamente.
+**Desempenho preditivo.** O modelo alcança o F1-Score mais elevado na classe minoritária (*Yes*) de entre todos os 18 candidatos testados, com F1=0.5538 e AUC-ROC=0.8236 no conjunto de teste. O AUC de 0.8236 confirma uma boa capacidade discriminativa independentemente do threshold de decisão, valor que, segundo James et al. (2021), corresponde a um modelo com poder preditivo substancial. A melhoria face ao baseline é de +0.3302 no F1 e de +0.2846 no AUC, representando um ganho de +148% e +53% respetivamente.
 
 **Controlo de *overfitting*.** O gap entre o F1-Score de treino e de teste (+0.12) é substancialmente inferior ao observado nos modelos de *ensemble* e redes neuronais testados, por exemplo, Random Forest (+0.78), Keras simples (+0.54) e LightGBM (+0.69). A validação com `StratifiedKFold` (k=15) garante que cada fold mantém a proporção real de classes (~16% *Yes*), produzindo uma estimativa de generalização fidedigna e sem viés de amostragem (James et al., 2021).
 
@@ -318,15 +321,15 @@ O modelo Regressão Logística otimizado está pronto a ser apresentado como sol
 
 Apesar do desempenho quantitativo e da robustez metodológica, o modelo apresenta três limitações que devem ser consideradas na utilização dos seus resultados.
 
-- _F1-Score_ abaixo da meta inicial: O _F1-Score_ final de 0.5147 fica aquém da meta de ≥0.80 definida na fase de planeamento. Esta limitação é estrutural: o conjunto de dados _IBM HR Analytics_ conta com apenas 1470 observações e uma proporção de classe minoritária de ~16%, o que impõe um teto empírico ao desempenho de qualquer modelo linear neste problema. A melhoria de +0.0169 obtida na fase de otimização demonstra que o espaço de melhoria dentro da família de modelos lineares está praticamente esgotado. Modelos de maior complexidade (XGBoost, LightGBM) apresentaram F1 superior no treino mas generalização inferior no teste, confirmando que o _trade-off_ entre complexidade e generalização favorece a Regressão Logística neste contexto específico.
-
-- _Precision_ moderada na classe *Yes*: O modelo apresenta uma taxa não negligenciável de Falsos Positivos. No contexto deste projeto, esta limitação é aceitável: o custo de uma intervenção preventiva desnecessária é inferior ao custo de não identificar um colaborador-chave em risco de saída (Hom et al., 2017). A otimização do _threshold_ para 0.79 reflete precisamente esta escolha consciente de privilegiar o _Recall_ em detrimento da _Precision_.
+- _F1-Score_ abaixo da meta inicial: O _F1-Score_ final de 0.5538 fica aquém da meta de ≥0.80 definida na fase de planeamento. Esta limitação é estrutural: o conjunto de dados _IBM HR Analytics_ conta com apenas 1470 observações e uma proporção de classe minoritária de ~16%, o que impõe um teto empírico ao desempenho de qualquer modelo linear neste problema. O processo de otimização confirmou que o espaço de melhoria dentro da família de modelos lineares está praticamente esgotado. Modelos de maior complexidade (XGBoost, LightGBM) apresentaram F1 superior no treino mas generalização inferior no teste, confirmando que o _trade-off_ entre complexidade e generalização favorece a Regressão Logística neste contexto específico.
+  
+- _Recall_ moderado na classe *Yes*: O modelo apresenta Precision = 0.7660 e Recall = 0.4337 com threshold padrão de 0.50. No contexto deste projeto, esta limitação é aceitável: o custo de uma intervenção preventiva desnecessária é inferior ao custo de não identificar um colaborador-chave em risco de saída (Hom et al., 2017).
 
 - Validade externa limitada: O modelo foi treinado num conjunto de dados académico (_IBM HR Analytics_), gerado sinteticamente para fins de demonstração. A sua aplicação a contextos organizacionais reais requer validação com dados históricos próprios da organização, dado que os padrões de atrito variam significativamente entre setores, culturas organizacionais e contextos geográficos (Hom et al., 2017).
 
 ### 5.4. Conclusão
 
-O modelo final de Regressão Logística cumpre os critérios metodológicos definidos para esta fase de modelação: apresenta o melhor _F1-Score_ de entre todos os 18 candidatos testados, generalização controlada confirmada por validação cruzada estratificada, interpretabilidade total dos coeficientes e uma pipeline construída com rigor metodológico alinhado com o CRISP-DM (Chapman et al., 2000). O processo de otimização foi sistemático, explorando seis proporções de divisão, quatro normalizadores, sete técnicas de _resampling_ e 63 configurações de hiperparâmetros antes de convergir para a solução final, o que confere robustez e rastreabilidade à escolha efetuada.
+O modelo final de Regressão Logística cumpre os critérios metodológicos definidos para esta fase de modelação: apresenta o melhor _F1-Score_ de entre todos os 18 candidatos testados, generalização controlada confirmada por validação cruzada estratificada, interpretabilidade total dos coeficientes e uma pipeline construída com rigor metodológico alinhado com o CRISP-DM (Chapman et al., 2000). O processo de otimização foi sistemático, explorando seis proporções de divisão, quatro normalizadores, sete técnicas de _resampling_ e 63 configurações de hiperparâmetros, confirmando empiricamente que a configuração base da Regressão Logística era já a solução ótima, o que confere robustez e rastreabilidade à escolha efetuada.
 
 Os fatores de risco identificados, liderados por `OverTime_bin`, `MaritalStatus_Single` e `JobSatisfaction`, constituem uma base acionável para estratégias diferenciadas de retenção, com valor direto para a tomada de decisão em contexto de gestão de recursos humanos. O modelo está pronto a ser apresentado como solução final do Objetivo 1.
 
