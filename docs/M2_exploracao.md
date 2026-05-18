@@ -410,4 +410,4 @@ Tett, R. P., & Meyer, J. P. (1993).
 Hom, P. W., Lee, T. W., Shaw, J. D., & Hausknecht, J. P. (2017).  
 *One hundred years of employee turnover theory and research*. *Journal of Applied Psychology*.
  
-*Data de última atualização: 15/05/2026*
+*Data de última atualização: 18/05/2026*
