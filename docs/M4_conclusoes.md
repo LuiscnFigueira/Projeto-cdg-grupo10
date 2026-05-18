@@ -9,13 +9,13 @@ O primeiro objetivo do projeto consistia em desenvolver um modelo de classifica�
 
 #### Interpretação dos Resultados
 
-O modelo final selecionado foi a Regressão Logística e threshold ótimo de 0.50 , obtido após um processo de otimização em cinco etapas sequenciais: pesquisa do melhor _split_ (65/35), do melhor normalizador (`StandardScaler`), da melhor técnica de _resampling_ (`SVMSMOTE`), de hiperparâmetros via `GridSearchCV` e do threshold de decisão. Foram testados 18 algoritmos distintos antes de convergir para esta solução, cobrindo modelos de ensemble, lineares, probabilísticos e redes neuronais, em linha com a recomendação do CRISP-DM de explorar múltiplos algoritmos antes de selecionar o modelo final (Chapman et al., 2000).
+O modelo final selecionado foi a Regressão Logística com threshold ótimo de 0.50, obtido após um processo de otimização em cinco etapas sequenciais: pesquisa do melhor _split_ (65/35), do melhor normalizador (`StandardScaler`), da melhor técnica de _resampling_ (nenhuma aplicada no modelo final), de hiperparâmetros via `GridSearchCV` e do threshold de decisão. Foram testados 18 algoritmos distintos antes de convergir para esta solução, cobrindo modelos de ensemble, lineares, probabilísticos e redes neuronais, em linha com a recomendação do CRISP-DM de explorar múltiplos algoritmos antes de selecionar o modelo final (Chapman et al., 2000).
 
 Os resultados obtidos no conjunto de teste são os seguintes:
 
 | Split | Normalizador | Resampling | Threshold | F1 | Precision | Recall | AUC-ROC |
 |---|---|---|---|---|---|---|---|
-| 65/35 | StandardScaler | SVMSMOTE | 0.50 | 0.5538 | 0.7660 | 0.4337 | 0.8236 |
+| 65/35 | StandardScaler | Nenhum | 0.50 | 0.5538 | 0.7660 | 0.4337 | 0.8236 |
 
 A meta de F1-Score ≥ 80% não foi alcançada, reflexo das limitações estruturais do conjunto de dados: 1470 observações, desequilíbrio de classes de ~16% e ausência de variáveis de engajamento direto. Ainda assim, o AUC-ROC de 82,36% confirma uma boa capacidade discriminativa global, e a Precision de 76,60% garante que, dos colaboradores sinalizados como em risco, dois em cada três correspondem a casos reais de atrito. O threshold de 0.50 foi selecionado para maximizar o F1-Score na classe minoritária, equilibrando a identificação de casos reais de saída com a contenção de falsos positivos (Géron, 2022; James et al., 2021).
 
@@ -247,6 +247,6 @@ Do ponto de vista do impacto prático, a solução permite à organização pass
 ---
 
 
-**Data de Conclusão:** [Inserir Data]
+**Data de Conclusão:** 18/05/2026
 
 **Versão do Projeto:** v4.0 Final
