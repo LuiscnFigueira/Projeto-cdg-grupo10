@@ -4,7 +4,7 @@ Esta secção reúne as perguntas mais prováveis numa defesa ou sessão de Q&A 
 As respostas foram preparadas para ser dadas oralmente, de forma clara e sem jargão desnecessário.
 A organização segue a lógica do próprio projeto: dados, modelação, clustering e impacto.
 
-## DADOS E EXPLORAÇÃO
+## Dados e Exploração
 
 ### "O OverTime é o fator mais importante. Mas isso não é óbvio? Qual é o valor analítico?"
 
@@ -14,7 +14,7 @@ A organização segue a lógica do próprio projeto: dados, modelação, cluster
 
 **Resposta:** As variáveis categóricas nominais - como Departamento, Género e EstadoCivil - foram convertidas com one-hot encoding. As ordinais - como JobLevel e Education - foram mantidas como numéricas porque a ordem é significativa. Para as distribuições assimétricas, o StandardScaler normaliza todas as variáveis numéricas antes de entrar no modelo. No caso da Regressão Logística, a normalização é essencial porque o modelo é sensível à escala. O pipeline garante que o StandardScaler é aplicado sempre antes do SVMSMOTE e do modelo, incluindo dentro da validação cruzada, para evitar data leakage.
 
-## MODELAÇÃO - CLASSIFICAÇÃO
+## Modelação - Classificação
 
 ### "O modelo prevê quem vai sair - mas não quando. Para uma decisão de retenção, o timing importa. Como tratam isso?"
 
@@ -32,7 +32,7 @@ A organização segue a lógica do próprio projeto: dados, modelação, cluster
 
 **Resposta:** Implica que os resultados não podem ser diretamente generalizados para organizações reais. O IBM HR Analytics foi construído para fins educacionais e as distribuições são artificialmente controladas. Isso significa que o nosso modelo pode ter aprendido padrões que não existem em dados reais. Declaramos isto como limitação honesta. O valor do projeto está na metodologia - o pipeline CRISP-DM, a escolha e avaliação de 18 algoritmos, a construção do índice de risco - que é diretamente transferível para um contexto com dados reais. Com dados de uma organização real, esperamos que o F1 melhore porque os padrões serão mais consistentes.
 
-## CLUSTERING
+## Clustering
 
 ### "Como sabem que os clusters são válidos e não um artefacto do algoritmo?"
 
@@ -42,7 +42,7 @@ A organização segue a lógica do próprio projeto: dados, modelação, cluster
 
 **Resposta:** Para o Cluster 2 - Equipa de Vendas - o perfil mais jovem e mais móvel, a intervenção prioritária é progressão de carreira e reconhecimento rápido, porque são pessoas que saem quando não veem futuro a curto prazo. Para o Cluster 0 - I&D Operacional, o maior grupo - a estabilidade é um fator de retenção, pelo que mudanças abruptas de função ou projeto são arriscadas. Para o Cluster 1 - Liderança Científica, apenas 5,8% - são de alto valor estratégico e difíceis de substituir, por isso merecem atenção individualizada. Para o Cluster 3 - RH, o mais pequeno - o perfil distinto sugere que as motivações são diferentes e merecem análise separada.
 
-## APLICAÇÃO E ÉTICA
+## Aplicação e Ética
 
 ### "O índice de risco é uma ferramenta de apoio à decisão. Mas não pode ser usado para discriminar colaboradores?"
 
