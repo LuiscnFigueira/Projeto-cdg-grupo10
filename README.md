@@ -88,7 +88,7 @@ A fase de modelação cobre dois objetivos: classificação do atrito (Objetivo 
 
 **Objetivo 1 - Classificação Supervisionada**
 - **Modelos testados:** 18 algoritmos (_ensemble_, lineares, redes neuronais) + _baseline_ (Árvore de Decisão)
-- **Modelo final:** Regressão Logística com _pipeline_ `StandardScaler` + _SVMSMOTE_ + `StratifiedKFold` (k=15)
+- **Modelo final:** Regressão Logística com _pipeline_ `StandardScaler` + `StratifiedKFold` (k=15)
 - **Métrica principal:** F1-Score
 - **Resultado:** _F1_ Teste = 0.5538 | _AUC-ROC_ = 0.8236
 
