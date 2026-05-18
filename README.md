@@ -121,7 +121,8 @@ Em conjunto, os dois modelos oferecem às organizações uma visão dupla: quem 
 
 **2. Políticas Diferenciadas por Perfil de Colaborador -** Os quatro segmentos identificados têm realidades e necessidades distintas. A Equipa de Vendas (36% da organização) concentra a maior exposição a horas extra e pressão de resultados; a Liderança Científica (5.8%) apresenta baixo risco de saída mas custo de substituição elevado. A organização deveria desenhar políticas de benefícios, desenvolvimento de carreira e gestão de desempenho adaptadas a cada perfil, em vez de aplicar medidas transversais com eficácia diluída.
 
-**3. Sistema de Alerta Precoce para Horas Extraordinárias -** O fator com maior poder preditivo é a realização de horas extra. Um sistema simples de monitorização, que identifique colaboradores com padrão sistemático de horas extra durante mais de quatro semanas consecutivas e acione automaticamente uma conversa de _check-in_ com o gestor poderia reduzir a taxa de saída neste grupo de 30.5% para próximo de 10%, evitando até 84 saídas anuais e uma poupança potencial entre 2.5 e 10 milhões de dólares. O custo de implementação é residual face ao retorno estimado.
+**3. Sistema de Alerta Precoce para Horas Extraordinárias:** O fator com maior poder preditivo é a realização de horas extra, com um coeficiente de +0.944 na expressão do modelo. Um sistema simples de monitorização, que identifique colaboradores com
+padrão sistemático de horas extra durante mais de quatro semanas consecutivas e acione automaticamente uma conversa de _check-in_ com o gestor, poderia reduzir a taxa de saída neste grupo de 30.5% para próximo dos 10.4% observados nos colaboradores sem horas extra, evitando cerca de 84 saídas anuais. O custo de implementação é residual face ao impacto potencial na retenção de talento.
 
 ## Como Reproduzir este Projeto
 1. Clone o repositório: `git clone https://github.com/LuiscnFigueira/Projeto-cdg-grupo10`
