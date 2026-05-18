@@ -1,33 +1,34 @@
 # Manipulação e análise de dados
 pandas==2.3.3
-
+ 
 # Computação numérica
 numpy==2.0.2
-
+ 
 # Visualização de dados
 matplotlib==3.10.0
-
+ 
 # Visualização estatística
 seaborn==0.13.2
-
+ 
 # Computação científica
 scipy==1.16.3
-
+ 
 # Machine learning
 scikit-learn==1.6.1
-
+ 
 # Imbalanced learning (SMOTE, SMOTETomek, SMOTEENN)
 imbalanced-learn==0.12.4
-
+ 
 # Gradient boosting
 lightgbm==4.6.0
 xgboost==2.1.4
 catboost==1.2.7
-
+ 
 # Redução de dimensionalidade
 umap-learn==0.5.7
-
+ 
 # Deep learning
 tensorflow==2.19.0
+torch==2.4.0
 pytorch-tabnet==4.1.0
 pytorch-tabular==1.1.0
