@@ -286,4 +286,4 @@ Disponível em: https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-a
 James, G., Witten, D., Hastie, T., & Tibshirani, R. (2021). 
 *An Introduction to Statistical Learning: with Applications in R* (2nd ed.). Springer.
 
-*Data de última atualização: 15/05/2026*
+*Data de última atualização: 18/05/2026*
