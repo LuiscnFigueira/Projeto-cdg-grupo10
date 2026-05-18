@@ -176,8 +176,9 @@ A tabela seguinte resume a progressão cumulativa do _F1-Score_ ao longo das cin
 
 *Tabela 5 - Progressão cumulativa do F1-Score ao longo das cinco etapas de otimização.*
 
-A sequência de otimização demonstra que o processo de _tuning_ sistemático, apesar de não produzir ganhos adicionais de F1, cumpre um papel metodológico essencial: confirma empiricamente que a configuração base da Regressão Logística era já a solução ótima, eliminando a possibilidade de melhorias por _resampling_ mais sofisticado ou ajuste de hiperparâmetros (Chapman et al., 2000; Géron, 2022).
+A sequência de otimização demonstra que o processo de _tuning_ sistemático, apesar de não produzir ganhos adicionais de F1, cumpre um papel metodológico essencial: foram realizados centenas de testes, cobrindo múltiplas combinações de _split_, normalizador, técnica de _resampling_ e hiperparâmetros, confirmando empiricamente que a configuração _default_ da Regressão Logística era já a solução ótima para este problema (Chapman et al., 2000; Géron, 2022). 
 
+O modelo final utiliza os parâmetros _default_ do _scikit-learn_: `C=1.0`, `penalty='l2'`, `solver='lbfgs'`, `max_iter=100`, `class_weight=None`, `random_state=42`.
 
 ## 4. Avaliação do Modelo Final
 
