@@ -9,7 +9,7 @@ O primeiro objetivo do projeto consistia em desenvolver um modelo de classifica�
 
 #### Interpretação dos Resultados
 
-O modelo final selecionado foi a Regressão Logística com _pipeline_ `StandardScaler` + `SVMSMOTE` + `StratifiedKFold` (k=15) e threshold ótimo de 0.50 , obtido após um processo de otimização em cinco etapas sequenciais: pesquisa do melhor _split_ (65/35), do melhor normalizador (`StandardScaler`), da melhor técnica de _resampling_ (`SVMSMOTE`), de hiperparâmetros via `GridSearchCV` e do threshold de decisão. Foram testados 18 algoritmos distintos antes de convergir para esta solução, cobrindo modelos de ensemble, lineares, probabilísticos e redes neuronais, em linha com a recomendação do CRISP-DM de explorar múltiplos algoritmos antes de selecionar o modelo final (Chapman et al., 2000).
+O modelo final selecionado foi a Regressão Logística e threshold ótimo de 0.50 , obtido após um processo de otimização em cinco etapas sequenciais: pesquisa do melhor _split_ (65/35), do melhor normalizador (`StandardScaler`), da melhor técnica de _resampling_ (`SVMSMOTE`), de hiperparâmetros via `GridSearchCV` e do threshold de decisão. Foram testados 18 algoritmos distintos antes de convergir para esta solução, cobrindo modelos de ensemble, lineares, probabilísticos e redes neuronais, em linha com a recomendação do CRISP-DM de explorar múltiplos algoritmos antes de selecionar o modelo final (Chapman et al., 2000).
 
 Os resultados obtidos no conjunto de teste são os seguintes:
 
@@ -23,12 +23,12 @@ A meta de F1-Score ≥ 80% não foi alcançada, reflexo das limitações estrutu
 
 Com base nas probabilidades previstas pelo modelo final, foi construído um índice de risco que classifica cada colaborador em quatro categorias, permitindo traduzir uma previsão probabilística em informação diretamente acionável para a gestão de Recursos Humanos:
 
-| Categoria | Limiar | Interpretação |
-|---|---|---|
-| Baixo | prob < 30% | Colaborador estável, permanência muito provável |
-| Médio | 30% ≤ prob < 50% | Sinais de alerta; modelo prevê permanência |
-| Alto | 50% ≤ prob < 70% | Modelo prevê saída; acompanhamento ativo recomendado |
-| Crítico | prob ≥ 70% | Saída muito provável; intervenção prioritária |
+| Categoria | Limiar | Interpretação | Colaboradores | Percentagem |
+|---|---|---|---|---|
+| Baixo | prob < 30% | Colaborador estável, permanência muito provável | 1200 | 81,6% |
+| Médio | 30% ≤ prob < 50% | Sinais de alerta; modelo prevê permanência | 116 | 7,9% |
+| Alto | 50% ≤ prob < 70% | Modelo prevê saída; acompanhamento ativo recomendado | 72 | 4,9% |
+| Crítico | prob ≥ 70% | Saída muito provável; intervenção prioritária | 82 | 5,6% |
 
 Os limiares foram definidos respeitando o limiar natural da Regressão Logística (50%), garantindo que colaboradores com probabilidade abaixo e acima desse valor nunca são agrupados na mesma categoria.
 
