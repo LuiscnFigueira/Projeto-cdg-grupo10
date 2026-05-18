@@ -17,7 +17,7 @@ Os resultados obtidos no conjunto de teste são os seguintes:
 |---|---|---|---|---|---|---|---|
 | 65/35 | StandardScaler | SVMSMOTE | 0.50 | 0.5538 | 0.7660 | 0.4337 | 0.8236 |
 
-A meta de F1-Score ≥ 80% não foi alcançada, reflexo das limitações estruturais do conjunto de dados: 1470 observações, desequilíbrio de classes de ~16% e ausência de variáveis de engajamento direto. Ainda assim, o AUC-ROC de 82,36% confirma uma boa capacidade discriminativa global, e a Precision de 67,60% garante que, dos colaboradores sinalizados como em risco, dois em cada três correspondem a casos reais de atrito. O threshold de 0.50 foi selecionado para maximizar o F1-Score na classe minoritária, equilibrando a identificação de casos reais de saída com a contenção de falsos positivos (Géron, 2022; James et al., 2021).
+A meta de F1-Score ≥ 80% não foi alcançada, reflexo das limitações estruturais do conjunto de dados: 1470 observações, desequilíbrio de classes de ~16% e ausência de variáveis de engajamento direto. Ainda assim, o AUC-ROC de 82,36% confirma uma boa capacidade discriminativa global, e a Precision de 76,60% garante que, dos colaboradores sinalizados como em risco, dois em cada três correspondem a casos reais de atrito. O threshold de 0.50 foi selecionado para maximizar o F1-Score na classe minoritária, equilibrando a identificação de casos reais de saída com a contenção de falsos positivos (Géron, 2022; James et al., 2021).
 
 #### Índice de Risco de `Attrition`
 
