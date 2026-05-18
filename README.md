@@ -146,9 +146,7 @@ padrão sistemático de horas extra durante mais de quatro semanas consecutivas 
 
 ## Vídeo de Apresentação
 
-O vídeo de apresentação do projeto encontra-se disponível no seguinte link:
-
-[People Analytics and Employee Turnover Prediction — Grupo 10](https://drive.google.com/file/d/1aFkRgycnhxEBkDqq9DRt-zPdmBkFMswx/view?usp=drivesdk)
+O vídeo de apresentação do projeto encontra-se disponível no seguinte link: [People Analytics and Employee Turnover Prediction — Grupo 10](https://drive.google.com/file/d/1aFkRgycnhxEBkDqq9DRt-zPdmBkFMswx/view?usp=drivesdk)
 
 ## Referências
 
