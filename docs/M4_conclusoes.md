@@ -5,7 +5,7 @@
 ### 1.1 Objetivo 1 - Modelo Preditivo de `Attrition`
 
 #### O Problema Resolvido
-O primeiro objetivo do projeto consistia em desenvolver um modelo de classificação capaz de prever o atrito (`Attrition`) dos colaboradores, alcançando um F1-Score mínimo de 0,80 em validação cruzada estratificada (k=5), até ao dia 21/04/2026. O problema foi formalizado como uma tarefa de classificação binária sobre o conjunto de dados _IBM HR Analytics Employee Attrition & Performance_, composto por 1470 colaboradores e 35 variáveis originais, com uma taxa de atrito de 16,1% (Chapman et al., 2000; IBM Watson Analytics, 2016).
+O primeiro objetivo do projeto consistia em desenvolver um modelo de classificação capaz de prever o atrito (`Attrition`) dos colaboradores, alcançando um F1-Score mínimo de 0,80 em validação cruzada estratificada (k=15), até ao dia 21/04/2026. O problema foi formalizado como uma tarefa de classificação binária sobre o conjunto de dados _IBM HR Analytics Employee Attrition & Performance_, composto por 1470 colaboradores e 35 variáveis originais, com uma taxa de atrito de 16,1% (Chapman et al., 2000; IBM Watson Analytics, 2016).
 
 #### Interpretação dos Resultados
 
@@ -243,6 +243,28 @@ Foram desenvolvidas duas soluções complementares. A primeira, um modelo predit
 Os resultados ficaram aquém da meta quantitativa de _F1-Score_ ≥ 0,80, fixando-se em 0,5538 no conjunto de teste. Esta limitação, honestamente reconhecida, não invalida o valor da solução: o modelo obteve uma _Precision_ de 76,60%, garantindo que dois em cada três colaboradores sinalizados como em risco correspondem a casos reais de atrito, e o _clustering_ atingiu um _Silhouette Score_ de 0,7016, acima da meta de 0,50 e classificado como estrutura forte na escala de Rousseeuw (1987). A diferença entre a meta e o resultado alcançado reflete as limitações inerentes ao conjunto de dados sintético e não uma falha metodológica.
 
 Do ponto de vista do impacto prático, a solução permite à organização passar de uma postura reativa para uma postura preventiva e estratégica: identificar quem está em risco, em que perfil se insere e com que prioridade intervir. Esta capacidade tem valor direto na redução de custos de rotatividade e na preservação do capital humano organizacional (Hom et al., 2017).
+
+## 6. Referências
+
+Chawla, N. V., Bowyer, K. W., Hall, L. O., & Kegelmeyer, W. P. (2002). SMOTE: Synthetic Minority Over-sampling Technique. Journal of Artificial Intelligence Research, 16, 321–357.
+
+Chapman, P., Clinton, J., Kerber, R., Khabaza, T., Reinartz, T., Shearer, C., & Wirth, R. (2000). CRISP-DM 1.0: Step-by-step data mining guide. SPSS Inc.
+
+Davies, D. L., & Bouldin, D. W. (1979). A Cluster Separation Measure. IEEE Transactions on Pattern Analysis and Machine Intelligence, 1(2), 224–227.
+
+Géron, A. (2022). Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow (3rd ed.). O’Reilly Media.
+Hom, P. W., Lee, T. W., Shaw, J. D., & Hausknecht, J. P. (2017). One Hundred Years of Employee Turnover Theory and Research. Journal of Applied Psychology, 102(3), 530–545.
+
+IBM Watson Analytics. (2016). IBM HR Analytics Employee Attrition & Performance Dataset. IBM Sample Data Sets.
+Jain, A. K. (2010). Data clustering: 50 years beyond K-means. Pattern Recognition Letters, 31(8), 651–666.
+
+James, G., Witten, D., Hastie, T., & Tibshirani, R. (2021). An Introduction to Statistical Learning: With Applications in R (2nd ed.). Springer.
+
+McInnes, L., Healy, J., & Melville, J. (2018). UMAP: Uniform Manifold Approximation and Projection for Dimension Reduction. arXiv preprint arXiv:1802.03426.
+
+Rousseeuw, P. J. (1987). Silhouettes: A graphical aid to the interpretation and validation of cluster analysis. Journal of Computational and Applied Mathematics, 20, 53–65.
+
+Schubert, E., Sander, J., Ester, M., Kriegel, H. P., & Xu, X. (2017). DBSCAN revisited, revisited: Why and how you should (still) use DBSCAN. ACM Transactions on Database Systems, 42(3), 1–21.
 
 ---
 
