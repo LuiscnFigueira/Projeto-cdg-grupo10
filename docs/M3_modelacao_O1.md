@@ -391,4 +391,4 @@ Goodfellow, I., Bengio, Y., & Courville, A. (2016). Deep Learning. MIT Press.
 
 Chawla, N. V., Bowyer, K. W., Hall, L. O., & Kegelmeyer, W. P. (2002). SMOTE: Synthetic Minority Over-sampling Technique. *Journal of Artificial Intelligence Research, 16*, 321–357.
  
-Data de última atualização: 15/05/2026
+Data de última atualização: 18/05/2026
