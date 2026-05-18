@@ -16,6 +16,10 @@ A organização segue a lógica do próprio projeto: dados, modelação, cluster
 
 ## MODELAÇÃO - CLASSIFICAÇÃO
 
+### "O modelo prevê quem vai sair - mas não quando. Para uma decisão de retenção, o timing importa. Como tratam isso?"
+
+**Resposta:** É uma limitação real e assumimos que existe. O modelo classifica cada colaborador com uma probabilidade de saída, mas não estima se isso acontece daqui a um mês ou daqui a dois anos. Num contexto real, isso faz diferença: uma intervenção feita tarde pode ser inútil. Para resolver isto seria necessário reformular o problema como um modelo de sobrevivência - por exemplo com Cox Proportional Hazards ou modelos de tempo até evento - que estimam não só se alguém vai sair mas em que janela temporal. Essa abordagem exige dados longitudinais, com registos históricos por colaborador ao longo do tempo, que o dataset IBM não tem na forma necessária. É um próximo passo concreto e relevante para um deployment real.
+
 ### "Porquê Regressão Logística e não um modelo mais sofisticado?"
 
 **Resposta:** Porque os modelos mais sofisticados não generalizaram. O Random Forest, por exemplo, atingiu F1 próximo de 1,0 no treino e colapsou no teste - overfitting claro. A Regressão Logística obteve o melhor equilíbrio entre desempenho no teste e diferença treino/teste. Além disso, tem uma vantagem decisiva neste contexto: interpretabilidade. Conseguimos dizer ao gestor de RH que um coeficiente de +0,944 no OverTime significa que fazer horas extraordinárias aumenta significativamente a probabilidade de saída. Num modelo que afeta decisões sobre pessoas, ser capaz de explicar o porquê é tão importante quanto a precisão.
