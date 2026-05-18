@@ -317,3 +317,5 @@ McInnes, L., Healy, J., & Melville, J. (2018). UMAP: Uniform manifold approximat
 Rousseeuw, P. J. (1987). Silhouettes: A graphical aid to the interpretation and validation of cluster analysis. Journal of Computational and Applied Mathematics, 20, 53–65.
 
 Schubert, E., Sander, J., Ester, M., Kriegel, H.-P., & Xu, X. (2017). DBSCAN revisited, revisited: Why and how you should (still) use DBSCAN. ACM Transactions on Database Systems, 42(3), 1–21.
+
+**Data de Conclusão:** 18/05/2026
