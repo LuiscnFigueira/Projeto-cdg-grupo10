@@ -88,9 +88,9 @@ A fase de modelação cobre dois objetivos: classificação do atrito (Objetivo 
 
 **Objetivo 1 - Classificação Supervisionada**
 - **Modelos testados:** 18 algoritmos (_ensemble_, lineares, redes neuronais) + _baseline_ (Árvore de Decisão)
-- **Modelo final:** Regressão Logística com _pipeline_ `StandardScaler` + _SMOTE_ + `StratifiedKFold` (k=15) + _threshold_ ótimo
+- **Modelo final:** Regressão Logística com _pipeline_ `StandardScaler` + _SVMSMOTE_ + `StratifiedKFold` (k=15)
 - **Métrica principal:** F1-Score
-- **Resultado:** _F1_ Teste = 0.56 | _AUC-ROC_ = 0.8308
+- **Resultado:** _F1_ Teste = 0.5538 | _AUC-ROC_ = 0.8236
 
 **Objetivo 2 - _Clustering_**
 - **Modelos testados:** _K-Means_,_ DBSCAN_, _GMM_, _Agglomerative_ _Clustering_, _OPTICS_, _MiniBatch_ _K-Means_
@@ -105,9 +105,9 @@ A fase de modelação cobre dois objetivos: classificação do atrito (Objetivo 
 
 Este projeto demonstrou que é possível transformar dados de Recursos Humanos numa ferramenta concreta de apoio à decisão, com impacto direto nos custos operacionais da organização.
 
-**Objetivo 1 - Previsão de Atrito:** O modelo final de Regressão Logística alcança uma capacidade discriminativa de 80% (AUC-ROC = 0.8017) na distinção entre colaboradores em risco de saída e os restantes. Para contextualizar: sem qualquer modelo, uma triagem aleatória identificaria, em média, 16% dos casos de risco; este modelo concentra sistematicamente os casos reais de saída no topo da lista de prioridades, permitindo às equipas de Recursos Humanos intervir onde o risco é genuíno. Com base nas probabilidades previstas, cada colaborador é classificado num de quatro níveis: Baixo (prob < 30%), Médio (30–50%), Alto (50–70%) e Crítico(≥ 70%), tornando a decisão de intervenção objetiva e auditável.
+**Objetivo 1 - Previsão de Atrito:** O modelo final de Regressão Logística alcança uma capacidade discriminativa de 82% (AUC-ROC = 0.8236) na distinção entre colaboradores em risco de saída e os restantes. Para contextualizar: sem qualquer modelo, uma triagem aleatória identificaria, em média, 16% dos casos de risco; este modelo concentra sistematicamente os casos reais de saída no topo da lista de prioridades, permitindo às equipas de Recursos Humanos intervir onde o risco é genuíno. Com base nas probabilidades previstas, cada colaborador é classificado num de quatro níveis: Baixo (prob < 30%), Médio (30–50%), Alto (50–70%) e Crítico(≥ 70%), tornando a decisão de intervenção objetiva e auditável.
 
-O processo de otimização decorreu em cinco etapas sequenciais; pesquisa do melhor _split_ (65/35), do melhor normalizador (_StandardScaler_), da melhor técnica de _resampling_ (_SVMSMOTE_), de hiperparâmetros via _GridSearchCV_ com _StratifiedKFold_ (k=15), e do _threshold_ de decisão (0.79), resultando num _F1-Score_ final de 0.51 e _Precision_ de 0.66 no conjunto de teste.
+O processo de otimização decorreu em cinco etapas sequenciais; pesquisa do melhor _split_ (65/35), do melhor normalizador (_StandardScaler_), da melhor técnica de _resampling_ (_SVMSMOTE_), de hiperparâmetros via _GridSearchCV_ com _StratifiedKFold_ (k=15), e do _threshold_ de decisão (0.50), resultando num _F1-Score_ final de 0.5538 e _Precision_ de 0.7660 no conjunto de teste.
 
 O fator com maior peso preditivo é a realização de horas extraordinárias, com um coeficiente de +0.944 na expressão do modelo. Dos 421 colaboradores que as realizam, 30.5% saem, face a apenas 10.4% nos restantes, três vezes mais risco. Os segundos e terceiros fatores mais relevantes são os anos desde a última promoção (coef.+0.569) e a função de _Sales Representative_ (coef. +0.518).
 
@@ -144,6 +144,11 @@ padrão sistemático de horas extra durante mais de quatro semanas consecutivas 
 * **Dimensão:** 1470 linhas, 35 colunas  
 * **Fonte do Código:** https://www.kaggle.com/lusfigueira/code 
 
+## Vídeo de Apresentação
+
+O vídeo de apresentação do projeto encontra-se disponível no seguinte link:
+
+[People Analytics and Employee Turnover Prediction — Grupo 10](https://drive.google.com/file/d/1aFkRgycnhxEBkDqq9DRt-zPdmBkFMswx/view?usp=drivesdk)
 
 ## Referências
 
