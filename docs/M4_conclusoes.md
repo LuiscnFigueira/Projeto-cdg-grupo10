@@ -78,7 +78,7 @@ A segmentação permite à organização desenvolver estratégias de Recursos Hu
 
 ## 1.3 Resposta às Perguntas de Investigação
 
-### Pergunta de Investigação 1 — Quais são as variáveis com maior poder explicativo e preditivo do atrito?
+### Pergunta de Investigação 1 - Quais são as variáveis com maior poder explicativo e preditivo do atrito?
 
 A análise inferencial realizada na _Milestone 2_ identificou as variáveis com maior relevância estatística para o atrito, combinando testes qui-quadrado, Kruskal-Wallis e o efeito medido por Cramér's V e Cohen's d. As variáveis com maior poder
 discriminativo foram `OverTime` (Cramér's V = 0.24), `JobLevel`, `TotalWorkingYears`, `MonthlyIncome` e `Age`, todas com associação estatisticamente significativa (p < 0.05).
@@ -87,27 +87,27 @@ O modelo final de Regressão Logística confirmou e quantificou estas relações
 
 ---
 
-### Pergunta de Investigação 2 — Existe associação estatisticamente significativa entre `OverTime` e `Attrition`?
+### Pergunta de Investigação 2 - Existe associação estatisticamente significativa entre `OverTime` e `Attrition`?
 
 Sim. O teste do qui-quadrado aplicado à tabela de contingência entre `OverTime` e `Attrition` confirmou uma associação estatisticamente significativa (χ² = 87.56, p < 0.001). O tamanho do efeito medido por Cramér's V foi de 0.24, classificado como fraco a moderado. Em termos práticos, a taxa de atrito nos colaboradores que realizam horas extra é de 30.5%, face a 10.4% nos restantes, uma diferença de quase 3x que confirma o papel central desta variável no fenómeno estudado.
 
 ---
 
-### Pergunta de Investigação 3 — O nível de satisfação e o equilíbrio trabalho-vida influenciam o atrito?
+### Pergunta de Investigação 3 - O nível de satisfação e o equilíbrio trabalho-vida influenciam o atrito?
 
 Sim. O teste de Kruskal-Wallis aplicado às variáveis ordinais `JobSatisfaction`, `EnvironmentSatisfaction`, `RelationshipSatisfaction` e `WorkLifeBalance` confirmou diferenças estatisticamente significativas entre os grupos com e sem atrito (p < 0.05
 em todas as variáveis). A variável composta `SatisfactionIndex`, criada na fase de engenharia de atributos como média das quatro dimensões de satisfação, apresentou correlação negativa com `Attrition`, confirmando que colaboradores com menor satisfação global têm maior probabilidade de saída. O coeficiente negativo de `JobSatisfaction` no modelo final reforça esta conclusão.
 
 ---
 
-### Pergunta de Investigação 4 — O rendimento mensal tem impacto significativo no atrito após controlo multivariável?
+### Pergunta de Investigação 4 - O rendimento mensal tem impacto significativo no atrito após controlo multivariável?
 
 Sim, mas com efeito inverso rendimentos mais elevados reduzem a probabilidade de saída. A análise exploratória mostrou que colaboradores que saem têm rendimento mensal médio substancialmente inferior aos que permanecem. O modelo multivariável confirmou
 este efeito: o coeficiente de `MonthlyIncome` é positivo na expressão do modelo, o que, conjugado com a escala da variável, indica que aumentos no rendimento reduzem a probabilidade de atrito, mesmo após controlo das restantes variáveis. A variável `IncomePerLevel`, criada como rácio entre rendimento e nível hierárquico, revelou adicionalmente que colaboradores sub-remunerados face ao seu nível de cargo apresentam maior risco de saída.
 
 ---
 
-### Pergunta de Investigação 5 — Qual o algoritmo com melhor desempenho e maior estabilidade?
+### Pergunta de Investigação 5 - Qual o algoritmo com melhor desempenho e maior estabilidade?
 
 Após testar 18 algoritmos distintos em validação cruzada estratificada, a Regressão Logística foi o modelo com melhor equilíbrio entre desempenho e estabilidade:
 
@@ -124,13 +124,13 @@ Os modelos de ensemble (Random Forest, XGBoost, LightGBM, CatBoost, Extra Trees)
 
 ---
 
-### Pergunta de Investigação 6 — O desequilíbrio de classes afeta os modelos e pode ser mitigado com SMOTE?
+### Pergunta de Investigação 6 - O desequilíbrio de classes afeta os modelos e pode ser mitigado com SMOTE?
 
 Sim. O desequilíbrio (~84% vs ~16%) afeta diretamente o desempenho dos modelos, penalizando o _Recall_ na classe minoritária. Sem qualquer técnica de balanceamento, o modelo _baseline_ de Regressão Logística obtinha _F1 Teste_ = 0,4978. A aplicação de SMOTE no _pipeline_ de treino melhorou o _F1 Teste_ para 0,5538, demonstrando que o balanceamento sintético é eficaz na identificação de colaboradores em risco. O _threshold_ padrão de 0,50 foi mantido como limiar de decisão, uma vez que o processo de otimização sistemática confirmou empiricamente que a configuração base da Regressão Logística era já a solução ótima para este problema (Chawla et al., 2002).
 
 ---
 
-### Pergunta de Investigação 7 — É possível construir um índice de risco de atrito interpretável e fiável?
+### Pergunta de Investigação 7 - É possível construir um índice de risco de atrito interpretável e fiável?
 
 Sim. Com base nas probabilidades previstas pelo modelo final de Regressão Logística, foi construído um índice de risco que classifica cada colaborador em quatro categorias:
 
@@ -146,7 +146,7 @@ real aumenta progressivamente de Baixo para Crítico, demonstrando a coerência 
 
 ---
 
-### Pergunta de Investigação 8 — Que fatores distinguem os colaboradores com maior risco e como apoiam estratégias de retenção?
+### Pergunta de Investigação 8 - Que fatores distinguem os colaboradores com maior risco e como apoiam estratégias de retenção?
 
 A análise combinada do modelo preditivo e do clustering identificou um perfil consistente de colaboradores em risco elevado: jovens (20–35 anos), com rendimento baixo, nível hierárquico reduzido, realização sistemática de horas extraordinárias,
 menor tempo na empresa e menor satisfação global. Este perfil concentra-se maioritariamente na Equipa de Vendas (_cluster 2_, 36% da organização), o grupo com maior mobilidade entre empresas identificado pelo modelo de _clustering_.
