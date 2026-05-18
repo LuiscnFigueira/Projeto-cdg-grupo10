@@ -9,15 +9,15 @@ O primeiro objetivo do projeto consistia em desenvolver um modelo de classifica�
 
 #### Interpretação dos Resultados
 
-O modelo final selecionado foi a Regressão Logística com _pipeline_ `StandardScaler` + `SVMSMOTE` + `StratifiedKFold` (k=15) e threshold ótimo de 0,79, obtido após um processo de otimização em cinco etapas sequenciais: pesquisa do melhor _split_ (65/35), do melhor normalizador (`StandardScaler`), da melhor técnica de _resampling_ (`SVMSMOTE`), de hiperparâmetros via `GridSearchCV` e do threshold de decisão. Foram testados 18 algoritmos distintos antes de convergir para esta solução, cobrindo modelos de ensemble, lineares, probabilísticos e redes neuronais, em linha com a recomendação do CRISP-DM de explorar múltiplos algoritmos antes de selecionar o modelo final (Chapman et al., 2000).
+O modelo final selecionado foi a Regressão Logística com _pipeline_ `StandardScaler` + `SVMSMOTE` + `StratifiedKFold` (k=15) e threshold ótimo de 0.50 , obtido após um processo de otimização em cinco etapas sequenciais: pesquisa do melhor _split_ (65/35), do melhor normalizador (`StandardScaler`), da melhor técnica de _resampling_ (`SVMSMOTE`), de hiperparâmetros via `GridSearchCV` e do threshold de decisão. Foram testados 18 algoritmos distintos antes de convergir para esta solução, cobrindo modelos de ensemble, lineares, probabilísticos e redes neuronais, em linha com a recomendação do CRISP-DM de explorar múltiplos algoritmos antes de selecionar o modelo final (Chapman et al., 2000).
 
 Os resultados obtidos no conjunto de teste são os seguintes:
 
 | Split | Normalizador | Resampling | Threshold | F1 | Precision | Recall | AUC-ROC |
 |---|---|---|---|---|---|---|---|
-| 65/35 | StandardScaler | SVMSMOTE | 0,79 | 0,5147 | 0,6604 | 0,4217 | 0,8017 |
+| 65/35 | StandardScaler | SVMSMOTE | 0.50 | 0.5538 | 0.7660 | 0.4337 | 0.8236 |
 
-A meta de F1-Score ≥ 80% não foi alcançada, reflexo das limitações estruturais do conjunto de dados: 1470 observações, desequilíbrio de classes de ~16% e ausência de variáveis de engajamento direto. Ainda assim, o AUC-ROC de 80,17% confirma uma boa capacidade discriminativa global, e a Precision de 66,04% garante que, dos colaboradores sinalizados como em risco, dois em cada três correspondem a casos reais de atrito. O threshold de 0,79 foi selecionado para maximizar o F1-Score na classe minoritária, equilibrando a identificação de casos reais de saída com a contenção de falsos positivos (Géron, 2022; James et al., 2021).
+A meta de F1-Score ≥ 80% não foi alcançada, reflexo das limitações estruturais do conjunto de dados: 1470 observações, desequilíbrio de classes de ~16% e ausência de variáveis de engajamento direto. Ainda assim, o AUC-ROC de 82,36% confirma uma boa capacidade discriminativa global, e a Precision de 67,60% garante que, dos colaboradores sinalizados como em risco, dois em cada três correspondem a casos reais de atrito. O threshold de 0.50 foi selecionado para maximizar o F1-Score na classe minoritária, equilibrando a identificação de casos reais de saída com a contenção de falsos positivos (Géron, 2022; James et al., 2021).
 
 #### Índice de Risco de `Attrition`
 
@@ -126,9 +126,7 @@ Os modelos de ensemble (Random Forest, XGBoost, LightGBM, CatBoost, Extra Trees)
 
 ### Pergunta de Investigação 6 — O desequilíbrio de classes afeta os modelos e pode ser mitigado com SMOTE?
 
-Sim. O desequilíbrio (~84% vs ~16%) afeta diretamente o desempenho dos modelos, penalizando o _Recall_ na classe minoritária. Sem qualquer técnica de balanceamento, o modelo _baseline_ de Regressão Logística obtinha _F1 Teste_ = 0.4978. A aplicação de
-SMOTE no _pipeline_ de treino melhorou o _F1 Teste_ para 0.5625 e o _Recall_ de 35% para 75%, demonstrando que o balanceamento sintético é eficaz na identificação de colaboradores em risco. A otimização do _threshold_ de decisão para 0.52 complementou
-esta melhoria, ajustando o limiar de classificação ao contexto de desequilíbrio de classes (Chawla et al., 2002).
+Sim. O desequilíbrio (~84% vs ~16%) afeta diretamente o desempenho dos modelos, penalizando o _Recall_ na classe minoritária. Sem qualquer técnica de balanceamento, o modelo _baseline_ de Regressão Logística obtinha _F1 Teste_ = 0,4978. A aplicação de SMOTE no _pipeline_ de treino melhorou o _F1 Teste_ para 0,5538, demonstrando que o balanceamento sintético é eficaz na identificação de colaboradores em risco. O _threshold_ padrão de 0,50 foi mantido como limiar de decisão, uma vez que o processo de otimização sistemática confirmou empiricamente que a configuração base da Regressão Logística era já a solução ótima para este problema (Chawla et al., 2002).
 
 ---
 
@@ -170,7 +168,7 @@ A variável `PerformanceRating` apresenta variância praticamente nula, com a qu
 
 ### 2.2 Limitações do Modelo Preditivo
 
-O objetivo mínimo de _F1-Score_ >= 0,80 não foi alcançado (_F1 Teste_ = 0,5625), apesar de terem sido testados 18 algoritmos distintos e aplicadas técnicas de equilíbrio (SMOTE) e otimização de _threshold_. O modelo apresenta um _gap_ entre treino e teste de +0,12 no _F1-Score_, indicativo de _overfitting_ leve, embora substancialmente inferior ao observado nos modelos de ensemble e redes neuronais testados - por exemplo, _Random Forest_ com _gap_ de +0,78 e Keras simples com _gap_ de +0,54. 
+O objetivo mínimo de _F1-Score_ >= 0,80 não foi alcançado (_F1 Teste_ = 0.5538), apesar de terem sido testados 18 algoritmos distintos e aplicadas técnicas de equilíbrio (SMOTE) e otimização de _threshold_.
 
 As previsões indicam probabilidade de risco, mas não provam causalidade entre as variáveis e o atrito - uma limitação inerente a qualquer modelo preditivo correlacional (James et al., 2021). 
 
@@ -238,12 +236,11 @@ Assumindo a disponibilidade de dados reais de uma organização, a solução des
 
 ## 5. Conclusão Final
 
-ste projeto demonstrou a aplicabilidade de técnicas de Ciência de Dados ao problema da rotatividade de colaboradores, percorrendo de forma rigorosa as fases do CRISP-DM da definição do problema à entrega de valor analítico (Chapman et al., 2000).
+Este projeto demonstrou a aplicabilidade de técnicas de Ciência de Dados ao problema da rotatividade de colaboradores, percorrendo de forma rigorosa as fases do CRISP-DM da definição do problema à entrega de valor analítico (Chapman et al., 2000).
 
 Foram desenvolvidas duas soluções complementares. A primeira, um modelo preditivo de classificação baseado em Regressão Logística, permite estimar a probabilidade de saída de cada colaborador e classificá-lo num índice de risco de quatro categorias: Baixo, Médio, Alto e Crítico, transformando uma previsão probabilística em informação acionável para a gestão de Recursos Humanos. A segunda, um modelo de _clustering_ baseado em UMAP + DBSCAN, identificou quatro perfis distintos de colaboradores com correspondência direta à estrutura departamental real da organização, sem que essa informação tivesse sido fornecida ao modelo.
 
-Os resultados ficaram aquém da meta quantitativa de _F1-Score_ ≥ 0,80, fixando-se em 0,56 no conjunto de teste. Esta limitação, honestamente reconhecida, não invalida o valor da solução: o modelo identifica corretamente 3 em cada 4 colaboradores que
-efetivamente saem (_Recall_ de 75%), e o _clustering_ atingiu um _Silhouette Score_ de 0,70, acima da meta de 0,50 e classificado como estrutura forte na escala de Rousseeuw. A diferença entre a meta e o resultado alcançado reflete as limitações inerentes ao conjunto de dados sintético e não uma falha metodológica.
+Os resultados ficaram aquém da meta quantitativa de _F1-Score_ ≥ 0,80, fixando-se em 0,5538 no conjunto de teste. Esta limitação, honestamente reconhecida, não invalida o valor da solução: o modelo obteve uma _Precision_ de 76,60%, garantindo que dois em cada três colaboradores sinalizados como em risco correspondem a casos reais de atrito, e o _clustering_ atingiu um _Silhouette Score_ de 0,7016, acima da meta de 0,50 e classificado como estrutura forte na escala de Rousseeuw (1987). A diferença entre a meta e o resultado alcançado reflete as limitações inerentes ao conjunto de dados sintético e não uma falha metodológica.
 
 Do ponto de vista do impacto prático, a solução permite à organização passar de uma postura reativa para uma postura preventiva e estratégica: identificar quem está em risco, em que perfil se insere e com que prioridade intervir. Esta capacidade tem valor direto na redução de custos de rotatividade e na preservação do capital humano organizacional (Hom et al., 2017).
 
